@@ -1,29 +1,21 @@
 <template>
   <section id="app">
-    <h1>{{count}}</h1>
-    <button @click="add"></button>
+    <h1 class="m-10">{{count}}</h1>
+    <button class="w-40 h-40 bg-black" @click="test"></button>
   </section>
 </template>
 
 <script>
 export default {
-  el: "#app",
-  name: 'IndexPage',
   data(){
     return{
       count: 0
     }
   },
   methods: {
-    add: function(){
-      return this.data.count++
+    test: function test(){
+      this.count++
     }
   }
 }
 </script>
-
-<style>
-button{
-  width: 10rem;
-}
-</style>

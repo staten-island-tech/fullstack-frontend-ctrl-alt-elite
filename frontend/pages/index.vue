@@ -2,6 +2,7 @@
   <section id="app">
     <h1 class="m-10">{{count}}</h1>
     <button class="w-40 h-40 bg-black" @click="test"></button>
+    <WelcomingNavBar/>
   </section>
 </template>
 

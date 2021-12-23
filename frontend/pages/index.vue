@@ -9,8 +9,8 @@
     <div>
       <header>From Vuex store</header>
       <h2 class="m-1 w-10">{{addStore}}</h2>
-      <input v-model.number="reqinc" type="number" class="m-1 w-20" placeholder="Hello">
-      <h3>Your are increasing by {{reqinc}}</h3>
+      <input v-model.number="incrementBy" type="number" class="m-1 w-20" placeholder="Hello">
+      <h3>Your are increasing by {{incrementBy}}</h3>
       <button class="w-40 h-40 bg-black" @click="increment"><div class="text-white">Click to add vuex state</div></button>
       <button class="w-40 h-40 bg-black" @click="reset"><div class="text-white">Click to reset vuex syaye</div></button>
     </div>
@@ -25,7 +25,7 @@ export default {
   data(){
     return{
       count: 0,
-      reqinc: 1
+      incrementBy: 1
     }
   },
   computed: {
@@ -41,7 +41,7 @@ export default {
       this.count = 0
     },
     increment(){
-       this.$store.commit("INCREMENT", this.reqinc)
+       this.$store.dispatch("updateCount", this.incrementBy)
     },
     reset(){
        this.$store.commit("RESET")

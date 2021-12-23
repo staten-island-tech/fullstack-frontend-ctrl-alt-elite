@@ -1,7 +1,8 @@
 <template>
   <section id="app">
-    <h1 class="m-10">{{count}}</h1>
-    <button class="w-40 h-40 bg-black" @click="test"></button>
+    <h1 class="m-10 text-lg text-black">{{store}}</h1>
+    <input v-model.number="incrementBy" type="number" class="m-10 text-lg text-black">
+    <button class="w-40 h-40 border-4" @click="addStore"></button>
     <WelcomingNavBar/>
   </section>
 </template>
@@ -11,27 +12,17 @@ export default {
   element: "#app",
   data(){
     return{
-      count: 0,
       incrementBy: 1
     }
   },
   computed: {
-    addStore(){
+    store(){
       return this.$store.state.counter
     }
   },
   methods: {
-    add(){
-      this.count++
-    },
-    res(){
-      this.count = 0
-    },
-    increment(){
-       this.$store.dispatch("updateCount", this.incrementBy)
-    },
-    reset(){
-       this.$store.commit("RESET")
+    addStore(){
+      this.$store.commit("INCREMENT_COUNT", this.incrementBy)
     }
   }
 }

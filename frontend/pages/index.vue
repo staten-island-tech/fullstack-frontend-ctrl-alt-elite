@@ -1,7 +1,5 @@
 <template>
-  <section id="app">
-    <h1 class="m-10">{{count}}</h1>
-    <button class="w-40 h-40 bg-black" @click="test"></button>
+  <section id="welcoming-page">
     <WelcomingNavBar/>
   </section>
 </template>
@@ -20,3 +18,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  #welcoming-page {
+    height: 100vh;
+    background-image: url("./assets/welcoming-placeholder.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>

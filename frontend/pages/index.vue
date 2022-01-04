@@ -1,6 +1,7 @@
 <template>
   <section id="welcoming-page">
     <WelcomingNavBar/>
+    <!-- <img src="../assets/pic.svg" class="h-32"> -->
   </section>
 </template>
 

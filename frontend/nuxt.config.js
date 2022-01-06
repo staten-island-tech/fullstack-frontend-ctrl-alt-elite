@@ -35,7 +35,20 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
+  ],
+  auth: {
+    strategies: {
+      auth0: {
+        domain: 'dev-p62lyuzr.us.auth0.com',
+        clientId: 'A4avCXPautzQ9o8kr3tGeA6Z6Ko9aofZ',
+        // audience: 'https://my-api-domain.com/'
+      }
+    }
+  },
+  
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

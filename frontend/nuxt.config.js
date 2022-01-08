@@ -40,6 +40,10 @@ export default {
     '@nuxtjs/auth-next'
   ],
   auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/signed-in'
+    },
     strategies: {
       auth0: {
         domain: 'dev-p62lyuzr.us.auth0.com',

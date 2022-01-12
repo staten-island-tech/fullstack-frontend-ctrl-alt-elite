@@ -2,7 +2,7 @@
   <section id="welcoming-page">
     <WelcomingNavBar/>
     <!-- <img src="../assets/pic.svg" class="h-32"> -->
-    <LoginButton/>
+  
   </section>
 </template>
 
@@ -13,10 +13,15 @@ export default {
       count: 0
     }
   },
+  mounted() {
+      this.redirect()
+  },
   methods: {
-    test: function test(){
-      this.count++
-    }
+    redirect() {
+        if (this.$auth.loggedIn) {
+          this.$router.push({path: 'Home'});
+        }
+      }
   }
 }
 </script>
@@ -24,7 +29,8 @@ export default {
 <style scoped>
   #welcoming-page {
     height: 100vh;
-    background-image: url("./assets/welcoming-placeholder.jpg");
+    /* background-image: url("./assets/welcoming-placeholder.jpg"); */
+    background-color: black;
     background-repeat: no-repeat;
     background-size: cover;
   }

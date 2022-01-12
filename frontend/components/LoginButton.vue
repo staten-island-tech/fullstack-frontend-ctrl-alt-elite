@@ -13,7 +13,9 @@
     methods: {
       login() {
         this.$auth.loginWith('auth0');
+       
       },
+  
     },
   };
 </script>

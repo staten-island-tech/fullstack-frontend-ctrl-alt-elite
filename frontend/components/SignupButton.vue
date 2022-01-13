@@ -6,7 +6,7 @@
 export default {
      methods: {
       signup() {
-        this.$auth.loginWith("auth0", { params: { screen_hint: "signup" } })
+        this.$auth.loginWith("auth0", { params: { screen_hint: "signup" }})
       },
      },
 }

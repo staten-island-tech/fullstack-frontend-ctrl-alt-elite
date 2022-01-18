@@ -13,7 +13,7 @@
       </div>
     </section>
     <section class="h-screen">
-
+      <p class="text-white" data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorum blanditiis aperiam? Placeat quis impedit maiores natus voluptas, et numquam, dolor libero quas, optio culpa suscipit. Eaque nulla a cumque.</p>
     </section>
   </div>
 </template>

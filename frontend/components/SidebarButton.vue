@@ -1,12 +1,12 @@
 <template>
 <div class="container">
 
-    <div id="mySidebar" class="bg-indigo-800 hidden">
-        <button @click="closeSide()">Close</button>
+    <div id="mySidebar" class="bg-indigo-800 hidden" ref="sidebar">
+        <button v-on:click="closeSide()">Close</button>
     </div>
 
-    <div class="text-neutral-50">
-        <button  @click="openSide()">Open</button>
+    <div class="text-neutral-50 text-lg">
+        <button v-on:click="openSide()" v-if="display" >Open</button>
     </div>
 </div>
      
@@ -14,14 +14,23 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            display: false,
+        }
+    },
        methods: {
-         openSide:  function () {
-               document.getElementById("mySideBar").style.display = "block";
-       },
-        closeSide: function () {
-            document.getElementById("mySideBar").style.display = "none";
-        },
+
+           openSide: function() {
+               this.display = !this.display;
+           }
+    //      openSide:  function () {
+    //         this.$refs.sidebar.style.display = "block";
+    //    },
+    //     closeSide: function () {
+    //        this.$refs.sidebar.style.display = "none";
+    //     },
+
 },
 };
 

@@ -12,6 +12,7 @@
 </div>
 <div class="view-projects">
 <p class="more-projects"> html</p>
+<p class="more-projects"> Java</p>
 </div>
 
 
@@ -49,7 +50,7 @@ menu:hover{
     cursor: pointer;
 }
 .view-projects{
-    border: solid goldenrod 1.5rem;
+    border: solid goldenrod .5rem;
     height: 30vh;
     margin-top: 2rem;
     justify-content: center;

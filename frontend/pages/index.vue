@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black">
+  <div id="hi" class="bg-black h-full">
     <section id="welcoming-page">
     <WelcomingNavBar/>
     <!-- <img src="../assets/pic.svg" class="h-32"> -->
@@ -7,28 +7,40 @@
         <div class="ml-20 w-1/2">
           <h1 class="text-white uppercase font-bold text-6xl">This is the welcoming page.</h1>
           <p class="text-white text-xl my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
-          <SignupButton class="text-white border-2 h-10 rounded-md border w-1/3 ml-0">Sign up today!</SignupButton>
+          <SignupButton class="text-white border-2 h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
         </div>  
         <!-- <img class="h-72 mr-20" src="../assets/undraw_programmer_re_owql.svg"> -->
       </div>
     </section>
     <section class="h-screen">
-      <p class="text-white" data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis dolorum blanditiis aperiam? Placeat quis impedit maiores natus voluptas, et numquam, dolor libero quas, optio culpa suscipit. Eaque nulla a cumque.</p>
+      <div ref="vantaRef" class="h-1/6 w-1/6" data-aos="fade-up"></div>
     </section>
   </div>
 </template>
 
 <script>
-import SignupButton from '../components/SignupButton.vue';
+import BIRDS from 'vanta/src/vanta.birds'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 export default {
-  components: { SignupButton },
+  components: {  },
   data(){
     return{
       count: 0
     }
   },
   mounted() {
-      this.redirect()
+      this.redirect();
+      this.vantaEffect = BIRDS({
+      el: this.$refs.vantaRef
+    })
+  },
+  beforeDestroy() {
+    if (this.vantaEffect) {
+      this.vantaEffect.destroy()
+    }
   },
   methods: {
     redirect() {

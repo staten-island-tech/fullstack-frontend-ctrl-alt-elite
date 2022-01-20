@@ -1,10 +1,9 @@
 <template>
-  <div id="hi" class="bg-black h-full">
+  <div class="bg-black h-full">
     <section id="welcoming-page">
-    <WelcomingNavBar/>
-    <!-- <img src="../assets/pic.svg" class="h-32"> -->
-      <div class="flex flex-row items-center h-5/6">
-        <div class="ml-20 w-1/2">
+    <WelcomingNavBar/>    
+      <div class="flex flex-row items-center h-5/6 m-2" data-aos="fade-right">
+        <div class="ml-20 w-1/3">
           <h1 class="text-white uppercase font-bold text-6xl">This is the welcoming page.</h1>
           <p class="text-white text-xl my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
           <SignupButton class="text-white border-2 h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
@@ -12,20 +11,26 @@
         <!-- <img class="h-72 mr-20" src="../assets/undraw_programmer_re_owql.svg"> -->
       </div>
     </section>
-    <section class="h-screen">
-      <div ref="vantaRef" class="h-1/6 w-1/6" data-aos="fade-up"></div>
+    <section class="h-screen flex items-center flex-col">
+      <h2 class="text-white text-5xl font-bold uppercase m-10" data-aos="fade-up">Welcoming Page Info</h2>
+      <div class="h-2/3 w-11/12 m-10 mx-20" data-aos="fade-right">
+        <div class="h-full w-1/3 bg-white"></div>
+      </div>
+      <div class="h-2/3 w-11/12 flex flex-row-reverse" data-aos="fade-left">
+        <div class="h-full w-1/3 bg-white"></div>
+      </div>
     </section>
   </div>
 </template>
 
 <script>
-import BIRDS from 'vanta/src/vanta.birds'
+import * as THREE from 'three'
+import NET from 'vanta/dist/vanta.net.min'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
 
 export default {
-  components: {  },
   data(){
     return{
       count: 0
@@ -33,8 +38,12 @@ export default {
   },
   mounted() {
       this.redirect();
-      this.vantaEffect = BIRDS({
-      el: this.$refs.vantaRef
+      this.vantaEffect = NET({
+      el: "#welcoming-page",
+      THREE,
+      backgroundAlpha: 0,
+      color: 0x8f5ede,
+      points: 14.00,
     })
   },
   beforeDestroy() {

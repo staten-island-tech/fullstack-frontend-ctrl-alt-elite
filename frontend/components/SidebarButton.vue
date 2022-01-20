@@ -1,15 +1,11 @@
 <template>
 <div class="container">
-
-    <div id="mySidebar" class="bg-indigo-800 hidden" ref="sidebar">
-        <button v-on:click="closeSide()">Close</button>
-    </div>
-
-    <div class="text-neutral-50 text-lg">
-        <button v-on:click="openSide()" v-if="display" >Open</button>
+    <div id="buttons">
+    <div class="option1" @click = "toggleVisible"> X </div>
+    <div v-if = "display" class="option2" > Settings </div>
+    <div v-if = "display" class="option3" > Profile </div>
     </div>
 </div>
-     
 </template>
 
 <script>
@@ -17,19 +13,12 @@ export default {
     data() {
         return {
             display: false,
-        }
+        };
     },
        methods: {
-
-           openSide: function() {
+           toggleVisible() {
                this.display = !this.display;
            }
-    //      openSide:  function () {
-    //         this.$refs.sidebar.style.display = "block";
-    //    },
-    //     closeSide: function () {
-    //        this.$refs.sidebar.style.display = "none";
-    //     },
 
 },
 };
@@ -37,10 +26,16 @@ export default {
 </script>
 
 <style scoped> 
-#mySideBar {
+#buttons {
+    color: blue;
+    width: 60%;
+    float: left;
+    height: 20%;
     position: relative;
     animation: animateleft 0.4s;
 }
+
+    
 
 @keyframes animateleft {
     from {

@@ -19,6 +19,6 @@ div {
 }
 
 h1{
-    color:white;
+    color:blue
 }
 </style>

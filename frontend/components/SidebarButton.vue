@@ -1,9 +1,11 @@
 <template>
 <div class="container">
     <div id="buttons">
-    <div class="option1" @click = "toggleVisible"> X </div>
+    
+    <div class="option1" @click = "toggleVisible"> ☰ </div>
     <div v-if = "display" class="option2" > Settings </div>
     <div v-if = "display" class="option3" > Profile </div>
+
     </div>
 </div>
 </template>
@@ -18,6 +20,7 @@ export default {
        methods: {
            toggleVisible() {
                this.display = !this.display;
+
            }
 
 },
@@ -28,11 +31,14 @@ export default {
 <style scoped> 
 #buttons {
     color: blue;
-    width: 60%;
-    float: left;
-    height: 20%;
+    width: 10px;
+    height: 10px;
     position: relative;
-    animation: animateleft 0.4s;
+    cursor: pointer;
+    display: flex;
+    float: left;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
     

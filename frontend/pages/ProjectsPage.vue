@@ -11,7 +11,7 @@
 
 </div>
 <div class="view-projects">
-<p class="more-projects"> html</p>
+<p class="more-projects"> Html</p>
 <p class="more-projects"> Java</p>
 </div>
 
@@ -21,6 +21,9 @@
 
 <script>
 export default{
+    methods: {
+        
+    }
 
 
 }
@@ -29,7 +32,7 @@ export default{
 
 <style>
 body{
-    background-color: #240090;
+   background: linear-gradient(#190061,#8570c5);
 }
 
 .temp1{
@@ -50,20 +53,23 @@ menu:hover{
     cursor: pointer;
 }
 .view-projects{
-    border: solid goldenrod .5rem;
     height: 30vh;
     margin-top: 2rem;
     justify-content: center;
     text-align: center;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    opacity: .7;
 }
 .more-projects{
     font-family: 'Courier New', Courier, monospace;
     font-size: 2rem;
     font-weight: bold;
-    width: 20vw;
+    width: 20vw; 
+    margin: 1rem;
+    border: solid black .3rem;
+    background-color: blanchedalmond;
 }
 
 </style>

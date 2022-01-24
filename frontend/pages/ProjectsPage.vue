@@ -32,7 +32,8 @@ export default{
 
 <style>
 body{
-   background: linear-gradient(#190061,#8570c5);
+   background: linear-gradient(#5830AA,#A410FF);
+   height: 100vh;
 }
 
 .temp1{

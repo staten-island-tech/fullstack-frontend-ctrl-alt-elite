@@ -2,7 +2,7 @@
 
     <div>
     <DefaultNavBar/>
-  <h1>this is the home page</h1>
+  <!-- <h1>this is the home page</h1> -->
     </div>
 </template>
 

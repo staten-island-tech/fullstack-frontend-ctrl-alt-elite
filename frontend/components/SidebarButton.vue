@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+ 
     <div id="buttons">
     
     <div class="option1" @click = "toggleVisible"> ☰ </div>
@@ -7,7 +7,8 @@
     <div v-if = "display" class="option3" > Profile </div>
 
     </div>
-</div>
+ 
+
 </template>
 
 <script>
@@ -29,16 +30,20 @@ export default {
 </script>
 
 <style scoped> 
+
 #buttons {
-    color: blue;
-    width: 10px;
-    height: 10px;
+    color: gray;
     position: relative;
     cursor: pointer;
-    display: flex;
     float: left;
     flex-direction: column;
+    height: 3rem;  
+    width: 100%;
+    padding: 1rem;
+    display: flex;
     justify-content: flex-start;
+    font-size: 1.25rem;
+    
 }
 
     

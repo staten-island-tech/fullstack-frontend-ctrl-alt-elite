@@ -6,13 +6,23 @@
 <p class="New-Project"> New Project </p>
 </div>
 <div class="Your-projects">
+    <div class="search">
+        Your Projects
+    </div>
+<div class="search-bar"> 
+    <input type ="text" :v-model="search" placeholder="Find a Project">
+ 
+
+
+</div>
 
 
 
 </div>
 <div class="view-projects">
-<p class="more-projects"> Html</p>
-<p class="more-projects"> Java</p>
+<p class="more-projects"> Projects Go Here</p>
+<p class="more-projects"> Projects Go Here</p>
+<p class="more-projects"> Projects Go Here</p>
 </div>
 
 
@@ -21,12 +31,22 @@
 
 <script>
 export default{
+    data(){
+        return{
+            projects: [], 
+            search: [],
+
+
+        }
+
+    }, 
     methods: {
-        
+
     }
-
-
 }
+
+
+
 
 </script>
 
@@ -54,7 +74,7 @@ menu:hover{
     cursor: pointer;
 }
 .view-projects{
-    height: 30vh;
+    height: 20vh;
     margin-top: 2rem;
     justify-content: center;
     text-align: center;
@@ -72,5 +92,21 @@ menu:hover{
     border: solid black .3rem;
     background-color: blanchedalmond;
 }
+.your-projects{
+    display: flex;
+    flex-direction: row;
+    width: 100vh;
+    align-items: center;
+    text-align: center;
+    background-color: azure;
+     font-size: 1.2rem;
+    font-weight: bold;   
+}
+.search-bar{
+    background-color: honeydew;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+} 
 
 </style>

@@ -1,6 +1,6 @@
 <template>
   <button
-    class="text-base text-white border-2 h-10 px-6 rounded-md border py-1"
+    class="text-base text-white border-2 h-8 px-3 rounded-md border py-1"
     @click="logout"
   >
     Log out
@@ -19,6 +19,6 @@ export default {
 </script>
 
 <style scoped>
-padding: 1rem;
+  
 
 </style>

@@ -5,6 +5,7 @@
     <div class="option1" @click = "toggleVisible"> ☰ </div>
     <div v-if = "display" class="option2" > Settings </div>
     <div v-if = "display" class="option3" > Profile </div>
+    <div v-if = "display" class="option4" >  <LogoutButton/> </div>
 
     </div>
  
@@ -38,7 +39,6 @@ export default {
     float: left;
     flex-direction: column;
     height: 3rem;  
-    width: 100%;
     padding: 1rem;
     display: flex;
     justify-content: flex-start;

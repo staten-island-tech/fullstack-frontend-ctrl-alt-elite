@@ -1,14 +1,15 @@
 <template>
-
     <div>
-    <DefaultNavBar/>
-  <!-- <h1>this is the home page</h1> -->
+    <LogoutButton/>
+  <h1>this is the home page</h1>
+  <p class="text-white">hello {{ this.$auth.user }}</p>
+  <img :src="this.$auth.user.picture">
     </div>
 </template>
 
 <script>
 export default {
-
+    
 }
 </script>
 
@@ -19,6 +20,6 @@ div {
 }
 
 h1{
-    color:blue
+    color:white;
 }
 </style>

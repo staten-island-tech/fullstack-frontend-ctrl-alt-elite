@@ -38,7 +38,7 @@ export default {
     cursor: pointer;
     float: left;
     flex-direction: column;
-    height: 3rem;  
+    height: 4rem;  
     padding: 1rem;
     display: flex;
     justify-content: flex-start;

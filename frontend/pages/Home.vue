@@ -1,7 +1,6 @@
 <template>
     <div>
-    <LogoutButton/>
-  <h1>this is the home page</h1>
+    <DefaultNavBar />
   <p class="text-white">hello {{ this.$auth.user }}</p>
   <img :src="this.$auth.user.picture">
     </div>

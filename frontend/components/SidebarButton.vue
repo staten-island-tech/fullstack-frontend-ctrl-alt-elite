@@ -43,7 +43,7 @@ export default {
     display: flex;
     justify-content: flex-start;
     font-size: 1.25rem;
-    
+ 
 }
 
     

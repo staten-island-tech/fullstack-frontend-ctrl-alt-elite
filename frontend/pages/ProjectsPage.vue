@@ -42,6 +42,14 @@ export default{
     }, 
     methods: {
 
+    }, 
+    computed:{
+        filteredProjects: function(){
+            return this.projects.filter((project)=> {
+                return Boolean
+            }
+        }
+
     }
 }
 
@@ -98,7 +106,6 @@ menu:hover{
     width: 100vh;
     align-items: center;
     text-align: center;
-    background-color: azure;
      font-size: 1.2rem;
     font-weight: bold;   
 }
@@ -107,6 +114,6 @@ menu:hover{
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.2rem;
-} 
+}  
 
 </style>

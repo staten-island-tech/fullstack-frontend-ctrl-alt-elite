@@ -5,9 +5,10 @@
     <div class="flex flex-start">
       <SidebarButton/>
     <img class="h-12 mx-4" src="../assets/logo-placeholder.png"> 
-     
+           
        </div>
-        <NewProjectButton />
+    <NewProjectButton />
+ 
   </section>
   
   

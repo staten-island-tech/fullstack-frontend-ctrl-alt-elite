@@ -1,6 +1,6 @@
 <template>
   <button
-    class="text-base text-white border-2 h-8 px-6 rounded-md py-1"
+    class="text-xl text-slate-400 "
     @click="logout"
   >
     Log out

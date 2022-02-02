@@ -19,7 +19,7 @@
 
 
 </div>
-<div class="view-projects">
+<div v-for="project in projects" :key="project" class="view-projects">
 <p class="more-projects"> Projects Go Here</p>
 <p class="more-projects"> Projects Go Here</p>
 <p class="more-projects"> Projects Go Here</p>
@@ -40,17 +40,24 @@ export default{
         }
 
     }, 
+    created(){
+        this.$http.get(`https://jsonplaceholder.typicode.com/todos/1`)
+        .then (function(data){
+            this.projects = data.body.slice(0,10)
+        })
+    },
+
+    computed:{
+        filteredProjects() {
+            return this.projects.filter((project)=> {
+                return Boolean;
+            });
+        }, 
+
+    },
     methods: {
 
     }, 
-    computed:{
-        filteredProjects: function(){
-            return this.projects.filter((project)=> {
-                return Boolean
-            }
-        }
-
-    }
 }
 
 

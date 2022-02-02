@@ -1,12 +1,11 @@
 <template>
 
 
-  <section class="flex flex-row flex-start items-center">
-    <div class="flex flex-start">
+  <section class="flex flex-row justify-between items-center ">
+    <div class="items-center mx-2">
       <SidebarButton/>
-    <img class="h-12 mx-4" src="../assets/logo-placeholder.png"> 
-           
-       </div>
+      <img class="h-16 mx-4" src="../assets/logo-placeholder.png"> 
+      </div>
     <NewProjectButton />
  
   </section>

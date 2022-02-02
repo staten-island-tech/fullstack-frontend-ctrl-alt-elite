@@ -5,9 +5,9 @@
   <img :src="this.$auth.user.picture"> -->
   <!-- <div class="h-screen flex items-center flex-col"> -->
     <div class=" m-10 mx-20 flex flex-row justify-around justify-items-center ">
-        <div class="h-full w-1/5 bg-white"></div>
-        <div class="h-full w-1/5 bg-white"></div>
-        <div class="h-full w-1/5 bg-white"></div>
+        <div class="h-56 w-1/5 bg-white"></div>
+        <div class="h-56 w-1/5 bg-white"></div>
+        <div class=" h-56 w-1/5 bg-white"></div>
     </div>
     <!-- </div> -->
     </section>

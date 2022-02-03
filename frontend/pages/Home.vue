@@ -4,11 +4,20 @@
   <!-- <p class="text-white">hello {{ this.$auth.user }}</p>
   <img :src="this.$auth.user.picture"> -->
   <!-- <div class="h-screen flex items-center flex-col"> -->
-    <div class=" m-10 mx-20 flex flex-row justify-around justify-items-center ">
-        <div class="h-56 w-1/5 bg-white"></div>
-        <div class="h-56 w-1/5 bg-white"></div>
-        <div class=" h-56 w-1/5 bg-white"></div>
+
+    <h1>Recent Projects</h1>
+    <div class="m-10 mx-20 flex flex-row justify-around justify-items-center ">
+        <div class="h-60 w-1/4 bg-white"></div>
+        <div class="h-60 w-1/4 bg-white"></div>
+        <div class=" h-60 w-1/4 bg-white"></div>
     </div>
+    <h1>Trending</h1>
+    <div class="m-10 mx-20 flex flex-row justify-around justify-items-center ">
+        <div class="h-60 w-1/4 bg-white"></div>
+        <div class="h-60 w-1/4 bg-white"></div>
+        <div class=" h-60 w-1/4 bg-white"></div>
+    </div>
+
     <!-- </div> -->
     </section>
 </template>
@@ -20,16 +29,14 @@ export default {
 </script>
 
 <style>
+
 body {
        background-color: black;
 }
 
-div {
- 
-    height: 100vh;
-}
 
 h1{
     color:white;
+    font-size: 1.5rem;
 }
 </style>

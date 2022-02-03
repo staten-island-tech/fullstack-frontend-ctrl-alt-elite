@@ -43,7 +43,7 @@ export default {
       THREE,
       backgroundAlpha: 0,
       color: 0x8f5ede,
-      points: 14.00,
+      points: 10.00,
     })
   },
   beforeDestroy() {

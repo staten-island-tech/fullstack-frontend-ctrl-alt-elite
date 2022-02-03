@@ -19,10 +19,10 @@
 
 
 </div>
-<div v-for="project in projects" :key="project" class="view-projects">
+<div v-for="project in filteredProjects" :key="project" class="view-projects">
 <p class="more-projects"> Projects Go Here</p>
 <p class="more-projects"> Projects Go Here</p>
-<p class="more-projects"> Projects Go Here</p>
+<p class="more-projects"> Projects Go Here 1</p>
 </div>
 
 
@@ -33,28 +33,31 @@
 export default{
     data(){
         return{
-            projects: [], 
+            projects: ["test",
+], 
             search: [],
 
 
         }
 
     }, 
-    created(){
-        this.$http.get(`https://jsonplaceholder.typicode.com/todos/1`)
-        .then (function(data){
-            this.projects = data.body.slice(0,10)
-        })
-    },
-
-    computed:{
+ computed:{
         filteredProjects() {
             return this.projects.filter((project)=> {
                 return Boolean;
             });
         }, 
 
+    }, 
+
+    created(){
+        fetch(`https://jsonplaceholder.typicode.com/posts`)
+        .then (function(data){
+            this.projects = data.body.slice(0,10)
+        })
+
     },
+
     methods: {
 
     }, 
@@ -117,10 +120,14 @@ menu:hover{
     font-weight: bold;   
 }
 .search-bar{
-    background-color: honeydew;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 1.2rem;
 }  
+.search{
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+
+}
 
 </style>

@@ -2,10 +2,10 @@
  
     <div id="buttons">
     
-    <div class="option1 cursor-pointer" @click = "toggleVisible"> ☰ </div>
-    <NuxtLink v-if = "display" class="option2 cursor-pointer" to="/Settings"> Settings </NuxtLink>
-    <NuxtLink v-if = "display" class="option3 cursor-pointer" to="/EditProfile"> Profile </NuxtLink>
-    <div v-if = "display" class="option4 cursor-pointer" >  <LogoutButton/> </div>
+    <div class="option1" @click = "toggleVisible"> ☰ </div>
+    <div v-if = "display" class="option2" > Settings </div>
+    <div v-if = "display" class="option3" > Profile </div>
+    <div v-if = "display" class="option4" >  <LogoutButton/> </div>
 
     </div>
  
@@ -22,19 +22,16 @@ export default {
        methods: {
            toggleVisible() {
                this.display = !this.display;
-
            }
-
 },
 };
-
 </script>
 
 <style scoped> 
-
 #buttons {
     color: gray;
     position: relative;
+    cursor: pointer;
     float: left;
     flex-direction: column;
     height: 4rem;  
@@ -44,9 +41,7 @@ export default {
     font-size: 1.25rem;
  
 }
-
     
-
 @keyframes animateleft {
     from {
         left: -300px;

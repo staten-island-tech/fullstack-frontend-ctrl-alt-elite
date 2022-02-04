@@ -1,9 +1,9 @@
 <template>
   <div class="bg-black h-full">
-    <section id="welcoming-page">
-    <WelcomingNavBar/>    
-      <div class="flex flex-row items-center h-5/6 m-2" data-aos="fade-right">
-        <div class="ml-20 w-1/3">
+    <WelcomingNavBar class="z-10" :class="{change_color: scrollPosition > 50}"/>   
+    <section id="welcoming-page"> 
+      <div class="flex flex-row items-center h-5/6" data-aos="fade-right">
+        <div class="m-0 ml-20 w-1/3">
           <h1 class="text-white uppercase font-bold text-6xl">This is the welcoming page.</h1>
           <p class="text-white text-xl my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
           <SignupButton class="text-white border-2 h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
@@ -33,7 +33,8 @@ AOS.init();
 export default {
   data(){
     return{
-      count: 0
+      count: 0,
+      scrollPosition: null,
     }
   },
   mounted() {
@@ -43,8 +44,9 @@ export default {
       THREE,
       backgroundAlpha: 0,
       color: 0x8f5ede,
-      points: 10.00,
-    })
+      points: 9.00,
+    });
+    window.addEventListener('scroll', this.updateScroll);
   },
   beforeDestroy() {
     if (this.vantaEffect) {
@@ -58,6 +60,9 @@ export default {
         } else {
           this.$router.push({path: '/'});
         }
+      },
+      updateScroll() {
+        this.scrollPosition = window.scrollY
       }
   }
 }
@@ -71,4 +76,8 @@ export default {
     background-size: cover;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 91%);
   }
+
+  .change_color {
+       background-color: rgb(24, 24, 24);
+   }
 </style>

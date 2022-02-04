@@ -5,10 +5,5 @@
 </template>  
 
 <style scoped>
-        body {
-            background-color: red;
-        }
-        p{
-            color: white;
-        }
+
 </style>

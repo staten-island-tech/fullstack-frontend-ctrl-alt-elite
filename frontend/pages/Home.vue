@@ -1,15 +1,25 @@
 <template>
     <section>
-    <DefaultNavBar/>
-  <!-- <p class="text-white">hello {{ this.$auth.user }}</p>
-  <img :src="this.$auth.user.picture"> -->
-  <!-- <div class="h-screen flex items-center flex-col"> -->
-    <div class=" m-10 mx-20 flex flex-row justify-around justify-items-center ">
-        <!-- <div class="h-full w-1/5 bg-white"></div>
-        <div class="h-full w-1/5 bg-white"></div>
-        <div class="h-full w-1/5 bg-white"></div> -->
+    <DefaultNavBar />
+  <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
+    <div class="container">
+        <h1 >Recent Projects</h1> 
+        <NuxtLink to="ProjectAll"><p> View all -></p></NuxtLink>
+            <div class=" flex flex-row justify-between justify-items-center ">
+                <div class="h-60 w-1/4 bg-white"></div>
+                <div class="h-60 w-1/4 bg-white"></div>
+                <div class=" h-60 w-1/4 bg-white"></div>
+            </div>
+
+        <h1>Trending</h1>
+            <div class="flex flex-row justify-between justify-items-center ">
+                <div class="h-60 w-1/4 bg-white"></div>
+                <div class="h-60 w-1/4 bg-white"></div>
+                <div class=" h-60 w-1/4 bg-white"></div>
+            </div>
     </div>
-    <!-- </div> -->
+    <p class="text-white">Hello {{ this.$auth.user.name }}</p>
+
     </section>
 </template>
 
@@ -20,16 +30,21 @@ export default {
 </script>
 
 <style>
-body {
-       background-color: black;
+
+.container {
+    margin: 0 auto;
+    width: 100%;
+
 }
 
-div {
- 
-    height: 100vh;
+body {
+       background-color: black;
+       color: white;
 }
+
 
 h1{
     color:white;
+    font-size: 1.5rem;
 }
 </style>

@@ -3,22 +3,28 @@
     <DefaultNavBar />
   <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
     <div class="container">
-        <h1 >Recent Projects</h1> 
-        <NuxtLink to="ProjectAll"><p> View all -></p></NuxtLink>
+        <div class="my-4">
+            <div class="flex items-center w-1/5 m-1 justify-between">
+                <h1 >Recent Projects</h1> 
+                <NuxtLink to="ProjectAll"><p> View all &#10143;</p></NuxtLink>
+            </div>
             <div class=" flex flex-row justify-between justify-items-center ">
-                <div class="h-60 w-1/4 bg-white"></div>
-                <div class="h-60 w-1/4 bg-white"></div>
-                <div class=" h-60 w-1/4 bg-white"></div>
+                <ProjectCard/>
+                <ProjectCard/>
+                <ProjectCard/>
             </div>
+        </div>
 
-        <h1>Trending</h1>
+        <div class="my-4">
+            <h1 class="m-1">Trending</h1>
             <div class="flex flex-row justify-between justify-items-center ">
-                <div class="h-60 w-1/4 bg-white"></div>
-                <div class="h-60 w-1/4 bg-white"></div>
-                <div class=" h-60 w-1/4 bg-white"></div>
+                <ProjectCard/>
+                <ProjectCard/>
+                <ProjectCard/>
             </div>
+        </div>
     </div>
-    <p class="text-white">Hello {{ this.$auth.user.name }}</p>
+    <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
 
     </section>
 </template>
@@ -38,8 +44,8 @@ export default {
 }
 
 body {
-       background-color: black;
-       color: white;
+       background-color: #1c1c1c;
+       color: #e6e6e6;
 }
 
 

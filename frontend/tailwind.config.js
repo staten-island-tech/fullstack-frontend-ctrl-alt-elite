@@ -6,6 +6,9 @@ module.exports = {
         height: {
           '1/10': '10%',
         },
+        colors: {
+          'light-gray' : '#e6e6e6'
+        }
       },
     },
     variants: {

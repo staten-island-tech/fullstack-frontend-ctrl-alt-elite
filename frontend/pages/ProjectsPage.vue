@@ -33,9 +33,8 @@
 export default{
     data(){
         return{
-            projects: ["test",
-], 
-            search: [],
+            projects: [], 
+            search: "",
 
 
         }
@@ -44,8 +43,8 @@ export default{
  computed:{
         filteredProjects() {
             return this.projects.filter((project)=> {
-                return Boolean;
-            });
+                return project.title.match(this.search);         
+                   });
         }, 
 
     }, 

@@ -1,6 +1,6 @@
 <template>
   <button>
-      <font-awesome-icon :icon="['fas', 'lock']"/>
+      <font-awesome-icon class="text-white" :icon="['far', 'heart']"/>
   </button>
 </template>
 

@@ -53,7 +53,6 @@ export default{
     created(){
         fetch(`https://jsonplaceholder.typicode.com/posts`)
         .then (function(data){
-            this.projects = data.body.slice(0,10)
         })
 
     },

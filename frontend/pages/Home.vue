@@ -23,7 +23,9 @@
                 <ProjectCard/>
             </div>
         </div>
+        <Snackbar/>
     </div>
+    
     <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
 
     </section>

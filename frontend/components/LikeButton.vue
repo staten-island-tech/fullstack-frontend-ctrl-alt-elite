@@ -1,9 +1,11 @@
 <template>
 <div class="like-button">
     <button 
-    v-attr="disabled: submitted"
+    
     @click= "toggleLike">❤️</button>
     <div class="likes"> </div>
+<!-- 
+    v-attr="disabled: submitted" -->
 </div>
 </template>
 <script>

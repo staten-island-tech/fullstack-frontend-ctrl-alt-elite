@@ -4,6 +4,11 @@
   
     <div class="flex flex-row justify-between justify-items-center ">
         <div class="h-60 w-1/4 bg-white"></div>
+         <div class="h-60 w-1/4 bg-white"></div>
+          <div class="h-60 w-1/4 bg-white"></div>
+    </div>
+    <div class ="flex" >
+
     </div>
 
     </div>  

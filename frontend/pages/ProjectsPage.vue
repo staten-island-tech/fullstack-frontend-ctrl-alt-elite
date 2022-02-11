@@ -52,12 +52,22 @@ export default{
     created(){
         fetch(`https://jsonplaceholder.typicode.com/posts`)
         .then (function(data){
+
         })
 
     },
 
     methods: {
-
+        post(){
+            fetch('http://jsonplaceholder.typicode.com/posts', {
+                title: this.project.title,
+                body: this.project.body,
+                userId: 1
+            }).then(function(data){
+                console.log(data);
+                this.submitted = true;
+            });
+        }
     }, 
 }
 

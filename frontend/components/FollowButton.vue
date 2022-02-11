@@ -1,6 +1,8 @@
 <template>
   <button>
-      <font-awesome-icon v-if="notFollowing" class="text-white" :icon="['fas', 'user-plus']"/>
+      <font-awesome-icon v-if="followingStatus" @click="follow" class="text-white" :icon="['fas', 'user-plus']"/>
+      <font-awesome-icon v-if="!followingStatus"  @click="unfollow" class="text-white" :icon="['fas', 'user-check']"/> 
+      <!-- do hovering effect (add words over hover) -->
   </button>
 </template>
 
@@ -8,7 +10,15 @@
 export default {
 data(){
     return {
-        notFollowing: true, 
+        followingStatus: true, 
+    }
+  },
+  methods: {
+    follow() {
+      this.followingStatus = !this.followingStatus
+    },
+    unfollow() {
+      this.followingStatus = !this.followingStatus
     }
   }
 }

@@ -71,10 +71,11 @@ export default {
 <style scoped>
   #welcoming-page {
     height: 100vh;
-    background-image: url("./assets/welcoming-placeholder-bg.jpg");
+    /* background-image: url("./assets/welcoming-placeholder-bg.jpg"); */
+    background-image:linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.075)), url("./assets/welcoming-placeholder-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 91%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
   }
 
   .change_color {

@@ -6,7 +6,9 @@
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
       
           <div class="border-white border-2 h-15 w-80 left-2 ">
-             <h1 class="text-left">Name: {{ userProfile.data.name }}   </h1>
+             <h1 class="text-left">Name: 
+               <input type="text">{{ userProfile.data.name }} 
+              </h1>
               <p class="text-left">Description:
                 <input type="text"> {{userProfile.data.description}}
               </p>
@@ -16,17 +18,7 @@
             <div class="border-2 h-20 w-60 border-gray-50 self-end align-middle text-center" >Followers: 10</div>
             <div class="border-2 h-20 w-60 border-gray-50 self-end align-middle text-center">Following: 15</div>
           </div>
-
-
-            <div>
-                <h2 class="text-white">{{ userProfile.data.nickname }}</h2>
-                <p>This is the user description. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum, dolor? Numquam eaque omnis blanditiis.</p>
-                <div class="text-white">
-                    <div>### Followers</div>
-                    <div>### Following</div>
-                </div>
-            </div>
-          <h1 class="text-white">hello {{ $auth.user }}</h1>
+          <!-- <h1 class="text-white">hello {{ $auth.user }}</h1> -->
       </section>
   </div>
 </template>
@@ -48,8 +40,6 @@ export default {
 
   methods: {
 async getProfile() {
-      
-
       try {
         const response = await fetch(`http://localhost:5000/getProfile`, {
           method: 'POST',

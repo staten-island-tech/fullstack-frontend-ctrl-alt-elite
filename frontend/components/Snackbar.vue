@@ -1,26 +1,31 @@
 <template>
-<div class="bruh">
-    <button @click="snackBar" > click </button>
+<body onload = "snackBar()">
+<div class="flex justify-center content-center">
+    <!-- <button @click="snackBar" > . </button> -->
     <div id="snackBar">
-    <p class="text-white">Welcome, {{ this.$auth.user.name }} {{this.$auth.user.picture }}</p>
+    <p class="text-white">Welcome, {{ this.$auth.user.name }} </p>
+  
     </div>
-</div>
+</div></body>
 </template>
 <script>
 export default {
-    methods: {
-        snackBar () {
+    mounted() {
+      
             document.getElementById("snackBar").className = "show";
-            setTimeout();
-        }
+            setTimeout( function() {
+                document.getElementById("snackBar").className = document.getElementById("snackBar").className.replace("show","");
+            }, 3000);
+   
     }
 }
 </script>
 <style scoped>
+
 #snackBar {
     visibility: hidden;
-    /* min-width: 25px; */
     text-align: center;
+    width: 50%;
     left: 50%;
     bottom: 1rem;
     padding: 2rem;
@@ -30,7 +35,7 @@ export default {
 
 #snackBar.show {
     visibility: visible;
-    animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
+    animation: fadeIn 1.5s 3s, fadeOut 1.5s;
 }
 @keyframes fadeIn {
     from { bottom:0; opacity: 0;} 
@@ -38,7 +43,7 @@ export default {
 }
 
 @keyframes fadeOut {
-    from { bottom: 30px; opacity: 0;  }
+    from { bottom: 30px; opacity: 1;  }
     to { bottom: 0px; opacity: 0;}
 }
 </style>

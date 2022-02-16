@@ -5,12 +5,13 @@
         <!-- <button @click="getProfile()">TEST</button>
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
       
-          <div class="border-white border-2 h-15 w-80 left-2 ">
-             <h1 class="text-left">Name: 
-               <input type="text">{{ userProfile.data.name }} 
+          <div class=" border-white border-2 h-15 w-80 left-2 justify-center">
+             <h1 class="text-left">
+               <input v-model= "message" class="text-black"  placeholder="Edit Name">
+                  <h1 class="text-white">Name: {{ userProfile.data.name }}</h1>
               </h1>
               <p class="text-left">Description:
-                <input type="text"> {{userProfile.data.description}}
+                <input type="text" class="text-black"> {{userProfile.data.description}}
               </p>
           </div>
           <div class="flex h-36 justify-evenly ">
@@ -30,7 +31,8 @@ export default {
   
    data(){
        return{ 
-         userProfile: { data : 'abc'} 
+         userProfile: { data : 'abc'},
+  
          }
       },
   
@@ -57,8 +59,11 @@ async getProfile() {
       } catch (error) {
         // console.log("I dont care");
       }
-    }, 
+    },
+
+
      }
+    
 }
 </script>
 

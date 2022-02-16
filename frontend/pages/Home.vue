@@ -25,6 +25,7 @@
         </div>
     </div>
     <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
+    <Slideshow/>
     </section>
 </template>
 

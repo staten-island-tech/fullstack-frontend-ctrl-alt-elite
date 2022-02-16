@@ -1,7 +1,6 @@
 <template>
 <body onload = "snackBar()">
 <div class="flex justify-center content-center">
-    <!-- <button @click="snackBar" > . </button> -->
     <div id="snackBar">
     <p class="text-white">Welcome, {{ this.$auth.user.name }} </p>
   
@@ -13,11 +12,12 @@ export default {
     mounted() {
       
             document.getElementById("snackBar").className = "show";
-            setTimeout( function() {
+            setInterval( function() {
                 document.getElementById("snackBar").className = document.getElementById("snackBar").className.replace("show","");
             }, 3000);
    
     }
+
 }
 </script>
 <style scoped>
@@ -25,17 +25,19 @@ export default {
 #snackBar {
     visibility: hidden;
     text-align: center;
-    width: 50%;
+    width: 30%;
     left: 50%;
     bottom: 1rem;
-    padding: 2rem;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 0.5rem;
     background-color: black;
     color: white;
 }
 
 #snackBar.show {
     visibility: visible;
-    animation: fadeIn 1.5s 3s, fadeOut 1.5s;
+    animation: fadeIn 1.5s, fadeOut 1.5s 2.5s;
 }
 @keyframes fadeIn {
     from { bottom:0; opacity: 0;} 

@@ -1,7 +1,6 @@
 <template>
     <section>
     <DefaultNavBar />
-  <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
     <div class="container">
         <div class="my-4">
             <div class="flex items-center w-1/5 m-1 justify-between">
@@ -26,13 +25,13 @@
         <Snackbar/>
     </div>
     
-    <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
-
     </section>
 </template>
 
 <script>
+import Snackbar from '../components/Snackbar.vue'
 export default {
+  components: { Snackbar },
     
 }
 </script>
@@ -42,7 +41,6 @@ export default {
 .container {
     margin: 0 auto;
     width: 100%;
-
 }
 
 body {

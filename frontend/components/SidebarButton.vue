@@ -2,7 +2,7 @@
  
     <div id="buttons">
     
-    <div class="option1" @click = "toggleVisible"> ☰ </div>
+    <div class="option1" @click = "toggleVisible"> <font-awesome-icon icon="fa-solid fa-bars" /></div>
     <div v-if = "display" class="option2" > Settings </div>
     <div v-if = "display" class="option3" > Profile </div>
     <div v-if = "display" class="option4" >  <LogoutButton/> </div>

@@ -25,7 +25,6 @@
         </div>
     </div>
     <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
-
     </section>
 </template>
 
@@ -44,7 +43,7 @@ export default {
 }
 
 body {
-       background-color: #1c1c1c;
+       background-color: #1b1b1b;
        color: #e6e6e6;
 }
 

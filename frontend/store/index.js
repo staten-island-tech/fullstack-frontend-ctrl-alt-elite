@@ -2,6 +2,8 @@ export const state = () => ({
   codeHTML: '',
   codeCSS: '',
   codeJS: '',
+  projectTitle: '',
+  projectDescription: '',
 })
 export const mutations = {
   PUSH_HTML(state, code) {
@@ -12,6 +14,12 @@ export const mutations = {
   },
   PUSH_JS(state, code) {
     state.codeJS = code
+  },
+  PUSH_TITLE(state, title) {
+    state.projectTitle = title
+  },
+  PUSH_DESCR(state, description) {
+    state.projectDescription = description
   },
 }
 export const actions = {}

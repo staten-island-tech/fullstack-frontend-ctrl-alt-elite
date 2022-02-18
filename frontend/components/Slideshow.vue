@@ -1,17 +1,23 @@
 <template>
-  <div class="h-1/6">
     <!-- <div class="swiper-button-prev"></div> -->
     <div class="swiper">
       <div class="swiper-wrapper">
-        <div v-for="i in 6" :key="i" class="swiper-slide" :class="`slide--${i}`">
-          <div class="slider-content">Slide {{ i }}</div>
+        <div class="swiper-slide">
+          <ProjectCard class="slider-content"/>
+          <ProjectCard class="slider-content"/>
+          <ProjectCard class="slider-content"/>
+          <ProjectCard class="slider-content"/>
+          <ProjectCard class="slider-content"/>
+          <ProjectCard class="slider-content"/>
         </div>
+        <!-- <div v-for="i in 6" :key="i" class="swiper-slide" :class="`slide--${i}`">
+          <div class="slider-content">Slide {{ i }}</div>
+        </div> -->
       </div>
     
       <!-- <div class="swiper-pagination"></div> -->
     </div>
     <!-- <div class="swiper-button-next"></div> -->
-  </div>
 </template>
 
 <script>
@@ -57,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-/* .swiper {
+.swiper {
   height: 300px;
   overflow: hidden;
   position: relative;
@@ -89,5 +95,5 @@ export default {
 }
 .slide--6 {
   background-color: #2ecc71;
-} */
+}
 </style>

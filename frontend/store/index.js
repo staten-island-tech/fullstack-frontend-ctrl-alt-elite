@@ -1,6 +1,6 @@
 export const state = () => ({
 
-    // signUp : {data:1} , 
+    
     // userProfile: {data:'aaa'},
     
 })

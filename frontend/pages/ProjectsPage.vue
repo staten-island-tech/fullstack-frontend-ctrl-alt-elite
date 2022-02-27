@@ -11,14 +11,10 @@
         <input type="text" :v-model="search" placeholder="Find a Project" />
       </div>
     </div>
-    <div
-      v-for="project in filteredProjects"
-      :key="project"
-      class="view-projects"
-    >
-      <p class="more-projects">Projects Go Here</p>
-      <p class="more-projects">Projects Go Here</p>
-      <p class="more-projects">Projects Go Here 1</p>
+    <div v-for="project in filteredProjects" :key="project" class="body">
+      <h2>{{ project.title }}</h2>
+      <article>{{ project.body }}</article>
+      <div>{{ methods.post }}</div>
     </div>
   </div>
 </template>
@@ -40,10 +36,26 @@ export default {
   },
 
   created() {
-    fetch(`https://jsonplaceholder.typicode.com/posts`).then(function (data) {})
+    fetch(`https://jsonplaceholder.typicode.com/posts`).then(function (data) {
+      this.projects = data.body.slice(0, 10)
+    })
   },
-
   methods: {
+    fetchData() {
+      try {
+        fetch(`http://jsonplaceholder.typicode.com/posts`, {
+          title: this.project.title,
+          body: this.project.body,
+        }).then(function (data) {
+          console.log(data)
+          this.submitted = true
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
+  /* methods: {
     post() {
       fetch('http://jsonplaceholder.typicode.com/posts', {
         title: this.project.title,
@@ -54,7 +66,7 @@ export default {
         this.submitted = true
       })
     },
-  },
+  }, */
 }
 </script>
 

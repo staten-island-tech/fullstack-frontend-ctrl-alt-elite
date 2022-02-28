@@ -30,7 +30,36 @@
 </template>
 
 <script>
+ 
+import DBFunctions from "~/DBFunctions";
+
 export default {
+    
+     data(){
+       return{ 
+         userProfile: { data : ''},
+         }
+      },
+
+   
+ async  mounted (){
+        try {
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+            
+        }catch (error)
+        {
+           try {
+               await DBFunctions.createUser(this.$auth.user) 
+           }catch (error)
+           {
+               window.alert ("error in home page")
+           }
+
+        }
+        
+        
+        } ,  
+  
     
 }
 </script>

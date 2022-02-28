@@ -1,17 +1,23 @@
 export const state = () => ({
 
     
-    // userProfile: {data:'aaa'},
+    followInfo: {
+      followers:10,
+      following:0,
+      projects:0
+    },
+
     
 })
 
 export const mutations = {
-  // updateSignUp(state, value) {
-  //   state.signUp.data= value
-  // },
-  // updateUserProfile(state, value) {
-  //   state.userProfile.data = value
-  // },
+
+  updateFollowInfo(state, value) {
+    state.followInfo.following = value.following
+    state.followInfo.followers = value.followers
+    state.followInfo.projects = value.projects
+  },
+
 }
 
 export const actions = {

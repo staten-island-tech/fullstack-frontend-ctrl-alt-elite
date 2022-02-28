@@ -24,23 +24,26 @@
 </template>
 
 <script>
+
 import * as THREE from 'three'
 import NET from 'vanta/dist/vanta.net.min'
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
- 
 AOS.init();
+
 
 
   
   
     
+
 
 
 export default {
     
+
   data(){
     return{
       count: 0,
@@ -71,32 +74,11 @@ export default {
   
   methods: {
       
-  //   async insertProfile() {
-  //      
-
-  //     try {
-  //       const response = await fetch(`http://localhost:5000/insertProfile`, {
-  //        
-  //         body: JSON.stringify(this.$auth.user), // Adding headers to the request headers:
-  //         headers: { 'Content-type': 'application/json; charset=UTF-8' },
-  //       })
-  //       
-  //       const data = await response.json()
-//   create a data field userProfile : { data : abc}
-  //       this.userProfile.data = data
-  //       this.signUp.data = 0
-
-  //      
-  //     } catch (error) {
-  //       // console.log("Error ");
-  //     }
-    
-  // },
   
-    
     
       redirect() {
         if (this.$auth.loggedIn) {
+          
          this.$router.push({path: 'home'});
         } else {
           this.$router.push({path: '/'});

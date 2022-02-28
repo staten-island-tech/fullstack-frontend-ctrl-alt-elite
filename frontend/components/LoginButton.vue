@@ -15,7 +15,7 @@
     
     methods: {
       login() {
-        
+       
         this.$auth.loginWith('auth0');
        
       },

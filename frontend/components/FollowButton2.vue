@@ -4,7 +4,8 @@
     :class="{'bg-blue-500':!followInfo.following, 'bg-red-500':followInfo.following,
     'hover:bg-blue-200':!followInfo.following, 'hover:bg-red-200':followInfo.following}" 
     class="text-white font-bold py-2 px-4 rounded " @click="updateFollowStatus" > {{followInfo.following ?'Unfollow':'Follow'}}</button>
-    <p v-if="followInfo.following && followInfo.followedby"  class="font-bold text-2xl text-blue-500" > Friends! 😊</p>
+    <p v-if="followInfo.following && followInfo.followedby"  class="font-bold text-2xl text-blue-500" > Friends😊</p>
+    
      
 
 </div> 

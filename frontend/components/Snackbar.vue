@@ -9,6 +9,11 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
+            
+        }
+    },
     mounted() {
       
             document.getElementById("snackBar").className = "show";
@@ -33,6 +38,7 @@ export default {
     border-radius: 0.5rem;
     background-color: black;
     color: white;
+  
 }
 
 #snackBar.show {

@@ -9,28 +9,25 @@
                 <NuxtLink to="ProjectAll"><p> View all &#10143;</p></NuxtLink>
             </div>
             <div class=" flex flex-row justify-between justify-items-center ">
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
+                <Slideshow/>
             </div>
         </div>
 
         <div class="my-4">
             <h1 class="m-1">Trending</h1>
             <div class="flex flex-row justify-between justify-items-center ">
-                <ProjectCard/>
-                <ProjectCard/>
-                <ProjectCard/>
+                <Slideshow/>
             </div>
         </div>
     </div>
     <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
-    <Slideshow/>
     </section>
 </template>
 
 <script>
+import Slideshow from '../components/Slideshow.vue'
 export default {
+  components: { Slideshow },
     
 }
 </script>

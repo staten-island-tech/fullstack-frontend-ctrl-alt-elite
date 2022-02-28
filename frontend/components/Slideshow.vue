@@ -2,7 +2,7 @@
   <div class="swiper">
     <div class="swiper-wrapper">
       <div v-for="i in 6" :key="i" class="swiper-slide" :class="`slide--${i}`">
-        <ProjectCard class="slider-content w-full"/>
+        <ProjectCard class="slider-content w-4/5"/>
       </div>
     </div>
     <!-- If pagination is needed -->
@@ -16,7 +16,7 @@
 
 <script>
 // Import Swiper Vue.js components
-import { Swiper,FreeMode, Autoplay } from 'swiper'
+import { Swiper,FreeMode} from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 
 export default {
@@ -24,7 +24,7 @@ export default {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
     // previously it was before export default. Moved here for performance issues. Move back in case of problems.
     // add or remove unused modules
-    Swiper.use([ FreeMode, Autoplay])
+    Swiper.use([ FreeMode])
     
     // init Swiper:
     /* eslint-disable no-unused-vars */
@@ -38,7 +38,7 @@ export default {
       // spaceBetween: "30",
 
       // remove unused modules if needed
-      modules: [ FreeMode, Autoplay],
+      modules: [ FreeMode],
       // Pagination if needed
       // pagination: {
       //   el: '.swiper-pagination',
@@ -46,9 +46,9 @@ export default {
       //   clickable: true
       // },
     
-      autoplay: {
-        delay: 3000
-      },
+      // autoplay: {
+      //   delay: 3000
+      // },
      
       // navigation: {
       //   nextEl: '.swiper-button-next',

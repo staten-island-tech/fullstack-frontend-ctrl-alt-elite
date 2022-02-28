@@ -1,4 +1,4 @@
-/*<template>
+<template>
   <div id="add-project">
     <h2>Your Projects</h2>
     <form v-if="!submitted">
@@ -44,7 +44,6 @@
 </template>
 
 <script>
-// Imports
 export default {
   data() {
     return {
@@ -60,8 +59,7 @@ export default {
   },
   methods: {
     post() {
-      this.$http
-        .post('http://jsonplaceholder.typicode.com/posts', {
+      fetch('http://jsonplaceholder.typicode.com/posts', {
           title: this.project.title,
           body: this.project.content,
           userId: 1,
@@ -73,6 +71,7 @@ export default {
     },
   },
 }
+post()
 </script>
 
 <style>
@@ -103,4 +102,5 @@ h3 {
   display: inline-block;
   margin-top: 0;
 }
+
 </style>

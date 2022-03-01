@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div id="body" class="w-full h-full">
     <DefaultNavBar />
     
       <ul>
@@ -29,10 +29,32 @@
 
 <script>
  
+
+import * as THREE from 'three'
+import BIRDS from 'vanta/dist/vanta.net.min'
 import DBFunctions from "~/DBFunctions";
- 
+
 export default {
   
+  async mounted ()
+   { 
+     this.vantaEffect = BIRDS({
+      el: "#body",
+      THREE,
+      color: 0x8f5ede,
+    });
+     await DBFunctions.getInfo(this.$auth.user.email,this.info);
+ 
+
+     this.$store.commit('updateFollowInfo', this.info)
+    } ,   
+ 
+  
+  beforeDestroy() {
+    if (this.vantaEffect) {
+      this.vantaEffect.destroy()
+    }
+  },
    data(){
        return{  
          info: {
@@ -44,14 +66,7 @@ export default {
     
     },
    
-   async mounted ()
-   { 
-     await DBFunctions.getInfo(this.$auth.user.email,this.info);
- 
 
-     this.$store.commit('updateFollowInfo', this.info)
-    } ,   
-    
     
 
   methods: { 

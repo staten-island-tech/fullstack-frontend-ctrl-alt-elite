@@ -8,7 +8,7 @@
     <div class="Your-projects">
       <div class="search">Your Projects</div>
       <div class="search-bar">
-        <input type="text" :v-model="search" placeholder="Find a Project" />
+        <input type="text" :v-model="search" placeholder="Find a Project" class="actual-bar">
       </div>
     </div>
     <div v-for="project in filteredProjects" :key="project" class="body">
@@ -36,14 +36,15 @@ export default {
   },
 
   created() {
-    fetch(`https://jsonplaceholder.typicode.com/posts`).then(function (data) {
+    const api= fetch(`https://jsonplaceholder.typicode.com/posts`).then(function (data) {
       this.projects = data.body.slice(0, 10)
+      console.log(api)
     })
   },
   methods: {
     fetchData() {
       try {
-        fetch(`http://jsonplaceholder.typicode.com/posts`, {
+        fetch(`http://jsonplaceholder.typicode.com/posts/1`, {
           title: this.project.title,
           body: this.project.body,
         }).then(function (data) {
@@ -131,5 +132,14 @@ menu:hover {
   color: #e6e6e6;
   text-align: center;
   align-items: center;
+  font-weight: 700;
+}
+.actual-bar{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 500;
+  text-align: center;
+  background-color: black;
+  color: white;
+
 }
 </style>

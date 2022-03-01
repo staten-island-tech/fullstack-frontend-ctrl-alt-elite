@@ -71,7 +71,6 @@ export default {
     },
   },
 }
-post()
 </script>
 
 <style>
@@ -102,5 +101,4 @@ h3 {
   display: inline-block;
   margin-top: 0;
 }
-
 </style>

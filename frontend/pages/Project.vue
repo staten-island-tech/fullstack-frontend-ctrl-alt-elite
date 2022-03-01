@@ -15,16 +15,16 @@
     </div>
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
-    <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="remove">
+    <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
       <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-500">
         <div class="h-1/10 w-full flex flex-row bg-pink-400">
-          <button class="h-full w-1/2 border-2" @click="light">Light</button>
-          <button class="h-full w-1/2 border-2" @click="dark">Dark</button>
+          <button class="h-full w-1/2 border-2" @click="lightMode">Light</button>
+          <button class="h-full w-1/2 border-2" @click="darkMode">Dark</button>
         </div>
         <div class="h-1/5 w-full flex flex-row bg-green-500">
-          <button class="h-full w-1/3 border-2" @click="left">Left</button>
-          <button class="h-full w-1/3 border-2" @click="middle">Default</button>
-          <button class="h-full w-1/3 border-2" @click="right">Right</button>
+          <button id="left" class="h-full w-1/3 border-2" @click="editorOrientation">Left</button>
+          <button id="middle" class="h-full w-1/3 border-2" @click="editorOrientation">Default</button>
+          <button id="right" class="h-full w-1/3 border-2" @click="editorOrientation">Right</button>
         </div>
         <div class="h-1/10 w-full flex flex-row ">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
@@ -37,7 +37,7 @@
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="remove2">
       <div id="projectsettings" class="h-4/5 w-2/3 flex flex-col justify-evenly items-center border-2 bg-gray-400">
         <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/4 p-4">
-        <textarea v-model="descr" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4"></textarea>
+        <textarea v-model="description" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4"></textarea>
       </div>
     </div>
   </section>
@@ -54,15 +54,32 @@ export default {
     },
     data(){
       return{
+        fontsize:"1",
         contentHTML:"",
         contentCSS:"",
         contentJS:"",
-        fontsize:"1",
-        title: "",
-        descr:"",
+      }
+    },
+    computed:{
+      title:{
+        get(){
+          return this.$store.state.projectTitle
+        },
+        set(value){
+          this.$store.commit("PUSH_TITLE", value)
+        }
+      },
+      description:{
+        get(){
+          return this.$store.state.projectDescription
+        },
+        set(value){
+          this.$store.commit("PUSH_DESCR", value)
+        }
       }
     },
     created: function(){
+      // Replaces CTRL-S to run editor
       document.addEventListener('keydown', e => {
         if (e.ctrlKey && e.key === 's') {
           try {
@@ -82,13 +99,14 @@ export default {
                   <script>${this.contentJS}<\/script>
               </body>
             </html>`
-      } catch (error) {
-        alert(error)
-      }
+          } catch (error) {
+              alert(error)
+          }
         }
       });
   },
     methods:{
+      // Editor config
       editorInit(editor){
         require('brace/mode/html')                
         require('brace/mode/javascript') 
@@ -102,7 +120,8 @@ export default {
           enableLiveAutocompletion: true,
         })
       },
-      remove(evt){
+      // Applies user settings to editors
+      saveSetting(evt){
         let editor1 = this.$refs.editor1.editor
         let editor2 = this.$refs.editor2.editor
         let editor3 = this.$refs.editor3.editor
@@ -119,50 +138,57 @@ export default {
           document.getElementById("settingdiv").style.display = "none"
         } else return
       },
-      light(){
+      // Light and dark modes
+      lightMode(){
         document.getElementById("projectnav").style.backgroundColor = "pink"
       },
-      dark(){
+      darkMode(){
         document.getElementById("projectnav").style.backgroundColor = "gray"
       },
-      left(){
-        document.getElementById("one").style.width = "100%"
-        document.getElementById("two").style.width = "100%"
-        document.getElementById("three").style.width = "100%"
-        document.getElementById("projectdiv").style.flexDirection = "row"
-        document.getElementById("editcontainer").style.width = "40%"
-        document.getElementById("editcontainer").style.height = "100%"
-        document.getElementById("editcontainer").style.flexDirection = "column"
-        document.getElementById("iframe").style.width = "60%"
-        document.getElementById("iframe").style.height = "100%"
-      },
-      middle(){
-        document.getElementById("one").style.width = "33.333%"
-        document.getElementById("two").style.width = "33.333%"
-        document.getElementById("three").style.width = "33.333%"
-        document.getElementById("projectdiv").style.flexDirection = "column"
-        document.getElementById("editcontainer").style.width = "100%"
-        document.getElementById("editcontainer").style.height = "40vh"
-        document.getElementById("editcontainer").style.flexDirection = "row"
-        document.getElementById("iframe").style.width = "100%"
-        document.getElementById("iframe").style.height = "50vh"
-      },
-      right(){
-        document.getElementById("one").style.width = "100%"
-        document.getElementById("two").style.width = "100%"
-        document.getElementById("three").style.width = "100%"
-        document.getElementById("projectdiv").style.flexDirection = "row-reverse"
-        document.getElementById("editcontainer").style.width = "40%"
-        document.getElementById("editcontainer").style.height = "100%"
-        document.getElementById("editcontainer").style.flexDirection = "column"
-        document.getElementById("iframe").style.width = "60%"
-        document.getElementById("iframe").style.height = "100%"
+      // Editor orientation 
+      editorOrientation(e){
+        const editorOne = document.getElementById("one")
+        const editorTwo = document.getElementById("two")
+        const editorThree = document.getElementById("three")
+        const projectDiv = document.getElementById("projectdiv")
+        const editorContainer = document.getElementById("editcontainer")
+        const iframe = document.getElementById("iframe")
+        if (e.srcElement.id === "left"){
+          editorOne.style.width = "100%"
+          editorTwo.style.width = "100%"
+          editorThree.style.width = "100%"
+          projectDiv.style.flexDirection = "row"
+          editorContainer.style.width = "40%"
+          editorContainer.style.height = "100%"
+          editorContainer.style.flexDirection = "column"
+          iframe.style.width = "60%"
+          iframe.style.height = "100%"
+        } else if (e.srcElement.id === "middle") {
+          editorOne.style.width = "33.333%"
+          editorTwo.style.width = "33.333%"
+          editorThree.style.width = "33.333%"
+          projectDiv.style.flexDirection = "column"
+          editorContainer.style.width = "100%"
+          editorContainer.style.height = "40vh"
+          editorContainer.style.flexDirection = "row"
+          iframe.style.width = "100%"
+          iframe.style.height = "50vh"
+        } else if (e.srcElement.id === "right") {
+          editorOne.style.width = "100%"
+          editorTwo.style.width = "100%"
+          editorThree.style.width = "100%"
+          projectDiv.style.flexDirection = "row-reverse"
+          editorContainer.style.width = "40%"
+          editorContainer.style.height = "100%"
+          editorContainer.style.flexDirection = "column"
+          iframe.style.width = "60%"
+          iframe.style.height = "100%"
+        }
       },
       projectSettings(){
         document.getElementById("projectsettingsdiv").style.display = "flex"
       },
       remove2(evt){
-        this.$store.commit("PUSH_TITLE", this.title)
         this.$store.commit("PUSH_DESCR", this.descr)
         if (evt.target === document.getElementById("projectsettingsdiv")){
           document.getElementById("projectsettingsdiv").style.display = "none"
@@ -179,7 +205,7 @@ export default {
       },
       pushJS(code){
         this.$store.commit("PUSH_JS", code)
-      }
+      },
     }
 }
 </script>

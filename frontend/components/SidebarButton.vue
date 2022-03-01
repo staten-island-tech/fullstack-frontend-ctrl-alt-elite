@@ -4,7 +4,9 @@
     
     <div class="option1" @click = "toggleVisible"> ☰ </div>
     <div v-if = "display" class="option2" > Settings </div>
-    <div v-if = "display" class="option3" > Profile </div>
+    <!-- <NuxtLink v-if = "display" class="option3" to="/EditProfile">Profile</NuxtLink> -->
+    <NuxtLink v-if = "display" class="option3" to="/Profile">Profile</NuxtLink> 
+     
     <div v-if = "display" class="option4" >  <LogoutButton/> </div>
 
     </div>

@@ -7,7 +7,7 @@
           <h1 class="text-white uppercase font-bold text-6xl">This is the welcoming page.</h1>
           <p class="text-white text-xl my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
           <SignupButton class="text-white border-2 h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
-        </div>  
+         </div>  
         <!-- <img class="h-72 mr-20" src="../assets/undraw_programmer_re_owql.svg"> -->
       </div>
     </section>
@@ -24,19 +24,36 @@
 </template>
 
 <script>
+
 import * as THREE from 'three'
 import NET from 'vanta/dist/vanta.net.min'
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 AOS.init();
 
+
+
+  
+  
+    
+
+
+
 export default {
+    
+
   data(){
     return{
       count: 0,
       scrollPosition: null,
     }
   },
+
+          
+            
+   
   mounted() {
       this.redirect();
       this.vantaEffect = NET({
@@ -48,15 +65,21 @@ export default {
     });
     window.addEventListener('scroll', this.updateScroll);
   },
+  
   beforeDestroy() {
     if (this.vantaEffect) {
       this.vantaEffect.destroy()
     }
   },
+  
   methods: {
-    redirect() {
+      
+  
+    
+      redirect() {
         if (this.$auth.loggedIn) {
-          this.$router.push({path: 'Home'});
+          
+         this.$router.push({path: 'home'});
         } else {
           this.$router.push({path: '/'});
         }
@@ -66,6 +89,7 @@ export default {
       }
   }
 }
+
 </script>
 
 <style scoped>

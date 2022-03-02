@@ -1,26 +1,28 @@
 <template>
-    <section>
-    <DefaultNavBar />
-  <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
-    <div class="container">
-        <div class="my-4">
-            <div class="flex items-center w-1/5 m-1 justify-between">
-                <h1 >Recent Projects</h1> 
-                <NuxtLink to="ProjectAll"><p> View all &#10143;</p></NuxtLink>
-            </div>
-            <div class=" flex flex-row justify-between justify-items-center ">
-                <Slideshow/>
-            </div>
-        </div>
+    <section class="dark h-screen">
+        <div class="bg-gray-200 dark:bg-dark-gray h-full">
+            <DefaultNavBar />
+            <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
+                <div class="container">
+                    <div class="my-4">
+                        <div class="flex items-center w-1/5 m-1 justify-between">
+                            <h1 class="text-black dark:text-light-gray">Recent Projects</h1> 
+                            <NuxtLink to="ProjectAll" class="text-black dark:text-light-gray"><p> View all &#10143;</p></NuxtLink>
+                        </div>
+                        <div class=" flex flex-row justify-between justify-items-center ">
+                            <Slideshow/>
+                        </div>
+                    </div>
 
-        <div class="my-4">
-            <h1 class="m-1">Trending</h1>
-            <div class="flex flex-row justify-between justify-items-center ">
-                <Slideshow/>
-            </div>
+                    <div class="my-4">
+                        <h1 class="m-1 text-black dark:text-light-gray">Trending</h1>
+                        <div class="flex flex-row justify-between justify-items-center ">
+                            <Slideshow/>
+                        </div>
+                    </div>
+                </div>
+                <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
         </div>
-    </div>
-    <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
     </section>
 </template>
 
@@ -69,10 +71,10 @@ export default {
 
 }
 
-body {
+/* body {
        background-color: #1b1b1b;
        color: #e6e6e6;
-}
+} */
 
 
 h1{

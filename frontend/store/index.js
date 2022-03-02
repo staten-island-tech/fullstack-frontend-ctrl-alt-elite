@@ -6,6 +6,7 @@ export const state = () => ({
       following:0,
       projects:0
     },
+    darkMode: true,
 
     
 })

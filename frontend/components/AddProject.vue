@@ -1,5 +1,5 @@
 <template>
-  <div id="show-projects">
+  <div id="show-projectss">
     <h1>All Project Articles</h1>
     <div v-for="project in projects" :key="project" class="single-project">
       <h2>{{ project.title }}</h2>
@@ -15,21 +15,13 @@ export default {
       projects: [],
     }
   },
-  methods: {
-    async function() {
-      if (this.projects === undefined) {
-        return
-      }
-      try {
-        await fetch('http://jsonplaceholder.typicode.com/posts').then(function (
-          data
-        ) {
-          this.projects = data.body.slice(0, 10)
-        })
-      } catch (error) {
-        return 'test'
-      }
-    },
+  methods: {},
+  created() {
+    this.$http
+      .get('http://jsonplaceholder.typicode.com/posts')
+      .then(function (data) {
+        this.projects = data.body.slice(0, 10)
+      })
   },
 }
 </script>

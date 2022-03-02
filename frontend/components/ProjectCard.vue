@@ -1,5 +1,6 @@
 <template>
-  <div class="h-60 w-1/4 bg-black rounded">
+<!-- <section class="card"> -->
+  <div id="card" class="h-60 w-1/4 bg-black rounded">
     <div class="h-3/4 w-full bg-gray-900 rounded flex justify-center items-center">
       <p class="text-gray-200">sample</p>
     </div>
@@ -12,6 +13,7 @@
       </div>
     </div>
   </div>
+<!-- </section> -->
 </template>
 
 <script>
@@ -21,5 +23,12 @@ export default {
 </script>
 
 <style>
+
+#card {
+  transition: transform 0.3s
+}
+#card:hover {
+  transform: scale(1.3);
+}
 
 </style>

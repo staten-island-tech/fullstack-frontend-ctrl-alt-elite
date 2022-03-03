@@ -15,13 +15,20 @@ export default {
       projects: [],
     }
   },
-  methods: {},
-  created() {
-    this.$http
+
+  mounted() {
+   /*  this.$http
       .get('http://jsonplaceholder.typicode.com/posts')
       .then(function (data) {
         this.projects = data.body.slice(0, 10)
-      })
+      }) */
+      const test = async function(){
+        const data = await fetch('http://jsonplaceholder.typicode.com/posts');
+        const newData= await data.json()
+        console.log(newData)
+      
+      }
+      test()
   },
 }
 </script>

@@ -21,6 +21,7 @@
       <article>{{ project.body }}</article>
       <div>{{ methods.post }}</div>
     </div>
+    <AddProject/>
   </div>
 </template>
 

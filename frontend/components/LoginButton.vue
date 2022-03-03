@@ -8,10 +8,14 @@
 </template>
 
 <script>
-  export default {
+   
+    export default {
     name: 'LoginButton',
+     
+    
     methods: {
       login() {
+       
         this.$auth.loginWith('auth0');
        
       },

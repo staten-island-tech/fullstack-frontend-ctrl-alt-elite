@@ -31,10 +31,10 @@
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
         <a class="inline-block text-xl select-none" @click="projectSettings">Settings</a>
-        <a class="inline-block text-xl text-red-600 select-none" @click="test">Delete</a>
+        <a class="inline-block text-xl text-red-600 select-none">Delete</a>
       </div>
     </div>
-    <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="remove2">
+    <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
       <div id="projectsettings" class="h-4/5 w-2/3 flex flex-col justify-evenly items-center border-2 bg-gray-400">
         <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/4 p-4">
         <textarea v-model="description" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4"></textarea>
@@ -154,13 +154,13 @@ export default {
         const editorContainer = document.getElementById("editcontainer")
         const iframe = document.getElementById("iframe")
         if (e.srcElement.id === "left"){
-          editorOne.style.width = "100%"
-          editorTwo.style.width = "100%"
-          editorThree.style.width = "100%"
           projectDiv.style.flexDirection = "row"
           editorContainer.style.width = "40%"
           editorContainer.style.height = "100%"
           editorContainer.style.flexDirection = "column"
+          editorOne.style.width = "100%"
+          editorTwo.style.width = "100%"
+          editorThree.style.width = "100%"
           iframe.style.width = "60%"
           iframe.style.height = "100%"
         } else if (e.srcElement.id === "middle") {
@@ -188,14 +188,10 @@ export default {
       projectSettings(){
         document.getElementById("projectsettingsdiv").style.display = "flex"
       },
-      remove2(evt){
-        this.$store.commit("PUSH_DESCR", this.descr)
+      saveSetting2(evt){
         if (evt.target === document.getElementById("projectsettingsdiv")){
           document.getElementById("projectsettingsdiv").style.display = "none"
         } else return
-      },
-      test(){
-       
       },
       pushHTML(code){
         this.$store.commit("PUSH_HTML", code)
@@ -209,3 +205,18 @@ export default {
     }
 }
 </script>
+
+<style>
+::-webkit-scrollbar{
+  width: 10px;
+}
+::-webkit-scrollbar-track{
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background:grey; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(167, 167, 167); 
+}
+</style>

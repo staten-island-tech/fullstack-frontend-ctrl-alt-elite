@@ -1,12 +1,11 @@
 <template>
-    <section>
+    <section class="h-screen">
     <DefaultNavBar />
-  <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
-    <div class="container">
+        <div class="container">
         <div class="my-4">
             <div class="flex items-center w-1/5 m-1 justify-between">
                 <h1 >Recent Projects</h1> 
-                <NuxtLink to="ProjectAll"><p> View all &#10143;</p></NuxtLink>
+                <NuxtLink to="./Profile/Projects"><p> View all &#10143;</p></NuxtLink>
             </div>
             <div class=" flex flex-row justify-between justify-items-center ">
                 <ProjectCard/>
@@ -23,17 +22,18 @@
                 <ProjectCard/>
             </div>
         </div>
+        
     </div>
-    <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
-
+    <Snackbar/>
     </section>
 </template>
 
 <script>
- 
+import Snackbar from '../components/Snackbar.vue'
 import DBFunctions from "~/DBFunctions";
 
 export default {
+  components: { Snackbar },
     
      data(){
        return{ 
@@ -69,7 +69,6 @@ export default {
 .container {
     margin: 0 auto;
     width: 100%;
-
 }
 
 body {

@@ -31,13 +31,13 @@ export default {
     visibility: hidden;
     text-align: center;
     width: 30%;
-    left: 50%;
-    bottom: 1rem;
+    bottom: 2rem;
     padding: 1.5rem;
     font-size: 1.2rem;
     border-radius: 0.5rem;
     background-color: black;
     color: white;
+    position: absolute;
   
 }
 

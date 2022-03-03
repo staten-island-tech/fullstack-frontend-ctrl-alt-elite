@@ -30,19 +30,19 @@
 <script>
  
 
-import * as THREE from 'three'
-import BIRDS from 'vanta/dist/vanta.net.min'
+// import * as THREE from 'three'
+// import BIRDS from 'vanta/dist/vanta.net.min'
 import DBFunctions from "~/DBFunctions";
 
 export default {
   
   async mounted ()
    { 
-     this.vantaEffect = BIRDS({
-      el: "#body",
-      THREE,
-      color: 0x8f5ede,
-    });
+    //  this.vantaEffect = BIRDS({
+    //   el: "#body",
+    //   THREE,
+    //   color: 0x8f5ede,
+    // });
      await DBFunctions.getInfo(this.$auth.user.email,this.info);
  
 
@@ -50,11 +50,11 @@ export default {
     } ,   
  
   
-  beforeDestroy() {
-    if (this.vantaEffect) {
-      this.vantaEffect.destroy()
-    }
-  },
+  // beforeDestroy() {
+  //   if (this.vantaEffect) {
+  //     this.vantaEffect.destroy()
+  //   }
+  // },
    data(){
        return{  
          info: {

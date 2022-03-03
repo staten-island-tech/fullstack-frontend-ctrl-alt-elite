@@ -1,5 +1,5 @@
 <template>
-    <section class="dark h-screen">
+    <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-gray-200 dark:bg-dark-gray h-full">
             <DefaultNavBar />
             <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
@@ -21,6 +21,7 @@
                         </div>
                     </div>
                 </div>
+                <ThemeButton/>
                 <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
         </div>
     </section>

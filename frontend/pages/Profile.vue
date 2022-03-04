@@ -1,7 +1,9 @@
 <template>
-  <div id="body" class="w-full h-full">
+  <div class="w-full h-screen">
     <DefaultNavBar />
-    
+      <div id="body">
+
+      </div>
       <ul>
         <li>
             <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
@@ -29,20 +31,33 @@
 
 <script>
  
-
-// import * as THREE from 'three'
-// import BIRDS from 'vanta/dist/vanta.net.min'
+import WAVES from 'vanta/dist/vanta.waves.min'
+import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
 
 export default {
   
+  data(){
+       return{  
+         info: {
+            followers:0,
+            following:0,
+            projects:0,
+            }
+       } 
+    
+    },
   async mounted ()
    { 
-    //  this.vantaEffect = BIRDS({
-    //   el: "#body",
-    //   THREE,
-    //   color: 0x8f5ede,
-    // });
+     this.vantaEffect = WAVES({
+      el: "#body",
+      THREE,
+      color: 0x000000,
+  waveHeight: 20,
+  shininess: 50,
+  waveSpeed: 1.5,
+  zoom: 0.75
+    });
      await DBFunctions.getInfo(this.$auth.user.email,this.info);
  
 
@@ -55,16 +70,7 @@ export default {
   //     this.vantaEffect.destroy()
   //   }
   // },
-   data(){
-       return{  
-         info: {
-            followers:0,
-            following:0,
-            projects:0,
-            }
-       } 
-    
-    },
+   
    
 
     
@@ -128,5 +134,10 @@ a.nuxt-link-exact-active {
 		background-size: 100% 3px;
 		background-position: 0 100%
 	}
+
+  #body {
+    height: 5rem;
+    width: 5rem;
+  }
 
 </style>

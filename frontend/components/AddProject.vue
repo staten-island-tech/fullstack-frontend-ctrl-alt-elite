@@ -25,8 +25,9 @@ export default {
       const test = async function(){
         const data = await fetch('http://jsonplaceholder.typicode.com/posts');
         const newData= await data.json()
-        console.log(newData)
-        this.projects = data.body.slice(0, 10)
+        console.log
+        this.projects = newData;
+        
       
       }
       test()

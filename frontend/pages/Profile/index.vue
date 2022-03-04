@@ -9,7 +9,7 @@
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
         <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center"> 
             <div class="flex flex-col justify-start  ">
-                 <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" >Update Profile Photo</button>    
+                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" >Update Profile Photo</button>    
                  <h1 class="font-bold mb-3 text-lg mt-1 text-center " > {{userProfile.data.user_id}}</h1> 
                 
             </div>

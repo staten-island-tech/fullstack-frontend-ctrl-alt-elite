@@ -43,7 +43,7 @@ export default {
 
 #snackBar.show {
     visibility: visible;
-    animation: fadeIn 1.5s, fadeOut 1.5s 2.5s;
+    animation: fadeIn 1.5s, fadeOut 2s 2.5s;
 }
 @keyframes fadeIn {
     from { bottom:0; opacity: 0;} 

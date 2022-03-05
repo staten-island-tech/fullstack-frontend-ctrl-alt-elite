@@ -11,16 +11,14 @@ module.exports.getFollowing = async (userID,info) => {
           body: JSON.stringify(userInfo), // Adding headers to the request headers:
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
-        // console.log ("I am here");
+         
         const data = await response.json();
-        // window.alert("DATA");
-        // window.alert (JSON.stringify(data.list));
-       // info.abc = "ok";
+         
         info.data = data.list;
 
       } catch (error) {
          window.alert(error )
-        // console.log("I dont care");
+         
       }
 };
 
@@ -51,8 +49,7 @@ module.exports.getInfo = async (userID, info) => {
     const userInfo = { userID}
     const response = await fetch(`http://localhost:5000/getInfo`, {
       method: 'POST',
-      // Adding body or contents to send
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
+        body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     
@@ -75,7 +72,6 @@ module.exports.unFollow = async (userID,unfollowUserID,data) =>  {
         const userData = {userID,unfollowUserID};
         const response = await fetch(`http://localhost:5000/unFollow`, {
           method: 'POST',
-          // Adding body or contents to send
           body: JSON.stringify(userData), // Adding headers to the request headers:
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
@@ -83,7 +79,7 @@ module.exports.unFollow = async (userID,unfollowUserID,data) =>  {
         data = await response.json()
   
       } catch (error) {
-        // console.log("I dont care");
+      
       }
     };
 
@@ -93,14 +89,14 @@ module.exports.unFollow = async (userID,unfollowUserID,data) =>  {
         const userData = { userID, followUserID }
         const response = await fetch(`http://localhost:5000/follow`, {
           method: 'POST',
-          // Adding body or contents to send
-          body: JSON.stringify(userData), // Adding headers to the request headers:
+  
+          body: JSON.stringify(userData),  
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
 
         data = await response.json()
       } catch (error) {
-        // console.log("I dont care");
+         
       }
     }
 
@@ -111,7 +107,7 @@ module.exports.getFollowers  = async (userID, list) => {
         const userInfo = { email:userID};
         const response = await fetch(`http://localhost:5000/getFollowers`, {
           method: 'POST',
-          // Adding body or contents to send
+      
           body: JSON.stringify(userInfo), // Adding headers to the request headers:
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
@@ -120,7 +116,7 @@ module.exports.getFollowers  = async (userID, list) => {
         list.data= data.list;
                 
       } catch (error) {
-        // console.log("I dont care");
+        
       }
     };
 

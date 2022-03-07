@@ -5,13 +5,14 @@
     <div class="h-2/3 w-1/4 flex justify-between items-center">
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>
-      <button class="p-4 text-lg">Save</button>
+      <button class="p-4 text-lg" @click="save">Save</button>
       <button class="p-4 text-lg">Publish</button>
     </div>
   </nav>
 </template>
 
 <script>
+import DBFunctions from "~/DBFunctions";
 export default {
   data(){
     return{
@@ -63,6 +64,13 @@ export default {
       const settings = document.getElementById("settingdiv")
       settings.style.display = "flex"
     },
+    async save(){
+      try {
+        await DBFunctions.createProject(this.html)
+      } catch (error) {
+        window.alert(error)
+      }
+    }
   }
 }
 </script>

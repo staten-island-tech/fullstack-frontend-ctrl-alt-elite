@@ -5,17 +5,11 @@
     'hover:bg-blue-200':!followInfo.following, 'hover:bg-red-200':followInfo.following}" 
     class="text-white font-bold py-2 px-4 rounded " @click="updateFollowStatus" > {{followInfo.following ?'Unfollow':'Follow'}}</button>
     <p v-if="followInfo.following && followInfo.followedby"  class="font-bold text-2xl text-blue-500" > Friends😊</p>
-    
-     
-
 </div> 
 </template>
 
 <script>
- 
- import DBFunctions from "~/DBFunctions";
-
- 
+import DBFunctions from "~/DBFunctions";
 
 export default {
 props: {
@@ -28,7 +22,6 @@ props: {
     
    },  
 data(){
-    
     return {
         // followingStatus: true, 
         followInfo:{
@@ -41,27 +34,18 @@ data(){
             projects:0,
             },
         userID:"abc",
-        data:{},
-         
+        data:{}, 
     }
   },
-    
   async mounted()
   {
-    
-      await DBFunctions.getFollowInfo(this.$auth.user.email,this.followuserid,this.followInfo)
-     
-     
-  
-  
+    await DBFunctions.getFollowInfo(this.$auth.user.email,this.followuserid,this.followInfo)
   },
+
   methods: {
-    
-   
     async updateFollowStatus()
     {
         if(this.followInfo.following)
-        
            await DBFunctions.unFollow(this.$auth.user.email,this.followuserid,this.data)
         else 
            await DBFunctions.follow(this.$auth.user.email,this.followuserid,this.data)
@@ -81,7 +65,3 @@ data(){
 
 }
 </script>
-
-<style>
-
-</style>

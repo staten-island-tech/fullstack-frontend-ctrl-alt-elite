@@ -4,7 +4,7 @@
     
       <ul>
         <li>
-            <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
+            <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile">Profile</NuxtLink>
         </li>
         <li>
           <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Following"  >Following  {{$store.state.followInfo.following}} </NuxtLink>
@@ -33,6 +33,12 @@ import DBFunctions from "~/DBFunctions";
  
 export default {
   
+// props: {
+//        email: {      // user id 
+//            type:String,
+//            required:true,
+//        }
+//    }, 
    data(){
        return{  
          info: {
@@ -46,10 +52,16 @@ export default {
    
    async mounted ()
    { 
-     await DBFunctions.getInfo(this.$auth.user.email,this.info);
- 
+    //  await DBFunctions.getInfo(this.$auth.user.email,this.info);
+     
+      
+         
 
-     this.$store.commit('updateFollowInfo', this.info)
+        window.alert(this.$store.state.otherIDInfo.email)
+    
+    await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+ 
+      this.$store.commit('updateFollowInfo', this.info)
     } ,   
     
     

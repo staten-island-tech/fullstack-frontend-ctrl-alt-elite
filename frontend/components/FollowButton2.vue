@@ -66,7 +66,13 @@ data(){
         else 
            await DBFunctions.follow(this.$auth.user.email,this.followuserid,this.data)
         this.followInfo.following = !this.followInfo.following; 
-        await DBFunctions.getInfo(this.$auth.user.email,this.info);
+
+        if(this.$auth.user.email === this.$store.state.otherIDInfo.email)
+        
+            await DBFunctions.getInfo(this.$auth.user.email,this.info);
+        else
+            await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+
         this.$store.commit('updateFollowInfo', this.info)
         // this.$router.go();
        

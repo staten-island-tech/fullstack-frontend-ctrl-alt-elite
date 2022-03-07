@@ -28,7 +28,7 @@ export default {
 
    
   async mounted ()
-   {await DBFunctions.getFollowers(this.$auth.user.email,this.list);} ,   
+   {await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email,this.list);} ,   
     
   
 

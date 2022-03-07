@@ -5,7 +5,8 @@
     <div class="option1" @click = "toggleVisible"> ☰ </div>
     <div v-if = "display" class="option2" > Settings </div>
     <!-- <NuxtLink v-if = "display" class="option3" to="/EditProfile">Profile</NuxtLink> -->
-    <NuxtLink v-if = "display" class="option3" to="/Profile">Profile</NuxtLink> 
+    <NuxtLink v-if = "display" class="option3" to="/Profile" > Profile</NuxtLink> 
+     <!-- <div v-if = "display" class="option3" @click ="$router.push({name:'Profile', params:{email:$auth.user.email}})" > profile </div> -->
      
     <div v-if = "display" class="option4" >  <LogoutButton/> </div>
 
@@ -16,11 +17,18 @@
 
 <script>
 export default {
+   
     data() {
         return {
             display: false,
         };
     },
+    mounted()
+    { 
+        window.alert("side bar ")
+         this.$store.commit('updateOtherIDInfo', this.$auth.user.email);
+    },
+    
        methods: {
            toggleVisible() {
                this.display = !this.display;

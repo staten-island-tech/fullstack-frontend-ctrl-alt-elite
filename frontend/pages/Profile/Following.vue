@@ -29,7 +29,7 @@ export default {
    async mounted ()
    { 
  
-     await DBFunctions.getFollowing(this.$auth.user.email,this.list);
+     await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email,this.list);
       
       
      } ,   

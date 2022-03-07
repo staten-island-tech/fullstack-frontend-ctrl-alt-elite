@@ -32,10 +32,48 @@ export default {
     // '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    // '@nuxtjs/fontawesome',
   ],
 
+
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
+    [
+      'nuxt-fontawesome', {
+        imports: [
+         {
+           set: '@fortawesome/free-solid-svg-icons',
+           icons: ['fas']
+         },
+         {
+          set: '@fortawesome/free-regular-svg-icons',
+          icons: ['far']
+        },
+         {
+           set:'@fortawesome/free-brands-svg-icons',
+           icons: ['fab']
+         }
+       ]
+      }
+]
+  ],
+  auth: {
+    redirect: {
+      login: '/', // redirect user when not connected
+      callback: '/auth/signed-in'
+    },
+    strategies: {
+      auth0: {
+        domain: 'dev-p62lyuzr.us.auth0.com',
+        clientId: 'A4avCXPautzQ9o8kr3tGeA6Z6Ko9aofZ',
+        logoutRedirectUri: 'http://localhost:3000',
+        // audience: 'https://my-api-domain.com/'
+      }
+    }
+  },
+  
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

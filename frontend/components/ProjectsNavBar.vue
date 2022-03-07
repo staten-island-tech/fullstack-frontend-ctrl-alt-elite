@@ -5,7 +5,8 @@
     <div class="h-2/3 w-1/4 flex justify-between items-center">
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>
-      <button class="p-4 text-lg" @click="pushDB">Save</button>
+      <button class="p-4 text-lg">Save</button>
+      <button class="p-4 text-lg">Publish</button>
     </div>
   </nav>
 </template>
@@ -14,7 +15,7 @@
 export default {
   data(){
     return{
-
+      
     }
   },
   computed:{
@@ -62,10 +63,6 @@ export default {
       const settings = document.getElementById("settingdiv")
       settings.style.display = "flex"
     },
-    pushDB(){
-      const title = "hello"
-
-    }
   }
 }
 </script>

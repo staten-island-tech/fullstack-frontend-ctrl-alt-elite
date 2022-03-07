@@ -21,7 +21,6 @@
                         </div>
                     </div>
                 </div>
-                <ThemeButton/>
                 <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
         </div>
     </section>

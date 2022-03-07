@@ -1,9 +1,9 @@
 <template>
   <div class="w-full h-screen">
     <DefaultNavBar />
-      <div id="body">
+      <!-- <div id="body">
 
-      </div>
+      </div> -->
       <ul>
         <li>
             <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
@@ -31,8 +31,8 @@
 
 <script>
  
-import WAVES from 'vanta/dist/vanta.waves.min'
-import * as THREE from 'three'
+// import WAVES from 'vanta/dist/vanta.waves.min'
+// import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
 
 export default {
@@ -49,15 +49,15 @@ export default {
     },
   async mounted ()
    { 
-     this.vantaEffect = WAVES({
-      el: "#body",
-      THREE,
-      color: 0x000000,
-  waveHeight: 20,
-  shininess: 50,
-  waveSpeed: 1.5,
-  zoom: 0.75
-    });
+  //    this.vantaEffect = WAVES({
+  //     el: "#body",
+  //     THREE,
+  //     color: 0x000000,
+  // waveHeight: 20,
+  // shininess: 50,
+  // waveSpeed: 1.5,
+  // zoom: 0.75
+  //   });
      await DBFunctions.getInfo(this.$auth.user.email,this.info);
  
 

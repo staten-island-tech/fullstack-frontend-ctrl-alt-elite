@@ -15,6 +15,9 @@ module.exports = {
         '9/10': '90%',
         '3/10': '30%',
       },
+      colors: {
+        'light-gray': '#e6e6e6',
+      },
     },
   },
   variants: {

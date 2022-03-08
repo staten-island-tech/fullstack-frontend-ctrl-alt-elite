@@ -1,6 +1,6 @@
 <template>
  
-    <div id="buttons">
+    <div id="buttons" class="relative">
     
     <div class="option1" @click = "toggleVisible"> ☰ </div>
     <div v-if = "display" class="option2" > Settings </div>
@@ -10,6 +10,8 @@
      
     <div v-if = "display" class="option4" >  <LogoutButton/> </div>
 
+    <font-awesome-icon v-if="!display" class="text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+    <Sidebar v-if="display" class="relative"/>
     </div>
  
 
@@ -45,7 +47,7 @@ export default {
     float: left;
     flex-direction: column;
     height: 4rem;  
-    padding: 1rem;
+    /* padding: 1rem; */
     display: flex;
     justify-content: flex-start;
     font-size: 1.25rem;

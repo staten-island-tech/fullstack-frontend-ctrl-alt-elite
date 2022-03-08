@@ -1,12 +1,12 @@
 <template>
+  <section class="flex flex-row justify-between w-full h-16">
 
-
-  <section>
-    <div class="flex flex-row justify-between w-full h-16">
-      <SidebarButton/>
-      <img class="h-16 mx-4" src="../assets/logo-placeholder.png"> 
-      <NewProjectButton/>
-    </div>
+      <Sidebar/>
+      <div class="w-1/2 flex flex-row justify-between">
+        <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink> 
+        <NewProjectButton/>
+      </div>
+ 
   </section>
   
   

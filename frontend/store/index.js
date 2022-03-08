@@ -9,10 +9,10 @@ export const state = () => ({
     following: 0,
     projects: 0,
   },
-
   otherIDInfo: {
     email: 'abc',
   },
+  darkMode: true,
 })
 export const mutations = {
   PUSH_HTML(state, code) {
@@ -37,6 +37,9 @@ export const mutations = {
   },
   updateOtherIDInfo(state, value) {
     state.otherIDInfo.email = value
+  },
+  toggleMode(state) {
+    state.darkMode = !state.darkMode
   },
 }
 export const actions = {}

@@ -1,6 +1,6 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       height: {
@@ -17,6 +17,7 @@ module.exports = {
       },
       colors: {
         'light-gray': '#e6e6e6',
+        'dark-gray': '#1b1b1b',
       },
     },
   },

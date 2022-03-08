@@ -1,8 +1,7 @@
 <template>
   <button
     class="text-xl text-slate-400 "
-    @click="logout"
-  >
+    @click="logout">
     Log out
   </button>
 </template>

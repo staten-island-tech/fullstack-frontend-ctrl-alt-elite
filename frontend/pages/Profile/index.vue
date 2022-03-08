@@ -27,7 +27,7 @@
                 <h2 class="pb-2">Username</h2>
                 <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3" title="Click to Edit" > 
                 <h2 class="pb-2 pt-2" >Bio</h2>
-                <textarea  v-model="userProfile.data.description" type="text" placeholder="Describe Yourself!" class="text-black rounded-md h-20 p-3" title="Click to Edit">    </textarea>
+                <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." class="text-black rounded-md h-20 p-3" title="Click to Edit">    </textarea>
                 <div  class="flex flex-row justify-end">
                     <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded" @click="updateProfile" > Save</button>
                     <button class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded" @click="resetProfile"> Reset </button>

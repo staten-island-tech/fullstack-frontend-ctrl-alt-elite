@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      projects: {},
+      projects: [],
     }
   },
 
@@ -25,9 +25,12 @@ export default {
       const test = async function(){
         const data = await fetch('http://jsonplaceholder.typicode.com/posts');
         const newData= await data.json()
-        console.log(newData),
-        this.projects = newData;
-        console.log(this.projects)
+        console.log(newData);
+
+       const newData2 = this.projects.push(newData);
+       console.log(newData)
+        
+
         
       
       }

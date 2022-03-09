@@ -17,10 +17,10 @@
                    </div>
                 </div>
             </div>
-            <!-- <div class="flex flex-col">
+            <div class="flex flex-col">
                 <LogoutButton/>
                 <NuxtLink to="/Profile">Profile</NuxtLink>
-            </div> -->
+            </div>
         </div>
     </div>
     <!-- <NuxtLink class="option3" to="/Settings">Settings</NuxtLink>

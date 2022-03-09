@@ -1,8 +1,8 @@
 <template>
   <div id="show-projectss">
     <h1>All Project Articles</h1>
-    <div v-for="project in projects" :key="project" class="single-project">
-      <h2>{{ project.title }}</h2>
+    <div v-for="project in title" :key="project" class="single-project">
+      <h2> {{}}</h2>
       <article>{{ project.body }}</article>
     </div>
   </div>
@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      projects: [],
+      title: {},
     }
   },
 
@@ -27,8 +27,8 @@ export default {
         const newData= await data.json()
         console.log(newData);
 
-       const newData2 = this.projects.push(newData);
-       console.log(newData)
+      this.title = newData.title
+
         
 
         

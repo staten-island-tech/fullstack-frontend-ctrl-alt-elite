@@ -7,20 +7,20 @@
                 <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                 <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
             </div> 
-            <div>
-                <img class="rounded-full h-20 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
-                <div>
-                    <p>{{userProfile.data.user_id}}</p>
-                   <div>
+            <div class="flex flex-col">
+                <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
+                <div class="text-light-gray">
+                    <p class="bold">{{userProfile.data.name}}</p>
+                   <div class="text-sm flex flex-row">
                        <p>Following  {{$store.state.followInfo.following}}</p> 
                         <p>Followers  {{$store.state.followInfo.followers}}</p>
                    </div>
                 </div>
             </div>
-            <div class="flex flex-col">
+            <!-- <div class="flex flex-col">
                 <LogoutButton/>
                 <NuxtLink to="/Profile">Profile</NuxtLink>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- <NuxtLink class="option3" to="/Settings">Settings</NuxtLink>

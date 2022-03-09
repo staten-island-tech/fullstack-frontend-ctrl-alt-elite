@@ -9,6 +9,17 @@
             </div> 
             <div>
                 <img class="rounded-full h-20 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
+                <div>
+                    <p>{{userProfile.data.user_id}}</p>
+                   <div>
+                       <p>Following  {{$store.state.followInfo.following}}</p> 
+                        <p>Followers  {{$store.state.followInfo.followers}}</p>
+                   </div>
+                </div>
+            </div>
+            <div class="flex flex-col">
+                <LogoutButton/>
+                <NuxtLink to="/Profile">Profile</NuxtLink>
             </div>
         </div>
     </div>
@@ -28,11 +39,13 @@ export default {
             userProfile: { data : 'abc'},
             following: 0,
             followers:0,
-            recentProjects :[]
+            recentProjects :[],
+            list:{data:null},
         };
     },
     async  mounted (){
-        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile);
+        await DBFunctions.getFollowers(this.$auth.user.email,this.list);
         
         } ,  
        methods: {
@@ -51,6 +64,7 @@ export default {
       await DBFunctions.updateProfile(this.userProfile)
       window.alert("Profile information updated.")
     },
+    
 },
 };
 </script>

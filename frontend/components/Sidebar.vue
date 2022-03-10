@@ -7,19 +7,30 @@
                 <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                 <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
             </div> 
-            <div class="flex flex-col">
+            <div class="flex flex-col align-center justify-center m-2 h-1/4">
                 <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
-                <div class="text-light-gray">
-                    <p class="bold">{{userProfile.data.name}}</p>
-                   <div class="text-sm flex flex-row">
+                <div class="text-light-gray flex items-center justify-center flex-col text-center">
+                    <p class="font-bold ">{{userProfile.data.name}}</p>
+                   <div class="text-sm flex flex-row justify-around m-2 w-full">
                        <p>Following  {{$store.state.followInfo.following}}</p> 
                         <p>Followers  {{$store.state.followInfo.followers}}</p>
                    </div>
+                   <NuxtLink to="/Profile" class="text-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm">View Profile</NuxtLink>
                 </div>
             </div>
-            <div class="flex flex-col">
-                <LogoutButton/>
-                <NuxtLink to="/Profile">Profile</NuxtLink>
+            <div class="flex flex-col dark:text-white text-black">
+                <div class="h-1/8 bg-slate">
+                    <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
+                    <NuxtLink to="/Home" class="p-2">Home</NuxtLink>
+                </div>
+                <div>
+                    <font-awesome-icon :icon="['fas', 'pen']"></font-awesome-icon>
+                    <NuxtLink to="/ProjectAll" class="p-2">View Projects</NuxtLink>
+                </div>
+                <div class="text-red-400">
+                    <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
+                    <LogoutButton class="text-left p-2"/>
+                </div>
             </div>
         </div>
     </div>
@@ -40,7 +51,6 @@ export default {
             following: 0,
             followers:0,
             recentProjects :[],
-            list:{data:null},
         };
     },
     async  mounted (){
@@ -89,7 +99,7 @@ export default {
 }
 
 .shown {
-    width: 33%;
+    width: 20rem;
 }
     
 @keyframes animateleft {

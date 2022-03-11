@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      title: {},
+      projects: [],
     }
   },
 
@@ -27,7 +27,7 @@ export default {
         const newData= await data.json()
         console.log(newData);
 
-      this.title = newData.title
+      this.projects = newData
 
         
 

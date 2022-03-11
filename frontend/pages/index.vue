@@ -35,12 +35,6 @@ AOS.init();
 
 
 
-  
-  
-    
-
-
-
 export default {
     
 

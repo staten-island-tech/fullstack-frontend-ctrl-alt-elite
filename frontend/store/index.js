@@ -6,6 +6,7 @@ export const state = () => ({
       following:0,
       projects:0
     },
+    darkMode: true,
 
     
 })
@@ -17,6 +18,9 @@ export const mutations = {
     state.followInfo.followers = value.followers
     state.followInfo.projects = value.projects
   },
+  toggleMode (state) {
+    state.darkMode = !state.darkMode
+  }
 
 }
 

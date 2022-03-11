@@ -1,14 +1,9 @@
 <template>
  
-    <div id="buttons">
+    <div id="buttons" class="relative">
     
-        <div class="option" @click = "toggleVisible"> <font-awesome-icon icon="fa-solid fa-bars" /></div>
-        <div v-if = "display" class="option" > Settings </div>
-    <!-- <NuxtLink v-if = "display" class="option3" to="/EditProfile">Profile</NuxtLink> -->
-        <NuxtLink v-if = "display" class="option" to="/Profile">Profile</NuxtLink> 
-        <div v-if = "display" class="option" >  <LogoutButton/> </div>
-
-
+    <font-awesome-icon v-if="!display" class="text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+    <Sidebar v-if="display" class="relative"/>
     </div>
  
 
@@ -24,11 +19,6 @@ export default {
        methods: {
            toggleVisible() {
                this.display = !this.display;
-            //    if (display = false) {
-                   
-            //    } else {
-                 
-            //    }
            }
 },
 };
@@ -39,18 +29,16 @@ export default {
     color: gray;
     position: relative;
     cursor: pointer;
-    left: 0;
+    float: left;
     flex-direction: column;
-    height: 100%;  
-    width: 0;
-    z-index: 1;
-    padding: 1rem;
+    height: 4rem;  
+    /* padding: 1rem; */
     display: flex;
     justify-content: flex-start;
     font-size: 1.25rem;
-    transition: 0.5s;
+ 
 }
-
+    
 @keyframes animateleft {
     from {
         left: -300px;
@@ -59,7 +47,6 @@ export default {
     to {
         left: 0;
         opacity: 1;
-        
     }
 }
 </style>

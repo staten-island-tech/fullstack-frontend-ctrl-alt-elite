@@ -1,9 +1,10 @@
 <template>
+<!-- text-slate-400  -->
   <button
-    class="text-xl text-slate-400 "
+    class="text-l"
     @click="logout"
   >
-    Log out
+    Logout
   </button>
 </template>
 

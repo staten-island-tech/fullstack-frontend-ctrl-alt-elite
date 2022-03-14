@@ -1,7 +1,6 @@
 <template>
  
-    <div id="buttons" class="relative">
-    
+    <div id="buttons" class="relative">  
     <font-awesome-icon v-if="!display" class="text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <Sidebar v-if="display" class="relative"/>
     </div>

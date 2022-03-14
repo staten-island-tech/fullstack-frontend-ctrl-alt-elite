@@ -1,7 +1,7 @@
 <template>
   <button>
-      <font-awesome-icon v-if="!liked" class="text-black dark:text-gray-100" :icon="['far', 'heart']" @click="like"/>
-      <font-awesome-icon v-if="liked" class="text-red-800" :icon="['fas', 'heart']" @click="unlike"/>
+      <font-awesome-icon v-if="!liked" id = "like" class="text-black dark:text-gray-100" :icon="['far', 'heart']" @click="like"/>
+      <font-awesome-icon v-if="liked" id = "unlike" class="text-red-800" :icon="['fas', 'heart']" @click="unlike"/>
   </button>
 </template>
 
@@ -23,6 +23,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

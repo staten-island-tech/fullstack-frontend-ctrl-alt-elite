@@ -11,11 +11,11 @@
                 <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
                 <div class="text-white dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{userProfile.data.name}}</p>
-                   <div class="text-sm flex flex-row justify-between m-2 w-2/3">
+                   <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
                        <p>Following  {{$store.state.followInfo.following}}</p> 
                         <p>Followers  {{$store.state.followInfo.followers}}</p>
                    </div>
-                   <NuxtLink to="/Profile" class="text-black dark:text-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2">View Profile</NuxtLink>
+                   <NuxtLink to="/Profile" class="text-black dark:text-white border-black dark:border-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2">View Profile</NuxtLink>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
@@ -27,18 +27,18 @@
                 </div>
             </div>
             <div class="flex flex-col dark:text-white text-black h-2/3">
-                <div class="h-1/10 bg-medium-gray dark:bg-slate flex items-center pl-6">
+                <NuxtLink to="/Home" class="h-1/10  flex items-center pl-6">
                     <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
-                    <NuxtLink to="/Home" class="p-2">Home</NuxtLink>
-                </div>
-                <div class="h-1/10 flex items-center pl-6">
+                    <p class="p-2">Home</p>
+                </NuxtLink>
+                <NuxtLink to="ProjectAll" class="h-1/10 flex items-center pl-6">
                     <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
-                    <NuxtLink to="/ProjectAll" class="p-2">View Projects</NuxtLink>
-                </div>
-                <div class="h-1/10 bg-medium-gray dark:bg-slate flex items-center pl-6">
+                    <p class="p-2">View Projects</p>
+                </NuxtLink>
+                <NuxtLink to="/Project" class="h-1/10 flex items-center pl-6">
                     <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
-                    <NuxtLink to="/Project" class="p-2">New Project</NuxtLink>
-                </div>
+                    <p class="p-2">New Project</p>
+                </NuxtLink>
                 <div class="text-red-400 h-1/10 flex items-center pl-6">
                     <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
                     <LogoutButton class="text-left p-2"/>

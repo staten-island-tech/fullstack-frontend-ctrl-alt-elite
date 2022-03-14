@@ -2,26 +2,33 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-gray-200 dark:bg-dark-gray h-full">
             <DefaultNavBar />
-            <!-- <p class="text-white">hello {{ this.$auth.user }}</p> -->
-                <div class="container">
-                    <div class="my-4">
-                        <div class="flex items-center w-1/5 m-1 justify-between">
-                            <h1 class="text-black dark:text-light-gray">Recent Projects</h1> 
-                            <NuxtLink to="ProjectAll" class="text-black dark:text-light-gray"><p> View all &#10143;</p></NuxtLink>
+            
+                <div class="w-full h-full flex flex-row relative">
+                    <div class="w-4/5">
+                        <div class="my-4">
+                            
+                            <div class=" flex flex-row justify-between justify-items-center ">
+                                <Slideshow/>
+                            </div>
                         </div>
-                        <div class=" flex flex-row justify-between justify-items-center ">
-                            <Slideshow/>
+
+                        <div class="my-4">
+                            <h1 class="m-1 text-black dark:text-light-gray">Trending</h1>
+                            <div class="flex flex-row justify-between justify-items-center ">
+                                <Slideshow/>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="my-4">
-                        <h1 class="m-1 text-black dark:text-light-gray">Trending</h1>
-                        <div class="flex flex-row justify-between justify-items-center ">
-                            <Slideshow/>
+                    <div class="w-1/5">
+                        <div class="fixed border-slate dark:border-medium-gray border rounded h-5/6 w-1/6 right-10"> 
+                            <div class="flex items-center m-2 p-2 justify-between">
+                                <h1 class="text-black dark:text-light-gray">Recent Projects</h1> 
+                                <NuxtLink to="ProjectAll" class="text-black dark:text-light-gray"><p> View all &#10143;</p></NuxtLink>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- <p class="text-white">Hello {{ this.$auth.user.name }}</p> -->
+
         </div>
     </section>
 </template>
@@ -81,4 +88,6 @@ h1{
     color:white;
     font-size: 1.5rem;
 }
+
+
 </style>

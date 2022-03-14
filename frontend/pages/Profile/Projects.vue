@@ -2,8 +2,11 @@
   <div >
       <h1>Projects  </h1> 
       <div Class="flex flex-row justify-items-center space-x-4 "  >
+
+       <textarea v-model="searchArgs" class="text-black"  ></textarea> 
+       <button @click="searchProjects()">SEARCH</button>
         
-       <span v-for="item in projects" :key="item._ID"    >
+       <span v-for="item in projects.list" :key="item._ID"    >
                <ProjectCard2 :item="item" />
                    
                   
@@ -17,6 +20,7 @@
 
 <script>
 
+import DBFunctions from "~/DBFunctions";
  
 export default {
    props: {
@@ -27,9 +31,10 @@ export default {
    },
    data(){
        return{ 
-         projects: [],
-         abc:""
-        
+         projects:
+         {list: []},
+         abc:"",
+        searchArgs: ""
          }
       },
 
@@ -53,11 +58,17 @@ export default {
         
         const data = await response.json();
         // this.uniqueID = data.uniqu;
-        this.projects= data.projects;
+        this.projects.list= data.projects
+        
         
       } catch (error) {
          
       }
+    },
+    async searchProjects()   {
+      
+      await DBFunctions.searchProjects(this.searchArgs, this.projects)
+      window.alert(JSON.stringify(this.projects.list))
     },
     
 

@@ -1,4 +1,5 @@
-<template>
+<template >
+<section id="card">
   <div class="h-60 w-1/4 bg-gray-300 dark:bg-black rounded">
     <div class="h-3/4 w-full bg-white dark:bg-gray-900 rounded flex justify-center items-center">
       <p class="text-black dark:text-gray-200">sample</p>
@@ -12,6 +13,7 @@
       </div>
     </div>
   </div>
+</section>
 </template>
 
 <script>
@@ -22,4 +24,8 @@ export default {
 
 <style>
 
+#card:hover {
+  transform: scale(1.3);
+  transition: all 0.3s ease-in-out;
+}
 </style>

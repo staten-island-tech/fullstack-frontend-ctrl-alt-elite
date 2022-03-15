@@ -1,4 +1,5 @@
 <template>
+<section id="card">
   <div class="h-60  bg-black rounded">
     <div class="h-3/4 w-full bg-gray-900 rounded flex justify-center items-center">
       <p class="text-gray-200">sample</p>
@@ -13,6 +14,7 @@
       </div>
     </div>
   </div>
+</section>
 </template>
 
 <script>
@@ -27,5 +29,9 @@ props: {
 </script>
 
 <style>
+#card:hover {
+  transform: scale(1.3);
+  animation: transition 2s;
+}
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div id="show-projectss">
     <h1>All Project Articles</h1>
-    <div v-for="project in title" :key="project" class="single-project">
+    <div v-for="project in methods" :key="project" class="single-project">
       <h2> {{}}</h2>
       <article>{{ project.body }}</article>
     </div>
@@ -15,6 +15,25 @@ export default {
       projects: [],
     }
   },
+  methods:{
+    fecthData: async function(){
+      try{
+        const data = await fetch('http://jsonplaceholder.typicode.com/posts');
+        const newData= await data.json()
+        console.log(newData);
+        this.projects = newData;
+      } catch (error){
+        alert("Error Moment");
+        return;
+      }
+
+        
+
+        
+      
+      }
+
+  },
 
   mounted() {
    /*  this.$http
@@ -22,19 +41,7 @@ export default {
       .then(function (data) {
         this.projects = data.body.slice(0, 10)
       }) */
-      const test = async function(){
-        const data = await fetch('http://jsonplaceholder.typicode.com/posts');
-        const newData= await data.json()
-        console.log(newData);
-
-      this.projects = newData
-
-        
-
-        
-      
-      }
-      test()
+    
   },
 }
 </script>
@@ -50,4 +57,4 @@ export default {
   box-sizing: border-box;
   background: #eee;
 }
-</style>
+</style>   

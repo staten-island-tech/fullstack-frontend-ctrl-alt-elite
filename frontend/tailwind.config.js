@@ -7,8 +7,8 @@ module.exports = {
           '1/10': '10%',
         },
         colors: {
-          'light-gray' : '#e6e6e6',
-          'medium-gray': '#dbdbdb',
+          'light-gray' : '#dbdbdb',
+          'medium-gray': '#b8b8b8',
           'slate': '#1a1a1a',
           'dark-gray' : '#1b1b1b',
           'dark': '#0f0f0f',

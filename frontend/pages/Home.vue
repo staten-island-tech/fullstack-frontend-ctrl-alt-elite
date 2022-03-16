@@ -7,7 +7,7 @@
                     <div class="my-4">
                         <div class="flex items-center w-1/5 m-1 justify-between">
                             <h1 class="text-black dark:text-light-gray">Recent Projects</h1> 
-                            <NuxtLink to="/profile/Projects" class="text-black dark:text-light-gray"><p> View all &#10143;</p></NuxtLink>
+                            <NuxtLink to="/profile/Projects" class="text-black dark:text-light-gray link link-underline link-underline-black"><p> View all &#10143;</p></NuxtLink>
                         </div>
                         <div class=" flex flex-row justify-between justify-items-center ">
                             <Slideshow/>

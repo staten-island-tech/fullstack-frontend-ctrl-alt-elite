@@ -1,10 +1,10 @@
 <template>
   <div id="nav" class="h-screen w-1/2 relative">
-      <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+      <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl cursor-pointer" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-gray-50 dark:bg-black absolute z-10">
         <div v-if="display" class="h-full w-full border-r border-slate">
             <div class="flex flex-row justify-between">
-                <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
+                <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100 cursor-pointer" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                 <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4">
@@ -61,6 +61,7 @@ export default {
        methods: {
            toggleVisible() {
                this.display = !this.display;
+               document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
            },
            async getProfile()   {
       await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)

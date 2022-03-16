@@ -51,20 +51,27 @@
   </div>
 </template>
 
-<script>
+<script >
 
 import DBFunctions from "~/DBFunctions"; 
 
-import { ref } from "vue";
+import Vue from 'vue'
+import VueCompositionAPI from '@vue/composition-api';
+Vue.use(VueCompositionAPI)
+import { ref } from "@vue/composition-api";
 
 
 export default {
   
  setup(){
    const popupTriggers = ref({
-     buttonTrigger: false,
-     timedTrigger: false
+     buttonTrigger: true
    });
+   return {
+     Popup,
+     popupTriggers
+     
+   }
  },
 
    data(){
@@ -73,8 +80,6 @@ export default {
         following: 0,
         followers:0,
         recentProjects :[], 
-        // popupTriggers: "",
-        // PopUp: ""
         }
       },
 

@@ -12,7 +12,9 @@
 export default {
   data() {
     return {
-      projects: [],
+      projects: [{
+        fatin: "chode"
+      }]
     }
   },
 
@@ -24,16 +26,14 @@ export default {
       }) */
       const test = async function(){
         const data = await fetch('http://jsonplaceholder.typicode.com/posts');
-        const newData= await data.json()
+        const newData = await data.json()
         console.log(newData);
 
-      this.projects = newData
-
-        
-
-        
-      
       }
+
+       this.projects = test
+       console.log(projects)
+      
       test()
   },
 }

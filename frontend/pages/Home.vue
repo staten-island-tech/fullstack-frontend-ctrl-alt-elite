@@ -3,37 +3,16 @@
         <div class="bg-white dark:bg-dark-gray min-h-full h-auto">
             <DefaultNavBar />
             
-                <div class="w-full flex flex-row relative">
-                    <div class="w-4/5">
-                        <!-- <section id="search-page">
-                            <h2>Search for a book!</h2>
-                            <form class="search-form">
-                                <input 
-                                class="search-bar" 
-                                type="text" 
-                                placeholder="Search..."
-                                >
-                                <input class="submit-btn" type="submit">
-                            </form>
-                        </section> -->
-                        <div class="my-4">
-                            <div class=" flex flex-row justify-between justify-items-center ">
-                                <Slideshow/>
-                            </div>
+                <div class="w-full flex flex-row">
+                    <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
+                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
+                            <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
                         </div>
-
-                        <div class="my-4">
-                            <h1 class="m-1 text-black dark:text-light-gray">Trending</h1>
-                            <div class="flex flex-row justify-between justify-items-center ">
-                                <Slideshow/>
-                            </div>
-                        </div>
-                     
                     </div>
                     <div class="w-1/5 h-4/5">
                         <div class="fixed dark:bg-dark bg-white border-light-gray border dark:border-dark-gray rounded h-5/6 w-1/6 right-10 flex flex-col items-center"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
-                            <div class="w-2/3" v-for="project in recent" :key="project">
+                            <div v-for="project in recent" :key="project" class="w-2/3">
                                 <div class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
                                     <h3 class="dark:text-white text-xl">{{ project.projectName }}</h3>
                                     <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
@@ -59,12 +38,12 @@
 </template>
 
 <script>
-import Slideshow from '../components/Slideshow.vue'
+// import Slideshow from '../components/Slideshow.vue'
  
 import DBFunctions from "~/DBFunctions";
 
 export default {
-  components: { Slideshow },
+//   components: { Slideshow },
     
      data(){
        return{ 
@@ -89,20 +68,32 @@ export default {
          ],
          homeProjects: [
              {
-                 projectName: 'Project 1',
-                 lastEditted: '3/10/22',
+                title: 'Project 1',
+                user: 'Bob'
              },
              {
-                 projectName: 'Project 2',
-                 lastEditted: '3/8/22',
+                title: 'Project 2',
+                user: 'Tom'
              },
              {
-                 projectName: 'Project 3',
-                 lastEditted: '3/3/22',
+                title: 'Project 3',
+                user: 'Tim'
              },
              {
-                 projectName: 'Project 4',
-                 lastEditted: '2/28/22',
+                title: 'Project 4',
+                user: 'Sam'
+             },
+             {
+                title: 'Project 5',
+                user: 'Ham'
+             },
+             {
+                title: 'Project 6',
+                user: 'Jam'
+             },
+             {
+                title: 'Project 7',
+                user: 'Kam'
              },
          ],
          }

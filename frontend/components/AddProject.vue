@@ -13,7 +13,6 @@ export default {
   data() {
     return {
       projects: [{
-        fatin: "chode"
       }]
     }
   },
@@ -32,7 +31,6 @@ export default {
       }
 
        this.projects = test
-       console.log(projects)
       
       test()
   },

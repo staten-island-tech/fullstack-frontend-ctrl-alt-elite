@@ -68,15 +68,15 @@ export default {
      buttonTrigger: true
    });
    return {
-     Popup,
-     popupTriggers
-     
+     Popup: "",
+     popupTriggers: ""  
+
    }
  },
 
    data(){
        return{ 
-         userProfile: { data : 'abc'},
+        userProfile: { data : 'abc'},
         following: 0,
         followers:0,
         recentProjects :[], 

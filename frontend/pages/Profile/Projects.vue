@@ -46,17 +46,17 @@ export default {
         const userData = {userID:this.userid}
         const response = await fetch(`http://localhost:5000/getProjects`, {
           method: 'POST',
-          // Adding body or contents to send
+           
           body: JSON.stringify(userData), // Adding headers to the request headers:
           headers: { 'Content-type': 'application/json; charset=UTF-8' },
         })
-        // console.log ("I am here");
+        
         const data = await response.json();
         // this.uniqueID = data.uniqu;
         this.projects= data.projects;
         
       } catch (error) {
-        // console.log("I dont care");
+         
       }
     },
     

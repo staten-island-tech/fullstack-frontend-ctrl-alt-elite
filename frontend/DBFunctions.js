@@ -107,7 +107,6 @@ module.exports.getProfile = async (userID, userProfile) => {
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
-
     const data = await response.json()
     if (response.status === 500) throw response.error
     userProfile.data = data.userProfile

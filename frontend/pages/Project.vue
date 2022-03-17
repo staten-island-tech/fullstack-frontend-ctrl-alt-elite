@@ -4,7 +4,6 @@
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="h-40/1 w-full flex row">
         <div id="one" class="h-full w-1/3">
-          <h1>HTML</h1>
           <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
         <div id="two" class="h-full w-1/3">
@@ -14,7 +13,7 @@
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
     </div>
-    <iframe id='iframe' class="h-50/1 w-full"></iframe>
+    <iframe id='iframe' src="uso-mania.netlify.app/home" class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
       <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-500">

@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="w-1/5 h-4/5">
-                        <div class="fixed dark:bg-dark bg-white border-light-gray border dark:border-dark-gray rounded h-5/6 w-1/6 right-10 flex flex-col items-center"> 
+                        <div class="fixed dark:bg-dark bg-white border-light-gray border dark:border-dark-gray rounded h-5/6 w-1/6 right-10 top-20 flex flex-col items-center"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
                             <div v-for="project in recent" :key="project" class="w-2/3">
                                 <div class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
@@ -90,6 +90,10 @@ export default {
              {
                 title: 'Project 6',
                 user: 'Jam'
+             },
+             {
+                title: 'Project 7',
+                user: 'Kam'
              },
              {
                 title: 'Project 7',

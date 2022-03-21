@@ -1,6 +1,6 @@
 <template>
-  <div class="h-60 w-96 bg-gray-300 dark:bg-black rounded">
-    <div class="h-3/4 w-full bg-white dark:bg-gray-900 rounded flex justify-center items-center">
+  <div class="h-60 w-96 bg-gray-300 dark:bg-black rounded border dark:border-slate border-light-gray" :class="{ light : !this.$store.state.darkMode }">
+    <div class="h-3/4 w-full bg-white dark:bg-gray-900 flex justify-center items-center">
       <p class="text-black dark:text-gray-200">sample</p>
     </div>
     <div class="h-1/4 w-full flex flex-col justify-center">
@@ -22,6 +22,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.light {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
 </style>

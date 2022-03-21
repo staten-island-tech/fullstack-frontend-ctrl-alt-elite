@@ -1,5 +1,5 @@
 <template>
-  <div id="nav" class="h-screen w-1/2 relative">
+  <div id="nav" class="h-screen relative">
       <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-gray-50 dark:bg-black absolute z-10">
         <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">
@@ -21,7 +21,7 @@
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
                 <p>Theme</p>
                 <div class="flex flex-row items-center">
-                    <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !this.$store.state.darkMode }" class="text-lg text-slate"></font-awesome-icon>
+                    <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !this.$store.state.darkMode }" class="text-lg text-mid-gray"></font-awesome-icon>
                     <ThemeButton class="text-3xl m-2"/>
                     <font-awesome-icon :icon="['fas', 'moon']" :class="{ selectedDark : this.$store.state.darkMode, light : !this.$store.state.darkMode }" class="text-lg text-slate"></font-awesome-icon>
                 </div>

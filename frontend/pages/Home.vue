@@ -2,7 +2,6 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-white dark:bg-dark-gray min-h-full h-auto">
             <DefaultNavBar />
-            
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
                         <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
@@ -20,7 +19,7 @@
                                             <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
                                             <p class="p-2">{{ project.lastEditted }}</p>
                                         </div>
-                                        <NuxtLink to="/Project" class="text-black dark:text-white"><p> View project &#10143;</p></NuxtLink>
+                                        <NuxtLink to="/Project" class="text-black dark:text-white" event="" @click.native="test"><p> View project &#10143;</p></NuxtLink>
                                     </div>
                                 </div>
                             </div>
@@ -44,8 +43,7 @@ import DBFunctions from "~/DBFunctions";
 
 export default {
 //   components: { Slideshow },
-    
-     data(){
+    data(){
        return{ 
          userProfile: { data : ''},
          recent: [
@@ -97,10 +95,8 @@ export default {
              },
          ],
          }
-      },
-
-   
- async  mounted (){
+    },
+    async mounted (){
         try {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
             
@@ -115,9 +111,13 @@ export default {
 
         }
         
-        
-        } ,  
-  
+    },  
+    methods: {
+        test() {
+          console.log("hello");  
+          this.$router.push('Project')
+        }
+    }
     
 }
 </script>

@@ -27,10 +27,10 @@ export default {
         const data = await fetch('http://jsonplaceholder.typicode.com/posts');
         const newData = await data.json()
         console.log(newData);
+        this.projects = newData
+
 
       }
-
-       this.projects = test
       
       test()
   },

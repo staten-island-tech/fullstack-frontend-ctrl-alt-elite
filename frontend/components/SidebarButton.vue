@@ -25,7 +25,7 @@ export default {
     },
     mounted()
     { 
-        window.alert("side bar ")
+        // window.alert("side bar ")
          this.$store.commit('updateOtherIDInfo', this.$auth.user.email);
     },
     

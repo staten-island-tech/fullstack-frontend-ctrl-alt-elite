@@ -187,8 +187,8 @@ module.exports.getFollowers  = async (userID, list) => {
 
   module.exports.searchProjects = async(searchArguments,projects) => {
       try {
-        window.alert("dbfunction")
-        window.alert(searchArguments)
+        // window.alert("dbfunction")
+        // window.alert(searchArguments)
         const SearchArgs = { projectTitle: searchArguments }
         const response = await fetch(`http://localhost:5000/searchProjects`, {
           method: 'POST',

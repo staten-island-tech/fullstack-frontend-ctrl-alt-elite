@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-row justify-between w-full h-12 mb-12 bg-light-gray dark:bg-dark-gray fixed" :class="{ navDark : this.$store.state.darkMode, navLight : !this.$store.state.darkMode }">
+  <section class="flex flex-row justify-between w-full h-12 mb-12 bg-white dark:bg-dark-gray fixed border-b border-light-gray dark:border-slate z-10" :class="{ navDark : this.$store.state.darkMode }" >
 
       <Sidebar/>
       <NewProjectButton/>
@@ -19,7 +19,5 @@ export default {
   box-shadow: rgba(0, 0, 0, 0.26) 0px 7px 29px 0px;
 }
 
-.navLight {
-  box-shadow: rgba(0, 0, 0, 0.116) 0px 7px 29px 0px;
-}
+  /* navLight : !this.$store.state.darkMode, */
 </style>

@@ -1,17 +1,17 @@
 <template>
-  <div class="swiper">
-    <div class="swiper-wrapper">
-      <div v-for="i in 6" :key="i" class="swiper-slide" :class="`slide--${i}`">
-        <ProjectCard class="slider-content w-4/5"/>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div v-for="project in project" :key="project" class="swiper-slide">
+          <ProjectCard class="slider-content" :project="project"/>
+        </div>
       </div>
-    </div>
-    <!-- If pagination is needed -->
-    <div class="swiper-pagination"></div>
+      <!-- If pagination is needed -->
+      <div class="swiper-pagination"></div>
 
-    <!-- If navigation buttons are needed -->
-    <!-- <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div> -->
-  </div>
+      <!-- If navigation buttons are needed -->
+      <!-- <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div> -->
+    </div>
 </template>
 
 <script>
@@ -20,6 +20,9 @@ import { Swiper,FreeMode} from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 
 export default {
+  props: {
+    project: Object
+  },
       mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
     // previously it was before export default. Moved here for performance issues. Move back in case of problems.

@@ -1,15 +1,16 @@
 <template>
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-white dark:bg-dark-gray min-h-full h-auto">
-            <DefaultNavBar />
+            <DefaultNavBar :class="{ change_color: scrollPosition > 50 }"/>
             
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
                         <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
                             <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
+                            <Slideshow :project="homeProjects" class="w-1/2 m-4"/>
                         </div>
                     </div>
-                    <div class="w-1/5 h-4/5">
+                    <div class="w-1/5 h-4/5 z-20">
                         <div class="fixed dark:bg-dark bg-white border-light-gray border dark:border-dark-gray rounded h-5/6 w-1/6 right-10 top-20 flex flex-col items-center"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
                             <div v-for="project in recent" :key="project" class="w-2/3">
@@ -38,12 +39,12 @@
 </template>
 
 <script>
-// import Slideshow from '../components/Slideshow.vue'
- 
+import Slideshow from '../components/Slideshow.vue';
 import DBFunctions from "~/DBFunctions";
 
 export default {
-//   components: { Slideshow },
+  components: { Slideshow },
+
     
      data(){
        return{ 
@@ -126,12 +127,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 .container {
     margin: 0 auto;
     width: 100%;
 
+}
+
+.change_color {
+  box-shadow: rgba(0, 0, 0, 0.116) 0px 7px 29px 0px;
 }
 
 /* body {

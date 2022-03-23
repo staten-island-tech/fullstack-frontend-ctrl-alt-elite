@@ -19,7 +19,7 @@
                                             <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
                                             <p class="p-2">{{ project.lastEditted }}</p>
                                         </div>
-                                        <NuxtLink to="/Project" class="text-black dark:text-white" event="" @click.native="test"><p> View project &#10143;</p></NuxtLink>
+                                        <NuxtLink to="/Project" class="text-black dark:text-white"><p> View project &#10143;</p></NuxtLink>
                                     </div>
                                 </div>
                             </div>
@@ -98,25 +98,24 @@ export default {
     },
     async mounted (){
         try {
-            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-            
-        }catch (error)
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)   
+            const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+            this.$store.commit("getMongoIDInfo", parsedProfile.data._id)
+            this.$store.commit("getEmailInfo", parsedProfile.data.user_id)
+        } 
+            catch (error)
         {
-           try {
-               await DBFunctions.createUser(this.$auth.user) 
-           }catch (error)
-           {
-               window.alert ("error in home page")
-           }
-
+            try {
+                await DBFunctions.createUser(this.$auth.user) 
+            } 
+                catch (error)
+            {
+                window.alert ("error in home page")
+            }
         }
-        
     },  
     methods: {
-        test() {
-          console.log("hello");  
-          this.$router.push('Project')
-        }
+        
     }
     
 }

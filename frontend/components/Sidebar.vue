@@ -65,28 +65,26 @@ export default {
             recentProjects :[],
         };
     },
-    async  mounted (){
-        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile);
+    async mounted (){
+        await DBFunctions.getProfile();
         await DBFunctions.getFollowers(this.$auth.user.email,this.list);
-        
-        } ,  
-       methods: {
-           toggleVisible() {
-               this.display = !this.display;
-           },
-           async getProfile()   {
-      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-    },
- async resetProfile()   {
-      await this.getProfile();
-      window.alert("Profile information reset.")
+    } ,  
+    methods: {
+        toggleVisible() {
+            this.display = !this.display;
+        },
+        async getProfile()   {
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+        },
+        async resetProfile()   {
+            await this.getProfile();
+            window.alert("Profile information reset.")
       
-    },
-  async updateProfile()   {
-      await DBFunctions.updateProfile(this.userProfile)
-      window.alert("Profile information updated.")
-    },
-    
+        },
+        async updateProfile()   {
+            await DBFunctions.updateProfile(this.userProfile)
+            window.alert("Profile information updated.")
+        },
 },
 };
 </script>

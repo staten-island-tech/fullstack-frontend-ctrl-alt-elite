@@ -145,8 +145,8 @@ module.exports.createUser = async (userProfile) => {
 
 module.exports.createProject = async (userProject) => {
   try {
-    const response = await fetch(`http://localhost:5000/createProject`, {
-      method: 'POST',
+    const response = await fetch(`http://localhost:5000/newProject`, {
+      method: 'PATCH',
       body: JSON.stringify(userProject),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })

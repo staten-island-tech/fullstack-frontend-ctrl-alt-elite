@@ -12,8 +12,8 @@
 export default {
   data() {
     return {
-      projects: [{
-      }]
+      projects: [
+      ]
     }
   },
 

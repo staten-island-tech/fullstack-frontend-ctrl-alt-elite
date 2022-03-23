@@ -10,8 +10,7 @@ export const state = () => ({
     projects: 0,
   },
   otherIDInfo: {
-    mongo_id: '',
-    email: '',
+    email: 'abc',
   },
   darkMode: true,
 })
@@ -36,10 +35,7 @@ export const mutations = {
     state.followInfo.followers = value.followers
     state.followInfo.projects = value.projects
   },
-  getMongoIDInfo(state, value) {
-    state.otherIDInfo.mongo_id = value
-  },
-  getEmailInfo(state, value) {
+  updateOtherIDInfo(state, value) {
     state.otherIDInfo.email = value
   },
   toggleMode(state) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
+  <div class="w-full h-screen">
     <DefaultNavBar />
       <!-- <div id="body">
 

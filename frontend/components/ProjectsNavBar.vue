@@ -38,9 +38,6 @@ export default {
       return this.$store.state.codeJS
     },
   },
-  async mounted(){
-    
-  },
   methods:{
     run(){
       try {
@@ -67,11 +64,21 @@ export default {
       const settings = document.getElementById("settingdiv")
       settings.style.display = "flex"
     },
+    /*
+    {
+    "project_title": "Ooga Title",
+    "description": "OOgga Description",
+    "published_code":{
+        "html": "<div>Hello</div>",
+        "css": "yesy",
+        "js": "test"
+    }
+    }
+    */
     async save(){
       try {
         await DBFunctions.createProject(
           {
-            "_id": this.$store.state.otherIDInfo.mongo_id,
             "project_title": this.$store.state.projectTitle,
             "description": this.$store.state.projectDescription,
             "published_code": {

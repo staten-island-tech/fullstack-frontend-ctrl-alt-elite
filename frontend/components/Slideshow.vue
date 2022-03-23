@@ -1,22 +1,24 @@
 <template>
-    <div class="swiper">
-      <div class="swiper-wrapper">
-        <div v-for="project in project" :key="project" class="swiper-slide">
-          <ProjectCard class="slider-content" :project="project"/>
+    <div>
+        <div class="swiper">
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-wrapper">
+          <div v-for="project in project" :key="project" class="swiper-slide">
+            <ProjectCard class="slider-content" :project="project"/>
+          </div>
         </div>
-      </div>
-      <!-- If pagination is needed -->
-      <div class="swiper-pagination"></div>
+        <!-- If pagination is needed -->
+        <div class="swiper-pagination"></div>
 
-      <!-- If navigation buttons are needed -->
-      <!-- <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div> -->
+        <!-- If navigation buttons are needed -->
+        <div class="swiper-button-next"></div>
+      </div>
     </div>
 </template>
 
 <script>
 // Import Swiper Vue.js components
-import { Swiper,FreeMode} from 'swiper'
+import { Swiper,FreeMode, Navigation} from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 
 export default {
@@ -27,7 +29,7 @@ export default {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
     // previously it was before export default. Moved here for performance issues. Move back in case of problems.
     // add or remove unused modules
-    Swiper.use([ FreeMode])
+    Swiper.use([ FreeMode, Navigation])
     
     // init Swiper:
     /* eslint-disable no-unused-vars */
@@ -41,7 +43,7 @@ export default {
       // spaceBetween: "30",
 
       // remove unused modules if needed
-      modules: [ FreeMode],
+      modules: [ FreeMode, Navigation],
       // Pagination if needed
       // pagination: {
       //   el: '.swiper-pagination',
@@ -53,10 +55,10 @@ export default {
       //   delay: 3000
       // },
      
-      // navigation: {
-      //   nextEl: '.swiper-button-next',
-      //   prevEl: '.swiper-button-prev'
-      // }
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
       
     })
   }
@@ -68,12 +70,21 @@ export default {
   height: 20rem;
   overflow: hidden;
   position: relative;
-  width: 80vw;
+  width: 70vw;
 }
+
+.swiper-wrapper {
+  width: 95vw;
+}
+
 .swiper-slide {
   align-items: center;
   display: flex;
   justify-content: center;
 }
 
+.swiper-button-prev,
+.swiper-button-next {
+  color: white;
+}
 </style>

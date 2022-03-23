@@ -5,9 +5,23 @@
             
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
-                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
-                            <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
-                            <Slideshow :project="homeProjects" class="w-1/2 m-4"/>
+                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center">
+                            <!-- SEARCH RESULTS -->
+                            <!-- <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
+                                 <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
+                            </div>-->
+
+                            <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
+                            <div class="relative top-12 ">
+                                <div>
+                                    <h2 class="text-black dark:text-white text-2xl">Trending</h2>
+                                    <Slideshow :project="homeProjects" class="mb-6"/>
+                                </div>
+                                <div>
+                                    <h2 class="text-black dark:text-white text-2xl">Following</h2>
+                                    <Slideshow :project="homeProjects" class="mb-6"/>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="w-1/5 h-4/5 z-20">

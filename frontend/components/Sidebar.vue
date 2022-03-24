@@ -39,10 +39,10 @@
                     <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                     <p class="p-2">New Project</p>
                 </NuxtLink>
-                <div class="text-red-400 h-1/10 flex items-center pl-6">
+                <button class="text-red-400 h-1/10 flex items-center pl-6" @click="logout">
                     <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
                     <LogoutButton class="text-left p-2"/>
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -74,6 +74,10 @@ export default {
            toggleVisible() {
                this.display = !this.display;
            },
+           async logout() {
+        await this.$auth.logout()
+       
+      },
            async getProfile()   {
       await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
     },

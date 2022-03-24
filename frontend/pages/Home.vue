@@ -1,7 +1,7 @@
 <template>
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-white dark:bg-dark-gray min-h-full h-auto">
-            <DefaultNavBar :class="{ change_color: scrollPosition > 50 }"/>
+            <DefaultNavBar class="fixed"/>
             
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
@@ -12,7 +12,7 @@
                             </div>-->
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
-                            <div class="relative top-12 ">
+                            <div class="relative mt-12">
                                 <div>
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :project="homeProjects" class="mb-6"/>
@@ -149,9 +149,6 @@ export default {
 
 }
 
-.change_color {
-  box-shadow: rgba(0, 0, 0, 0.116) 0px 7px 29px 0px;
-}
 
 /* body {
        background-color: #1b1b1b;

@@ -1,10 +1,10 @@
 <template>
   <div >
       <h1>Projects  </h1> 
-      <div Class="flex flex-row justify-items-center space-x-4 "  >
+      <div Class="flex flex-row justify-items-center space-x-4 flex-wrap justify-center"  >
         
-       <span v-for="item in projects" :key="item._ID"    >
-               <ProjectCard2 :item="item" />
+       <span v-for="item in projects" :key="item._ID" >
+               <ProjectCard2 :item="item" class="m-2"/>
                    
                   
                 

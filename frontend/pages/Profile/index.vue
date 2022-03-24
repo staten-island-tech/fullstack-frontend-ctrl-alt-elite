@@ -10,10 +10,7 @@
         <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center"> 
             <div class="flex flex-col justify-start  ">
               <div v-if="$auth.user.email === $store.state.otherIDInfo.email">
-                 <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button> 
-                  <PopupPhoto v-if="popupTriggers.buttonTrigger">
-                    <h2>my popup</h2>
-                  </PopupPhoto>
+                  <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" >Update Profile Photo</button>  
               </div>
               <div v-else class="text-center" >
                 <FollowButton2 :followuserid=$store.state.otherIDInfo.email />
@@ -51,36 +48,18 @@
   </div>
 </template>
 
-<script >
+<script>
 
 import DBFunctions from "~/DBFunctions"; 
-
-import Vue from 'vue'
-import VueCompositionAPI from '@vue/composition-api';
-Vue.use(VueCompositionAPI)
-import { ref } from "@vue/composition-api";
-
-
 export default {
   
- setup(){
-   const popupTriggers = ref({
-     buttonTrigger: true
-   });
-   return {
-     Popup: "",
-     popupTriggers: ""  
-
-   }
- },
-
    data(){
        return{ 
-        userProfile: { data : 'abc'},
+         userProfile: { data : 'abc'},
         following: 0,
         followers:0,
-        recentProjects :[], 
-        }
+        recentProjects :[]
+         }
       },
 
    

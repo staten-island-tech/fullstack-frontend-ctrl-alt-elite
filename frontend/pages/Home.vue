@@ -52,7 +52,7 @@ export default {
                await DBFunctions.createUser(this.$auth.user) 
            }catch (error)
            {
-            //    window.alert ("error in home page")
+               window.alert ("error in home page")
            }
 
         }
@@ -63,7 +63,6 @@ export default {
     
 }
 </script>
-
 
 <style>
 

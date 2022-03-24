@@ -1,13 +1,21 @@
 <template>
   <div >
       <h1>Projects  </h1> 
-      <div Class="flex flex-row justify-items-center space-x-4 "  >
-        
-       <span v-for="item in projects" :key="item._ID"    >
-               <ProjectCard2 :item="item" />
-                   
-                  
-                
+    
+       
+      <div class="flex flex-column">
+         <input type="search" v-model="searchArgs" class=" form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black" >
+          <button @click="searchProjects()" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 "  >Search</button>
+      </div>
+   
+
+      <div Class="flex relative flex-row justify-items-center space-x-4 "  >
+
+      
+      
+
+        <span v-for="item in projects.list" :key="item._ID"    >
+               <ProjectCard2 :item="item" />    
         </span>
         
         </div>
@@ -17,6 +25,7 @@
 
 <script>
 
+import DBFunctions from "~/DBFunctions";
  
 export default {
    props: {
@@ -27,9 +36,10 @@ export default {
    },
    data(){
        return{ 
-         projects: [],
-         abc:""
-        
+         projects:
+         {list: []},
+         abc:"",
+        searchArgs: ""
          }
       },
 
@@ -53,11 +63,17 @@ export default {
         
         const data = await response.json();
         // this.uniqueID = data.uniqu;
-        this.projects= data.projects;
+        this.projects.list= data.projects
+        
         
       } catch (error) {
          
       }
+    },
+    async searchProjects()   {
+      
+      await DBFunctions.searchProjects(this.searchArgs, this.projects)
+      window.alert(JSON.stringify(this.projects.list))
     },
     
 

@@ -15,6 +15,12 @@ export default {
             display: false,
         };
     },
+    mounted()
+    { 
+        // window.alert("side bar ")
+         this.$store.commit('updateOtherIDInfo', this.$auth.user.email);
+    },
+    
        methods: {
            toggleVisible() {
                this.display = !this.display;

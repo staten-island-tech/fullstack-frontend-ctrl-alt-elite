@@ -1,42 +1,29 @@
 <template>
   <div id="show-projectss">
     <h1>All Project Articles</h1>
-    <div v-for="project in title" :key="project" class="single-project">
-      <h2> {{}}</h2>
+    <div v-for="project in projects" :key="project" class="single-project">
+      <h2> {{project.title }}</h2>
       <article>{{ project.body }}</article>
     </div>
   </div>
 </template>
-
-<script>
+<script >
 export default {
   data() {
     return {
       projects: [
+        
       ]
     }
   },
-
-  mounted() {
-   /*  this.$http
-      .get('http://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-        this.projects = data.body.slice(0, 10)
-      }) */
-      const test = async function(){
-        const data = await fetch('http://jsonplaceholder.typicode.com/posts');
-        const newData = await data.json()
-        console.log(newData);
-        this.projects = newData
-
-
-      }
-      
-      test()
-  },
+  async mounted() {
+    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const newData = await data.json();
+    console.log(newData)
+    this.projects = newData;
+  }
 }
 </script>
-
 <style>
 #show-projects {
   max-width: 800px;

@@ -40,17 +40,13 @@ export default {
       })
     },
   },
-
-  created() {
-    if (this.blogs === undefined) {
-      return
-    }
-    this.$http
-      .get('http://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-        this.blogs = data.body.slice(0, 10)
-      })
+  async mounted() {
+    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const newData = await data.json();
+    console.log(newData)
+    this.projects = newData;
   },
+
   /* methods: {
     post() {
       fetch('http://jsonplaceholder.typicode.com/posts', {

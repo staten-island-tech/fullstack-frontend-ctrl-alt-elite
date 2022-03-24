@@ -2,8 +2,8 @@
   <div id="show-projectss">
     <h1>All Project Articles</h1>
     <div v-for="project in projects" :key="project" class="single-project">
-      <h2> {{project.title }}</h2>
-      <article>{{ project.body }}</article>
+      <h2 class="title"> {{projct.title }}</h2>
+      <article class="body">{{ proect.body }}</article>
     </div>
   </div>
 </template>
@@ -13,7 +13,8 @@ export default {
     return {
       projects: [
         
-      ]
+      ],
+      search: ""
     }
   },
   async mounted() {
@@ -21,7 +22,15 @@ export default {
     const newData = await data.json();
     console.log(newData)
     this.projects = newData;
-  }
+  },
+
+  computed: {
+    filteredProjects() {
+      return this.projects.filter((project) => {
+        return project.title.match(this.search)
+      })
+    },
+}
 }
 </script>
 <style>
@@ -29,10 +38,14 @@ export default {
   max-width: 800px;
   margin: 0px auto;
 }
-.single-project {
+.title {
   padding: 20px;
   margin: 20px 0;
   box-sizing: border-box;
   background: #eee;
+}
+.body{
+  color: white;
+  background-color: black;
 }
 </style>

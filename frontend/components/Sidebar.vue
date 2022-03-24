@@ -5,7 +5,7 @@
         <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">
             <div class="flex flex-row justify-between">
                 <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
-                <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
+                <NuxtLink to="/Home"><img class="h-16 mx-6  pt-2" src="../assets/LOGO.png"></NuxtLink>
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
                 <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">

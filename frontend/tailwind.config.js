@@ -5,6 +5,7 @@ module.exports = {
       extend: {
         height: {
           '1/10': '10%',
+          '19/20': '95%',
         },
         colors: {
           'light-gray' : '#dbdbdb',

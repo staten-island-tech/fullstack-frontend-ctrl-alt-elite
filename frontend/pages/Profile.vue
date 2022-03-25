@@ -1,6 +1,7 @@
 <template>
   <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
-    <DefaultNavBar />
+    <div class="w-full h-full dark:bg-slate bg-white">
+      <DefaultNavBar />
       <!-- <div id="body">
 
       </div> -->
@@ -21,8 +22,9 @@
 
         </li>
       </ul>
-    <div  class="container">
-    <NuxtChild  :userid="$auth.user.email" />
+      <div  class="container bg-white dark:bg-dark-gray">
+        <NuxtChild  :userid="$auth.user.email" />
+      </div>
     </div>
       
            
@@ -101,7 +103,6 @@ li {
    margin: auto;
    margin-top: 20px;
   width: 50%;
-  background-color: #1c1c1c;
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */
    border-style: solid;
@@ -113,7 +114,7 @@ li {
 
 }
 a.nuxt-link-exact-active {
-  color:white;
+  color:rgb(160, 148, 228);
   text-decoration: underline #3500D3 3px;
 }
 

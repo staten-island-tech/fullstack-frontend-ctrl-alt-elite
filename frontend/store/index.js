@@ -5,12 +5,13 @@ export const state = () => ({
   projectTitle: '',
   projectDescription: '',
   followInfo: {
-    followers: 10,
-    following: 0,
-    projects: 0,
+    followers: '',
+    following: '',
+    projects: '',
   },
   otherIDInfo: {
     mongo_id: '',
+    project_id: '',
     email: '',
   },
   darkMode: true,

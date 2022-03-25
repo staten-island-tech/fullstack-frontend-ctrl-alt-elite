@@ -5,7 +5,7 @@ export const state = () => ({
   projectTitle: '',
   projectDescription: '',
   followInfo: {
-    followers: 10,
+    followers: 0,
     following: 0,
     projects: 0,
   },

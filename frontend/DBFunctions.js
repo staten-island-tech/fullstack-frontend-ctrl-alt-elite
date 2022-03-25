@@ -110,6 +110,7 @@ module.exports.getProfile = async (userID, userProfile) => {
     if (response.status === 500) throw response.error
     userProfile.data = data.userProfile
   } catch (error) {
+    ;
     throw error
   }
 }

@@ -12,8 +12,7 @@
           type="text"
           :v-model="search"
           placeholder="Find a Project"
-          class="actual-bar"
-        />
+          class="actual-bar"/>
       </div>
     </div>
     <div v-for="project in filteredProjects" :key="project">

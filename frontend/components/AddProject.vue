@@ -2,8 +2,8 @@
   <div id="show-projectss">
     <h1>All Project Articles</h1>
     <div v-for="project in projects" :key="project" class="single-project">
-      <h2 class="title"> {{projct.title }}</h2>
-      <article class="body">{{ proect.body }}</article>
+      <h2 class="title"> {{project.title }}</h2>
+      <article class="body">{{project.body}} </article>
     </div>
   </div>
 </template>
@@ -23,14 +23,6 @@ export default {
     console.log(newData)
     this.projects = newData;
   },
-
-  computed: {
-    filteredProjects() {
-      return this.projects.filter((project) => {
-        return project.title.match(this.search)
-      })
-    },
-}
 }
 </script>
 <style>

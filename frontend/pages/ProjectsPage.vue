@@ -16,12 +16,11 @@
         />
       </div>
     </div>
-    <div v-for="project in filteredProjects" :key="project" class="body">
-      <h2>{{ project.title }}</h2>
-      <article>{{ project.body }}</article>
-      <div>{{ methods.post }}</div>
+    <div v-for="project in filteredProjects" :key="project">
+      <h2>{{project.title}}</h2>
+      <article class="body">{{project.body}}</article>
+      <div></div>
     </div>
-    <AddProject/>
   </div>
 </template>
 
@@ -33,18 +32,20 @@ export default {
       search: '',
     }
   },
+  async mounted() {
+    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const newData = await data.json();
+    const finalData = newData.slice(0,10)
+    console.log(finalData)
+    this.projects = finalData
+  
+  },
   computed: {
     filteredProjects() {
       return this.projects.filter((project) => {
         return project.title.match(this.search)
       })
     },
-  },
-  async mounted() {
-    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
-    const newData = await data.json();
-    console.log(newData)
-    this.projects = newData;
   },
 
   /* methods: {

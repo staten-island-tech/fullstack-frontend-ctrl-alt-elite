@@ -24,9 +24,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #card:hover {
   transform: scale(1.3);
   transition: all 0.3s ease-in-out;
+
+}
+
+.light {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 </style>

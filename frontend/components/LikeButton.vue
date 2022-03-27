@@ -1,7 +1,7 @@
 <template>
   <button>
-      <font-awesome-icon v-if="liked" class="text-white" :icon="['far', 'heart']"/>
-      <font-awesome-icon v-if="unliked" class="text-white" :icon="['fas', 'heart']"/>
+      <font-awesome-icon v-if="!liked" class="text-black dark:text-gray-100" :icon="['far', 'heart']" @click="like"/>
+      <font-awesome-icon v-if="liked" class="text-red-800" :icon="['fas', 'heart']" @click="unlike"/>
   </button>
 </template>
 
@@ -9,7 +9,15 @@
 export default {
   data(){
     return {
-
+      liked: false,
+    }
+  },
+  methods: {
+    like() {
+      this.liked = !this.liked
+    },
+    unlike() {
+      this.liked = !this.liked
     }
   }
 }

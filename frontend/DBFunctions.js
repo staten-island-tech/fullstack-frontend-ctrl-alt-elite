@@ -98,6 +98,22 @@ module.exports.getFollowers = async (userID, list) => {
   } catch (error) {}
 }
 
+module.exports.getProfile = async (userID, userProfile) => {
+  try {
+    const userInfo = { email: userID }
+    const response = await fetch(`http://localhost:5000/getProfile`, {
+      method: 'POST',
+      body: JSON.stringify(userInfo), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
+    if (response.status === 500) throw response.error
+    userProfile.data = data.userProfile
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports.updateProfile = async (userProfile) => {
   try {
     const response = await fetch(`http://localhost:5000/profile`, {
@@ -127,50 +143,15 @@ module.exports.createUser = async (userProfile) => {
   }
 }
 
-module.exports.createProject = async (userInfo) => {
+module.exports.createProject = async (userProject) => {
   try {
     const response = await fetch(`http://localhost:5000/newProject`, {
       method: 'PATCH',
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(userProject),
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
     userProject = data
-  } catch (error) {
-    window.alert(error)
-  }
-}
-
-module.exports.getProfile = async (userID, userProfile) => {
-  try {
-    const userInfo = { email: userID }
-    const response = await fetch(`http://localhost:5000/getProfile`, {
-      method: 'POST',
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
-    const data = await response.json()
-    console.log(data)
-    if (response.status === 500) throw response.error
-    userProfile.data = data.userProfile
-  } catch (error) {
-    throw error
-  }
-}
-
-module.exports.getProjects = async (mongo_id, userProjects) => {
-  try {
-    const userInfo = { _id: mongo_id }
-    const response = await fetch(`http://localhost:5000/getProjects`, {
-      method: 'POST',
-      body: JSON.stringify(userInfo),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
-    const data = await response.json()
-    if (response.status === 500) throw response.error
-    console.log(data)
-    userProjects.data = data
-    // userProjects.data = data.userProjects
   } catch (error) {
     window.alert(error)
   }

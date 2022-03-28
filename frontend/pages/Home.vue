@@ -46,8 +46,24 @@ export default {
     data(){
        return{ 
          userProfile: { data : ''},
-         userProjects: {data: ''},
-         recentProjects: [],
+         recent: [
+             {
+                 projectName: 'Project 1',
+                 lastEditted: '3/10/22',
+             },
+             {
+                 projectName: 'Project 2',
+                 lastEditted: '3/8/22',
+             },
+             {
+                 projectName: 'Project 3',
+                 lastEditted: '3/3/22',
+             },
+             {
+                 projectName: 'Project 4',
+                 lastEditted: '2/28/22',
+             },
+         ],
          homeProjects: [
              {
                 title: 'Project 1',
@@ -86,9 +102,6 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("getMongoIDInfo", parsedProfile.data._id)
             this.$store.commit("getEmailInfo", parsedProfile.data.user_id)
-            await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.userProjects)
-            const parsedProjects = JSON.parse(JSON.stringify(this.userProjects))
-            this.recentProjects.push(parsedProjects)    
         } 
             catch (error)
         {

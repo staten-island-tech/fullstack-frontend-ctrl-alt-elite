@@ -13,7 +13,7 @@
       <div  v-for="item in list.data" :key="item.user_id" class="container  justify-center" >
 
           <div class="py-5 px-5 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center    sm:space-y-0 sm:space-x-6">
-            <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" :src="item.profile_pic" @click="viewOtherUser(item.user_id)">
+            <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" :src="item.profile_pic" alt="Woman's Face" @click="viewOtherUser(item.user_id)">
           <div class="text-center space-y-2 sm:text-left">
           <div class="space-y-0.5">
            <p class="text-lg text-black font-semibold">

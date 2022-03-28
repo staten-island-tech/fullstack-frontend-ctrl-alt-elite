@@ -15,7 +15,7 @@
                        <p>Following  {{$store.state.followInfo.following}}</p> 
                         <p>Followers  {{$store.state.followInfo.followers}}</p>
                    </div>
-                   <NuxtLink to="/Profile" class="text-black dark:text-white border-black dark:border-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2">View Profile</NuxtLink>
+                   <NuxtLink id="profile" to="/Profile" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
@@ -28,19 +28,19 @@
             </div>
             <div class="flex flex-col dark:text-white text-black h-2/3">
                 <div class="h-1/10">
-                    <NuxtLink to="/Home" class="h-full w-19/20 flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="/Home" class="hover:bg-primary bg-gradient-to-r from-purple-300 duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
                         <p class="p-2">Home</p>
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="ProjectAll" class="h-full w-full flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="ProjectAll" class="hover:bg-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="/Project" class="h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                    <NuxtLink to="/Project" class="hover:bg-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
                     </NuxtLink>
@@ -137,7 +137,13 @@ export default {
 }
 
 a.nuxt-link-exact-active {
-  background-color:rgba(160, 148, 228, 0.575);
+  border-left: solid 3px #3500D3;
+  color: white;
+}
+
+#profile.nuxt-link-exact-active {
+  border-left: solid 3px white;
+  color: white;
 }
     
 @keyframes animateleft {

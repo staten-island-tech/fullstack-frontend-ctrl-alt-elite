@@ -5,9 +5,9 @@ export const state = () => ({
   projectTitle: '',
   projectDescription: '',
   followInfo: {
-    followers: '',
-    following: '',
-    projects: '',
+    followers: 0,
+    following: 0,
+    projects: 0,
   },
   otherIDInfo: {
     mongo_id: '',

@@ -11,15 +11,23 @@
         <input
           type="text"
           :v-model="search"
+          
           placeholder="Find a Project"
           class="actual-bar"
         />
       </div>
     </div>
+<<<<<<< Updated upstream
     <div v-for="project in filteredProjects" :key="project" class="body">
       <h2>{{ project.title }}</h2>
       <article>{{ project.body }}</article>
       <div>{{ methods.post }}</div>
+=======
+    <div v-for="project in filteredProjects" :key="project.title">
+      <h2>{{project.title}}</h2>
+      <article class="body">{{project.body}}</article>
+      <div></div>
+>>>>>>> Stashed changes
     </div>
     <AddProject/>
   </div>
@@ -31,10 +39,25 @@ export default {
     return {
       projects: [],
       search: '',
+      filteredData:[]
     }
   },
+<<<<<<< Updated upstream
+=======
+  async mounted() {
+    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const newData = await data.json();
+    const finalData = newData.slice(0,10)
+    console.log(finalData)
+    this.projects = finalData
+  
+  },
+  methods:{},
+>>>>>>> Stashed changes
   computed: {
     filteredProjects() {
+      let filter = 
+      this.filteredData = filter
       return this.projects.filter((project) => {
         return project.title.match(this.search)
       })

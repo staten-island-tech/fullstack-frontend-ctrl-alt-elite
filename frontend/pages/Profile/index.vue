@@ -5,15 +5,16 @@
      <!-- <DefaultNavBar /> -->
      
       <section class=" flex flex-col m-5  ">
+         
         <!-- <button @click="getProfile()">TEST</button>
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
         <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center"> 
             <div class="flex flex-col justify-start  ">
               <div v-if="$auth.user.email === $store.state.otherIDInfo.email">
                  <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button> 
-                  <PopupPhoto v-if="popupTriggers.buttonTrigger">
+                  <!-- <PopupPhoto v-if="popupTriggers.buttonTrigger">
                     <h2>my popup</h2>
-                  </PopupPhoto>
+                  </PopupPhoto> -->
               </div>
               <div v-else class="text-center" >
                 <FollowButton2 :followuserid=$store.state.otherIDInfo.email />
@@ -55,62 +56,92 @@
 
 import DBFunctions from "~/DBFunctions"; 
 
-import Vue from 'vue'
-import VueCompositionAPI from '@vue/composition-api';
-Vue.use(VueCompositionAPI)
-import { ref } from "@vue/composition-api";
+// import Vue from 'vue'
+// import VueCompositionAPI from '@vue/composition-api';
+// Vue.use(VueCompositionAPI)
+// import { ref } from "@vue/composition-api";
 
 
 export default {
   
- setup(){
-   const popupTriggers = ref({
-     buttonTrigger: true
-   });
-   return {
-     Popup: "",
-     popupTriggers: ""  
+//  setup(){
+//    const popupTriggers = ref({
+//      buttonTrigger: true
+//    });
+//    return {
+//      Popup: "",
+//      popupTriggers: ""  
 
-   }
- },
+//    }
+//  },
 
    data(){
        return{ 
-        userProfile: { data : 'abc'},
-        following: 0,
-        followers:0,
-        recentProjects :[], 
+        userProfile: { data : ''},
+        // following: 0,
+        // followers:0,
+        // recentProjects :[], 
+        info: {
+            followers:0,
+            following:0,
+            projects:0,
+            name:'',
+            },
+      
         }
       },
 
-   
- async  mounted (){
-        // await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-        // window.alert(this.$store.state.otherIDInfo.email)
+   computed: {
+    // a computed getter
+    reload: function () {
+      // `this` points to the vm instance
+      return this.$store.state.otherIDInfo.email;
+    }
+       
+},
+ watch: {
+    // whenever question changes, this function will run
+    reload(newValue, oldValue) {
+      this.getProfile();
+     
+    }
+  },
+
+   mounted (){
+         
+       this.getProfile()
         
-        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-        //  window.alert("this is the profile")
-        //  window.alert(JSON.stringify(this.userProfile))
-          
-        
+                 
         } ,  
     
 
   methods: {
   async getProfile()   {
-      await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-    },
+    try {
+       
+        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+        this.$store.commit('updateFollowInfo', this.info)
+         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+    } catch 
+    { window.alert ("error getting the profile")
+    }
+  },
  async resetProfile()   {
       await this.getProfile();
       window.alert("Profile information reset.")
       
     },
   async updateProfile()   {
+    try {
       await DBFunctions.updateProfile(this.userProfile)
       window.alert("Profile information updated.")
+    } catch {
+         window.alert("can't update profile")
+    }
     },
    
-     }
+     },
+         
     
 }
 </script>

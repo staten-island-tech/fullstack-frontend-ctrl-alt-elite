@@ -5,11 +5,14 @@ export const state = () => ({
   projectTitle: '',
   projectDescription: '',
   followInfo: {
+    // should be only used within the profile module
+    name: '',
     followers: 0,
     following: 0,
     projects: 0,
   },
-  otherIDInfo: {
+  otherIDInfo: {   
+     // should be only used within the profile module
     mongo_id: '',
     email: '',
   },
@@ -32,10 +35,18 @@ export const mutations = {
     state.projectDescription = description
   },
   updateFollowInfo(state, value) {
+    state.followInfo.name = value.name
     state.followInfo.following = value.following
     state.followInfo.followers = value.followers
     state.followInfo.projects = value.projects
   },
+
+  updateOtherIDInfo(state, value) {
+    state.otherIDInfo.email = value.email
+    state.otherIDInfo.mongo_id = value.mongo_id
+  },
+  
+
   getMongoIDInfo(state, value) {
     state.otherIDInfo.mongo_id = value
   },

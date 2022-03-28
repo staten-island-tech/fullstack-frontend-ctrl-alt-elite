@@ -51,6 +51,7 @@ module.exports.getInfo = async (userID, info) => {
     info.following = data.following
     info.followers = data.followers
     info.projects = data.projects
+    info.name = data.name
   } catch (error) {
     window.alert(error)
   }

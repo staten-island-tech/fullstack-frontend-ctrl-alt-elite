@@ -1,5 +1,7 @@
 <template>
+
   <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center">
+    
     <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="h-40/1 w-full flex row">

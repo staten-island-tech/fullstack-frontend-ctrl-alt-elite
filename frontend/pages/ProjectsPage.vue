@@ -13,23 +13,14 @@
           :v-model="search"
           
           placeholder="Find a Project"
-          class="actual-bar"
-        />
+          class="actual-bar"/>
       </div>
     </div>
-<<<<<<< Updated upstream
-    <div v-for="project in filteredProjects" :key="project" class="body">
-      <h2>{{ project.title }}</h2>
-      <article>{{ project.body }}</article>
-      <div>{{ methods.post }}</div>
-=======
     <div v-for="project in filteredProjects" :key="project.title">
       <h2>{{project.title}}</h2>
-      <article class="body">{{project.body}}</article>
+      <article class="body">{{project.id}}</article>
       <div></div>
->>>>>>> Stashed changes
     </div>
-    <AddProject/>
   </div>
 </template>
 
@@ -42,8 +33,6 @@ export default {
       filteredData:[]
     }
   },
-<<<<<<< Updated upstream
-=======
   async mounted() {
     const data = await fetch("https://jsonplaceholder.typicode.com/posts");
     const newData = await data.json();
@@ -52,8 +41,8 @@ export default {
     this.projects = finalData
   
   },
-  methods:{},
->>>>>>> Stashed changes
+  methods:{
+  },
   computed: {
     filteredProjects() {
       let filter = 
@@ -64,16 +53,6 @@ export default {
     },
   },
 
-  created() {
-    if (this.blogs === undefined) {
-      return
-    }
-    this.$http
-      .get('http://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-        this.blogs = data.body.slice(0, 10)
-      })
-  },
   /* methods: {
     post() {
       fetch('http://jsonplaceholder.typicode.com/posts', {

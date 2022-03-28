@@ -1,60 +1,42 @@
 <template>
   <div id="show-projectss">
     <h1>All Project Articles</h1>
-    <div v-for="project in methods" :key="project" class="single-project">
-      <h2> {{}}</h2>
-      <article>{{ project.body }}</article>
+    <div v-for="project in projects" :key="project" class="single-project">
+      <h2 class="title"> {{project.title }}</h2>
+      <article class="body">{{project.body}} </article>
     </div>
   </div>
 </template>
-
-<script>
+<script >
 export default {
   data() {
     return {
-      projects: [],
+      projects: [
+        
+      ],
+      search: ""
     }
   },
-  methods:{
-    fecthData: async function(){
-      try{
-        const data = await fetch('http://jsonplaceholder.typicode.com/posts');
-        const newData= await data.json()
-        console.log(newData);
-        this.projects = newData;
-      } catch (error){
-        alert("Error Moment");
-        return;
-      }
-
-        
-
-        
-      
-      }
-
-  },
-
-  mounted() {
-   /*  this.$http
-      .get('http://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-        this.projects = data.body.slice(0, 10)
-      }) */
-    
+  async mounted() {
+    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const newData = await data.json();
+    console.log(newData)
+    this.projects = newData;
   },
 }
 </script>
-
 <style>
 #show-projects {
   max-width: 800px;
   margin: 0px auto;
 }
-.single-project {
+.title {
   padding: 20px;
   margin: 20px 0;
   box-sizing: border-box;
   background: #eee;
 }
-</style>   
+.body{
+  text-align: center;
+}
+</style>

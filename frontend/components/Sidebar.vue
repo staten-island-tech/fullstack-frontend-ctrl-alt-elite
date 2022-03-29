@@ -28,19 +28,19 @@
             </div>
             <div class="flex flex-col dark:text-white text-black h-2/3">
                 <div class="h-1/10">
-                    <NuxtLink to="/Home" class="hover:bg-primary bg-gradient-to-r from-purple-300 duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="/Home" class="hover:bg-purple-300 bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
                         <p class="p-2">Home</p>
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="ProjectAll" class="hover:bg-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="ProjectAll" class="hover:bg-purple-300 bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="/Project" class="hover:bg-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                    <NuxtLink to="/Project" class="hover:bg-purple-300 bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
                     </NuxtLink>
@@ -142,7 +142,7 @@ a.nuxt-link-exact-active {
 }
 
 #profile.nuxt-link-exact-active {
-  border-left: solid 3px white;
+  border-left: none;
   color: white;
 }
     

@@ -32,8 +32,9 @@ data(){
             followers:0,
             following:0,
             projects:0,
+            name:'',
             },
-        userID:"abc",
+        userID:"",
         data:{}, 
     }
   },

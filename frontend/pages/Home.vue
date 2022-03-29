@@ -1,5 +1,5 @@
 <template>
-    <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
+    <section class="h-screen" :class="{ dark : $store.state.darkMode }">
         <div class="bg-white dark:bg-dark-gray min-h-full h-auto">
             <DefaultNavBar />
                 <div class="w-full flex flex-row">
@@ -98,21 +98,32 @@ export default {
     },
     async mounted (){
         try {
-            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)   
-            const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-            this.$store.commit("getMongoIDInfo", parsedProfile.data._id)
-            this.$store.commit("getEmailInfo", parsedProfile.data.user_id)
-        } 
-            catch (error)
-        {
-            try {
-                await DBFunctions.createUser(this.$auth.user) 
-            } 
-                catch (error)
-            {
-                window.alert ("error in home page")
+            
+
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+            // this.$store.commit("getMongoIDInfo", parsedProfile.data._id)
+            // this.$store.commit("getEmailInfo", parsedProfile.data.user_id)
+           
+            this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+        
+            } catch (error) {
+            
+               try {
+                  await DBFunctions.createUser(this.$auth.user) ;
+                   const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+                // this.$store.commit("getMongoIDInfo", parsedProfile.data._id)
+                // this.$store.commit("getEmailInfo", parsedProfile.data.user_id)
+                  this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+       
+               } catch (error)  {
+            
+                 window.alert ("error in home page")
+        
+               }
             }
-        }
+           
+           
     },  
     methods: {
         
@@ -120,6 +131,7 @@ export default {
     
 }
 </script>
+
 
 <style>
 

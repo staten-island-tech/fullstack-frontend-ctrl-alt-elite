@@ -12,10 +12,10 @@
                 <div class="text-white dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{userProfile.data.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
-                       <p>Following  {{$store.state.followInfo.following}}</p> 
-                        <p>Followers  {{$store.state.followInfo.followers}}</p>
+                       <p>Following  {{info.following}}</p> 
+                        <p>Followers  {{info.followers}}</p>
                    </div>
-                   <NuxtLink to="/Profile" class="text-black dark:text-white border-black dark:border-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2">View Profile</NuxtLink>
+                   <p  class="text-black dark:text-white border-black dark:border-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2"  @click="getProfile">View Profile</p>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
@@ -59,32 +59,35 @@ export default {
     data() {
         return {
             display: false,
-            userProfile: { data : 'abc'},
-            following: 0,
-            followers:0,
+            userProfile: { data : ''},
+            info: {
+                followers:0,
+                following:0,
+                projects:0,
+                name:'',
+            },
             recentProjects :[],
         };
     },
-    async mounted (){
-        await DBFunctions.getProfile();
-        await DBFunctions.getFollowers(this.$auth.user.email,this.list);
-    } ,  
+
     methods: {
-        toggleVisible() {
+        async toggleVisible() {
             this.display = !this.display;
+            if (this.display)
+            {
+                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+     
+                await DBFunctions.getInfo(this.$auth.user.email,this.info);
+            }
         },
-        async getProfile()   {
-            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-        },
-        async resetProfile()   {
-            await this.getProfile();
-            window.alert("Profile information reset.")
-      
-        },
-        async updateProfile()   {
-            await DBFunctions.updateProfile(this.userProfile)
-            window.alert("Profile information updated.")
-        },
+        getProfile (){
+                
+          
+           this.$store.commit("updateOtherIDInfo", {mongo_id:this.userProfile.data._id,email:this.userProfile.data.user_id})
+           this.$router.push({name: 'Profile'});
+          
+         } 
+        
 },
 };
 </script>

@@ -1,12 +1,16 @@
 <template>
-  <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
-    <DefaultNavBar />
+  <section class="h-screen" :class="{ dark : $store.state.darkMode }">
+    <div class="bg-white dark:bg-dark-gray min-h-full h-auto">
+    <DefaultNavBar  />
       <!-- <div id="body">
 
       </div> -->
+     
       <ul>
+         
+      
         <li>
-            <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile">Profile</NuxtLink>
+            <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile"   >Profile </NuxtLink>
         </li>
         <li>
           <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Following"  >Following  {{$store.state.followInfo.following}} </NuxtLink>
@@ -21,32 +25,28 @@
 
         </li>
       </ul>
-    <div  class="container">
-    <NuxtChild  :userid="$auth.user.email" />
+    <div   class="bg-white dark:bg-dark-gray min-h-full h-auto container">
+      <p> {{$store.state.followInfo.name}} </p>
+    <NuxtChild  :userid="$store.state.otherIDInfo.email" />
     </div>
       
-           
-  </div>
+     </div>      
+  </section>
 </template>
 
 <script>
  
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
-import DBFunctions from "~/DBFunctions";
+// import DBFunctions from "~/DBFunctions";
 
 export default {
   
   data(){
-       return{  
-         info: {
-            followers:0,
-            following:0,
-            projects:0,
-            }
-       } 
+       return { } 
     
     },
+    
   async mounted ()
    { 
   //    this.vantaEffect = WAVES({
@@ -58,14 +58,10 @@ export default {
   // waveSpeed: 1.5,
   // zoom: 0.75
   //   });
-     await DBFunctions.getInfo(this.$auth.user.email,this.info);
+    //  await DBFunctions.getInfo(this.$auth.user.email,this.info);
  
 
-        window.alert(this.$store.state.otherIDInfo.email)
-    
-    await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
- 
-      this.$store.commit('updateFollowInfo', this.info)
+       
     } ,   
  
   
@@ -105,7 +101,7 @@ li {
    margin: auto;
    margin-top: 20px;
   width: 50%;
-  background-color: #1c1c1c;
+  /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */
    border-style: solid;
@@ -117,8 +113,10 @@ li {
 
 }
 a.nuxt-link-exact-active {
-  color:white;
+  color:blue; 
   text-decoration: underline #3500D3 3px;
+  font-weight : bold;
+  
 }
 
 .link-underline {

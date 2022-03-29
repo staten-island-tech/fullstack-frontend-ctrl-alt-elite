@@ -108,12 +108,12 @@ module.exports.getProfile = async (userID, userProfile) => {
     const userInfo = { email: userID }
     const response = await fetch(`http://localhost:5000/getProfile`, {
       method: 'POST',
-
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
 
     const data = await response.json()
+    console.log(data)
     if (response.status === 500) throw response.error
 
     userProfile.data = data.userProfile
@@ -148,6 +148,20 @@ module.exports.createUser = async (userProfile) => {
 
     const data = await response.json()
     userProfile = data
+  } catch (error) {
+    window.alert(error)
+  }
+}
+
+module.exports.createProject = async (userProject) => {
+  try {
+    const response = await fetch(`http://localhost:5000/newProject`, {
+      method: 'PATCH',
+      body: JSON.stringify(userProject),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
+    userProject = data
   } catch (error) {
     window.alert(error)
   }

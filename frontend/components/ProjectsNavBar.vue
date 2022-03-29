@@ -28,15 +28,6 @@ export default {
         this.$store.commit("PUSH_TITLE", value)
       }
     },
-    html(){
-      return this.$store.state.codeHTML
-    },
-    css(){
-      return this.$store.state.codeCSS
-    },
-    js(){
-      return this.$store.state.codeJS
-    },
   },
   async mounted(){
     
@@ -74,11 +65,9 @@ export default {
             "_id": this.$store.state.otherIDInfo.mongo_id,
             "project_title": this.$store.state.projectTitle,
             "description": this.$store.state.projectDescription,
-            "published_code": {
-              "html": this.html,
-              "css": this.css,
-              "js": this.js
-            }
+            "html": this.$store.state.codeHTML,
+            "css": this.$store.state.codeCSS,
+            "js": this.$store.state.codeJS,
           }
         )
       } catch (error) {

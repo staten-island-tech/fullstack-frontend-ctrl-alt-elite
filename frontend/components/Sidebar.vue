@@ -15,7 +15,7 @@
                        <p>Following  {{info.following}}</p> 
                         <p>Followers  {{info.followers}}</p>
                    </div>
-                   <p class="text-black dark:text-white border-black dark:border-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2" @click="getProfile">View Profile</p>
+                   <p  class="text-black dark:text-white border-black dark:border-white border-2 h-8 px-4 rounded-md py-1 w-1/2 text-sm m-2"  @click="getProfile">View Profile</p>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
@@ -69,13 +69,7 @@ export default {
             recentProjects :[],
         };
     },
-         async mounted()
-    {
-                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
-     
-                await DBFunctions.getInfo(this.$auth.user.email,this.info);
 
-    } ,
     methods: {
         async toggleVisible() {
             this.display = !this.display;
@@ -87,11 +81,11 @@ export default {
             }
         },
         getProfile (){
-            
-                 
+                
           
-          this.$store.commit("updateOtherIDInfo", {mongo_id:this.userProfile.data._id,email:this.userProfile.data.user_id})
-          this.$router.push({name: 'Profile'});
+           this.$store.commit("updateOtherIDInfo", {mongo_id:this.userProfile.data._id,email:this.userProfile.data.user_id})
+           this.$router.push({name: 'Profile'});
+          
          } 
         
 },

@@ -90,12 +90,14 @@ export default {
       
         }
       },
-
+  
    computed: {
     // a computed getter
-    reload: function () {
+    reload: {
+      get() {
       // `this` points to the vm instance
       return this.$store.state.otherIDInfo.email;
+      }
     }
        
 },

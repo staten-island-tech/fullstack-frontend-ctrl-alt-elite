@@ -16,9 +16,9 @@
           class="actual-bar"/>
       </div>
     </div>
-    <div v-for="project in filteredProjects" :key="project.title">
-      <h2>{{project.title}}</h2>
-      <article class="body">{{project.id}}</article>
+    <div v-for="project in filteredData" :key="project.title">
+      <h2 class="t1">{{project.id}}) {{project.title}}</h2>
+      <article class="body"></article>
       <div></div>
     </div>
   </div>
@@ -42,6 +42,8 @@ export default {
   
   },
   methods:{
+    filteredData: project.title.match(this.search)
+
   },
   computed: {
     filteredProjects() {

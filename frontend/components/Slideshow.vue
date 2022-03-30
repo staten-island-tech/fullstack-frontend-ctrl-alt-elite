@@ -39,7 +39,7 @@ export default {
       direction: 'horizontal',
       freeMode: true,
       slidesPerView: 3,
-      spaceBetween: 20,
+      // spaceBetween: 10,
       // spaceBetween: "30",
 
       // remove unused modules if needed

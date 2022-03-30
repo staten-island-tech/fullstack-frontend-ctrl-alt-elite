@@ -111,11 +111,8 @@ module.exports.getProfile = async (userID, userProfile) => {
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
-
     const data = await response.json()
-    console.log(data)
     if (response.status === 500) throw response.error
-
     userProfile.data = data.userProfile
   } catch (error) {
     throw error
@@ -165,6 +162,21 @@ module.exports.createProject = async (userProject) => {
   } catch (error) {
     window.alert(error)
   }
+}
+
+module.exports.getProjects = async (mongo_id, projects) => {
+  try {
+    const userInfo = { _id: mongo_id }
+    const response = await fetch(`http://localhost:5000/getProjects`, {
+      method: 'POST',
+      body: JSON.stringify(userInfo), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
+    if (response.status === 500) throw response.error
+    const parsed = JSON.parse(JSON.stringify(data.most_recent_projects[0]))
+    projects.push(...parsed.projects)
+  } catch (error) {}
 }
 
 // module.exports.searchProjects = async(searchArguments,projects) => {

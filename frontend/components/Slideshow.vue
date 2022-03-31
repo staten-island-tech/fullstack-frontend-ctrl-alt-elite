@@ -85,10 +85,10 @@ export default {
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: white;
+  color: #fff;
 }
 
 .light {
-  color: black;
+  color: #3500D3;
 }
 </style>

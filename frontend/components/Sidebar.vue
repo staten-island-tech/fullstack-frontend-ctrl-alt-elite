@@ -1,7 +1,7 @@
 <template>
   <div id="nav" class="h-screen relative">
       <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
-    <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-gray-50 dark:bg-black absolute z-10">
+    <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">
             <div class="flex flex-row justify-between">
                 <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
@@ -28,19 +28,19 @@
             </div>
             <div class="flex flex-col dark:text-white text-black h-2/3">
                 <div class="h-1/10">
-                    <NuxtLink to="/Home" class="hover:bg-purple-300 bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="/Home" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
                         <p class="p-2">Home</p>
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="ProjectAll" class="hover:bg-purple-300 bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="ProjectAll" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="/Project" class="hover:bg-purple-300 bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                    <NuxtLink to="/Project" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
                     </NuxtLink>
@@ -138,12 +138,10 @@ export default {
 
 a.nuxt-link-exact-active {
   border-left: solid 3px #3500D3;
-  color: white;
 }
 
 #profile.nuxt-link-exact-active {
   border-left: none;
-  color: white;
 }
     
 @keyframes animateleft {

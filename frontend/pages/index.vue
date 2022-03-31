@@ -55,7 +55,7 @@ export default {
       THREE,
       backgroundAlpha: 0,
       color: 0x8f5ede,
-      points: 9.00,
+      points: 12.00,
     });
     window.addEventListener('scroll', this.updateScroll);
   },

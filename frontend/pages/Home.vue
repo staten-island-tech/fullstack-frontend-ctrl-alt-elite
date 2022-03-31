@@ -1,6 +1,6 @@
 <template>
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
-        <div class="bg-white dark:bg-dark min-h-full h-auto">
+        <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
             
                 <div class="w-full flex flex-row">
@@ -13,11 +13,11 @@
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <div class="relative mt-12">
-                                <div class="dark:bg-slate p-6 pb-2 m-6">
+                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :project="homeProjects" class="mb-6"/>
                                 </div>
-                                <div class="dark:bg-slate p-6 pb-2 m-6">
+                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
                                     <Slideshow :project="homeProjects" class="mb-6"/>
                                 </div>
@@ -25,8 +25,8 @@
                         </div>
                     </div>
                     <div class="w-1/5 h-4/5 z-20">
-                        <div class="fixed dark:bg-slate bg-white border-light-gray border dark:border-dark-gray rounded h-5/6 w-1/6 right-20 top-20 flex flex-col items-center" :class="{ darkBorder : this.$store.state.darkMode }"> 
-                            <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
+                        <div class="fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 w-1/6 right-20 top-20 flex flex-col items-center darkBorder"> 
+                            <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-d-bg-accent dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
                             <div v-for="project in recent" :key="project" class="w-2/3">
                                 <div class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
                                     <h3 class="dark:text-white text-xl">{{ project.projectName }}</h3>

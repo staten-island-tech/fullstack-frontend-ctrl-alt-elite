@@ -1,6 +1,6 @@
 <template>
-  <div class="h-60 w-96 bg-gray-300 dark:bg-black rounded border dark:border-slate border-light-gray" :class="{ light : !this.$store.state.darkMode }">
-    <div class="h-3/4 w-full bg-white dark:bg-gray-900 flex justify-center items-center" id="image">
+  <div class="h-60 w-96 bg-l-bg-secondary dark:bg-d-bg-primary rounded border dark:border-slate border-light-gray" :class="{ light : !this.$store.state.darkMode }">
+    <div class="h-3/4 w-full bg-l-bg-secondary dark:bg-d-bg-primary flex justify-center items-center rounded-t" id="image">
       
     </div>
     <div class="h-1/4 w-full flex flex-col justify-center">
@@ -29,5 +29,7 @@ export default {
 
 #image {
   background-image:linear-gradient(rgb(0, 0, 0), rgba(0, 0, 0, 0.075)), url("./assets/welcoming-placeholder-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>

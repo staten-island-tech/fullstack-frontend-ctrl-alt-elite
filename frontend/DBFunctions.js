@@ -23,6 +23,8 @@ module.exports.getFollowing = async (userID,info) => {
 };
 
 
+
+
 module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
   try {
     const userInfo = {userID, followUserID};
@@ -58,6 +60,7 @@ module.exports.getInfo = async (userID, info) => {
     info.following = data.following;
     info.followers = data.followers;
     info.projects=data.projects;
+    info.name = data.name;
   } catch (error) {
     window.alert(error)
   }
@@ -120,10 +123,10 @@ module.exports.getFollowers  = async (userID, list) => {
       }
     };
 
-  module.exports.updatePhoto = async () => {
-    const userPhoto = { profile_pic: userID};
-    const response  = await fetch ('https://localhost:5000/updatePhoto')
-  }
+  // module.exports.updatePhoto = async () => {
+  //   const userPhoto = { profile_pic: userID};
+  //   const response  = await fetch ('https://localhost:5000/updatePhoto')
+  // }
 
 
 
@@ -191,7 +194,27 @@ module.exports.getFollowers  = async (userID, list) => {
     
   };
 
-  // module.exports.searchProjects = async(searchArguments,projects) => {
+  module.exports.getProjects= async (mongoID, info) => {
+  try {
+    // window.alert("info")
+    // window.alert(JSON.stringify(info))
+    const userInfo = { _id: mongoID}
+    const response = await fetch(`http://localhost:5000/getProjects`, {
+      method: 'POST',
+      // Adding body or contents to send
+      body: JSON.stringify(userInfo), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+
+    const data = await response.json()
+
+    info.list = data.projects
+  } catch (error) {
+    window.alert(error)
+  }
+};
+
+  // module.exports.searchProjects = async(mongoID,searchArguments,projects) => {
   //     try {
   //       // window.alert("dbfunction")
   //       // window.alert(searchArguments)

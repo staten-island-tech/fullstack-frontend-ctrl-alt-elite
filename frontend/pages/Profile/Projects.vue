@@ -15,7 +15,7 @@
 
       
        
-       <p  v-if="start >pageLimit " @click="previousPage">previous </p>
+       <p  v-if="start >pageLimit " @click="previousPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Previous </p>
         <div v-for="(item,index) in projects.list" :key="item._ID"    >
                
                <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
@@ -23,7 +23,7 @@
                 
              
         </div>
-         <p  v-if="end < total " @click="nextPage">next </p> 
+         <p  v-if="end < total " @click="nextPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Next </p> 
         
         </div>
      <!-- <DefaultNavBar /> -->

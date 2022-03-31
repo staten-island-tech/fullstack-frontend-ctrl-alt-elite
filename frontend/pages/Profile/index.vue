@@ -4,7 +4,7 @@
       
      <!-- <DefaultNavBar /> -->
      
-      <section class=" flex flex-col m-5  ">
+      <section class=" flex flex-col p-5 dark:bg-dark-purple  ">
          
         <!-- <button @click="getProfile()">TEST</button>
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->

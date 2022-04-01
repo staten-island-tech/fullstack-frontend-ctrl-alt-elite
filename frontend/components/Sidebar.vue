@@ -15,7 +15,7 @@
                        <p>Following  {{$store.state.followInfo.following}}</p> 
                         <p>Followers  {{$store.state.followInfo.followers}}</p>
                    </div>
-                   <NuxtLink id="profile" to="/Profile" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
+                   <NuxtLink id="profile" to="/Profile/following" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">

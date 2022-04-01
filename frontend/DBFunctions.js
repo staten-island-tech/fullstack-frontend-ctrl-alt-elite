@@ -128,7 +128,6 @@ module.exports.updateProfile = async (userProfile) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
-
     userProfile.data = data // JSON.stringify(data)
   } catch (error) {
     window.alert('error')
@@ -177,6 +176,21 @@ module.exports.getProjects = async (mongo_id, projects) => {
     const parsed = JSON.parse(JSON.stringify(data.most_recent_projects[0]))
     projects.push(...parsed.projects)
   } catch (error) {}
+}
+
+module.exports.updateProject = async (payload) => {
+  try {
+    const response = await fetch(`http://localhost:5000/project`, {
+      method: 'PATCH',
+      // Adding body or contents to send
+      body: JSON.stringify(payload), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
+    console.log(data)
+  } catch (error) {
+    window.alert('error')
+  }
 }
 
 // module.exports.searchProjects = async(searchArguments,projects) => {

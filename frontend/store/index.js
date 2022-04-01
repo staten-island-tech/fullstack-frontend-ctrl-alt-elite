@@ -18,6 +18,7 @@ export const state = () => ({
     email: '',
   },
   darkMode: true,
+  newProject: true,
 })
 export const mutations = {
   PUSH_HTML(state, code) {
@@ -58,6 +59,9 @@ export const mutations = {
   toggleMode(state) {
     state.darkMode = !state.darkMode
   },
+  updateProject(state) {
+    state.newProject = !state.newProject
+  },
 }
 export const actions = {
   viewProject({ commit }, payload) {
@@ -67,12 +71,11 @@ export const actions = {
         specify.push(project)
       }
     })
-    console.log(specify)
     commit('PUSH_HTML', specify[0].published_code.html)
     commit('PUSH_CSS', specify[0].published_code.css)
     commit('PUSH_JS', specify[0].published_code.js)
-    commit('PUSH_PROJECT_ID', specify[0].published_code._id)
+    commit('PUSH_PROJECT_ID', specify[0]._id)
     commit('PUSH_TITLE', specify[0].project_title)
-    commit('PUSH_DESCR', specify[0].project_description)
+    commit('PUSH_DESCR', specify[0].description)
   },
 }

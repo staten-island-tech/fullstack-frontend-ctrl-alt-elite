@@ -4,19 +4,26 @@
     
        
       <div class="flex flex-column">
-         <input type="search" v-model="searchArgs" class=" form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black" >
-          <button @click="searchProjects()" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 "  >Search</button>
+         <input 
+         v-model="searchArgs" type="search" 
+         class=" form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-black" >
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects()" >Search</button>
       </div>
    
-
-      <div Class="flex relative flex-row justify-items-center space-x-4 "  >
+   
+      <div Class="flex flex-wrap relative flex-row justify-items-center px-4"  >
 
       
-      
-
-        <span v-for="item in projects.list" :key="item._ID"    >
-               <ProjectCard2 :item="item" />    
-        </span>
+       
+       <p  v-if="start >pageLimit " @click="previousPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Previous </p>
+        <div v-for="(item,index) in projects.list" :key="item._ID"    >
+               
+               <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
+                
+                
+             
+        </div>
+         <p  v-if="end < total " @click="nextPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Next </p> 
         
         </div>
      <!-- <DefaultNavBar /> -->
@@ -38,34 +45,33 @@ export default {
        return{ 
          projects:
          {list: []},
-         abc:"",
-        searchArgs: ""
+          pageLimit:3,
+          searchArgs: "",
+          start :1,
+          end :0,
+          total:0,
+        
          }
       },
-
+       
+computed: {
+    
+    
+       
+},
    
    mounted ()
    { this.getProjects()
    } ,   
     
-    
 
   methods: {
       async getProjects() {
       try {
-        const userData = {userID:this.userid}
-        const response = await fetch(`http://localhost:5000/getProjects`, {
-          method: 'POST',
-           
-          body: JSON.stringify(userData), // Adding headers to the request headers:
-          headers: { 'Content-type': 'application/json; charset=UTF-8' },
-        })
-        
-        const data = await response.json();
-        // this.uniqueID = data.uniqu;
-        this.projects.list= data.projects
-        
-        
+         await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id,this.projects);
+         this.total =this.projects.list.length;
+         this.end = this.total <this.pageLimit ? this.total : this.pageLimit 
+      
       } catch (error) {
          
       }
@@ -75,6 +81,20 @@ export default {
       await DBFunctions.searchProjects(this.searchArgs, this.projects)
       window.alert(JSON.stringify(this.projects.list))
     },
+    previousPage()
+    {
+      this.end =this.start - 1  ;
+      this.start = this.start - this.pageLimit ;
+      
+    },
+    nextPage() {
+        this.start = this.end+ 1;
+        if (this.end + this.pageLimit >this.total )
+            this.end= this.total 
+        else
+           this.end +=this.pageLimit;
+
+        }
     
 
      }

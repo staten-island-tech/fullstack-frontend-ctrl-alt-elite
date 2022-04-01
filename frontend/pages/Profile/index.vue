@@ -4,7 +4,7 @@
       
      <!-- <DefaultNavBar /> -->
      
-      <section class=" flex flex-col m-5  ">
+      <section class=" flex flex-col p-5 dark:bg-dark-purple  ">
          
         <!-- <button @click="getProfile()">TEST</button>
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
@@ -95,7 +95,7 @@ export default {
     // a computed getter
     reload: {
       get() {
-      // `this` points to the vm instance
+       
       return this.$store.state.otherIDInfo.email;
       }
     }
@@ -123,6 +123,7 @@ export default {
        
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
         this.$store.commit('updateFollowInfo', this.info)
+        
          await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
     } catch 
     { window.alert ("error getting the profile")

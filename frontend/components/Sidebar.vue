@@ -76,7 +76,7 @@ export default {
             if (this.display)
             {
                 await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
-     
+                
                 await DBFunctions.getInfo(this.$auth.user.email,this.info);
             }
         },

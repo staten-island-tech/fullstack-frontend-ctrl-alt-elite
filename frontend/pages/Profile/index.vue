@@ -4,7 +4,7 @@
       
      <!-- <DefaultNavBar /> -->
      
-      <section class=" flex flex-col p-5 dark:bg-dark-purple  ">
+      <section class=" flex flex-col p-5   ">
          
         <!-- <button @click="getProfile()">TEST</button>
         <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
@@ -21,7 +21,7 @@
               </div>
               <h1 class="font-bold mb-3 text-lg mt-1 text-center " > {{userProfile.data.user_id}}</h1>  
             </div>
-            <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
+            <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src ="userProfile.data.profile_pic" :alt="profile">  
         </div>
         
             

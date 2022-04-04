@@ -4,7 +4,7 @@
       <DefaultNavBar/>
      
       <div class=" w-full h-1/3 flex justify-center items-center">
-        <section class=" flex flex-row w-full justify-center items-center bg-l-bg-primary dark:bg-d-bg-accent darkBorder">
+        <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
           <!-- <button @click="getProfile()">TEST</button>
           <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
           <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center m-10"> 

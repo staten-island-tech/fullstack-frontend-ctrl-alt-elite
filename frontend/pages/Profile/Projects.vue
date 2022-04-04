@@ -1,6 +1,6 @@
 <template>
-  <div >
-      <h1>Projects  </h1> 
+  <div class="flex flex-col justify-center items-center">
+      <h1 class="text-black dark:text-white">Projects  </h1> 
       <div Class="flex flex-row justify-items-center space-x-4 flex-wrap justify-center"  >
         
        <span v-for="item in projects" :key="item._ID" >

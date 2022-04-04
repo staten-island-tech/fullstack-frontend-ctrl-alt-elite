@@ -1,7 +1,7 @@
 <template>
   <nav id="projectnav" class="w-full h-1/10 p-4 flex flex-row justify-between items-center bg-gray-500">
     <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/10 p-4 flex justify-center items-center text-lg bg-transparent"> 
-    <img src="" class="h-2/3 w-1/10 right-1/2 bg-black">
+    <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
     <div class="h-2/3 w-1/4 flex justify-between items-center">
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>
@@ -27,15 +27,6 @@ export default {
       set(value){
         this.$store.commit("PUSH_TITLE", value)
       }
-    },
-    html(){
-      return this.$store.state.codeHTML
-    },
-    css(){
-      return this.$store.state.codeCSS
-    },
-    js(){
-      return this.$store.state.codeJS
     },
   },
   async mounted(){
@@ -69,18 +60,29 @@ export default {
     },
     async save(){
       try {
-        await DBFunctions.createProject(
-          {
-            "_id": this.$store.state.otherIDInfo.mongo_id,
-            "project_title": this.$store.state.projectTitle,
-            "description": this.$store.state.projectDescription,
-            "published_code": {
-              "html": this.html,
-              "css": this.css,
-              "js": this.js
+        if (this.$store.state.newProject === true){
+          await DBFunctions.createProject(
+            {
+              "_id": this.$store.state.otherIDInfo.mongo_id,
+              "project_title": this.$store.state.projectTitle,
+              "description": this.$store.state.projectDescription,
+              "html": this.$store.state.codeHTML,
+              "css": this.$store.state.codeCSS,
+              "js": this.$store.state.codeJS,
             }
-          }
-        )
+          )
+        }
+        if (this.$store.state.newProject === false){
+          await DBFunctions.updateProject({
+            "_id": this.$store.state.otherIDInfo.mongo_id,
+            "project_id": this.$store.state.project_id,
+            "new_title": this.$store.state.projectTitle,
+            "new_description": this.$store.state.projectDescription,
+            "new_html": this.$store.state.codeHTML,
+            "new_css": this.$store.state.codeCSS,
+            "new_js": this.$store.state.codeJS,
+          })
+        }
       } catch (error) {
         window.alert(error)
       }

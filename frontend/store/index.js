@@ -41,7 +41,7 @@ export const mutations = {
   },
   updateFollowInfo(state, value) {
     state.followInfo.name = value.name
-   
+
     state.followInfo.following = value.following
     state.followInfo.followers = value.followers
     state.followInfo.projects = value.projects
@@ -60,8 +60,8 @@ export const mutations = {
   toggleMode(state) {
     state.darkMode = !state.darkMode
   },
-  updateProject(state) {
-    state.newProject = !state.newProject
+  newProject(state, boolean) {
+    state.newProject = boolean
   },
 }
 export const actions = {

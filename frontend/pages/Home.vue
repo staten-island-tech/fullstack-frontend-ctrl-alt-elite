@@ -24,10 +24,10 @@
                                 </div>
                             </div>
                             <NuxtLink to="/ProjectAll" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
-                            <NuxtLink to="/Project" class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3">
+                            <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                                 <p class="p-2">Create New Project</p>
-                            </NuxtLink>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -87,9 +87,7 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
-            console.log(this.recent);
             } catch (error) {
-            
                try {
                 await DBFunctions.createUser(this.$auth.user) ;
                 const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
@@ -110,7 +108,12 @@ export default {
                 projectName: e.path[3].id
             }
             this.$store.dispatch("viewProject", data)
-            this.$store.commit("updateProject")
+            this.$store.commit("newProject", false)
+            this.$router.push("Project")
+        },
+        newProject(e){
+            console.log("helo");
+            this.$store.commit("newProject", true)
             this.$router.push("Project")
         }
     }

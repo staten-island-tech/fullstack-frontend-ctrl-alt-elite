@@ -1,6 +1,6 @@
 <template>
   <nav id="projectnav" class="w-full h-1/10 p-4 flex flex-row justify-between items-center bg-gray-500">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/10 p-4 flex justify-center items-center text-lg bg-transparent"> 
+    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/5 p-4 flex justify-center items-center text-lg bg-transparent"> 
     <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
     <div class="h-2/3 w-1/4 flex justify-between items-center">
       <button class="p-4 text-lg" @click="run">Run</button>

@@ -172,8 +172,11 @@ module.exports.getProjects = async (mongo_id, projects) => {
     })
     const data = await response.json()
     if (response.status === 500) throw response.error
-    const parsed = JSON.parse(JSON.stringify(data.most_recent_projects[0]))
-    projects.push(...parsed.projects)
+    const parsed = JSON.parse(JSON.stringify(data.projects))
+
+    const forDisplay = parsed.splice(0, 6)
+    console.log(forDisplay)
+    projects.push(...forDisplay)
   } catch (error) {}
 }
 

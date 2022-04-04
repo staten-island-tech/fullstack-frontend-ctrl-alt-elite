@@ -87,15 +87,13 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
+            console.log(this.recent);
             } catch (error) {
             
                try {
-                  await DBFunctions.createUser(this.$auth.user) ;
-                   const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-                // this.$store.commit("getMongoIDInfo", parsedProfile.data._id)
-                // this.$store.commit("getEmailInfo", parsedProfile.data.user_id)
-                  this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-       
+                await DBFunctions.createUser(this.$auth.user) ;
+                const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+                this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
                } catch (error)  {
             
                  window.alert ("error in home page")

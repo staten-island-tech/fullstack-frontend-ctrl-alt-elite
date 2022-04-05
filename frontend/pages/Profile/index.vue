@@ -12,10 +12,7 @@
             <div class="flex flex-col justify-start  ">
               <div v-if="$auth.user.email === $store.state.otherIDInfo.email">
                  <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button> 
-                 <div class="gray-600 h-40 w-40">b</div>
-                  <!-- <PopupPhoto v-if="popupTriggers.buttonTrigger">
-                    <h2>my popup</h2>
-                  </PopupPhoto> -->
+                 <div class="gray-600 h-40 w-40 z-auto"> SPACE </div>
               </div>
               <div v-else class="text-center" >
                 <FollowButton2 :followuserid=$store.state.otherIDInfo.email />

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">+</button>
+    <div class="flex items-center justify-center">
+        <button class="bg-d-primary text-white font-bold mx-4 cursor-pointer h-6 w-6 text-center flex items-center justify-center" @click="newProject" ><font-awesome-icon :icon="['fas', 'plus']" class="text-base rounded text-white"></font-awesome-icon></button>
     </div>
 </template>
 <script>

@@ -65,7 +65,7 @@ export default {
     data() {
         return {
             display: false,
-            userProfile: { data : ''},
+            userProfile: { data : 'abc'},
             info: {
                 followers:0,
                 following:0,
@@ -76,15 +76,20 @@ export default {
         };
     },
 
+    async  mounted (){
+        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile);
+        await DBFunctions.getFollowers(this.$auth.user.email,this.list);
+        
+        } ,
     methods: {
         async toggleVisible() {
             this.display = !this.display;
-            if (this.display)
-            {
-                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+            // if (this.display)
+            // {
+            //     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) ;
                 
-                await DBFunctions.getInfo(this.$auth.user.email,this.info);
-            }
+            //     await DBFunctions.getInfo(this.$auth.user.email,this.info);
+            // }
         },
         getProfile (){
                 

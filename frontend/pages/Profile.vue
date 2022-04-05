@@ -100,7 +100,7 @@ export default {
   //     this.vantaEffect.destroy()
   //   }
   // },
-
+ 
   methods: {
   async getProfile()   {
       await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)

@@ -82,7 +82,7 @@
     </div>
 </template>
 
-<script >
+<script>
 
 import DBFunctions from "~/DBFunctions"; 
 
@@ -90,7 +90,6 @@ import DBFunctions from "~/DBFunctions";
 // import VueCompositionAPI from '@vue/composition-api';
 // Vue.use(VueCompositionAPI)
 // import { ref } from "@vue/composition-api";
-
 
 export default {
   
@@ -106,9 +105,9 @@ export default {
 //  },
 
    data(){
-       return{ 
+       return { 
         userProfile: { data : ''},
-         list:{data:null}, 
+        list:{data:null}, 
         // following: 0,
         // followers:0,
         // recentProjects :[], 
@@ -117,9 +116,18 @@ export default {
             following:0,
             projects:0,
             name:'',
-            },
-      
+        },
+       }
+   },
     
+     async mounted (){
+         
+       this.getProfile();
+     await DBFunctions.getFollowing(this.$auth.user.email,this.list);
+      
+
+                 
+        } ,  
   
    computed: {
     // a computed getter
@@ -139,16 +147,6 @@ export default {
     }
   },
 
-   async mounted (){
-         
-       this.getProfile();
-     await DBFunctions.getFollowing(this.$auth.user.email,this.list);
-      
-      
-   
-        
-                 
-        } ,  
     
 
   methods: {

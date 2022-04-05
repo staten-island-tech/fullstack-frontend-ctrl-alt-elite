@@ -61,7 +61,7 @@
  
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
-// import DBFunctions from "~/DBFunctions";
+import DBFunctions from "~/DBFunctions";
 
 export default {
   
@@ -92,7 +92,7 @@ export default {
     await DBFunctions.getInfo(this.$auth.user.email,this.info);
     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
 
-       
+       this.$store.commit('updateFollowInfo', this.info)
     } ,   
  
   

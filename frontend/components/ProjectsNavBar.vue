@@ -6,7 +6,7 @@
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>
       <button class="p-4 text-lg" @click="save">Save</button>
-      <button class="p-4 text-lg">Publish</button>
+      <button class="p-4 text-lg" @click="publish">Publish</button>
     </div>
   </nav>
 </template>
@@ -85,6 +85,15 @@ export default {
         }
       } catch (error) {
         window.alert(error)
+      }
+    },
+    async publish(){
+      try {
+        await DBFunctions.updateProject({
+          "private_boolean": true
+        })
+      } catch (error) {
+        console.log(error);
       }
     }
   }

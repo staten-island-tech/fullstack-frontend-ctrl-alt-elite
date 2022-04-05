@@ -2,17 +2,12 @@
   <div class="flex flex-col justify-center items-center">
       <h1 class="text-black dark:text-white">Projects  </h1> 
       <div Class="flex flex-row justify-items-center space-x-4 flex-wrap justify-center"  >
-        
-       <span v-for="item in projects" :key="item._ID" >
-               <ProjectCard2 :item="item" class="m-2"/>
-                   
-                  
-                
-             
-        </div>
-         <p  v-if="end < total " @click="nextPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Next </p> 
-        
-        </div>
+      <span v-for="item in projects" :key="item._ID" >
+        <ProjectCard2 :item="item" class="m-2"/>
+      </span>
+      </div>
+        <p  v-if="end < total " @click="nextPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Next </p> 
+      </div>
      <!-- <DefaultNavBar /> -->
   </div>
 </template>

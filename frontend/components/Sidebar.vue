@@ -40,10 +40,10 @@
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="/Project" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                    <button class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
-                    </NuxtLink>
+                    </button>
                 </div>
                 <button class="text-red-400 h-1/10 flex items-center pl-6" @click="logout">
                     <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
@@ -115,7 +115,15 @@ export default {
       await DBFunctions.updateProfile(this.userProfile)
       window.alert("Profile information updated.")
     },
-    
+    newProject(){
+        this.$store.commit("PUSH_HTML", "")
+            this.$store.commit("PUSH_CSS", "")
+            this.$store.commit("PUSH_JS", "")
+            this.$store.commit("PUSH_TITLE", "")
+            this.$store.commit("PUSH_DESCR", "")
+            this.$store.commit("newProject", true)
+            this.$router.push("Project")
+    }
 },
 };
 </script>

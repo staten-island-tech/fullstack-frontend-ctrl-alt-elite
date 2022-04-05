@@ -6,8 +6,12 @@
 <script>
 export default {
     methods: {
-        newProject(e){
-            console.log("helo");
+        newProject(){
+         this.$store.commit("PUSH_HTML", "")
+            this.$store.commit("PUSH_CSS", "")
+            this.$store.commit("PUSH_JS", "")
+            this.$store.commit("PUSH_TITLE", "")
+            this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
             this.$router.push("Project")
         }

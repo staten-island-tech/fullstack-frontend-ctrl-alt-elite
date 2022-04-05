@@ -171,11 +171,11 @@ module.exports.getProjects = async (mongo_id, projects) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
+    console.log(data)
     if (response.status === 500) throw response.error
     const parsed = JSON.parse(JSON.stringify(data.projects))
-
+    console.log(parsed)
     const forDisplay = parsed.splice(0, 6)
-    console.log(forDisplay)
     projects.push(...forDisplay)
   } catch (error) {}
 }

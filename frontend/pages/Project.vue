@@ -1,5 +1,7 @@
 <template>
+
   <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center">
+    
     <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="h-40/1 w-full flex row">
@@ -59,6 +61,14 @@ export default {
         contentCSS:"",
         contentJS:"",
       }
+    },
+    mounted(){
+      let editor1 = this.$refs.editor1.editor
+      let editor2 = this.$refs.editor2.editor
+      let editor3 = this.$refs.editor3.editor
+      editor1.setValue(this.$store.state.codeHTML)
+      editor2.setValue(this.$store.state.codeCSS)
+      editor3.setValue(this.$store.state.codeJS)
     },
     computed:{
       title:{

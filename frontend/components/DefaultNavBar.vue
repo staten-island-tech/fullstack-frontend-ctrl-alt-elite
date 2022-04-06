@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-row justify-between w-full h-12 mb-12 bg-white dark:bg-dark-gray border-b border-light-gray dark:border-slate z-10" :class="{ navDark : this.$store.state.darkMode }" >
+  <section class="flex flex-row justify-between w-full h-12 bg-white dark:bg-d-bg-secondary border-b border-light-gray dark:border-dark-gray z-10" :class="{ navDark : this.$store.state.darkMode }" >
 
       <Sidebar/>
       <NewProjectButton/>
@@ -11,6 +11,7 @@
     
 <script>
 export default {
+
 }
 </script>
 

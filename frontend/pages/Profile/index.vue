@@ -1,27 +1,35 @@
-<template>
 
-  <div >
+   <!-- 
+   <div >
       
-     <!-- <DefaultNavBar /> -->
+      <DefaultNavBar />
      
-      <section class=" flex flex-col m-5  ">
-        <!-- <button @click="getProfile()">TEST</button>
-        <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
+      <section class=" flex flex-col p-5   ">
+         
+         <button @click="getProfile()">TEST</button>
+        <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> 
         <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center"> 
             <div class="flex flex-col justify-start  ">
               <div v-if="$auth.user.email === $store.state.otherIDInfo.email">
-                  <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" >Update Profile Photo</button>  
+                 <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button> 
+                  <!-- <PopupPhoto v-if="popupTriggers.buttonTrigger">
+                    <h2>my popup</h2>
+                  </PopupPhoto> 
               </div>
               <div v-else class="text-center" >
                 <FollowButton2 :followuserid=$store.state.otherIDInfo.email />
               </div>
               <h1 class="font-bold mb-3 text-lg mt-1 text-center " > {{userProfile.data.user_id}}</h1>  
             </div>
-            <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
+            <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src ="userProfile.data.profile_pic" :alt="profile">  
         </div>
+        -->
         
             
 
+<template>
+  <div >
+     <FollowList :list="list" />
 
             <div v-if="$auth.user.email === $store.state.otherIDInfo.email" class="flex flex-col ">
                 <h2 class="pb-2">Username</h2>
@@ -44,66 +52,139 @@
             </div>
                 
     
-      </section>      
-  </div>
+     <!-- <DefaultNavBar /> -->
+    
+     <!-- <p v-if="list.data == 'undefined' || list.data.length == 0"> 
+       Oh no list is empty 😢
+     </p>
+     <template v-else>
+    
+
+       <h1 class="text-2xl font-bold justify-center">follow : {{list.data.length}} users </h1>
+       <table v-for="item in list.data" :key="item.user_id" class="container flex flex-row mx-auto table-fiXed justify-center">
+              
+        
+        <tr>
+          <td>
+         <span class="flex space-x-1">
+       
+            <img class="rounded-full border border-gray-100 shadow-sm" :src="item.profile_pic" alt="user image" />
+   
+        
+        </span> 
+        </td>
+       <td>   <span class="font-bold text-2xl hover:text-5xl"> {{ item.name }} </span> </td>
+          <td>< class="hover:text-2xl"> email: {{item.user_id}} </p></td>
+         <td> <followButton2     :followuserid="item.user_id"  /></td>       
+        </tr>
+        </table>
+     </template> -->
+    </div>
 </template>
 
 <script>
 
 import DBFunctions from "~/DBFunctions"; 
+
+// import Vue from 'vue'
+// import VueCompositionAPI from '@vue/composition-api';
+// Vue.use(VueCompositionAPI)
+// import { ref } from "@vue/composition-api";
+
 export default {
   
-   data(){
-       return{ 
-         userProfile: { data : 'abc'},
-        following: 0,
-        followers:0,
-        recentProjects :[]
-         }
-      },
+//  setup(){
+//    const popupTriggers = ref({
+//      buttonTrigger: true
+//    });
+//    return {
+//      Popup: "",
+//      popupTriggers: ""  
 
-   
- async  mounted (){
-        // await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-        // window.alert(this.$store.state.otherIDInfo.email)
-        
-        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-        //  window.alert("this is the profile")
-        //  window.alert(JSON.stringify(this.userProfile))
-          
-        
+//    }
+//  },
+
+   data(){
+       return { 
+        userProfile: { data : ''},
+        list:{data:null}, 
+        // following: 0,
+        // followers:0,
+        // recentProjects :[], 
+        info: {
+            followers:0,
+            following:0,
+            projects:0,
+            name:'',
+        },
+       }
+   },
+    
+     async mounted (){
+         
+       this.getProfile();
+     await DBFunctions.getFollowing(this.$auth.user.email,this.list);
+      
+
+                 
         } ,  
+  
+   computed: {
+    // a computed getter
+    reload: {
+      get() {
+       
+      return this.$store.state.otherIDInfo.email;
+      }
+    }
+       
+},
+ watch: {
+    // whenever question changes, this function will run
+    reload(newValue, oldValue) {
+      this.getProfile();
+     
+    }
+  },
+
     
 
   methods: {
   async getProfile()   {
-      await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-    },
+    try {
+       
+        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+        this.$store.commit('updateFollowInfo', this.info)
+        
+         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+    } catch 
+    { window.alert ("error getting the profile")
+    }
+  },
  async resetProfile()   {
       await this.getProfile();
       window.alert("Profile information reset.")
       
     },
   async updateProfile()   {
+    try {
       await DBFunctions.updateProfile(this.userProfile)
       window.alert("Profile information updated.")
+    } catch {
+         window.alert("can't update profile")
+    }
     },
    
-     }
+     },
+         
     
 }
 </script>
 
 <style>
-
-body {
-       background-color: rgb(15, 15, 15);
-       color: #e6e6e6;
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
-
-h1{
-    color:white;
-    font-size: 1.5rem;
-}
 </style>

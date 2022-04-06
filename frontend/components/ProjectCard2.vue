@@ -8,8 +8,8 @@
          {{item.project_title}}</h3>
       <div class="flex flex-row justify-between px-3">
         <LikeButton/>
-        <h4 class=" text-black dark:text-gray-100"><slot>Username</slot></h4>
-        <FollowButton/>
+        <!-- <h4 class="text-gray-100"><slot>Username</slot></h4>
+        <FollowButton /> -->
       </div>
     </div>
   </div>

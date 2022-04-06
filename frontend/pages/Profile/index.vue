@@ -48,7 +48,7 @@
                 <h2 class="pb-2">Username</h2>
                 <input v-model="userProfile.data.name"  type="text" :disabled ="true" class="text-black rounded-md h-10 pl-3" title="Click to Edit" > 
                 <h2 class="pb-2 pt-2" >Bio</h2>
-                 <textarea  v-model="userProfile.data.description" type="text" :disabled ="true" placeholder="Describe Yourself!" class="text-black rounded-md h-20 p-3" title="Click to Edit">    </textarea>
+                 <textarea  v-model="userProfile.data.description" type="text" :disabled ="true" placeholder="Description..." class="text-black rounded-md h-20 p-3" title="Click to Edit">    </textarea>
                 
             </div>
                 

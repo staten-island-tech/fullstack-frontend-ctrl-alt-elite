@@ -1,7 +1,7 @@
 
    <!-- 
    <div >
-      
+    
       <DefaultNavBar />
      
       <section class=" flex flex-col p-5   ">

@@ -2,6 +2,14 @@
  
     <div id="buttons" class="relative">
     
+    <div class="option1" @click = "toggleVisible"> ☰ </div>
+    <div v-if = "display" class="option2" > Settings </div>
+    <!-- <NuxtLink v-if = "display" class="option3" to="/EditProfile">Profile</NuxtLink> -->
+    <NuxtLink v-if = "display" class="option3" to="/Profile"  > Profile</NuxtLink> 
+     <!-- <div v-if = "display" class="option3" @click ="$router.push({name:'Profile', params:{email:$auth.user.email}})" > profile </div> -->
+     
+    <div v-if = "display" class="option4" >  <LogoutButton/> </div>
+
     <font-awesome-icon v-if="!display" class="text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <Sidebar v-if="display" class="relative"/>
     </div>
@@ -11,11 +19,18 @@
 
 <script>
 export default {
+   
     data() {
         return {
             display: false,
         };
     },
+    mounted()
+    { 
+        window.alert("side bar ")
+         this.$store.commit('updateOtherIDInfo',{email:this.$auth.user.email,mongo_id:''});
+    },
+    
        methods: {
            toggleVisible() {
                this.display = !this.display;

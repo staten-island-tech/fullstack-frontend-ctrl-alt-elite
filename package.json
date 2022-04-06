@@ -4,6 +4,7 @@
     "swiper": "^8.0.6",
     "three": "^0.136.0",
     "vanta": "^0.5.21",
-    "vue-vanta": "^0.0.1"
+    "vue-vanta": "^0.0.1",
+    "vue2-ace-editor": "^0.0.15"
   }
 }

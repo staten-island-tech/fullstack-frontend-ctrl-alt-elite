@@ -5,7 +5,15 @@ module.exports = {
       extend: {
         height: {
           '1/10': '10%',
-          '19/20': '95%',
+          '9/10': '90%',
+          '3/10': '30%',
+          '40/1': '40vh',
+          '50/1': '50vh',
+        },
+        width: {
+          '1/10': '10%',
+          '9/10': '90%',
+          '3/10': '30%',
         },
         colors: {
           'l-primary': '#7A77FF',
@@ -31,8 +39,9 @@ module.exports = {
         },
       },
     },
-    variants: {
-      extend: {},
-    },
-    plugins: [],
-  }
+ 
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}

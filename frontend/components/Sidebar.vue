@@ -12,8 +12,8 @@
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{userProfile.data.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
-                       <p>Following  {{$store.state.followInfo.following}}</p> 
-                        <p>Followers  {{$store.state.followInfo.followers}}</p>
+                       <p>Following  {{info.following}}</p> 
+                        <p>Followers  {{info.followers}}</p>
                    </div>
                    <NuxtLink id="profile" to="/Profile/following" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
                 </div>
@@ -66,14 +66,38 @@ export default {
         return {
             display: false,
             userProfile: { data : 'abc'},
-            following: 0,
-            followers:0,
+            info: {
+                followers:0,
+                following:0,
+                projects:0,
+                name:'',
+            },
             recentProjects :[],
         };
     },
+
     async  mounted (){
         await DBFunctions.getProfile(this.$auth.user.email,this.userProfile);
         await DBFunctions.getFollowers(this.$auth.user.email,this.list);
+        
+        } ,
+    methods: {
+        async toggleVisible() {
+            this.display = !this.display;
+            // if (this.display)
+            // {
+            //     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) ;
+                
+            //     await DBFunctions.getInfo(this.$auth.user.email,this.info);
+            // }
+        },
+        getProfile (){
+                
+          
+           this.$store.commit("updateOtherIDInfo", {mongo_id:this.userProfile.data._id,email:this.userProfile.data.user_id})
+           this.$router.push({name: 'Profile'});
+          
+         } 
         
         } ,  
        methods: {

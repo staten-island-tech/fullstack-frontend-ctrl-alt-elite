@@ -4,17 +4,12 @@
     :class="{'bg-blue-500':!followInfo.following, 'bg-red-500':followInfo.following,
     'hover:bg-blue-200':!followInfo.following, 'hover:bg-red-200':followInfo.following}" 
     class="text-white font-bold py-2 px-4 rounded " @click="updateFollowStatus" > {{followInfo.following ?'Unfollow':'Follow'}}</button>
-    <p v-if="followInfo.following && followInfo.followedby"  class="font-bold text-2xl text-blue-500" > Friends! 😊</p>
-     
-
+    <p v-if="followInfo.following && followInfo.followedby"  class="font-bold text-2xl text-blue-500" > Friends😊</p>
 </div> 
 </template>
 
 <script>
- 
- import DBFunctions from "~/DBFunctions";
-
- 
+import DBFunctions from "~/DBFunctions";
 
 export default {
 props: {
@@ -27,7 +22,6 @@ props: {
     
    },  
 data(){
-    
     return {
         // followingStatus: true, 
         followInfo:{
@@ -38,34 +32,32 @@ data(){
             followers:0,
             following:0,
             projects:0,
+            name:'',
             },
-        userID:"abc",
-        data:{},
-         
+        userID:"",
+        data:{}, 
     }
   },
-    
   async mounted()
   {
-    
-      await DBFunctions.getFollowInfo(this.$auth.user.email,this.followuserid,this.followInfo)
-     
-     
-  
-  
+    await DBFunctions.getFollowInfo(this.$auth.user.email,this.followuserid,this.followInfo)
   },
+
   methods: {
-    
-   
     async updateFollowStatus()
     {
         if(this.followInfo.following)
-        
            await DBFunctions.unFollow(this.$auth.user.email,this.followuserid,this.data)
         else 
            await DBFunctions.follow(this.$auth.user.email,this.followuserid,this.data)
         this.followInfo.following = !this.followInfo.following; 
-        await DBFunctions.getInfo(this.$auth.user.email,this.info);
+
+        if(this.$auth.user.email === this.$store.state.otherIDInfo.email)
+        
+            await DBFunctions.getInfo(this.$auth.user.email,this.info);
+        else
+            await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+
         this.$store.commit('updateFollowInfo', this.info)
         // this.$router.go();
        
@@ -74,7 +66,3 @@ data(){
 
 }
 </script>
-
-<style>
-
-</style>

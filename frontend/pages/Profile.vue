@@ -48,12 +48,12 @@
 
         </li>
       </ul>
-      <div  class="container">
-        <NuxtChild  :userid="$auth.user.email" />
-      </div>
+    <div   class="bg-white dark:bg-dark-gray min-h-full h-auto container">
+      <p> {{$store.state.followInfo.name}} </p>
+    <NuxtChild  :userid="$store.state.otherIDInfo.email" />
     </div>
       
-           
+     </div>      
   </div>
 </template>
 
@@ -77,6 +77,7 @@ export default {
        } 
     
     },
+    
   async mounted ()
    { 
   //    this.vantaEffect = WAVES({
@@ -91,7 +92,7 @@ export default {
     await DBFunctions.getInfo(this.$auth.user.email,this.info);
     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
 
-     this.$store.commit('updateFollowInfo', this.info)
+       this.$store.commit('updateFollowInfo', this.info)
     } ,   
  
   
@@ -139,6 +140,7 @@ li {
    margin: auto;
    margin-top: 20px;
   width: 50%;
+  /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */
    /* border-style: solid;
@@ -152,6 +154,8 @@ li {
 a.nuxt-link-exact-active {
   color:rgb(160, 148, 228);
   text-decoration: underline #3500D3 3px;
+  font-weight : bold;
+  
 }
 
 .link-underline {

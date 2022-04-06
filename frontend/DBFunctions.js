@@ -189,7 +189,20 @@ module.exports.updateProject = async (payload) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
-    console.log(data)
+  } catch (error) {
+    window.alert('error')
+  }
+}
+
+module.exports.deleteProject = async (payload) => {
+  try {
+    const response = await fetch(`http://localhost:5000/deleteProject`, {
+      method: 'DELETE',
+      // Adding body or contents to send
+      body: JSON.stringify(payload), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
   } catch (error) {
     window.alert('error')
   }

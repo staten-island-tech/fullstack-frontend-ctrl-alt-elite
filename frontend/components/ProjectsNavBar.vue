@@ -43,11 +43,11 @@ export default {
               <meta http-equiv="X-UA-Compatible" content="IE=edge">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>You Inspecting</title>
-              <style>${this.css}</style>
+              <style>${this.$store.state.codeCSS}</style>
           </head>
           <body>
-              ${this.html}
-              <script>${this.js}<\/script>
+              ${this.$store.state.codeHTML}
+              <script>${this.$store.state.codeJS}<\/script>
           </body>
         </html>`
       } catch (error) {
@@ -60,6 +60,7 @@ export default {
     },
     async save(){
       try {
+        this.run()
         if (this.$store.state.newProject === true){
           await DBFunctions.createProject(
             {
@@ -89,9 +90,32 @@ export default {
     },
     async publish(){
       try {
-        await DBFunctions.updateProject({
-          "private_boolean": true
-        })
+        if (this.$store.state.newProject === true){
+          await DBFunctions.createProject(
+            {
+              "_id": this.$store.state.otherIDInfo.mongo_id,
+              "project_title": this.$store.state.projectTitle,
+              "description": this.$store.state.projectDescription,
+              "html": this.$store.state.codeHTML,
+              "css": this.$store.state.codeCSS,
+              "js": this.$store.state.codeJS,
+              "private_boolean": false
+            }
+          )
+        }
+        if (this.$store.state.newProject === false){
+          await DBFunctions.updateProject({
+            "_id": this.$store.state.otherIDInfo.mongo_id,
+            "project_id": this.$store.state.project_id,
+            "new_title": this.$store.state.projectTitle,
+            "new_description": this.$store.state.projectDescription,
+            "new_html": this.$store.state.codeHTML,
+            "new_css": this.$store.state.codeCSS,
+            "new_js": this.$store.state.codeJS,
+            "private_boolean": false
+          })
+        }
+        this.$router.push("Home")
       } catch (error) {
         console.log(error);
       }

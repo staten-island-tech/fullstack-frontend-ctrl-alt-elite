@@ -1,5 +1,5 @@
 <template>
-  <div id="show-projectss">
+  <div id="show-projects">
     <h1>All Project Articles</h1>
     <div v-for="project in projects" :key="project" class="single-project">
       <h2 class="title"> {{project.title }}</h2>

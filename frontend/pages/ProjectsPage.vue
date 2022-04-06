@@ -13,7 +13,7 @@
           :v-model="search"
           
           placeholder="Find a Project"
-          class="actual-bar"/>
+          class="actual-bar">
       </div>
     </div>
     <div v-for="project in projects" :key="project.title">
@@ -30,18 +30,17 @@ export default {
     return {
       projects: [],
       search: '',
-      filteredData:[]
     }
   },
   async mounted() {
     const data = await fetch("https://jsonplaceholder.typicode.com/posts");
     const newData = await data.json();
-    const finalData = newData.slice(0,10)
+    const finalData = newData.slice(0,13)
     console.log(finalData)
     this.projects = finalData
   
   },
- /* methods:{
+ /*methods:{
     filteredData: project.title.match(this.search)
 
   },*/
@@ -137,5 +136,9 @@ menu:hover {
   text-align: center;
   background-color: black;
   color: white;
+}
+.t1{
+  background-color: white;
+  text-align: center;
 }
 </style>

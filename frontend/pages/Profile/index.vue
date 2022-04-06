@@ -1,18 +1,21 @@
-<template>
 
-  <div >
+   <!-- 
+   <div >
       
-     <!-- <DefaultNavBar /> -->
+      <DefaultNavBar />
      
       <section class=" flex flex-col p-5   ">
          
-        <!-- <button @click="getProfile()">TEST</button>
-        <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
+         <button @click="getProfile()">TEST</button>
+        <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> 
         <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center"> 
             <div class="flex flex-col justify-start  ">
               <div v-if="$auth.user.email === $store.state.otherIDInfo.email">
                  <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button> 
                  <div class="gray-600 h-40 w-40 z-auto"> SPACE </div>
+                  <!-- <PopupPhoto v-if="popupTriggers.buttonTrigger">
+                    <h2>my popup</h2>
+                  </PopupPhoto> 
               </div>
               <div v-else class="text-center" >
                 <FollowButton2 :followuserid=$store.state.otherIDInfo.email />
@@ -21,9 +24,13 @@
             </div>
             <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src ="userProfile.data.profile_pic" :alt="profile">  
         </div>
+        -->
         
             
 
+<template>
+  <div >
+     <FollowList :list="list" />
 
             <div v-if="$auth.user.email === $store.state.otherIDInfo.email" class="flex flex-col ">
                 <h2 class="pb-2">Username</h2>
@@ -46,11 +53,37 @@
             </div>
                 
     
-      </section>      
-  </div>
+     <!-- <DefaultNavBar /> -->
+    
+     <!-- <p v-if="list.data == 'undefined' || list.data.length == 0"> 
+       Oh no list is empty 😢
+     </p>
+     <template v-else>
+    
+
+       <h1 class="text-2xl font-bold justify-center">follow : {{list.data.length}} users </h1>
+       <table v-for="item in list.data" :key="item.user_id" class="container flex flex-row mx-auto table-fiXed justify-center">
+              
+        
+        <tr>
+          <td>
+         <span class="flex space-x-1">
+       
+            <img class="rounded-full border border-gray-100 shadow-sm" :src="item.profile_pic" alt="user image" />
+   
+        
+        </span> 
+        </td>
+       <td>   <span class="font-bold text-2xl hover:text-5xl"> {{ item.name }} </span> </td>
+          <td>< class="hover:text-2xl"> email: {{item.user_id}} </p></td>
+         <td> <followButton2     :followuserid="item.user_id"  /></td>       
+        </tr>
+        </table>
+     </template> -->
+    </div>
 </template>
 
-<script >
+<script>
 
 import DBFunctions from "~/DBFunctions"; 
 
@@ -58,7 +91,6 @@ import DBFunctions from "~/DBFunctions";
 // import VueCompositionAPI from '@vue/composition-api';
 // Vue.use(VueCompositionAPI)
 // import { ref } from "@vue/composition-api";
-
 
 export default {
   
@@ -74,8 +106,9 @@ export default {
 //  },
 
    data(){
-       return{ 
+       return { 
         userProfile: { data : ''},
+        list:{data:null}, 
         // following: 0,
         // followers:0,
         // recentProjects :[], 
@@ -84,10 +117,18 @@ export default {
             following:0,
             projects:0,
             name:'',
-            },
+        },
+       }
+   },
+    
+     async mounted (){
+         
+       this.getProfile();
+     await DBFunctions.getFollowing(this.$auth.user.email,this.list);
       
-        }
-      },
+
+                 
+        } ,  
   
    computed: {
     // a computed getter
@@ -107,12 +148,6 @@ export default {
     }
   },
 
-   mounted (){
-         
-       this.getProfile()
-        
-                 
-        } ,  
     
 
   methods: {
@@ -148,15 +183,9 @@ export default {
 </script>
 
 <style>
-
-body {
-       background-color: rgb(15, 15, 15);
-       color: #e6e6e6;
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
-
-h1{
-    color:white;
-    font-size: 1.5rem;
-}
 </style>

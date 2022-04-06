@@ -62,6 +62,14 @@ export default {
         contentJS:"",
       }
     },
+    mounted(){
+      let editor1 = this.$refs.editor1.editor
+      let editor2 = this.$refs.editor2.editor
+      let editor3 = this.$refs.editor3.editor
+      editor1.setValue(this.$store.state.codeHTML)
+      editor2.setValue(this.$store.state.codeCSS)
+      editor3.setValue(this.$store.state.codeJS)
+    },
     computed:{
       title:{
         get(){

@@ -1,12 +1,12 @@
 <template>
-  <div >
+  <div class="flex flex-col justify-center items-center text-black dark:text-white">
      <!-- <DefaultNavBar /> -->
 
      <p v-if="typeof(list.data) === 'undefined' || list.data === null || list.data.length == 0"> 
        Oh no list is empty 😢
      </p>
      <template v-else>
-       <div class="container flex flex col mx-auto justify-center gap-5 flex-wrap">
+       <div class="container flex col mx-auto justify-center gap-5 flex-wrap">
         
        
     

@@ -11,13 +11,14 @@
         <input
           type="text"
           :v-model="search"
+          
           placeholder="Find a Project"
           class="actual-bar"/>
       </div>
     </div>
-    <div v-for="project in filteredProjects" :key="project">
-      <h2>{{project.title}}</h2>
-      <article class="body">{{project.body}}</article>
+    <div v-for="project in projects" :key="project.title">
+      <h2 class="t1">{{project.id}}) {{project.title}}</h2>
+      <article class="body"></article>
       <div></div>
     </div>
   </div>
@@ -29,6 +30,7 @@ export default {
     return {
       projects: [],
       search: '',
+      filteredData:[]
     }
   },
   async mounted() {
@@ -39,6 +41,10 @@ export default {
     this.projects = finalData
   
   },
+ /* methods:{
+    filteredData: project.title.match(this.search)
+
+  },*/
   computed: {
     filteredProjects() {
       return this.projects.filter((project) => {

@@ -16,7 +16,7 @@
           class="actual-bar">
       </div>
     </div>
-    <div v-for="project in projects" :key="project.title">
+    <div v-for="project in filteredProjects" :key="project.title">
       <h2 class="t1">{{project.id}}) {{project.title}}</h2>
       <article class="body"></article>
       <div></div>

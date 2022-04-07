@@ -3,7 +3,7 @@
     <div class="w-1/4 h-full flex flex-row">
       <Sidebar/>
       <div class="w-1/2 flex justify-center items-center ml-3">
-        <input v-model="title" placeholder="Title" type="text" class="h-full w-full p-4 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black">
+        <input v-model="title" placeholder="Title" type="text" class="h-1/2 w-full p-4 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black">
       </div> 
     </div>
     <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>

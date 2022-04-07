@@ -48,20 +48,20 @@
 
         </li>
       </ul>
-      <div  class="container">
-        <NuxtChild  :userid="$auth.user.email" />
-      </div>
+    <div   class="bg-white dark:bg-dark-gray min-h-full h-auto container">
+      <p> {{$store.state.followInfo.name}} </p>
+    <NuxtChild  :userid="$store.state.otherIDInfo.email" />
     </div>
       
      </div>      
-  </section>
+  </div>
 </template>
 
 <script>
  
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
-// import DBFunctions from "~/DBFunctions";
+import DBFunctions from "~/DBFunctions";
 
 export default {
   
@@ -92,7 +92,7 @@ export default {
     await DBFunctions.getInfo(this.$auth.user.email,this.info);
     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
 
-       
+       this.$store.commit('updateFollowInfo', this.info)
     } ,   
  
   
@@ -140,6 +140,7 @@ li {
    margin: auto;
    margin-top: 20px;
   width: 50%;
+  /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */
    /* border-style: solid;

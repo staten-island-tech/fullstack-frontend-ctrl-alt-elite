@@ -11,6 +11,7 @@
                             </div>-->
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
+                            <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
                             <div class="relative mt-12">
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
@@ -25,11 +26,11 @@
                     </div>
                     <div class="w-1/5 h-4/5 z-20">
                         <div class="fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 w-1/6 right-20 top-20 flex flex-col items-center darkBorder"> 
-                            <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-d-bg-accent dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
+                            <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
                             <div v-for="(project, key) in recent" :key="key" class="w-2/3">
                                 <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
                                     <h3 class="dark:text-white text-xl">{{ project.project_title }}</h3>
-                                    <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
+                                   <!----> <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
                                         <div class="flex flex-row text-sm items-center text-center">
                                             <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
                                             <p class="p-2">{{ project.updatedAt }}</p>

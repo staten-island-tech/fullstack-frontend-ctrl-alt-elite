@@ -1,13 +1,31 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-      <h1 class="text-black dark:text-white">Projects  </h1> 
-      <div Class="flex flex-row justify-items-center space-x-4 flex-wrap justify-center"  >
-      <span v-for="item in projects" :key="item._ID" >
-        <ProjectCard2 :item="item" class="m-2"/>
-      </span>
+  <div >
+      <h1>Projects  </h1> 
+    
+       
+      <div class="flex flex-column">
+         <input 
+         v-model="searchArgs" type="search" 
+         class=" form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects()" >Search</button>
       </div>
-        <p  v-if="end < total " @click="nextPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Next </p> 
-      </div>
+   
+   
+      <div Class="flex flex-wrap relative flex-row justify-items-center px-4"  >
+
+      
+       
+       <p  v-if="start >pageLimit " @click="previousPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Previous </p>
+        <div v-for="(item,index) in projects.list" :key="item._ID"    >
+               
+               <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
+                
+                
+             
+        </div>
+         <p  v-if="end < total " @click="nextPage" class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"> Next </p> 
+        
+        </div>
      <!-- <DefaultNavBar /> -->
   </div>
 </template>

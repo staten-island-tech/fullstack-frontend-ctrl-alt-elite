@@ -34,7 +34,7 @@
                     </NuxtLink>
                 </div>
                 <div class="h-1/10">
-                    <NuxtLink to="ProjectAll" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="/ProjectAll" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </NuxtLink>

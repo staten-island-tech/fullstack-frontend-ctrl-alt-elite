@@ -1,7 +1,14 @@
 <template>
   <nav id="projectnav" class="w-full h-1/10 p-4 flex flex-row justify-between items-center bg-gray-500">
+<<<<<<< Updated upstream
     <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/10 p-4 flex justify-center items-center text-lg bg-transparent"> 
     <img src="" class="h-2/3 w-1/10 right-1/2 bg-black">
+=======
+  
+    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/10 p-4 flex justify-center items-center text-lg bg-transparent"> <font-awesome-icon icon="fa-solid fa-pen"/>
+  
+    <NuxtLink to="/Home"><img class="h-24 mx-8" src="../assets/codeverse-logo.png"></NuxtLink>
+>>>>>>> Stashed changes
     <div class="h-2/3 w-1/4 flex justify-between items-center">
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>

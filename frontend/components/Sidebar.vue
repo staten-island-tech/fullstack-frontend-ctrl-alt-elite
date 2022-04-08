@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
   <div id="nav" class="h-screen w-1/2 relative">
       <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl cursor-pointer" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-gray-50 dark:bg-black absolute z-10">
@@ -6,6 +7,15 @@
             <div class="flex flex-row justify-between">
                 <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100 cursor-pointer" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                 <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/LOGO.png"></NuxtLink>
+=======
+  <div id="nav" class="h-screen relative">
+      <font-awesome-icon id="sidebarBtn" v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+    <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
+        <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">
+            <div class="flex flex-row justify-between">
+                <font-awesome-icon id="sidebarBtn" class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
+               <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
+>>>>>>> Stashed changes
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4">
                 <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
@@ -57,6 +67,23 @@ export default {
         await DBFunctions.getProfile(this.$auth.user.email,this.userProfile);
         await DBFunctions.getFollowers(this.$auth.user.email,this.list);
         
+<<<<<<< Updated upstream
+=======
+        } ,
+    methods: {
+        async toggleVisible() {
+            this.display = !this.display;
+    
+        },
+        getProfile (){
+                
+          
+           this.$store.commit("updateOtherIDInfo", {mongo_id:this.userProfile.data._id,email:this.userProfile.data.user_id})
+           this.$router.push({name: 'Profile'});
+          
+         } 
+        
+>>>>>>> Stashed changes
         } ,  
        methods: {
            toggleVisible() {
@@ -81,6 +108,9 @@ export default {
 </script>
 
 <style scoped>
+#sidebarBtn:hover {
+    cursor: pointer;
+}
 #nav {
     color: gray;
     position: relative;

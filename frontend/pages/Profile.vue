@@ -7,6 +7,7 @@
         <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
           <!-- <button @click="getProfile()">TEST</button>
           <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
+          <button class="absolute top-20 left-10">return button</button>
           <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center m-10"> 
               <div class="flex flex-col justify-start  ">
                 <input type = "file" ref="file" style="display: none">
@@ -49,8 +50,8 @@
 
         </li>
       </ul>
-    <div   class="bg-white dark:bg-dark-gray min-h-full h-auto container">
-      <p> {{$store.state.followInfo.name}} </p>
+    <div   class="bg-white dark:bg-d-bg-secondary min-h-full h-auto container">
+      <!-- <p> {{$store.state.followInfo.name}} </p> -->
     <NuxtChild  :userid="$store.state.otherIDInfo.email" />
     </div>
       
@@ -73,6 +74,7 @@ export default {
             following:0,
             projects:0,
             },
+            list:{data:null}, 
             userProfile: { data : 'abc'},
             recentProjects :[]
        } 
@@ -90,6 +92,8 @@ export default {
   // waveSpeed: 1.5,
   // zoom: 0.75
   //   });
+  this.getProfile();
+     await DBFunctions.getFollowing(this.$auth.user.email,this.list);
     await DBFunctions.getInfo(this.$auth.user.email,this.info);
     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
 
@@ -102,22 +106,51 @@ export default {
   //     this.vantaEffect.destroy()
   //   }
   // },
-
+    computed: {
+    // a computed getter
+    reload: {
+      get() {
+       
+      return this.$store.state.otherIDInfo.email;
+      }
+    }
+       
+},
+ watch: {
+    // whenever question changes, this function will run
+    reload(newValue, oldValue) {
+      this.getProfile();
+     
+    }
+  },
+ 
   methods: {
-  async getProfile()   {
-      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-    },
+ async getProfile()   {
+    try {
+       
+        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+        this.$store.commit('updateFollowInfo', this.info)
+        
+         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+    } catch 
+    { window.alert ("error getting the profile")
+    }
+  },
  async resetProfile()   {
       await this.getProfile();
       window.alert("Profile information reset.")
       
     },
   async updateProfile()   {
+    try {
       await DBFunctions.updateProfile(this.userProfile)
       window.alert("Profile information updated.")
+    } catch {
+         window.alert("can't update profile")
+    }
     },
-    
-}
+   
+     },
     
 }
 </script>

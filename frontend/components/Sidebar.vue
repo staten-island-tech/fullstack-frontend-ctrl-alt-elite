@@ -12,8 +12,8 @@
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{userProfile.data.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
-                       <p>Following  {{info.following}}</p> 
-                        <p>Followers  {{info.followers}}</p>
+                       <p>Following  {{$store.state.followInfo.following}}</p> 
+                        <p>Followers  {{$store.state.followInfo.followers}}</p>
                    </div>
                    <NuxtLink id="profile" to="/Profile/following" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
                 </div>
@@ -26,26 +26,26 @@
                     <font-awesome-icon :icon="['fas', 'moon']" :class="{ selectedDark : this.$store.state.darkMode, light : !this.$store.state.darkMode }" class="text-lg text-slate"></font-awesome-icon>
                 </div>
             </div>
-            <div class="flex flex-col dark:text-white text-black h-2/3">
-                <div class="h-1/10">
+            <div class="flex flex-col dark:text-white text-black h-1/2">
+                <div class="h-1/6">
                     <NuxtLink to="/Home" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
                         <p class="p-2">Home</p>
                     </NuxtLink>
                 </div>
-                <div class="h-1/10">
-                    <NuxtLink to="ProjectAll" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
+                <div class="h-1/6">
+                    <NuxtLink to="/Profile/Projects" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
                 </div>
-                <div class="h-1/10">
+                <div class="h-1/6">
                     <NuxtLink to="/Project" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
                     </NuxtLink>
                 </div>
-                <button class="text-red-400 h-1/10 flex items-center pl-6" @click="logout">
+                <button class="text-red-400 h-1/6 flex items-center pl-6" @click="logout">
                     <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
                     <LogoutButton class="text-left p-2"/>
                 </button>

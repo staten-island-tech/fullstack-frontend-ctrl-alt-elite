@@ -1,12 +1,17 @@
 <template>
-  <nav id="projectnav" class="w-full h-1/10 p-4 flex flex-row justify-between items-center bg-gray-500">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/10 p-4 flex justify-center items-center text-lg bg-transparent"> 
+  <nav id="projectnav" class="w-full h-1/10 flex flex-row justify-between items-center dark:bg-d-bg-primary bg-l-bg-primary">
+    <div class="w-1/4 h-full flex flex-row">
+      <Sidebar/>
+      <div class="w-1/2 flex justify-center items-center ml-3">
+        <input v-model="title" placeholder="Title" type="text" class="h-1/2 w-full p-4 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black">
+      </div> 
+    </div>
     <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
     <div class="h-2/3 w-1/4 flex justify-between items-center">
-      <button class="p-4 text-lg" @click="run">Run</button>
-      <button class="p-4 text-lg" @click="settings">Settings</button>
-      <button class="p-4 text-lg" @click="save">Save</button>
-      <button class="p-4 text-lg">Publish</button>
+      <button class="navButtons p-4 text-lg dark:text-gray-200 text-gray-900" @click="run">Run</button>
+      <button class="navButtons p-4 text-lg dark:text-gray-200 text-gray-900" @click="settings">Settings</button>
+      <button class="navButtons p-4 text-lg dark:text-gray-200 text-gray-900" @click="save">Save</button>
+      <button class="navButtons p-4 text-lg dark:text-gray-200 text-gray-900">Publish</button>
     </div>
   </nav>
 </template>

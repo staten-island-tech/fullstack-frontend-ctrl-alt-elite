@@ -4,6 +4,7 @@
     "@nuxtjs/auth-next": "5.0.0-1648802546.c9880dc",
     "@nuxtjs/axios": "^5.13.6",
     "aos": "^3.0.0-beta.6",
+    "cors": "^2.8.5",
     "swiper": "^8.0.6",
     "three": "^0.136.0",
     "vanta": "^0.5.21",

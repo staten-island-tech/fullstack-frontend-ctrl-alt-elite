@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="temp1">
-      <p class="menu">Menu</p>
+      <a class="menu" @click="test">Menu</a>
       <p class="logo">Logo</p>
       <p class="New-Project">New Project</p>
     </div>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import DBFunctions from "~/DBFunctions";
 export default {
   data() {
     return {
@@ -34,11 +35,12 @@ export default {
     }
   },
   async mounted() {
-    const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+    /*const data = await fetch("https://jsonplaceholder.typicode.com/posts");
     const newData = await data.json();
     const finalData = newData.slice(0,10)
     console.log(finalData)
-    this.projects = finalData
+    this.projects = finalData*/
+    
   
   },
   methods:{
@@ -48,7 +50,7 @@ export default {
   computed: {
      filteredProject: function(){
             return this.projects.filter((project) => {
-                return project.title.match(this.search);
+                return project.project_title.match(this.search);
             });
         }
   },
@@ -65,6 +67,17 @@ export default {
       })
     },
   }, */
+  methods:{
+    async test(){
+      try { 
+        console.log("hello")
+        await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.projects)
+      
+    } catch (error) {
+      
+    }
+    }
+  }
 }
 </script>
 

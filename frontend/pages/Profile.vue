@@ -9,7 +9,8 @@
           <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
           <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center m-10"> 
               <div class="flex flex-col justify-start  ">
-                  <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button>     
+                <input type = "file" ref="file" style="display: none">
+                  <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2"  @click="$refs.file.click()"><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />  Upload Profile Photo</button>     
                   
               </div>
               <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  

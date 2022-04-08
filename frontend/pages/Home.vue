@@ -67,6 +67,11 @@ export default {
          recent: [
              
          ],
+          info: {
+            followers:0,
+            following:0,
+            projects:0,
+            },
          homeProjects: [
              {
                 title: 'Project 1',
@@ -122,7 +127,10 @@ export default {
         
                }
             }
-           
+
+        await DBFunctions.getInfo(this.$auth.user.email,this.info);
+        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+        this.$store.commit('updateFollowInfo', this.info)
            
     },  
     methods: {

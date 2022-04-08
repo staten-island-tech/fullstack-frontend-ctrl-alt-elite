@@ -12,7 +12,7 @@
     
       <div  v-for="item in list.data" :key="item.user_id" class="container  justify-center" >
 
-          <div class="py-5 px-5 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-2 sm:py-4 sm:flex sm:items-center    sm:space-y-0 sm:space-x-6">
+          <div class="py-5 px-5 max-w-sm mx-auto bg-white rounded-xl shadowing space-y-2 sm:py-4 sm:flex sm:items-center    sm:space-y-0 sm:space-x-6">
             <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:shrink-0" :src="item.profile_pic" @click="viewOtherUser(item._id,item.user_id)">
           <div class="text-center space-y-2 sm:text-left">
           <div class="space-y-0.5">
@@ -82,10 +82,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+}
+
+.shadowing {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 </style>

@@ -7,7 +7,8 @@
         <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
           <!-- <button @click="getProfile()">TEST</button>
           <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
-          <button class="absolute top-20 left-10">return button</button>
+          <!-- v-if="$store.state.otherIDInfo.email ==! $store.state.otherIDInfo.email" = try adding this but change the second part ***** -->
+          <button  class="absolute top-20 left-10" @click="getOwnProfile()">return button</button>
           <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center m-10"> 
               <div class="flex flex-col justify-start  ">
                   <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button>     
@@ -134,6 +135,17 @@ export default {
     } catch 
     { window.alert ("error getting the profile")
     }
+  },
+  async getOwnProfile()   {
+    await DBFunctions.getFollowing(this.$auth.user.email,this.list);
+    await DBFunctions.getInfo(this.$auth.user.email,this.info);
+    await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+
+  
+    const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+    this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+    this.$router.push("/profile/following");
+
   },
  async resetProfile()   {
       await this.getProfile();

@@ -23,7 +23,7 @@ import 'swiper/swiper-bundle.min.css'
 
 export default {
   props: {
-    project: Object
+    project: Array
   },
       mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7

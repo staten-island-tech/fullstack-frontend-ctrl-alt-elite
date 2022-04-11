@@ -30,6 +30,7 @@
 
 <template>
   <div >
+    <h1>RETURN</h1>
      <FollowList :list="list" />
 
             <div v-if="$auth.user.email === $store.state.otherIDInfo.email" class="flex flex-col ">

@@ -1,6 +1,6 @@
 <template>
 
-  <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center">
+  <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center" :class="{ dark : this.$store.state.darkMode }">
     
     <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
@@ -150,10 +150,10 @@ export default {
       },
       // Light and dark modes
       lightMode(){
-        document.getElementById("projectnav").style.backgroundColor = "pink"
+        document.getElementById("projectnav").style.backgroundColor = "#b8b8b8"
       },
       darkMode(){
-        document.getElementById("projectnav").style.backgroundColor = "gray"
+        document.getElementById("projectnav").style.backgroundColor = "#121212"
       },
       // Editor orientation 
       editorOrientation(e){

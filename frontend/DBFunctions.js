@@ -171,13 +171,24 @@ module.exports.getProjects = async (mongo_id, projects) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
-    console.log(data)
     if (response.status === 500) throw response.error
     const parsed = JSON.parse(JSON.stringify(data.projects))
-    console.log(parsed)
     const forDisplay = parsed.splice(0, 6)
     projects.push(...forDisplay)
   } catch (error) {}
+}
+
+module.exports.getFollowingProjects = async (mongo_id, projects) => {
+  const userInfo = { _id: mongo_id }
+  const response = await fetch(`http://localhost:5000/getFollowingProjects`, {
+    method: 'POST',
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+  const forDisplay = parsed.splice(0, 10)
+  projects.push(...forDisplay)
 }
 
 module.exports.updateProject = async (payload) => {

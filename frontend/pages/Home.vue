@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
-                                    <Slideshow :project="homeProjects" class="mb-6"/>
+                                    <Slideshow :project="followingProjects" class="mb-6"/>
                                 </div>
                             </div>
                         </div>
@@ -61,43 +61,58 @@ export default {
      data(){
        return{ 
          userProfile: { data : ''},
-         recent: [
-             
-         ],
+         recent: [],
          homeProjects: [
              {
-                title: 'Project 1',
-                user: 'Bob'
+                projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Bob'
              },
              {
-                title: 'Project 2',
-                user: 'Tom'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Tom'
              },
              {
-                title: 'Project 3',
-                user: 'Tim'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Tim'
              },
              {
-                title: 'Project 4',
-                user: 'Sam'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Sam'
              },
              {
-                title: 'Project 5',
-                user: 'Ham'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Ham'
              },
              {
-                title: 'Project 6',
-                user: 'Jam'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Jam'
              },
              {
-                title: 'Project 7',
-                user: 'Kam'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Kam'
              },
              {
-                title: 'Project 7',
-                user: 'Kam'
+                 projects:{
+                    project_title: 'Hello 1',
+                },
+                name: 'Kam'
              },
          ],
+         followingProjects: []
          }
     },
     async mounted (){
@@ -106,6 +121,8 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
+            await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
+            console.log(this.followingProjects);
             } catch (error) {
                try {
                 await DBFunctions.createUser(this.$auth.user) ;

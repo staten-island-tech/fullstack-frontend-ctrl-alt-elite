@@ -4,10 +4,10 @@
       
     </div>
     <div class="h-1/4 w-full flex flex-col justify-center">
-      <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold">{{ project.title }}</h3>
+      <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold">{{ project.projects.project_title }}</h3>
       <div class="flex flex-row justify-between px-3">
         <LikeButton/>
-        <h4 class=" text-black dark:text-gray-100">{{ project.user }}</h4>
+        <h4 class=" text-black dark:text-gray-100">{{ project.name }}</h4>
         <FollowButton/>
       </div>
     </div>
@@ -18,6 +18,9 @@
 export default {
   props: {
     project: Object
+  },
+  mounted(){
+    console.log(this.project);
   }
 }
 </script>

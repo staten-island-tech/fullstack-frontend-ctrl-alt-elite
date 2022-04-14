@@ -74,7 +74,11 @@ export default {
       this.$store.commit('updateOtherIDInfo', {mongo_id:mongoID,email:userID});
       await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
       this.$store.commit('updateFollowInfo', this.info)
-      this.$router.push({name: 'Profile'});
+      if (this.$router === '/Profile') {
+        this.$router.push('/Profile/Following');
+      } else {
+        this.$router.push('/Profile');
+      }
    } 
 
      }

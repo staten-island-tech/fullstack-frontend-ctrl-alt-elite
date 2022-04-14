@@ -145,7 +145,7 @@ export default {
   
     const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
     this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-    this.$router.push("/profile/following");
+    this.$router.push("/profile");
 
   },
  async resetProfile()   {

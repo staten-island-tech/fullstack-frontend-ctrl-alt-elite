@@ -12,8 +12,8 @@
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{userProfile.data.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
-                       <p>Following  {{$store.state.followInfo.following}}</p> 
-                        <p>Followers  {{$store.state.followInfo.followers}}</p>
+                       <p>Following  {{$store.state.ownFollowInfo.following}}</p> 
+                        <p>Followers  {{$store.state.ownFollowInfo.followers}}</p>
                    </div>
                    <NuxtLink id="profile" to="/Profile/following" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
                 </div>

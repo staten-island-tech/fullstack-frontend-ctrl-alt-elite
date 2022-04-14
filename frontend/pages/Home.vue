@@ -131,6 +131,7 @@ export default {
         await DBFunctions.getInfo(this.$auth.user.email,this.info);
         await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
         this.$store.commit('updateFollowInfo', this.info)
+        this.$store.commit('updateOwnFollowInfo', this.info)
            
     },  
     methods: {

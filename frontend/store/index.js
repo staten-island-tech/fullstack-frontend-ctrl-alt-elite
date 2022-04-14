@@ -12,6 +12,13 @@ export const state = () => ({
     following: 0,
     projects: 0,
   },
+  ownFollowInfo: {
+    // should be only used within the profile module
+    name: '',
+    followers: 0,
+    following: 0,
+    projects: 0,
+  },
   otherIDInfo: {
     // should be only used within the profile module
     mongo_id: '',
@@ -45,6 +52,13 @@ export const mutations = {
     state.followInfo.following = value.following
     state.followInfo.followers = value.followers
     state.followInfo.projects = value.projects
+  },
+
+  updateOwnFollowInfo(state, value) {
+    state.ownFollowInfo.name = value.name
+    state.ownFollowInfo.following = value.following
+    state.ownFollowInfo.followers = value.followers
+    state.ownFollowInfo.projects = value.projects
   },
 
   updateOtherIDInfo(state, value) {

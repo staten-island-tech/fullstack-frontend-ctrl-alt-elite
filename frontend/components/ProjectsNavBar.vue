@@ -1,19 +1,25 @@
 <template>
-  <nav id="projectnav" class="w-full h-1/10 p-4 flex flex-row justify-between items-center bg-gray-500">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/10 p-4 flex justify-center items-center text-lg bg-transparent"> 
-    <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
-    <div class="h-2/3 w-1/4 flex justify-between items-center">
-      <button class="p-4 text-lg" @click="run">Run</button>
-      <button class="p-4 text-lg" @click="settings">Settings</button>
-      <button class="p-4 text-lg" @click="save">Save</button>
-      <button class="p-4 text-lg">Publish</button>
+  <nav id="projectnav" class="w-full h-1/10 p-2 flex flex-row justify-between items-center bg-gray-900 text-white">
+  <NuxtLink to="/Home"><img class="h-16 mx-4 items-center" src="../assets/codeverse-logo.png"></NuxtLink>
+  <div class="w-1/2 flex flex-row py-2 items-center">
+    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/6 p-3 flex justify-center items-center text-lg bg-transparent rounded"> 
+    <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
+  </div>
+    
+    <div class="h-2/3 w-1/5 flex justify-around items-center">
+      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded  text-base" @click="run">Run</button>
+      <button class="bg-gray-500 hover:bg-gry-600 text-white py-2.5 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
+      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded text-base">Publish</button>
     </div>
   </nav>
 </template>
 
 <script>
 import DBFunctions from "~/DBFunctions";
+import LikeButton from './LikeButton.vue';
 export default {
+  components: { LikeButton },
   data(){
     return{
       

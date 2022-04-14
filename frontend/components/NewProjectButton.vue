@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center">
+    <div id="NewProjectBtn" class="flex items-center justify-center">
         <NuxtLink class="bg-d-primary text-white font-bold mx-4 cursor-pointer h-6 w-6 text-center flex items-center justify-center" to="/Project"><font-awesome-icon :icon="['fas', 'plus']" class="text-base rounded text-white"></font-awesome-icon></NuxtLink>
     </div>
 </template>
@@ -10,3 +10,9 @@ export default {
     } 
 }
 </script>
+<style>
+#NewProjectBtn:hover {
+    transform: scale(1.2);
+    transition: all .2s ease-in-out;
+}
+</style>

@@ -20,7 +20,7 @@
       </div>
     </section> -->
     <!-- :class="{change_color: scrollPosition > 50}" -->
-    <Snackbar />
+    <!-- <Snackbar /> -->
   </div>
   
 </template>

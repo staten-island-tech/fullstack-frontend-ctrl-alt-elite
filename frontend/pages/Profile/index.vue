@@ -1,33 +1,3 @@
-
-   <!-- 
-   <div >
-    
-      <DefaultNavBar />
-     
-      <section class=" flex flex-col p-5   ">
-         
-         <button @click="getProfile()">TEST</button>
-        <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> 
-        <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center"> 
-            <div class="flex flex-col justify-start  ">
-              <div v-if="$auth.user.email === $store.state.otherIDInfo.email">
-                 <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2">Update Profile Photo</button> 
-                 <div class="gray-600 h-40 w-40 z-auto"> SPACE </div>
-                  <!-- <PopupPhoto v-if="popupTriggers.buttonTrigger">
-                    <h2>my popup</h2>
-                  </PopupPhoto> 
-              </div>
-              <div v-else class="text-center" >
-                <FollowButton2 :followuserid=$store.state.otherIDInfo.email />
-              </div>
-              <h1 class="font-bold mb-3 text-lg mt-1 text-center " > {{userProfile.data.user_id}}</h1>  
-            </div>
-            <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src ="userProfile.data.profile_pic" :alt="profile">  
-        </div>
-        -->
-        
-            
-
 <template>
   <div >
     <h1>RETURN</h1>

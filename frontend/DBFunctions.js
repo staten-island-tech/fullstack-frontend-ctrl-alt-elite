@@ -97,13 +97,13 @@ module.exports.getFollowers = async (userID, list) => {
   } catch (error) {}
 }
 
-module.exports.updatePhoto = async () => {
-  const userPhoto = { profile_pic: userID }
-  const response = await fetch('https://localhost:5000/updatePhoto')
-}
+// module.exports.updatePhoto = async () => {
+//   const userPhoto = { profile_pic: userID }
+//   const response = await fetch('https://localhost:5000/updatePhoto')
+// }
 
 module.exports.getProfile = async (userID, userProfile) => {
-  try {
+  // try {
     const userInfo = { email: userID }
     const response = await fetch(`http://localhost:5000/getProfile`, {
       method: 'POST',
@@ -113,9 +113,10 @@ module.exports.getProfile = async (userID, userProfile) => {
     const data = await response.json()
     if (response.status === 500) throw response.error
     userProfile.data = data.userProfile
-  } catch (error) {
-    throw error
-  }
+ // } catch (error) {
+ //   ;
+ //   throw error
+ // }
 }
 
 module.exports.updateProfile = async (userProfile) => {
@@ -162,9 +163,9 @@ module.exports.createProject = async (userProject) => {
   }
 }
 
-module.exports.getProjects = async (mongo_id, projects) => {
+module.exports.getProjects = async (mongoID, projects) => {
   try {
-    const userInfo = { _id: mongo_id }
+    const userInfo = { _id: mongoID }
     const response = await fetch(`http://localhost:5000/getProjects`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
@@ -175,7 +176,7 @@ module.exports.getProjects = async (mongo_id, projects) => {
     const parsed = JSON.parse(JSON.stringify(data.projects))
 
     const forDisplay = parsed.splice(0, 6)
-    console.log(forDisplay)
+
     projects.push(...forDisplay)
   } catch (error) {}
 }
@@ -189,7 +190,7 @@ module.exports.updateProject = async (payload) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
-    console.log(data)
+   console.log(data)
   } catch (error) {
     window.alert('error')
   }
@@ -261,24 +262,24 @@ module.exports.getFollowers = async (userID, list) => {
 
 //     } catch (error) {
 
-module.exports.getProfile = async (userID, userProfile) => {
-  try {
-    const userInfo = { email: userID }
-    const response = await fetch(`http://localhost:5000/getProfile`, {
-      method: 'POST',
+// module.exports.getProfile = async (userID, userProfile) => {
+//   try {
+//     const userInfo = { email: userID }
+//     const response = await fetch(`http://localhost:5000/getProfile`, {
+//       method: 'POST',
 
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
+//       body: JSON.stringify(userInfo), // Adding headers to the request headers:
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//     })
 
-    const data = await response.json()
-    if (response.status === 500) throw response.error
+//     const data = await response.json()
+//     if (response.status === 500) throw response.error
 
-    userProfile.data = data.userProfile
-  } catch (error) {
-    throw error
-  }
-}
+//     userProfile.data = data.userProfile
+//   } catch (error) {
+//     throw error
+//   }
+// }
 
 module.exports.updateProfile = async (userProfile) => {
   try {

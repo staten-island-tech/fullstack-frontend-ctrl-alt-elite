@@ -51,6 +51,10 @@ module.exports.getInfo = async (userID, info) => {
     info.followers = data.followers
     info.projects = data.projects
     info.name = data.name
+    info.profilePic = data.profilePic
+    info.mongoID= data.mongoID
+    info.userID = data.userID
+     
   } catch (error) {
     window.alert(error)
   }
@@ -181,6 +185,20 @@ module.exports.getProjects = async (mongoID, projects) => {
   } catch (error) {}
 }
 
+module.exports.getProjects2 = async (mongoID, projects) => {
+  try {
+    const userInfo = { _id: mongoID }
+    const response = await fetch(`http://localhost:5000/getProjects`, {
+      method: 'POST',
+      body: JSON.stringify(userInfo), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
+    if (response.status === 500) throw response.error
+    projects.list =data.projects;
+  } catch (error) {}
+}
+
 module.exports.updateProject = async (payload) => {
   try {
     const response = await fetch(`http://localhost:5000/project`, {
@@ -204,47 +222,47 @@ module.exports.updateProject = async (payload) => {
 //       const response = await fetch(`http://localhost:5000/searchProjects`, {
 //         method: 'POST',
 
-module.exports.unFollow = async (userID, unfollowUserID, data) => {
-  try {
-    const userData = { userID, unfollowUserID }
-    const response = await fetch(`http://localhost:5000/unFollow`, {
-      method: 'POST',
-      body: JSON.stringify(userData), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
+// module.exports.unFollow = async (userID, unfollowUserID, data) => {
+//   try {
+//     const userData = { userID, unfollowUserID }
+//     const response = await fetch(`http://localhost:5000/unFollow`, {
+//       method: 'POST',
+//       body: JSON.stringify(userData), // Adding headers to the request headers:
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//     })
 
-    data = await response.json()
-  } catch (error) {}
-}
+//     data = await response.json()
+//   } catch (error) {}
+// }
 
-module.exports.follow = async (userID, followUserID, data) => {
-  try {
-    const userData = { userID, followUserID }
-    const response = await fetch(`http://localhost:5000/follow`, {
-      method: 'POST',
+// module.exports.follow = async (userID, followUserID, data) => {
+//   try {
+//     const userData = { userID, followUserID }
+//     const response = await fetch(`http://localhost:5000/follow`, {
+//       method: 'POST',
 
-      body: JSON.stringify(userData),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
+//       body: JSON.stringify(userData),
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//     })
 
-    data = await response.json()
-  } catch (error) {}
-}
+//     data = await response.json()
+//   } catch (error) {}
+// }
 
-module.exports.getFollowers = async (userID, list) => {
-  try {
-    const userInfo = { email: userID }
-    const response = await fetch(`http://localhost:5000/getFollowers`, {
-      method: 'POST',
+// module.exports.getFollowers = async (userID, list) => {
+//   try {
+//     const userInfo = { email: userID }
+//     const response = await fetch(`http://localhost:5000/getFollowers`, {
+//       method: 'POST',
 
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
+//       body: JSON.stringify(userInfo), // Adding headers to the request headers:
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//     })
 
-    const data = await response.json()
-    list.data = data.list
-  } catch (error) {}
-}
+//     const data = await response.json()
+//     list.data = data.list
+//   } catch (error) {}
+// }
 
 // module.exports.updatePhoto = async () => {
 //   const userPhoto = { profile_pic: userID};
@@ -281,56 +299,56 @@ module.exports.getFollowers = async (userID, list) => {
 //   }
 // }
 
-module.exports.updateProfile = async (userProfile) => {
-  try {
-    const response = await fetch(`http://localhost:5000/profile`, {
-      method: 'POST',
-      // Adding body or contents to send
-      body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
-    const data = await response.json()
+// module.exports.updateProfile = async (userProfile) => {
+//   try {
+//     const response = await fetch(`http://localhost:5000/profile`, {
+//       method: 'POST',
+//       // Adding body or contents to send
+//       body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//     })
+//     const data = await response.json()
 
-    userProfile.data = data // JSON.stringify(data)
-  } catch (error) {
-    window.alert('error')
-  }
-}
-
-module.exports.createUser = async (userProfile) => {
-  try {
-    const response = await fetch(`http://localhost:5000/createUser`, {
-      method: 'POST',
-      body: JSON.stringify(userProfile), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
-
-    const data = await response.json()
-    userProfile = data
-  } catch (error) {
-    window.alert(error)
-  }
-}
-
-// module.exports.searchProjects = async(mongoID,searchArguments,projects) => {
-//     try {
-//       // window.alert("dbfunction")
-//       // window.alert(searchArguments)
-//       const SearchArgs = { projectTitle: searchArguments }
-//       const response = await fetch(`http://localhost:5000/searchProjects`, {
-//         method: 'POST',
-
-//         body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
-//         headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//       })
-
-//       const data = await response.json();
-//       // this.uniqueID = data.uniqu;
-//       projects.list= data
-//       window.alert(JSON.stringify(projects.list))
-
-//     } catch (error) {
-
-//     }
+//     userProfile.data = data // JSON.stringify(data)
+//   } catch (error) {
+//     window.alert('error')
 //   }
+// }
+
+// module.exports.createUser = async (userProfile) => {
+//   try {
+//     const response = await fetch(`http://localhost:5000/createUser`, {
+//       method: 'POST',
+//       body: JSON.stringify(userProfile), // Adding headers to the request headers:
+//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+//     })
+
+//     const data = await response.json()
+//     userProfile = data
+//   } catch (error) {
+//     window.alert(error)
+//   }
+// }
+
+module.exports.searchProjects = async(searchArguments,projects) => {
+    try {
+    
+      const SearchArgs = { projectTitle: searchArguments }
+      const response = await fetch(`http://localhost:5000/searchProjects`, {
+        method: 'POST',
+
+        body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
+        headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      })
+
+      const data = await response.json();
+      // this.uniqueID = data.uniqu;
+      projects.list= data
+      // window.alert(JSON.stringify(projects.list))
+
+    } catch (error) {
+      
+
+    }
+  }
 

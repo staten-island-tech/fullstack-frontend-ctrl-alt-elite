@@ -20,7 +20,7 @@
 export default {
 props: {
        item : {      // user id 
-           type:String,
+           type:Object,
            required:true,
        }
    },

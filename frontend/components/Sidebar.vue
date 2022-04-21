@@ -8,14 +8,14 @@
                <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
-                <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
+                <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="info.profilePic">
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
-                    <p class="font-bold ">{{userProfile.data.name}}</p>
+                    <p class="font-bold ">{{info.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
-                       <p>Following  {{$store.state.followInfo.following}}</p> 
-                        <p>Followers  {{$store.state.followInfo.followers}}</p>
+                       <p>Following  {{info.following}}</p> 
+                        <p>Followers  {{info.followers}}</p>
                    </div>
-                   <NuxtLink id="profile" to="/Profile/following" class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg">View Profile</NuxtLink>
+                   <p id="profile"  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile">View Profile</p>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
@@ -65,61 +65,72 @@ export default {
     data() {
         return {
             display: false,
-            userProfile: { data : 'abc'},
+          
             info: {
                 followers:0,
                 following:0,
                 projects:0,
                 name:'',
+                profilePic:'',
+                mongoID:'',
+                userID:'',
             },
             recentProjects :[],
         };
     },
-
-    async  mounted (){
-        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile);
-        await DBFunctions.getFollowers(this.$auth.user.email,this.list);
+       computed: {
+     
+    reload: {
+      get() {
+       
+      return this.$store.state.reload;
+      }
+    }
+       
+},
+ watch: {
+    
+    reload(newValue, oldValue) {
+      this.refresh();
+     
+    }
+  },
+     mounted (){
+        
+        this.$store.commit('updateReload')
         
         } ,
     methods: {
-        async toggleVisible() {
-            this.display = !this.display;
-            // if (this.display)
-            // {
-            //     await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) ;
+        async refresh()
+        {
+             
                 
-            //     await DBFunctions.getInfo(this.$auth.user.email,this.info);
-            // }
+             await DBFunctions.getInfo(this.$auth.user.email,this.info);
+
+        },
+        toggleVisible() {
+            this.display = !this.display;
+             
         },
         getProfile (){
                 
           
-           this.$store.commit("updateOtherIDInfo", {mongo_id:this.userProfile.data._id,email:this.userProfile.data.user_id})
+           this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
+           this.$store.commit('updateReload')
            this.$router.push({name: 'Profile'});
           
-         } 
+         } ,
         
-        } ,  
-       methods: {
-           toggleVisible() {
-               this.display = !this.display;
-           },
+          
+    //    methods: {
+    //        toggleVisible() {
+    //            this.display = !this.display;
+    //        },
            async logout() {
         await this.$auth.logout()
        
       },
-           async getProfile()   {
-      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-    },
- async resetProfile()   {
-      await this.getProfile();
-      window.alert("Profile information reset.")
-      
-    },
-  async updateProfile()   {
-      await DBFunctions.updateProfile(this.userProfile)
-      window.alert("Profile information updated.")
-    },
+ 
     
 },
 };

@@ -32,8 +32,8 @@
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <a class="inline-block text-xl select-none" @click="projectSettings">Settings</a>
-        <a class="inline-block text-xl text-red-600 select-none" @click="remove">Delete</a>
+        <a class="inline-block text-xl select-none" @click="projectSettings" v-if="this.$store.state.otherUserProject === false">Settings</a>
+        <a class="inline-block text-xl text-red-600 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false">Delete</a>
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">

@@ -19,6 +19,7 @@ export const state = () => ({
   },
   darkMode: true,
   newProject: true,
+  otherUserProject: false,
 })
 export const mutations = {
   PUSH_HTML(state, code) {
@@ -63,6 +64,9 @@ export const mutations = {
   newProject(state, boolean) {
     state.newProject = boolean
   },
+  isNotYourProject(state, boolean) {
+    state.otherUserProject = boolean
+  },
 }
 export const actions = {
   viewProject({ commit }, payload) {
@@ -78,5 +82,13 @@ export const actions = {
     commit('PUSH_PROJECT_ID', specify[0]._id)
     commit('PUSH_TITLE', specify[0].project_title)
     commit('PUSH_DESCR', specify[0].description)
+  },
+  viewOtherProject({ commit }, payload) {
+    commit('PUSH_HTML', payload.projects.published_code.html)
+    commit('PUSH_CSS', payload.projects.published_code.css)
+    commit('PUSH_JS', payload.projects.published_code.js)
+    commit('PUSH_PROJECT_ID', payload.projects._id)
+    commit('PUSH_TITLE', payload.projectName)
+    commit('PUSH_DESCR', payload.projects.description)
   },
 }

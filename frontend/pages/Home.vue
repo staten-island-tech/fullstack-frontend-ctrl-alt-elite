@@ -122,7 +122,6 @@ export default {
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
-            console.log(this.followingProjects);
             } catch (error) {
                try {
                 await DBFunctions.createUser(this.$auth.user) ;
@@ -145,6 +144,7 @@ export default {
             }
             this.$store.dispatch("viewProject", data)
             this.$store.commit("newProject", false)
+            this.$store.commit("isNotYourProject", false)
             this.$router.push("Project")
         },
         newProject(){
@@ -154,6 +154,7 @@ export default {
             this.$store.commit("PUSH_TITLE", "")
             this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
+            this.$store.commit("isNotYourProject", false)
             this.$router.push("Project")
         }
     }

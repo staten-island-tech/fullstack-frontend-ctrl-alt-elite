@@ -2,11 +2,16 @@
   <nav id="projectnav" class="w-full h-1/10 p-4 flex flex-row justify-between items-center bg-gray-500">
     <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/5 p-4 flex justify-center items-center text-lg bg-transparent"> 
     <NuxtLink to="/Home"><img class="h-16 mx-4" src="../assets/logo-placeholder.png"></NuxtLink>
-    <div class="h-2/3 w-1/4 flex justify-between items-center">
+    <div class="h-2/3 w-1/4 flex justify-between items-center" v-if="this.$store.state.otherUserProject === false">
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>
       <button class="p-4 text-lg" @click="save">Save</button>
       <button class="p-4 text-lg" @click="publish">Publish</button>
+    </div>
+    <div v-else-if="this.$store.state.otherUserProject === true">
+      <button class="p-4 text-lg" @click="run">Run</button>
+      <button class="p-4 text-lg" @click="settings">Settings</button>
+      <button class="p-4 text-lg" @click="copy">Copy</button>
     </div>
   </nav>
 </template>
@@ -116,6 +121,16 @@ export default {
           })
         }
         this.$router.push("Home")
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async copy(){
+      try {
+        this.$store.commit("newProject", true)
+        this.$store.commit("isNotYourProject", false)
+        this.$store.commit("PUSH_TITLE", "")
+        this.$store.commit("PUSH_DESCR", "")
       } catch (error) {
         console.log(error);
       }

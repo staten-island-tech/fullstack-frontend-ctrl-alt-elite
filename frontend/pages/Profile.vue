@@ -109,11 +109,13 @@ export default {
  async resetProfile()   {
       await this.getProfile();
       window.alert("Profile information reset.")
+      window.location.reload()
       
     },
   async updateProfile()   {
       await DBFunctions.updateProfile(this.userProfile)
       window.alert("Profile information updated.")
+      window.location.reload()
     },
     
 }

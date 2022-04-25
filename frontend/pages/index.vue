@@ -2,12 +2,12 @@
   <div class="bg-black h-full">
     <WelcomingNavBar class="z-10 duration-75"/>   
     <section id="welcoming-page"> 
-      <div class="flex flex-row items-center h-5/6" data-aos="fade-right">
+      <div class="flex flex-row items-center h-5/6 mx-12" data-aos="fade-right">
         <div class="m-0 ml-20 w-1/3">
-          <h1 class="text-white uppercase font-bold text-6xl">This is the welcoming page.</h1>
-          <p class="text-white text-xl my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
+          <h1 class="text-white uppercase font-bold 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-3xl">This is the welcoming page.</h1>
+          <p class="text-white 2xl:text-xl xl:text-xl lg:text-lg md:text-lg sm:text-base my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
           <SignupButton class="text-white border h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
-         </div>  
+        </div>  
       </div>
     </section>
     <!-- <section class="h-screen flex items-center flex-col">

@@ -22,8 +22,8 @@ module.exports = {
           'l-bg-accent': '#000000',
           'd-primary': '#3500D3',
           'd-bg-primary' : '#121212',
-          'd-bg-secondary': '#282828',
-          'd-bg-accent': '#464646',
+          'd-bg-secondary': '#202020',
+          'd-bg-accent': '#303030',
 
           'light-gray' : '#dbdbdb',
           'medium-gray': '#b8b8b8',
@@ -37,6 +37,20 @@ module.exports = {
           'dark-primary': '#03000d',
           'dark-purple' : '#090021',
         },
+        theme: {
+          screens: {
+            'sm': '380px',
+           
+            'md': '768px',
+      
+            'lg': '1024px',
+          
+            'xl': '1280px',
+           
+            '2xl': '1536px',
+            }
+        }
+      
       },
     },
  

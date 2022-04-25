@@ -5,22 +5,10 @@ export const state = () => ({
   projectTitle: '',
   projectDescription: '',
   project_id: '',
-  followInfo: {
-    // should be only used within the profile module
-    name: '',
-    followers: 0,
-    following: 0,
-    projects: 0,
-  },
-  ownFollowInfo: {
-    // should be only used within the profile module
-    name: '',
-    followers: 0,
-    following: 0,
-    projects: 0,
-  },
+  reload:1,
+   
   otherIDInfo: {
-    // should be only used within the profile module
+    
     mongo_id: '',
     email: '',
   },
@@ -46,25 +34,16 @@ export const mutations = {
   PUSH_PROJECT_ID(state, id) {
     state.project_id = id
   },
-  updateFollowInfo(state, value) {
-    state.followInfo.name = value.name
+  updateReload(state) {
+    state.reload = !state.reload
+  },
    
-    state.followInfo.following = value.following
-    state.followInfo.followers = value.followers
-    state.followInfo.projects = value.projects
-  },
-
-  updateOwnFollowInfo(state, value) {
-    state.ownFollowInfo.name = value.name
-    state.ownFollowInfo.following = value.following
-    state.ownFollowInfo.followers = value.followers
-    state.ownFollowInfo.projects = value.projects
-  },
-
-  updateOtherIDInfo(state, value) {
-    state.otherIDInfo.email = value.email
+ updateOtherIDInfo(state, value) {
+    
+     state.otherIDInfo.email = value.email
     state.otherIDInfo.mongo_id = value.mongo_id
-  },
+    
+   }, 
   getMongoIDInfo(state, value) {
     state.otherIDInfo.mongo_id = value
   },

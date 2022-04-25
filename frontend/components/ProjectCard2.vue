@@ -4,8 +4,9 @@
       <p class="text-black dark:text-gray-200">sample</p>
     </div>
     <div class="h-1/4 w-full flex flex-col justify-center">
-      <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold">
-         {{item.project_title}}</h3>
+      <!-- <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold">
+         {{item.project_title}}</h3> -->
+          <NuxtLink class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" to="/profile/Following" > {{item.project_title}} </NuxtLink>
       <div class="flex flex-row justify-between px-3">
         <LikeButton/>
         <!-- <h4 class="text-gray-100"><slot>Username</slot></h4>
@@ -19,7 +20,7 @@
 export default {
 props: {
        item : {      // user id 
-           type:String,
+           type:Object,
            required:true,
        }
    },

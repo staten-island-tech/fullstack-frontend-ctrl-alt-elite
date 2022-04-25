@@ -13,7 +13,7 @@
           <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center m-10"> 
             
               <div v-if="ownProfile" class="flex flex-col justify-start"   > 
-                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
+                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
                  <imageList :class="{hidden:showImageList}" />
                 <!-- <input type = "file" ref="file" style="display: none" >
                   <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2"  @click="$refs.file.click()"><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />  Upload Profile Photo</button>      -->
@@ -154,11 +154,11 @@ export default {
  async getProfile()   {
     try {
                
-         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
-         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
-         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-          await DBFunctions.searchProjects("new", this.projects);
+        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+        await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+        await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+        await DBFunctions.searchProjects("new", this.projects);
           window.alert(JSON.stringify(this.projects.list))
          this.projects.list = this.userProfile.data.projects 
               

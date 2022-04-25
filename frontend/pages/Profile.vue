@@ -24,7 +24,6 @@
               
               <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
-          </div>
 
               <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
                   <h1 class="font-bold mb-3 text-lg mt-1 text-center text-black dark:text-white "  > {{userProfile.data.user_id}}</h1>

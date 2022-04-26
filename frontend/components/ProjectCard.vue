@@ -5,7 +5,7 @@
       <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="otherProject">{{ project.projects.project_title }}</h3>
       <div class="flex flex-row justify-between px-3">
         <LikeButton/>
-        <h4 class=" text-black dark:text-gray-100">{{ project.nickname }}</h4>
+        <h4 class=" text-black dark:text-gray-100">{{ project.name }}</h4>
         <FollowButton/>
       </div>
     </div>

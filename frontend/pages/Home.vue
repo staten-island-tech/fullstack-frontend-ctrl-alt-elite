@@ -77,34 +77,34 @@ export default {
                 project_title: 'Project 1',
                 user: 'Bob'
              },
-             {
-                project_title: 'Project 2',
-                user: 'Tom'
-             },
-             {
-                project_title: 'Project 3',
-                user: 'Tim'
-             },
-             {
-                project_title: 'Project 4',
-                user: 'Sam'
-             },
-             {
-                project_title: 'Project 5',
-                user: 'Ham'
-             },
-             {
-                project_title: 'Project 6',
-                user: 'Jam'
-             },
-             {
-                project_title: 'Project 7',
-                user: 'Kam'
-             },
-             {
-                project_title: 'Project 7',
-                user: 'Kam'
-             },
+                {
+                    project_title: 'Project 2',
+                    user: 'Tom'
+                },
+                {
+                    project_title: 'Project 3',
+                    user: 'Tim'
+                },
+                {
+                    project_title: 'Project 4',
+                    user: 'Sam'
+                },
+                {
+                    project_title: 'Project 5',
+                    user: 'Ham'
+                },
+                {
+                    project_title: 'Project 6',
+                    user: 'Jam'
+                },
+                {
+                    project_title: 'Project 7',
+                    user: 'Kam'
+                },
+                {
+                    project_title: 'Project 7',
+                    user: 'Kam'
+                },
          ],
          }
     },

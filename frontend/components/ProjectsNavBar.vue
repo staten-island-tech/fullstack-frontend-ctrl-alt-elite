@@ -1,8 +1,8 @@
 <template>
   <nav id="projectnav" class="w-full h-1/10 p-2 flex flex-row justify-between items-center bg-gray-900 text-white">
-  <NuxtLink to="/Home"><img class="h-16 mx-4 items-center" src="../assets/codeverse-logo.png"></NuxtLink>
-  <div class="w-1/2 flex flex-row py-2 items-center">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/6 p-3 flex justify-center items-center text-lg bg-transparent rounded"> 
+  <NuxtLink to="/Home"><img class="h-20 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
+  <div class="w-1/2 flex flex-row py-2 items-center align-center">
+    <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-1/8 p-3 flex justify-center items-center text-lg bg-transparent rounded"> 
     <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
   </div>
     
@@ -11,6 +11,7 @@
       <button class="bg-gray-500 hover:bg-gry-600 text-white py-2.5 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
       <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
       <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded text-base">Publish</button>
+      <!-- <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic"> -->
     </div>
   </nav>
 </template>
@@ -22,7 +23,7 @@ export default {
   components: { LikeButton },
   data(){
     return{
-      
+      userProfile: { data : ""}
     }
   },
   computed:{
@@ -36,9 +37,10 @@ export default {
     },
   },
   async mounted(){
-    
+     
   },
   methods:{
+      
     run(){
       try {
         const iframe = document.getElementById("iframe")

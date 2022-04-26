@@ -16,11 +16,11 @@
                             <div class="relative mt-12">
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
-                                    <Slideshow :project="homeProjects" class="mb-6"/>
+                                    <Slideshow :projects="homeProjects" class="mb-6"/>
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
-                                    <Slideshow :project="homeProjects" class="mb-6"/>
+                                    <Slideshow :projects="homeProjects" class="mb-6"/>
                                 </div>
                             </div>
                         </div>
@@ -67,42 +67,42 @@ export default {
          recent: [
              
          ],
-          info: {
-            followers:0,
-            following:0,
-            projects:0,
-            },
+        //   info: {
+        //     followers:0,
+        //     following:0,
+        //     projects:0,
+        //     },
          homeProjects: [
              {
-                title: 'Project 1',
+                project_title: 'Project 1',
                 user: 'Bob'
              },
              {
-                title: 'Project 2',
+                project_title: 'Project 2',
                 user: 'Tom'
              },
              {
-                title: 'Project 3',
+                project_title: 'Project 3',
                 user: 'Tim'
              },
              {
-                title: 'Project 4',
+                project_title: 'Project 4',
                 user: 'Sam'
              },
              {
-                title: 'Project 5',
+                project_title: 'Project 5',
                 user: 'Ham'
              },
              {
-                title: 'Project 6',
+                project_title: 'Project 6',
                 user: 'Jam'
              },
              {
-                title: 'Project 7',
+                project_title: 'Project 7',
                 user: 'Kam'
              },
              {
-                title: 'Project 7',
+                project_title: 'Project 7',
                 user: 'Kam'
              },
          ],
@@ -128,10 +128,9 @@ export default {
                }
             }
 
-        await DBFunctions.getInfo(this.$auth.user.email,this.info);
+       // await DBFunctions.getInfo(this.$auth.user.email,this.info);
         await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-        this.$store.commit('updateFollowInfo', this.info)
-        this.$store.commit('updateOwnFollowInfo', this.info)
+      //  this.$store.commit('updateFollowInfo', this.info)
            
     },  
     methods: {

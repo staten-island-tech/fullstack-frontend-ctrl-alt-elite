@@ -1,51 +1,32 @@
-
-
 <template>
   <div >
-     <FollowList :list="list" />
+     <FollowList :list="$parent.followingList" />
 
-    
-     <!-- <DefaultNavBar /> -->
-    
+     
       </div>
 </template>
 
 
 <script>
 
- import DBFunctions from "~/DBFunctions";
+
  
  
 export default {
     
    data(){
        return{ 
-        list:{data:null}, 
-         
+      
          }
       },
+   mounted()  {
+    this.$parent.defaultLink=true;
+  },
 
-   
-   async mounted ()
-   { 
- 
-     await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email,this.list);
-      
-      
-     } ,   
-    
-    
-
-  methods: { 
- 
-    
-    
-
-
+   methods: { 
+     
     },
    
-   
-
      
     
 }

@@ -6,7 +6,7 @@
         <div class="m-0 ml-20 w-1/3">
           <h1 class="text-white uppercase font-bold 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-3xl sm:text-3xl">This is the welcoming page.</h1>
           <p class="text-white 2xl:text-xl xl:text-xl lg:text-lg md:text-lg sm:text-base my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio. Aspernatur tenetur quis recusandae officiis quae quas aperiam quidem eos eveniet. Odit, quisquam ut!</p>
-          <SignupButton class="text-white border h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
+          <SignupButton class="text-white border h-10  w-1/3 ml-0">Sign up today!</SignupButton>
         </div>  
       </div>
     </section>

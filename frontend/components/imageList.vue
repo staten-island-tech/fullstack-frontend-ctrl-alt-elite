@@ -7,7 +7,7 @@
 
            
              
-           <img 
+           <img s
            :src='image'  class="basis-5 rounded-full h-40 justify-self-center self-center m-1"
              @click="setImage(image)"/>
             
@@ -41,7 +41,8 @@ export default {
            "https://images.freeimages.com/images/large-previews/a31/colorful-umbrella-1176220.jpg",
            "https://images.freeimages.com/images/large-previews/107/green-leaves-1410259.jpg",
            "https://images.freeimages.com/images/large-previews/655/colorful-architecture-1-1216925.jpg",
-
+          "https://images.freeimages.com/images/small-previews/91a/abstract-2-1564490.jpg"
+          
             
           
          ],

@@ -1,17 +1,22 @@
 <template>
-  <nav id="projectnav" class="w-full h-1/10 p-2 flex flex-row justify-between items-center bg-gray-900 text-white">
-  <NuxtLink to="/Home"><img class="h-20 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
+  <nav id="projectnav" class="w-full h-1/10 flex flex-row justify-between items-center bg-gray-900 text-white">
   <div class="w-1/2 flex flex-row py-2 items-center align-center">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-1/8 p-3 flex justify-center items-center text-lg bg-transparent rounded"> 
+    <NuxtLink to="/Home"><img class="h-20 px-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
+  <div class="flex flex-col items-center">
+  <div class="flex flex-row w-1/2 m-auto items-center">
+    <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 p-1 flex justify-center items-center text-md bg-transparent rounded"> 
     <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
   </div>
+    <p class="text-sm">filler words</p>
+  </div>
+  </div>
     
-    <div class="h-2/3 w-1/5 flex justify-around items-center">
-      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded  text-base" @click="run">Run</button>
-      <button class="bg-gray-500 hover:bg-gry-600 text-white py-2.5 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
-      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
-      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2.5 px-4 rounded text-base">Publish</button>
-      <!-- <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic"> -->
+    <div class="h-2/3 w-1/4 flex justify-around items-center">
+      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded  text-base" @click="run">Run</button>
+      <button class="bg-gray-500 hover:bg-gry-600 text-white py-2 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
+      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded text-base">Publish</button>
+      <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
     </div>
   </nav>
 </template>
@@ -23,7 +28,10 @@ export default {
   components: { LikeButton },
   data(){
     return{
-      userProfile: { data : ""}
+      info: {
+      profilePic: '',
+      },
+      userProfile: { data : ""},
     }
   },
   computed:{
@@ -37,10 +45,16 @@ export default {
     },
   },
   async mounted(){
-     
+      this.getProfile();
   },
   methods:{
-      
+    async getProfile() {
+      try {
+        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+      } catch {
+        window.alert("error")
+      }
+    },
     run(){
       try {
         const iframe = document.getElementById("iframe")

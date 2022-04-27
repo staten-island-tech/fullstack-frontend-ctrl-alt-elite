@@ -9,7 +9,7 @@
           <SignupButton class="text-white border h-10 rounded-md w-1/3 ml-0">Sign up today!</SignupButton>
          </div>  
       </div>
-      <Snackbar/>
+      
     </section>
     <!-- <section class="h-screen flex items-center flex-col">
       <h2 class="text-white text-5xl font-bold uppercase m-10" data-aos="fade-up">Welcoming Page Info</h2>
@@ -42,7 +42,7 @@ AOS.init();
 export default {
     
   components: {
-    Snackbar
+    
   },
   data(){
     return{

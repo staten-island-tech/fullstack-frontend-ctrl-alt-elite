@@ -1,13 +1,13 @@
 <template>
-  <nav id="projectnav" class="w-full h-1/10 flex flex-row justify-between items-center bg-gray-900 text-white">
+  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-gray-900 text-white">
   <div class="w-1/2 flex flex-row py-2 items-center align-center">
-    <NuxtLink to="/Home"><img class="h-20 px-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
-  <div class="flex flex-col items-center">
-  <div class="flex flex-row w-1/2 m-auto items-center">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 p-1 flex justify-center items-center text-md bg-transparent rounded"> 
+    <NuxtLink to="/Home"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
+  <div class="flex flex-col items-center ">
+  <div class="flex flex-row items-center">
+    <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
     <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
   </div>
-    <p class="text-sm">filler words</p>
+    <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent text-white hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
   </div>
   </div>
     
@@ -30,6 +30,7 @@ export default {
     return{
       info: {
       profilePic: '',
+      name:'',
       },
       userProfile: { data : ""},
     }

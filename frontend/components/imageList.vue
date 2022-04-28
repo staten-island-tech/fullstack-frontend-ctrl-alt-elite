@@ -7,8 +7,8 @@
 
            
              
-           <img s
-           :src='image'  class="basis-5 rounded-full h-40 justify-self-center self-center m-1"
+           <img 
+           :src='image'  class="basis-5  h-30 justify-self-center self-center m-1"
              @click="setImage(image)"/>
             
         

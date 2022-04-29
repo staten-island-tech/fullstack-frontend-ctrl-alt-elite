@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
-                                    <Slideshow :projects="homeProjects" class="mb-6"/>
+                                    <Slideshow :projects="homeProjects" class="mb-6 hidden md:flex"/>
                                 </div>
                             </div>
                         </div>

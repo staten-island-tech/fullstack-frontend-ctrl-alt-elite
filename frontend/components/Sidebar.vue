@@ -8,7 +8,7 @@
                <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
-                <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="info.profilePic">
+                <img class="rounded-full h-24 w-24 justify-self-center self-center m-1 " :src="info.profilePic">
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{info.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">

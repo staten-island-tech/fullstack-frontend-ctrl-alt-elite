@@ -22,7 +22,7 @@
               
               <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"  />
               
-              <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
+              <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
 
               <div class="m-10 flex flex-col text-black dark:text-white w-1/3">

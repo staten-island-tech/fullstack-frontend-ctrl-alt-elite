@@ -8,7 +8,7 @@
            
              
            <img 
-           :src='image'  class="basis-5  h-30 justify-self-center self-center m-1"
+           :src='image'  class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1"
              @click="setImage(image)"/>
             
         
@@ -36,12 +36,17 @@ export default {
     
   data(){
        return{  
+         
         imageList:[
+
+         "../assets/geek-avatar-1632962.jpg",
            "https://images.freeimages.com/images/large-previews/37e/slow-shutter-speed-1182017.jpg",
            "https://images.freeimages.com/images/large-previews/a31/colorful-umbrella-1176220.jpg",
            "https://images.freeimages.com/images/large-previews/107/green-leaves-1410259.jpg",
            "https://images.freeimages.com/images/large-previews/655/colorful-architecture-1-1216925.jpg",
-          "https://images.freeimages.com/images/small-previews/91a/abstract-2-1564490.jpg"
+          "https://images.freeimages.com/images/small-previews/91a/abstract-2-1564490.jpg", 
+          
+          
           
             
           

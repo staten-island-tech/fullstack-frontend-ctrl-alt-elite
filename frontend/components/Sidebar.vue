@@ -39,6 +39,12 @@
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
                 </div>
+                 <div class="h-1/10">
+                    <NuxtLink to="/ProjectsPage" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                        <font-awesome-icon :icon="['fas', 'pen']"></font-awesome-icon>
+                        <p class="p-2">Your Projects</p>
+                    </NuxtLink>
+                </div>
                 <div class="h-1/10">
                     <NuxtLink to="/Project" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>

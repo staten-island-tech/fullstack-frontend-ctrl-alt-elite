@@ -1,6 +1,6 @@
 <template>
-  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-gray-900 text-white">
-  <div class="w-1/2 flex flex-row py-2 items-center align-center">
+  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white">
+  <div class="w-1/2 flex flex-row py-2 items-center">
     <NuxtLink to="/Home"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
   <div class="flex flex-col items-center ">
   <div class="flex flex-row items-center">
@@ -12,10 +12,10 @@
   </div>
     
     <div class="h-2/3 w-1/4 flex justify-around items-center">
-      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded  text-base" @click="run">Run</button>
-      <button class="bg-gray-500 hover:bg-gry-600 text-white py-2 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
-      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
-      <button class="bg-gray-500 hover:bg-gray-600 text-white  py-2 px-4 rounded text-base">Publish</button>
+      <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded  text-base" @click="run">Run</button>
+      <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+      <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
+      <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-base">Publish</button>
       <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
     </div>
   </nav>

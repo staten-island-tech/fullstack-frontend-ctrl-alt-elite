@@ -1,8 +1,8 @@
 <template>
 
-  <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center" :class="{ dark : this.$store.state.darkMode }">
-    
-    <projectsNavBar/>
+  <section id="project" class="h-screen w-screen relative flex flex-col justify-center " :class="{ dark : this.$store.state.darkMode }">
+        <projectsNavBar/>
+
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="h-40/1 w-full flex row">
         <div id="one" class="h-full w-1/3">
@@ -33,7 +33,7 @@
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
         <a class="inline-block text-xl select-none" @click="projectSettings">Settings</a>
-        <a class="inline-block text-xl text-red-600 select-none">Delete</a>
+        <a class="inline-block text-xl text-red-600 select-none"><font-awesome-icon icon="fa-solid fa-trash-can" /> Delete </a>
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">

@@ -45,7 +45,7 @@ export default {
       // spaceBetween: "30",
             
       breakpoints: {
-            1680: {
+            1500: {
               slidesPerView: 3,
               direction: 'horizontal'
             },

@@ -67,6 +67,7 @@ export default {
          recent: [
              
          ],
+          projects: {list: []},
         //   info: {
         //     followers:0,
         //     following:0,

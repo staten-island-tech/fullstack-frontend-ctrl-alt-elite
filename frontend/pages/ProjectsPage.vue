@@ -10,7 +10,7 @@
       <div class="search-bar">
         <input
           type="text"
-          v-model="search"
+          v-model="searchYP"
           
           placeholder="Find a Project"
           class="actual-bar"/>
@@ -34,6 +34,7 @@ export default {
     }
   },
    async mounted() {
+     //await DBFunctions.searchProjects("new", this.projects);
   const data = await fetch("https://jsonplaceholder.typicode.com/posts");
     const newData = await data.json();
     const finalData = newData.slice(0,10)
@@ -49,7 +50,7 @@ export default {
   computed: {
      filteredProject: function(){
             return this.projects.filter((project) => {
-                return project.title.match(this.search);
+                return project.title.match(this.searchYP);
             });
         }
   },

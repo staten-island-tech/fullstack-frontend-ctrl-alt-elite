@@ -39,7 +39,8 @@ export default {
          
         imageList:[
 
-         "../assets/geek-avatar-1632962.jpg",
+         "https://images.freeimages.com/images/large-previews/023/geek-avatar-1632962.jpg",
+        //  "https://3.files.edl.io/aeb1/20/12/02/154937-46cc468f-b7f4-4bb3-945e-3265bdb605d4.jpg",
            "https://images.freeimages.com/images/large-previews/37e/slow-shutter-speed-1182017.jpg",
            "https://images.freeimages.com/images/large-previews/a31/colorful-umbrella-1176220.jpg",
            "https://images.freeimages.com/images/large-previews/107/green-leaves-1410259.jpg",

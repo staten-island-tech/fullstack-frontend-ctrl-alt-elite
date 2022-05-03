@@ -40,11 +40,11 @@ module.exports = {
           'dark-purple' : '#090021',
         },
         theme: {
-          screens: {
-            'xs': '380px',
-
-            ...defaultTheme.screens,
+          extend: {
+            screens: {
+              '3xl' : '1700px'
             }
+          }
         }
       
       },

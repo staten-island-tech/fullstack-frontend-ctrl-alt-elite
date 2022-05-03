@@ -38,11 +38,23 @@ export default {
     const swiper = new Swiper('.swiper', {
       // Optional parameters
       // @see https://swiperjs.com/swiper-api#parameters
-      direction: 'horizontal',
+      direction: 'vertical',
       freeMode: true,
-      slidesPerView: 3,
+      slidesPerView: 1,
       // spaceBetween: 10,
       // spaceBetween: "30",
+            
+      breakpoints: {
+            1680: {
+              slidesPerView: 3,
+              direction: 'horizontal'
+            },
+
+            1050: {
+              direction: 'horizontal',
+              slidesPerView: 2,
+            },
+      },
 
       // remove unused modules if needed
       modules: [ FreeMode, Navigation],

@@ -20,7 +20,7 @@
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
-                                    <Slideshow :projects="homeProjects" class="mb-6 hidden md:flex"/>
+                                    <Slideshow :projects="homeProjects" class="mb-6 "/>
                                 </div>
                             </div>
                         </div>
@@ -28,20 +28,22 @@
                     <div class="w-1/5 h-4/5 z-20">
                         <div class="fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 w-1/6 right-20 top-20 flex flex-col items-center darkBorder"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
-                            <div v-for="(project, key) in recent" :key="key" class="w-2/3">
-                                <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
-                                    <h3 class="dark:text-white text-xl">{{ project.project_title }}</h3>
-                                   <!----> <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
-                                        <div class="flex flex-row text-sm items-center text-center">
-                                            <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
-                                            <p class="p-2">{{ project.updatedAt }}</p>
+                            <div class="flex flex-col items-center overflow-scroll  overflow-x-hidden h-3/4">
+                                <div v-for="(project, key) in recent" :key="key" class="w-3/4">
+                                    <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
+                                        <h3 class="dark:text-white text-xl">{{ project.project_title }}</h3>
+                                    <!----> <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
+                                            <div class="flex flex-row text-sm items-center text-center">
+                                                <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
+                                                <p class="p-2">{{ project.updatedAt }}</p>
+                                            </div>
+                                            <button class="text-black dark:text-white" @click="toProjects"><p> View project &#10143;</p></button>
                                         </div>
-                                        <button class="text-black dark:text-white" @click="toProjects"><p> View project &#10143;</p></button>
                                     </div>
                                 </div>
+                                <NuxtLink to="/ProjectAll" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
                             </div>
-                            <NuxtLink to="/ProjectAll" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
-                            <NuxtLink to="/Project" class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3">
+                            <NuxtLink to="/Project" class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3 bg-l-bg-primary dark:bg-d-bg-secondary">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                                 <p class="p-2">Create New Project</p>
                             </NuxtLink>

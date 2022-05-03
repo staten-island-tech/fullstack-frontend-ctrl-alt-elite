@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black h-full ">
+  <div class=" h-full ">
     <WelcomingNavBar class="z-10 duration-75 md:text-lg text-xs"/>   
     <section id="welcoming-page" class="md:p-24 p-0"> 
       <div class="flex flex-row md:justify-start justify-center items-center h-5/6 mx-16 md:mx-0" data-aos="fade-right">

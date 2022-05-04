@@ -15,7 +15,7 @@
                             <div class="relative mt-12">
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
-                                    <Slideshow :project="homeProjects" class="mb-6"/>
+                                    <Slideshow :project="trendingProjects" class="mb-6"/>
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
@@ -62,56 +62,7 @@ export default {
        return{ 
          userProfile: { data : ''},
          recent: [],
-         homeProjects: [
-             {
-                projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Bob'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Tom'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Tim'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Sam'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Ham'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Jam'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Kam'
-             },
-             {
-                 projects:{
-                    project_title: 'Hello 1',
-                },
-                name: 'Kam'
-             },
-         ],
+         trendingProjects: [],
          followingProjects: []
          }
     },
@@ -122,6 +73,7 @@ export default {
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
+            await DBFunctions.getTrendingProjects(this.trendingProjects)
             } catch (error) {
                try {
                 await DBFunctions.createUser(this.$auth.user) ;

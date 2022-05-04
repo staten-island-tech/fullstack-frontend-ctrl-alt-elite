@@ -3,9 +3,9 @@
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
             
-                <div class="w-full flex flex-row">
-                    <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
-                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center">
+                <div class="w-full flex flex-col-reverse xl:flex-row items-center">
+                    <div class="w-full xl:w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
+                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center items-center">
                             <!-- SEARCH RESULTS -->
                             <!-- <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
                                  <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
@@ -13,7 +13,7 @@
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
-                            <div class="relative mt-12">
+                            <div class="relative xl:mt-12">
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :projects="homeProjects" class="mb-6"/>
@@ -25,8 +25,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-1/5 h-4/5 z-20">
-                        <div class="fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 w-1/6 right-20 top-20 flex flex-col items-center darkBorder"> 
+                    <div class="w-4/5 xl:w-1/5 h-1/3 xl:h-4/5 xl:z-20 flex justify-center items-center mt-16 xl:mt-0">
+                        <div class="xl:fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-2xl">Recent Projects </h2>
                             <div class="flex flex-col items-center overflow-scroll  overflow-x-hidden h-3/4">
                                 <div v-for="(project, key) in recent" :key="key" class="w-3/4">

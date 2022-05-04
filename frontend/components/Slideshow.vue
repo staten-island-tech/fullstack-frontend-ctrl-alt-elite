@@ -1,12 +1,12 @@
 <template>
-    <div>
+    <div >
         <div class="swiper">
         <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
           
           <div v-for="project in projects" :key="project" class="swiper-slide">
             
-            <ProjectCard class="slider-content" :project="project"/>
+            <ProjectCard class="slider-content " :project="project"/>
           </div>
         </div>
         <!-- If pagination is needed -->
@@ -38,7 +38,7 @@ export default {
     const swiper = new Swiper('.swiper', {
       // Optional parameters
       // @see https://swiperjs.com/swiper-api#parameters
-      direction: 'vertical',
+      direction: 'horizontal',
       freeMode: true,
       slidesPerView: 1,
       // spaceBetween: 10,

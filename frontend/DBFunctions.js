@@ -178,7 +178,6 @@ module.exports.getProjects = async (mongoID, projects) => {
     const data = await response.json()
     if (response.status === 500) throw response.error
     const parsed = JSON.parse(JSON.stringify(data.projects))
-
     const forDisplay = parsed.splice(0, 6)
 
     projects.push(...forDisplay)
@@ -197,6 +196,60 @@ module.exports.getProjects2 = async (mongoID, projects) => {
     if (response.status === 500) throw response.error
     projects.list =data.projects;
   } catch (error) {}
+module.exports.getFollowingProjects = async (mongo_id, projects) => {
+  const userInfo = { _id: mongo_id }
+  const response = await fetch(`http://localhost:5000/getFollowingProjects`, {
+    method: 'POST',
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+  const forDisplay = parsed.splice(0, 10)
+  projects.push(...forDisplay)
+}
+
+module.exports.getTrendingProjects = async (project) => {
+  const response = await fetch(`http://localhost:5000/getTrendingProjects`, {
+    method: 'GET',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+  const forDisplay = parsed.splice(0, 10)
+  project.push(...forDisplay)
+}
+
+module.exports.addLike = async (projectInfo, email) => {
+  const pushInfo = {
+    userID: projectInfo.user_id,
+    _id: projectInfo._id,
+    projectTitle: projectInfo.projects.project_title,
+    followUserID: email,
+  }
+  const response = await fetch(`http://localhost:5000/addLike`, {
+    method: 'POST',
+    body: JSON.stringify(pushInfo),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+}
+
+module.exports.removeLike = async (projectInfo, email) => {
+  const pushInfo = {
+    userID: projectInfo.user_id,
+    _id: projectInfo._id,
+    projectTitle: projectInfo.projects.project_title,
+    followUserID: email,
+  }
+  const response = await fetch(`http://localhost:5000/removeLike`, {
+    method: 'POST',
+    body: JSON.stringify(pushInfo),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
 }
 
 module.exports.updateProject = async (payload) => {
@@ -208,7 +261,20 @@ module.exports.updateProject = async (payload) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
-   console.log(data)
+  } catch (error) {
+    window.alert('error')
+  }
+}
+
+module.exports.deleteProject = async (payload) => {
+  try {
+    const response = await fetch(`http://localhost:5000/deleteProject`, {
+      method: 'DELETE',
+      // Adding body or contents to send
+      body: JSON.stringify(payload), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
   } catch (error) {
     window.alert('error')
   }

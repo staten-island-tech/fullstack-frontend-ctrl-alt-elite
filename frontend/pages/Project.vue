@@ -4,7 +4,7 @@
         <projectsNavBar/>
 
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
-      <div id="editcontainer" class="h-40/1 w-full flex row">
+      <div id="editcontainer" class="h-40/1 w-full flex">
         <div id="one" class="h-full w-1/3">
           <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
@@ -18,22 +18,22 @@
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
-      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-500">
-        <div class="h-1/10 w-full flex flex-row bg-pink-400">
-          <button class="h-full w-1/2 border-2" @click="lightMode">Light</button>
-          <button class="h-full w-1/2 border-2" @click="darkMode">Dark</button>
+      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400">
+        <div class="h-1/10 w-full flex flex-row">
+          <button class="h-full w-1/2 bg-white text-gray-700 rounded p-2" @click="lightMode">Light</button>
+          <button class="h-full w-1/2 bg-gray-700 text-white rounded p-2" @click="darkMode">Dark</button>
         </div>
-        <div class="h-1/5 w-full flex flex-row bg-green-500">
-          <button id="left" class="h-full w-1/3 border-2" @click="editorOrientation">Left</button>
-          <button id="middle" class="h-full w-1/3 border-2" @click="editorOrientation">Default</button>
-          <button id="right" class="h-full w-1/3 border-2" @click="editorOrientation">Right</button>
+        <div class="h-1/5 w-full flex flex-row">
+          <button id="left" class="h-full w-1/3 " @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-left" /></button>
+          <button id="middle" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-up" /></button>
+          <button id="right" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-right" /></button>
         </div>
         <div class="h-1/10 w-full flex flex-row ">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
         <a class="inline-block text-xl select-none" @click="projectSettings">Settings</a>
-        <a class="inline-block text-xl text-red-600 select-none"><font-awesome-icon icon="fa-solid fa-trash-can" /> Delete </a>
+        <a class="inline-block text-xl text-red-500 select-none"><font-awesome-icon icon="fa-solid fa-trash-can" /> Delete </a>
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">

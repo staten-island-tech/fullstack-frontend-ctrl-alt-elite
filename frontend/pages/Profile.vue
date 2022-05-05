@@ -77,7 +77,6 @@
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
-
 export default {
   
   data(){
@@ -164,7 +163,6 @@ export default {
               
           
           
-
     } catch 
     { window.alert ("error getting the profile")
     }
@@ -208,7 +206,6 @@ li {
   padding: 0.25rem;
   font-size: 1rem;
 }
-
 .container {
    margin: auto;
    margin-top: 20px;
@@ -219,23 +216,18 @@ li {
    /* border-style: solid;
   border-width: 3px;
   border-image: conic-gradient( magenta, blue, magenta) 1; */
-
   padding: 10px;
   border-radius: 12px;
-
 }
  
   
-
 a.nuxt-link-exact-active, .defaultLink {
   color:rgb(160, 148, 228);
   text-decoration: underline #3500D3 3px;
   font-weight : bold;
   
 }
-
  
-
 .link-underline {
 		border-bottom-width: 0;
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
@@ -244,30 +236,23 @@ a.nuxt-link-exact-active, .defaultLink {
 		background-repeat: no-repeat;
 		transition: background-size .5s ease-in-out;
 	}
-
 	.link-underline-black {
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#3500D3, #3500D3)
 	}
-
 	.link-underline:hover {
 		background-size: 100% 3px;
 		background-position: 0 100%
 	}
-
   #body {
     height: 5rem;
     width: 5rem;
   }
-
-
 h1{
     color:white;
     font-size: 1.5rem;
 }
-
 .darkBorder {
     border-bottom: solid 3px;
     border-image: conic-gradient( magenta, #3500D3, magenta) 1;
 }
-
 </style>

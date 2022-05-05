@@ -2,29 +2,29 @@
   <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white">
   <div class="w-1/2 flex flex-row py-2 items-center">
     <NuxtLink to="/Home"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
-  <div class="flex flex-col items-center ">
-  <div class="flex flex-row items-center">
-    <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
-    <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
+    <div class="flex flex-col items-center ">
+      <div class="flex flex-row items-center">
+        <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
+        <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
+      </div>
+      <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent text-white hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
+    </div>
   </div>
-    <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent text-white hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
-  </div>
-  </div>
-    
+ 
     <div class="h-2/3 w-1/4 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
       <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded  text-base" @click="run">Run</button>
       <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
       <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
       <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-base">Publish</button>
       <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
-    <div>
-      
-    <div v-else-if="this.$store.state.otherUserProject === true">
+    </div>
+    <div v-else-if="this.$store.state.otherUserProject === true">   
       <button class="p-4 text-lg" @click="run">Run</button>
       <button class="p-4 text-lg" @click="settings">Settings</button>
       <button class="p-4 text-lg" @click="copy">Copy</button>
     </div>
 
+</nav>
 </template>
 
 <script>

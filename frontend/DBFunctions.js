@@ -413,8 +413,8 @@ module.exports.searchProjects = async(searchArguments,projects) => {
       // window.alert(JSON.stringify(projects.list))
 
     } catch (error) {
-      
+
 
     }
-  }
-
+}
+}

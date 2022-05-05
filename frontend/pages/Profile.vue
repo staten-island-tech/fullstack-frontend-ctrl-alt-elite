@@ -193,6 +193,9 @@ export default {
       this.$store.commit('updateReload')
       window.alert("Profile information updated.")
       window.location.reload()
+    } catch {
+      window.alert("ok")
+    }
     },
     selectImage()
     {

@@ -183,6 +183,8 @@ export default {
  async resetProfile()   {
        this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
       await this.getProfile();
+      window.alert("Profile information reset.")
+      window.location.reload()
       
     },
   async updateProfile()   {
@@ -190,9 +192,7 @@ export default {
       await DBFunctions.updateProfile(this.userProfile)
       this.$store.commit('updateReload')
       window.alert("Profile information updated.")
-    } catch {
-         window.alert("can't update profile")
-    }
+      window.location.reload()
     },
     selectImage()
     {

@@ -32,8 +32,8 @@
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <a class="inline-block text-xl select-none" @click="projectSettings">Settings</a>
-        <a class="inline-block text-xl text-red-500 select-none"><font-awesome-icon icon="fa-solid fa-trash-can" /> Delete </a>
+        <a class="inline-block text-xl select-none" @click="projectSettings" v-if="this.$store.state.otherUserProject === false">Settings</a>
+        <a class="inline-block text-xl text-red-500 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" />Delete</a>
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
@@ -46,6 +46,7 @@
 </template>
 
 <script>
+import DBFunctions from "~/DBFunctions";
 import AceEditor from "vue2-ace-editor";
 import projectsNavBar from "../components/ProjectsNavBar.vue" 
 
@@ -60,15 +61,26 @@ export default {
         contentHTML:"",
         contentCSS:"",
         contentJS:"",
+        userProfile: { data : ''},
       }
     },
-    mounted(){
-      let editor1 = this.$refs.editor1.editor
-      let editor2 = this.$refs.editor2.editor
-      let editor3 = this.$refs.editor3.editor
-      editor1.setValue(this.$store.state.codeHTML)
-      editor2.setValue(this.$store.state.codeCSS)
-      editor3.setValue(this.$store.state.codeJS)
+    async mounted(){
+      try {
+        let editor1 = this.$refs.editor1.editor
+        let editor2 = this.$refs.editor2.editor
+        let editor3 = this.$refs.editor3.editor
+        editor1.setValue(this.$store.state.codeHTML)
+        editor2.setValue(this.$store.state.codeCSS)
+        editor3.setValue(this.$store.state.codeJS)
+        if (this.$store.state.otherIDInfo.mongo_id === undefined || this.$store.state.otherIDInfo.email === undefined){
+          console.log("hello");
+          await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+          const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+          this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
     computed:{
       title:{
@@ -212,6 +224,18 @@ export default {
       pushJS(code){
         this.$store.commit("PUSH_JS", code)
       },
+      async remove(){
+        try {
+          console.log("hello");
+          await DBFunctions.deleteProject({
+            "email": this.$store.state.otherIDInfo.email,
+            "project_id": this.$store.state.project_id
+          })
+          this.$router.push("Home")
+        } catch (error) {
+          console.log(error);
+        }
+      }
     }
 }
 </script>

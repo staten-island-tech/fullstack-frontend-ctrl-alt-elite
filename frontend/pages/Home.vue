@@ -2,7 +2,6 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
-            
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
                         <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center">
@@ -16,11 +15,11 @@
                             <div class="relative mt-12">
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
-                                    <Slideshow :projects="homeProjects" class="mb-6"/>
+                                    <Slideshow :project="trendingProjects" class="mb-6"/>
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
-                                    <Slideshow :projects="homeProjects" class="mb-6"/>
+                                    <Slideshow :project="followingProjects" class="mb-6"/>
                                 </div>
                             </div>
                         </div>
@@ -41,10 +40,10 @@
                                 </div>
                             </div>
                             <NuxtLink to="/ProjectAll" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
-                            <NuxtLink to="/Project" class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3">
+                            <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                                 <p class="p-2">Create New Project</p>
-                            </NuxtLink>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -59,53 +58,12 @@ import DBFunctions from "~/DBFunctions";
 
 export default {
   components: { Slideshow },
-
-    
      data(){
        return{ 
          userProfile: { data : ''},
-         recent: [
-             
-         ],
-        //   info: {
-        //     followers:0,
-        //     following:0,
-        //     projects:0,
-        //     },
-         homeProjects: [
-             {
-                project_title: 'Project 1',
-                user: 'Bob'
-             },
-             {
-                project_title: 'Project 2',
-                user: 'Tom'
-             },
-             {
-                project_title: 'Project 3',
-                user: 'Tim'
-             },
-             {
-                project_title: 'Project 4',
-                user: 'Sam'
-             },
-             {
-                project_title: 'Project 5',
-                user: 'Ham'
-             },
-             {
-                project_title: 'Project 6',
-                user: 'Jam'
-             },
-             {
-                project_title: 'Project 7',
-                user: 'Kam'
-             },
-             {
-                project_title: 'Project 7',
-                user: 'Kam'
-             },
-         ],
+         recent: [],
+         trendingProjects: [],
+         followingProjects: []
          }
     },
     async mounted (){
@@ -114,9 +72,9 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
-            console.log(this.recent);
+            await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
+            await DBFunctions.getTrendingProjects(this.trendingProjects)
             } catch (error) {
-            
                try {
                 await DBFunctions.createUser(this.$auth.user) ;
                 const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
@@ -140,7 +98,18 @@ export default {
                 projectName: e.path[3].id
             }
             this.$store.dispatch("viewProject", data)
-            this.$store.commit("updateProject")
+            this.$store.commit("newProject", false)
+            this.$store.commit("isNotYourProject", false)
+            this.$router.push("Project")
+        },
+        newProject(){
+            this.$store.commit("PUSH_HTML", "")
+            this.$store.commit("PUSH_CSS", "")
+            this.$store.commit("PUSH_JS", "")
+            this.$store.commit("PUSH_TITLE", "")
+            this.$store.commit("PUSH_DESCR", "")
+            this.$store.commit("newProject", true)
+            this.$store.commit("isNotYourProject", false)
             this.$router.push("Project")
         }
     }

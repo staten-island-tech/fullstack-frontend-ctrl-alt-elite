@@ -39,11 +39,11 @@
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
                 </div>
-                <div class="h-1/6">
-                    <NuxtLink to="/Project" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                <div class="h-1/10">
+                    <button class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
-                    </NuxtLink>
+                    </button>
                 </div>
                 <button class="text-red-400 h-1/6 flex items-center pl-6" @click="logout">
                     <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
@@ -131,8 +131,27 @@ export default {
         await this.$auth.logout()
        
       },
- 
-    
+           async getProfile()   {
+      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+    },
+ async resetProfile()   {
+      await this.getProfile();
+      window.alert("Profile information reset.")
+      
+    },
+  async updateProfile()   {
+      await DBFunctions.updateProfile(this.userProfile)
+      window.alert("Profile information updated.")
+    },
+    newProject(){
+        this.$store.commit("PUSH_HTML", "")
+            this.$store.commit("PUSH_CSS", "")
+            this.$store.commit("PUSH_JS", "")
+            this.$store.commit("PUSH_TITLE", "")
+            this.$store.commit("PUSH_DESCR", "")
+            this.$store.commit("newProject", true)
+            this.$router.push("Project")
+    }
 },
 };
 </script>

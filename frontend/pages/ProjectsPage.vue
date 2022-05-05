@@ -25,6 +25,7 @@
 </template>
 
 <script>
+//import db functions 
 export default {
   data() {
     return {

@@ -28,16 +28,16 @@
                     <div class="w-4/5 xl:w-1/5 h-1/3 xl:h-4/5 xl:z-20 flex justify-center items-center mt-16 xl:mt-0">
                         <div class="xl:fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-xl xl:text-2xl">Recent Projects </h2>
-                            <div class="flex flex-col items-center overflow-scroll  overflow-x-hidden h-3/4 sidebar">
+                            <div class="flex flex-col items-center overflow-scroll w-full overflow-x-hidden h-3/4" :class="{ sidebarDark : this.$store.state.darkMode, sidebarLight : !this.$store.state.darkMode }">
                                 <div v-for="(project, key) in recent" :key="key" class="w-3/4">
-                                    <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
+                                    <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray w-full">
                                         <h3 class="dark:text-white text-lg 2xl:text-xl">{{ project.project_title }}</h3>
-                                    <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
-                                            <div class="flex flex-row text-sm items-center text-center">
+                                    <div class="text-medium-gray dark:text-mid-gray flex flex-col items-center text-center w-full">
+                                            <div class="flex flex-row items-center justify-start text-center text-xs w-full">
                                                 <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
-                                                <p class="p-2 text-xs">{{ project.updatedAt }}</p>
+                                                <p class="p-2 text-left">{{ project.updatedAt }}</p>
                                             </div>
-                                            <button class="text-black dark:text-white" @click="toProjects"><p> View project &#10143;</p></button>
+                                            <button class="text-black dark:text-white text-sm xl:text-base w-full text-right" @click="toProjects"><p> View project &#10143;</p></button>
                                         </div>
                                     </div>
                                 </div>
@@ -158,8 +158,12 @@ export default {
 
 }
 
-.sidebarbody::-webkit-scrollbar {
-  background-color: white;
+.sidebarDark::-webkit-scrollbar-track {
+  background-color: #202020;
+}
+
+.sidebarLight::-webkit-scrollbar-track {
+  background-color: #fff;
 }
 /* body {
        background-color: #1b1b1b;

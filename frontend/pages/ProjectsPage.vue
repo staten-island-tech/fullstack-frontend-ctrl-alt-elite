@@ -25,13 +25,12 @@
 </template>
 
 <script>
-import DBFunctions from "~/DBFunctions";
+//import DBFunctions from "~/DBFunctions";
 export default {
   data() {
     return {
       projects: [],
       search: '', 
-      projects: {list: []},
       
     }
   },

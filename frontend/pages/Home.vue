@@ -16,7 +16,7 @@
 
                             <div class="relative mt-12">
                                  <div class="search-bar">
-                        <input type="text" v-model="search" placeholder="Find a project" >
+                        <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project">
                     </div>
 
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -27,8 +27,6 @@
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
                                     <Slideshow :projects="homeProjects" class="mb-6"/>
                                 </div>
-                                <div class="search-bar">
-                                    <input type="text" v-model="search" placeholder="Find a project" ></div>
                             </div>
                         </div>
                     </div>
@@ -117,6 +115,14 @@ export default {
          }
     },
     async mounted (){
+    try { const data = await DBFunctions.searchProjects("search", this.projects);
+    newData = await data.json()
+    console.log(newData)
+
+        
+    } catch (error) {
+        
+    }
         try {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))

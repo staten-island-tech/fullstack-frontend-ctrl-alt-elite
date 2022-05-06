@@ -5,13 +5,25 @@
 
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="h-40/1 w-full flex">
-        <div id="one" class="h-full w-1/3">
-          <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
+        <div id="one" class="w-1/3 bg-black-500">
+          <div class="flex flex-row items-center ml-5">
+              <font-awesome-icon icon="fa-solid fa-slash-forward" class="px-1" />
+              <h1>HTML</h1>
+          </div>
+            <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
-        <div id="two" class="h-full w-1/3">
+        <div id="two" class="w-1/3">
+          <div class="flex flex-row items-center ml-5">
+            <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1" />
+            <h1>CSS</h1>
+          </div>
           <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
         </div>
-        <div id="three" class="h-full w-1/3">
+        <div id="three" class="w-1/3">
+          <div class="flex flex-row items-center ml-5">
+              <font-awesome-icon icon="fa-solid fa-code-simple" class="px-1" />
+              <h1>JS</h1>
+          </div>
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
     </div>

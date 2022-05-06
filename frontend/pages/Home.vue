@@ -68,20 +68,21 @@ export default {
     },
     async mounted (){
         try {
-            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
-            await DBFunctions.getTrendingProjects(this.trendingProjects)
+            await DBFunctions.getTrendingProjects(this.trendingProjects) 
             } catch (error) {
+                console.log(error);
                try {
-                await DBFunctions.createUser(this.$auth.user) ;
-                const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-                this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+                    await DBFunctions.createUser(this.$auth.user) ;
+                    const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+                    this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
                } catch (error)  {
             
-                 window.alert ("error in home page")
+                console.log(error);
         
                }
             }

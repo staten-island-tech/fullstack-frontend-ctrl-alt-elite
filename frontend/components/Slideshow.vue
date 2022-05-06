@@ -39,6 +39,8 @@ export default {
       direction: 'horizontal',
       freeMode: true,
       slidesPerView: 3,
+      observer: true,
+      observeParents: true,
       // spaceBetween: 10,
       // spaceBetween: "30",
 

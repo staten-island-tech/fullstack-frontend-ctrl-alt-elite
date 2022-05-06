@@ -2,7 +2,6 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
-            
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
                         <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center">
@@ -13,15 +12,23 @@
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
+
+
                             <div class="relative mt-12">
+                                 <div class="search-bar">
+                        <input type="text" v-model="search" placeholder="Find a project" >
+                    </div>
+
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
-                                    <h2 class="text-black dark:text-white text-2xl">Trending</h2>
+                                    <h2 class="text-black dark:text-white text-2xl" >Trending</h2>
                                     <Slideshow :projects="homeProjects" class="mb-6"/>
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
                                     <Slideshow :projects="homeProjects" class="mb-6"/>
                                 </div>
+                                <div class="search-bar">
+                                    <input type="text" v-model="search" placeholder="Find a project" ></div>
                             </div>
                         </div>
                     </div>
@@ -174,6 +181,8 @@ h1{
   border-width: 3px;
   border-image: conic-gradient( magenta, blue, magenta) 1;
 }
-
+.hello{
+    background-color: aquamarine;
+}
 
 </style>

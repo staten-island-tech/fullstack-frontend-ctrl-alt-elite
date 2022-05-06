@@ -25,20 +25,20 @@
 </template>
 
 <script>
-//import db functions 
+import DBFunctions from "~/DBFunctions";
 export default {
   data() {
     return {
       projects: [],
       search: '', 
-      projectsList:Array,
+      projects: {list: []},
       
     }
   },
    async mounted() {
-  //const data = await fetch("https://jsonplaceholder.typicode.com/posts");
-  const data = await DBFunctions.searchProjects("search", this.projects);
-    const newData = await data.json();
+const data = await fetch("https://jsonplaceholder.typicode.com/posts");
+//const data = await DBFunctions.searchProjects(search, this.projects);
+   const newData = await data.json();
     const finalData = newData.slice(0,10)
     console.log(finalData)
     this.projects = finalData
@@ -80,7 +80,7 @@ export default {
     }
     }
   }*/
-}
+  }
 </script>
 
 <style>

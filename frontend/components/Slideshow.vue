@@ -41,8 +41,6 @@ export default {
       slidesPerView: 3,
       // spaceBetween: 10,
       // spaceBetween: "30",
-      observer: true,
-      observeParents: true,
 
       // remove unused modules if needed
       modules: [ FreeMode, Navigation],

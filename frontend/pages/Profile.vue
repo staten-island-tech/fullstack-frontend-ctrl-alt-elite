@@ -161,6 +161,10 @@ export default {
         await DBFunctions.searchProjects("new", this.projects);
           window.alert(JSON.stringify(this.projects.list))
          this.projects.list = this.userProfile.data.projects 
+              
+          
+          
+
     } catch 
     { window.alert ("error getting the profile")
     }
@@ -184,22 +188,19 @@ export default {
       
     },
   async updateProfile()   {
-      try {
-        await DBFunctions.updateProfile(this.userProfile)
-        this.$store.commit('updateReload')
-        window.alert("Profile information updated.")
-        window.location.reload()
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      await DBFunctions.updateProfile(this.userProfile)
+      this.$store.commit('updateReload')
+      window.alert("Profile information updated.")
+      window.location.reload()
     },
-  selectImage()
+    selectImage()
     {
       // document.getElementById("imageList").style.display = "flex"
       this.showImageList=false
     }
    
-  },
+     },
     
 }
 </script>

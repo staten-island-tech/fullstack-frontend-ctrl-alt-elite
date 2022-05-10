@@ -3,10 +3,10 @@
       <h1 class="text-black dark:text-white" >{{projectsList.length}}  projects found </h1> 
     
        
-      <div class="flex flex-column">
+      <div class="flex flex-column w-2/3">
          <input 
          v-model="searchArgs" type="search" 
-         class=" form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
+         class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
       </div>
@@ -21,7 +21,6 @@
           </div>
         </div> -->
        
-       <p  v-if="start >pageLimit " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"        @click="previousPage" > Previous </p>
         <div v-for="(item,index) in projectsList" :key="item._ID"    >
                
                <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
@@ -29,7 +28,8 @@
                 
              
         </div>
-         <p  v-if="end < total " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5" @click="nextPage" > Next </p> 
+        <button  v-if="start >pageLimit " class=" mt-5 bg-gray-700 hover:bg-gray-500  text-white py-2 px-4 rounded h-5"        @click="previousPage" > Previous </button>
+        <button  v-if="end < total " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-6 px-4 rounded h-5" @click="nextPage" > Next </button> 
         
         </div>
      <!-- <DefaultNavBar /> -->

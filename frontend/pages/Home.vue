@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="w-4/5 xl:w-1/5 h-1/3 xl:h-4/5 xl:z-20 flex justify-center items-center mt-16 xl:mt-0">
+                    <div class="w-4/5 xl:w-1/5 h-80 xl:h-4/5 xl:z-20 flex justify-center items-center mt-16 xl:mt-0">
                         <div class="xl:fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-xl xl:text-2xl">Recent Projects </h2>
                             <div class="flex flex-col items-center overflow-scroll w-full overflow-x-hidden h-3/4" :class="{ sidebarDark : this.$store.state.darkMode, sidebarLight : !this.$store.state.darkMode }">
@@ -41,9 +41,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <NuxtLink to="/ProjectAll" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
+                                <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
                             </div>
-                            <NuxtLink to="/Project" class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3 bg-l-bg-primary dark:bg-d-bg-secondary">
+                            <NuxtLink to="/Project" class="border-t border-mid-gray dark:text-white text-black flex xl:pl-6 xl:absolute xl:bottom-3 bg-l-bg-primary dark:bg-d-bg-secondary items-center">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                                 <p class="p-2">Create New Project</p>
                             </NuxtLink>

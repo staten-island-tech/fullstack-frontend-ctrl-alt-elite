@@ -20,7 +20,7 @@
                   
               </div>
               
-              <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"  />
+              <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/>
               
               <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
@@ -79,31 +79,26 @@
 import DBFunctions from "~/DBFunctions";
 
 export default {
-  
   data(){
-       return{  
-          info: {
-                followers:0,
-                following:0,
-                projects:0,
-                name:'',
-                profilePic:'',
-                mongoID:'',
-                userID:'',
-            },
-         followingList:{data:null}, 
-         followersList:{data:null}, 
-         userProfile: { data : ''},
-         projects: {list: []},
-         defaultLink:true,
-         showImageList:true
-         
-          
-       } 
-    
-    },
+    return{  
+      info: {
+        followers:0,
+        following:0,
+        projects:0,
+        name:'',
+        profilePic:'',
+        mongoID:'',
+        userID:'',
+      },
+      followingList:{data:null}, 
+      followersList:{data:null}, 
+      userProfile: { data : 'avc'},
+      projects: {list: []},
+      defaultLink:true,
+      showImageList:true
+    } 
+  },
    computed: {
-     
     reload: {
       get() {
        
@@ -112,98 +107,68 @@ export default {
     },
     ownProfile:{
       get()
-      { return this.$auth.user.email === this.$store.state.otherIDInfo.email
+      { return this.$auth.user.email = this.$store.state.otherIDInfo.email
       }
     },
        
     },
        
  watch: {
-    
     reload(newValue, oldValue) {
       this.getProfile();
      
     }
   }, 
-  mounted ()
-   { 
-  //    this.vantaEffect = WAVES({
-  //     el: "#body",
-  //     THREE,
-  //     color: 0x000000,
-  // waveHeight: 20,
-  // shininess: 50,
-  // waveSpeed: 1.5,
-  // zoom: 0.75
-  //   });
-   
-  
-  this.getProfile();
-   
-    } ,   
- 
-  
-  // beforeDestroy() {
-  //   if (this.vantaEffect) {
-  //     this.vantaEffect.destroy()
-  //   }
-  // },
-   
- 
+  mounted (){
+    this.getProfile();
+  } ,   
   methods: {
- async getProfile()   {
-    try {
-               
+    async getProfile()   {
+      try {
+        console.log(this.userProfile);
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
-          window.alert(JSON.stringify(this.projects.list))
-         this.projects.list = this.userProfile.data.projects 
-              
-          
-          
-
-    } catch 
-    { window.alert ("error getting the profile")
-    }
-  },
-  async getOwnProfile()   {
-    await DBFunctions.getFollowing(this.$auth.user.email,this.list);
-    await DBFunctions.getInfo(this.$auth.user.email,this.info);
-    await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-
-  
-    const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-    this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-    this.$router.push("/profile");
-
-  },
- async resetProfile()   {
-       this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
-      await this.getProfile();
-      window.alert("Profile information reset.")
-      window.location.reload()
-      
+        window.alert(JSON.stringify(this.projects.list))
+        this.projects.list = this.userProfile.data.projects 
+      } catch 
+      { window.alert ("error getting the profile")
+      }
     },
-  async updateProfile()   {
-    try {
-      await DBFunctions.updateProfile(this.userProfile)
-      this.$store.commit('updateReload')
-      window.alert("Profile information updated.")
-      window.location.reload()
-    } catch{
-      console.log(error);
-    }},
-    selectImage()
-    {
-      // document.getElementById("imageList").style.display = "flex"
-      this.showImageList=false
+    async getOwnProfile()   {
+      await DBFunctions.getFollowing(this.$auth.user.email,this.list);
+      await DBFunctions.getInfo(this.$auth.user.email,this.info);
+      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+      const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+      this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+      this.$router.push("/profile");
+    },
+    async resetProfile()   {
+      try {
+        this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
+        await this.getProfile();
+        window.alert("Profile information reset.")
+        window.location.reload()
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async updateProfile()   {
+      try {
+        await DBFunctions.updateProfile(this.userProfile)
+        this.$store.commit('updateReload')
+        window.alert("Profile information updated.")
+        window.location.reload()
+      } catch{
+        console.log(error);
+      }},
+    selectImage(){
+        // document.getElementById("imageList").style.display = "flex"
+        this.showImageList=false
     }
-   
-     },
-    
+  },    
 }
 </script>
 

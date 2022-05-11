@@ -83,17 +83,14 @@ export default {
      
     reload: {
       get() {
-       
-      return this.$store.state.reload;
+        return this.$store.state.reload;
       }
     }
        
 },
- watch: {
-    
+watch: {
     reload(newValue, oldValue) {
       this.refresh();
-     
     }
   },
      mounted (){
@@ -114,26 +111,15 @@ export default {
              
         },
         getProfile (){
-                
-          
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
            this.$router.push({name: 'Profile'});
           
          } ,
-        
-          
-    //    methods: {
-    //        toggleVisible() {
-    //            this.display = !this.display;
-    //        },
            async logout() {
         await this.$auth.logout()
        
       },
-           async getProfile()   {
-      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-    },
  async resetProfile()   {
       await this.getProfile();
       window.alert("Profile information reset.")

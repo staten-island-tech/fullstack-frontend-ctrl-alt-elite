@@ -130,9 +130,13 @@ export default {
     methods:{
       // Editor config
       editorInit(editor){
-        require('brace/mode/html')                
+        require('brace/mode/html')
+        require('brace/snippets/text')   
+        require('brace/snippets/html')                
         require('brace/mode/javascript') 
+        require('brace/snippets/javascript')   
         require('brace/mode/css') 
+        require('brace/snippets/css')   
         require('brace/theme/twilight')
         require('brace/ext/language_tools')
         editor.setOptions({
@@ -140,6 +144,7 @@ export default {
           showGutter: true,
           enableBasicAutocompletion: true,
           enableLiveAutocompletion: true,
+          enableSnippets: true,
         })
       },
       // Applies user settings to editors

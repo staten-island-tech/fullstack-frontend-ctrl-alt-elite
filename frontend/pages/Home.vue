@@ -16,7 +16,10 @@
 
                             <div class="relative mt-12">
                                  <div class="search-bar">
-                        <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project">
+                        <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project"> 
+                        <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
+
                     </div>
 
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -116,8 +119,7 @@ export default {
     },
     async mounted (){
     try { const data = await DBFunctions.searchProjects("search", this.projects);
-    newData = await data.json()
-    console.log(newData)
+
 
         
     } catch (error) {
@@ -156,6 +158,18 @@ export default {
             this.$store.dispatch("viewProject", data)
             this.$store.commit("updateProject")
             this.$router.push("Project")
+        },
+
+      async searchProjects(){
+           try {
+               await DBFunctions.searchProjects("search", this.projects)
+               console.log(data)
+               
+           } catch (error) {
+               alert(`Something went wrong, please try again`)
+               
+           }
+        
         }
     }
     
@@ -175,6 +189,11 @@ export default {
        background-color: #1b1b1b;
        color: #e6e6e6;
 } */
+.search-bar{
+border-radius: 1rem;
+text-align: center;
+align-items: center;
+}
 
 
 h1{

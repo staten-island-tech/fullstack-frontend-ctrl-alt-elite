@@ -20,7 +20,7 @@ module.exports = {
         colors: {
           'l-primary': '#7A77FF',
           'l-bg-primary' : '#ffffff',
-          'l-bg-secondary': '#e6e6e6',
+          'l-bg-secondary': '#f0f0f0',
           'l-bg-accent': '#000000',
           'd-primary': '#3500D3',
           'd-bg-primary' : '#121212',

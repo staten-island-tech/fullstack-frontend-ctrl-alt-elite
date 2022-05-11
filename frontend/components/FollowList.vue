@@ -6,7 +6,7 @@
        Oh no list is empty 😢
      </p>
      <template v-else>
-       <div class="container flex col gap-5 flex-wrap">
+       <div class="container flex col gap-5 flex-wrap justify-center items-center">
         
        
     

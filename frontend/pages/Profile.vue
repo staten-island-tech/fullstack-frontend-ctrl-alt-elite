@@ -62,7 +62,7 @@
 
         </li>
       </ul>
-    <div   class="bg-white dark:bg-d-bg-secondary min-h-full h-auto container">
+    <div   class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
       <!-- <p> {{$store.state.followInfo.name}} </p> -->
     <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
     <NuxtChild/>
@@ -223,7 +223,6 @@ li {
 .container {
    margin: auto;
    margin-top: 20px;
-  width: 50vw;
   /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */

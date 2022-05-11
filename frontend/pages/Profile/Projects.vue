@@ -1,9 +1,9 @@
 <template>
-  <div >
+  <div class="flex items-center justify-center flex-col">
       <h1 class="text-black dark:text-white" >{{projectsList.length}}  projects found </h1> 
     
        
-      <div class="flex flex-column w-2/3">
+      <div class="flex flex-column justify-center w-2/3">
          <input 
          v-model="searchArgs" type="search" 
          class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
@@ -12,7 +12,7 @@
       </div>
    
    
-      <div Class="flex flex-wrap relative flex-row justify-items-center px-4"  >
+      <div Class="flex flex-wrap relative flex-row justify-center px-4"  >
 
       <!-- <div class="relative mt-12">
           <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -21,7 +21,7 @@
           </div>
         </div> -->
        
-        <div v-for="(item,index) in projectsList" :key="item._ID"    >
+        <div v-for="(item,index) in projectsList" :key="item._ID">
                
                <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
                 

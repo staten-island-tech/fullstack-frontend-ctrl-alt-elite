@@ -23,15 +23,15 @@
        
         <div v-for="(item,index) in projectsList" :key="item._ID">
                
-               <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
+               <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" class="m-2" /> 
                 
                 
              
         </div>
-        <button  v-if="start >pageLimit " class=" mt-5 bg-gray-700 hover:bg-gray-500  text-white py-2 px-4 rounded h-5"        @click="previousPage" > Previous </button>
-        <button  v-if="end < total " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-6 px-4 rounded h-5" @click="nextPage" > Next </button> 
         
         </div>
+        <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="previousPage">Previous</button>
+        <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button> 
      <!-- <DefaultNavBar /> -->
   </div>
 </template>

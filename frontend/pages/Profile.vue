@@ -223,6 +223,7 @@ li {
 .container {
    margin: auto;
    margin-top: 20px;
+   margin-bottom: 20px;
   /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */

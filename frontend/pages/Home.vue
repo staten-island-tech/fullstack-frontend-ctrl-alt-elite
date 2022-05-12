@@ -18,7 +18,7 @@
                                  <div class="search-bar">
                         <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project"> 
                         <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
-          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>  
 
                     </div>
 
@@ -118,19 +118,17 @@ export default {
          }
     },
     async mounted (){
-    try { const data = await DBFunctions.searchProjects("search", this.projects);
-
 
         
-    } catch (error) {
-        
-    }
         try {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
-            console.log(this.recent);
+            await DBFunctions.searchProjects("search", this.projects);
+            console.log(this.projects)
+            console.log(this.projects.list)
+
             } catch (error) {
             
                try {
@@ -162,11 +160,12 @@ export default {
 
       async searchProjects(){
            try {
-               await DBFunctions.searchProjects("search", this.projects)
-               console.log(data)
+   await DBFunctions.searchProjects(`search`, this.projects)
+            console.log(this.projects)
                
            } catch (error) {
                alert(`Something went wrong, please try again`)
+              
                
            }
         

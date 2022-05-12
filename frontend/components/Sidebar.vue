@@ -1,5 +1,5 @@
 <template>
-  <div id="nav" class="h-screen relative">
+  <div id="nav" class="h-screen">
       <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">

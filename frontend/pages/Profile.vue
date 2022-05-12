@@ -2,7 +2,7 @@
   <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
    
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
-      <DefaultNavBar/>
+      <DefaultNavBar class="fixed"/>
        
       <div class=" w-full h-1/3 flex justify-center items-center">
         <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">

@@ -158,6 +158,7 @@ export default {
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
+        console.log(this.projects.list)
           // window.alert(JSON.stringify(this.projects.list))
          this.projects.list = this.userProfile.data.projects 
               

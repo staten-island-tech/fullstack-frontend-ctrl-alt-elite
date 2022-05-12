@@ -33,7 +33,7 @@
                   <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
                   <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
                   <div v-if="ownProfile" class="flex flex-row justify-end " >
-                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
+                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
                   </div>
                 <div v-else class="flex flex-row justify-end ">
                    <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
@@ -158,7 +158,7 @@ export default {
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
-          window.alert(JSON.stringify(this.projects.list))
+          // window.alert(JSON.stringify(this.projects.list))
          this.projects.list = this.userProfile.data.projects 
               
           

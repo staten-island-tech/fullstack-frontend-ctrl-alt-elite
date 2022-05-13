@@ -1,5 +1,5 @@
 <template>
-
+  <!-- Problem: duping projects when clicking save before publish -->
   <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center" :class="{ dark : this.$store.state.darkMode }">
     
     <projectsNavBar/>
@@ -107,13 +107,13 @@ export default {
           try {
             e.preventDefault()
             const iframe = document.getElementById("iframe")
-            iframe.srcdoc= 
+            iframe.srcdoc = 
             `<html lang="en">
               <head>
                   <meta charset="UTF-8">
                   <meta http-equiv="X-UA-Compatible" content="IE=edge">
                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>You Inspecting</title>
+                  <title>I See You Inspecting</title>
                   <style>${this.contentCSS}</style>
               </head>
               <body>

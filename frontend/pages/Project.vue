@@ -4,23 +4,23 @@
         <projectsNavBar/>
 
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
-      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-2">
+      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary">
         <div id="one" class="w-1/3">
-          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray">
             <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
             <h1>HTML</h1>
           </div>
             <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
         <div id="two" class="w-1/3">
-          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 pr-2 justify-center">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 pr-2 justify-center border-t-4 border-mid-gray">
             <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
             <h1>CSS</h1>
           </div>
           <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
         </div>
         <div id="three" class="w-1/3">
-          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 justify-center">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 justify-center border-t-4 border-mid-gray">
             <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
             <h1>JS</h1>
           </div>
@@ -203,7 +203,7 @@ export default {
           editorThree.style.width = "33.333%"
           projectDiv.style.flexDirection = "column"
           editorContainer.style.width = "100%"
-          editorContainer.style.height = "40vh"
+          editorContainer.style.height = "30vh"
           editorContainer.style.flexDirection = "row"
           iframe.style.width = "100%"
           iframe.style.height = "50vh"

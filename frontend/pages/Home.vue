@@ -71,6 +71,8 @@ export default {
     
      data(){
        return{ 
+           search:``, 
+         projectsList:Array,
          userProfile: { data : ''},
          recent: [
              
@@ -128,6 +130,7 @@ export default {
             await DBFunctions.searchProjects("search", this.projects);
             console.log(this.projects)
             console.log(this.projects.list)
+            console.log("bruh")
 
             } catch (error) {
             
@@ -158,18 +161,12 @@ export default {
             this.$router.push("Project")
         },
 
-      async searchProjects(){
-           try {
-   await DBFunctions.searchProjects(`search`, this.projects)
-            console.log(this.projects)
-               
-           } catch (error) {
-               alert(`Something went wrong, please try again`)
-              
-               
-           }
-        
+       searchProjects(){
+            this.projectsList = this.$parent.projects.list.filter
+                    (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
         }
+        
+        
     }
     
 }

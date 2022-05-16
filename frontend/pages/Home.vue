@@ -1,6 +1,6 @@
 <template>
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
-        <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
+        <div class="bg-l-bg-primary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
             
                 <div class="w-full flex flex-col-reverse xl:flex-row items-center">
@@ -14,11 +14,11 @@
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
                             <div class="xl:mt-12">
-                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
+                                <div class="bg-l-bg-secondary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :projects="homeProjects" class="mb-6"/>
                                 </div>
-                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
+                                <div class="bg-l-bg-secondary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
                                     <Slideshow :projects="homeProjects" class="mb-6 "/>
                                 </div>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="w-4/5 xl:w-1/5 h-80 xl:h-4/5 xl:z-20 flex justify-center items-end mt-12 xl:mt-0">
-                        <div class="xl:fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
+                        <div class="xl:fixed bg-l-bg-secondary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
                             <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-xl xl:text-2xl">Recent Projects </h2>
                             <div class="flex flex-col items-center overflow-scroll w-full overflow-x-hidden h-3/4" :class="{ sidebarDark : this.$store.state.darkMode, sidebarLight : !this.$store.state.darkMode }">
                                 <div v-for="(project, key) in recent" :key="key" class="w-3/4">

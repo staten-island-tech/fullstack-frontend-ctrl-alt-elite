@@ -21,7 +21,7 @@ import DBFunctions from "~/DBFunctions";
 export default {
   data(){
     return{
-      
+      savedAlready: false
     }
   },
   computed:{
@@ -89,13 +89,15 @@ export default {
             "new_js": this.$store.state.codeJS,
           })
         }
+        this.savedAlready = true
       } catch (error) {
         window.alert(error)
       }
     },
     async publish(){
       try {
-        if (this.$store.state.newProject === true){
+        if (this.savedAlready === false){
+          if (this.$store.state.newProject === true){
           await DBFunctions.createProject(
             {
               "_id": this.$store.state.otherIDInfo.mongo_id,
@@ -107,18 +109,19 @@ export default {
               "private_boolean": false
             }
           )
-        }
-        if (this.$store.state.newProject === false){
-          await DBFunctions.updateProject({
-            "_id": this.$store.state.otherIDInfo.mongo_id,
-            "project_id": this.$store.state.project_id,
-            "new_title": this.$store.state.projectTitle,
-            "new_description": this.$store.state.projectDescription,
-            "new_html": this.$store.state.codeHTML,
-            "new_css": this.$store.state.codeCSS,
-            "new_js": this.$store.state.codeJS,
-            "private_boolean": false
-          })
+          }
+          if (this.$store.state.newProject === false){
+            await DBFunctions.updateProject({
+              "_id": this.$store.state.otherIDInfo.mongo_id,
+              "project_id": this.$store.state.project_id,
+              "new_title": this.$store.state.projectTitle,
+              "new_description": this.$store.state.projectDescription,
+              "new_html": this.$store.state.codeHTML,
+              "new_css": this.$store.state.codeCSS,
+              "new_js": this.$store.state.codeJS,
+              "private_boolean": false
+            })
+          }
         }
         this.$router.push("Home")
       } catch (error) {

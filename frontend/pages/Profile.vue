@@ -2,7 +2,7 @@
   <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
    
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
-      <DefaultNavBar/>
+      <DefaultNavBar class="fixed"/>
        
       <div class=" w-full h-1/3 flex justify-center items-center">
         <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
@@ -62,7 +62,7 @@
 
         </li>
       </ul>
-    <div   class="bg-white dark:bg-d-bg-secondary min-h-full h-auto container">
+    <div   class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
       <!-- <p> {{$store.state.followInfo.name}} </p> -->
     <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
     <NuxtChild/>
@@ -189,7 +189,7 @@ li {
 .container {
    margin: auto;
    margin-top: 20px;
-  width: 50vw;
+   margin-bottom: 20px;
   /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */

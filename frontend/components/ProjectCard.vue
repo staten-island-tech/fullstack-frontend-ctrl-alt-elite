@@ -53,7 +53,9 @@ export default {
 }
 
 #iframe {
-  background-color: wheat;
+  background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url("./assets/welcoming-placeholder-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 </style>

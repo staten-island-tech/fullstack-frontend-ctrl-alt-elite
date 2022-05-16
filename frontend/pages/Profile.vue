@@ -106,7 +106,7 @@ export default {
     },
     ownProfile:{
       get()
-      { return this.$auth.user.email = this.$store.state.otherIDInfo.email
+      { return this.$auth.user.email === this.$store.state.otherIDInfo.email
       }
     },
        

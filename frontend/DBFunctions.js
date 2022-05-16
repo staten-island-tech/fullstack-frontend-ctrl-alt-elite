@@ -115,7 +115,7 @@ module.exports.getProfile = async (userID, userProfile) => {
     })
     const data2 = await response.json()
     if (response.status === 500) throw response.error
-    userProfile.data = data2.profile
+    userProfile.data = data2.userProfile
   } catch (error) {
     throw error
   }

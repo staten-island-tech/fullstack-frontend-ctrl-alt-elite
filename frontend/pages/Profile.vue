@@ -22,7 +22,7 @@
               
               <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/>
               
-              <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
+              <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
 
               <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
@@ -33,7 +33,7 @@
                   <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
                   <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
                   <div v-if="ownProfile" class="flex flex-row justify-end " >
-                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
+                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
                   </div>
                 <div v-else class="flex flex-row justify-end ">
                    <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
@@ -77,7 +77,6 @@
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
-
 export default {
   data(){
     return{  
@@ -123,7 +122,7 @@ export default {
     this.getProfile();
   } ,   
   methods: {
-    async getProfile()   {
+    async getProfile() {
       try {
         console.log(this.userProfile);
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
@@ -131,12 +130,13 @@ export default {
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
-        window.alert(JSON.stringify(this.projects.list))
+        // window.alert(JSON.stringify(this.projects.list))
         this.projects.list = this.userProfile.data.projects 
-      } catch 
-      { window.alert ("error getting the profile")
+      } catch { 
+          window.alert ("error getting the profile")
       }
-    },
+  } ,
+
     async getOwnProfile()   {
       await DBFunctions.getFollowing(this.$auth.user.email,this.list);
       await DBFunctions.getInfo(this.$auth.user.email,this.info);
@@ -186,7 +186,6 @@ li {
   padding: 0.25rem;
   font-size: 1rem;
 }
-
 .container {
    margin: auto;
    margin-top: 20px;
@@ -197,23 +196,18 @@ li {
    /* border-style: solid;
   border-width: 3px;
   border-image: conic-gradient( magenta, blue, magenta) 1; */
-
   padding: 10px;
   border-radius: 12px;
-
 }
  
   
-
 a.nuxt-link-exact-active, .defaultLink {
   color:rgb(160, 148, 228);
   text-decoration: underline #3500D3 3px;
   font-weight : bold;
   
 }
-
  
-
 .link-underline {
 		border-bottom-width: 0;
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
@@ -222,32 +216,25 @@ a.nuxt-link-exact-active, .defaultLink {
 		background-repeat: no-repeat;
 		transition: background-size .5s ease-in-out;
 	}
-
 	.link-underline-black {
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#3500D3, #3500D3)
 	}
-
 	.link-underline:hover {
 		background-size: 100% 3px;
 		background-position: 0 100%
 	}
-
   #body {
     height: 5rem;
     width: 5rem;
   }
-
-
 h1{
     color:white;
     font-size: 1.5rem;
 }
-
 .darkBorder {
     border-bottom: solid 3px;
     border-image: conic-gradient( magenta, #3500D3, magenta) 1;
 }
-
 .noAccess {
   pointer-events: none;
 }

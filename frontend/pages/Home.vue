@@ -16,10 +16,6 @@
 
                             <div class="relative mt-12">
                                  <div class="search-bar">
-                        <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project"> 
-                        <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
-          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>  
-
                     </div>
 
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -57,7 +53,16 @@
                     </div>
                 </div>
 
+
         </div>
+       <!--<div class="search">
+        <div class="search-bar">
+              <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project"> 
+                        <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>  
+            
+         </div>
+       </div>-->
     </section>
 </template>
 

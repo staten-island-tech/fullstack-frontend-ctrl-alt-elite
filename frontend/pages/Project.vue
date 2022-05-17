@@ -1,37 +1,51 @@
 <template>
-  <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center" :class="{ dark : this.$store.state.darkMode }">
-    <projectsNavBar/>
+  <section id="project" class="h-screen w-screen relative flex flex-col justify-center " :class="{ dark : this.$store.state.darkMode }">
+        <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
-      <div id="editcontainer" class="h-40/1 w-full flex row">
-        <div id="one" class="h-full w-1/3">
-          <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
+      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary">
+        <div id="one" class="w-1/3">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray">
+            <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
+            <h1>HTML</h1>
+          </div>
+            <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
-        <div id="two" class="h-full w-1/3">
+        <div id="two" class="w-1/3">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 pr-2 justify-center border-t-4 border-mid-gray">
+            <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
+            <h1>CSS</h1>
+          </div>
           <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
         </div>
-        <div id="three" class="h-full w-1/3">
+        <div id="three" class="w-1/3">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 justify-center border-t-4 border-mid-gray">
+            <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
+            <h1>JS</h1>
+          </div>
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
     </div>
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
-      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-500">
-        <div class="h-1/10 w-full flex flex-row bg-pink-400">
-          <button class="h-full w-1/2 border-2" @click="lightMode">Light</button>
-          <button class="h-full w-1/2 border-2" @click="darkMode">Dark</button>
+      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
+        <div class="h-1/10 w-full flex flex-row">
+          <button class="h-full w-1/2 bg-white text-gray-700 rounded p-2" @click="lightMode">Light</button>
+          <button class="h-full w-1/2 bg-gray-700 text-white rounded p-2" @click="darkMode">Dark</button>
         </div>
-        <div class="h-1/5 w-full flex flex-row bg-green-500">
-          <button id="left" class="h-full w-1/3 border-2" @click="editorOrientation">Left</button>
-          <button id="middle" class="h-full w-1/3 border-2" @click="editorOrientation">Default</button>
-          <button id="right" class="h-full w-1/3 border-2" @click="editorOrientation">Right</button>
+        <div class="h-1/5 w-full flex flex-row">
+          <button id="left" class="h-full w-1/3 " @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-left" class="fa-3x" /></button>
+          <button id="middle" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-up" class="fa-3x" /></button>
+          <button id="right" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-right" class="fa-3x" /></button>
         </div>
         <div class="h-1/10 w-full flex flex-row ">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <a class="inline-block text-xl select-none" @click="projectSettings" v-if="this.$store.state.otherUserProject === false">Settings</a>
-        <a class="inline-block text-xl text-red-600 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false">Delete</a>
+        <div class="flex flex-row justify-end">
+          <a class="inline-block text-xl select-none text-gray-600" @click="projectSettings" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-pen" /></a>
+          <a class="inline-block text-xl text-red-500 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" /></a>
+        </div>     
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
@@ -195,7 +209,7 @@ export default {
           editorThree.style.width = "33.333%"
           projectDiv.style.flexDirection = "column"
           editorContainer.style.width = "100%"
-          editorContainer.style.height = "40vh"
+          editorContainer.style.height = "50vh"
           editorContainer.style.flexDirection = "row"
           iframe.style.width = "100%"
           iframe.style.height = "50vh"

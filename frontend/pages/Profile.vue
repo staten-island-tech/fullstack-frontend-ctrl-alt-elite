@@ -162,7 +162,7 @@ export default {
         window.alert("Profile information updated.")
         window.location.reload()
       } catch{
-        console.log(error);
+        window.alert("ok")
       }},
     selectImage(){
         // document.getElementById("imageList").style.display = "flex"

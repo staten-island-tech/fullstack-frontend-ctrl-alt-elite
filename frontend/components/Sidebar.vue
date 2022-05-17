@@ -1,10 +1,10 @@
 <template>
-  <div id="nav" class="h-screen">
-      <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+  <div id="nav" class="h-screen relative">
+      <font-awesome-icon id="cursor" v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">
             <div class="flex flex-row justify-between">
-                <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
+                <font-awesome-icon id="cursor" class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
@@ -144,6 +144,10 @@ watch: {
 </script>
 
 <style scoped>
+#cursor {
+    cursor: pointer;
+
+}
 #nav {
     color: gray;
     position: relative;

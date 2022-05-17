@@ -399,11 +399,9 @@ module.exports.searchProjects = async (searchArguments, projects) => {
     const SearchArgs = { projectTitle: searchArguments }
     const response = await fetch(`http://localhost:5000/searchProjects`, {
       method: 'POST',
-
       body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
-
     const data = await response.json()
     // this.uniqueID = data.uniqu;
     projects.list = data

@@ -5,7 +5,7 @@
       <DefaultNavBar class="fixed"/>
        
       <div class=" w-full h-1/3 flex justify-center items-center">
-        <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
+        <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder mt-10">
           <!-- <button @click="getProfile()">TEST</button>
           <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
           <!-- <button class="absolute top-20 left-10">return button</button> -->
@@ -26,7 +26,7 @@
           </div>
 
               <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
-                  <h1 class="font-bold mb-3 text-lg mt-1 text-center text-black dark:text-white "  > {{userProfile.data.user_id}}</h1>
+                  <h1 class="font-bold mb-3 text-lg mt-1 text-center" > {{userProfile.data.user_id}}</h1>
                   <h2 class="pb-2 pl-1">Username</h2>
                    <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
                   <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
@@ -272,7 +272,7 @@ a.nuxt-link-exact-active, .defaultLink {
 
 
 h1{
-    color:white;
+  
     font-size: 1.5rem;
 }
 

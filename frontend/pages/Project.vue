@@ -4,14 +4,26 @@
     
     <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
-      <div id="editcontainer" class="h-40/1 w-full flex row">
-        <div id="one" class="h-full w-1/3">
-          <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
+      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
+        <div id="one" class="w-1/3 h-full flex flex-col">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
+            <h1>HTML</h1>
+          </div>
+            <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
-        <div id="two" class="h-full w-1/3">
+        <div id="two" class="w-1/3 h-full flex flex-col">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
+            <h1>CSS</h1>
+          </div>
           <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
         </div>
-        <div id="three" class="h-full w-1/3">
+        <div id="three" class="w-1/3 h-full flex flex-col">
+          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
+            <h1>JS</h1>
+          </div>
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
     </div>
@@ -171,6 +183,9 @@ export default {
           editorOne.style.width = "100%"
           editorTwo.style.width = "100%"
           editorThree.style.width = "100%"
+          editorOne.style.flexDirection = "row"
+          editorTwo.style.flexDirection = "row"
+          editorThree.style.flexDirection = "row"
           iframe.style.width = "60%"
           iframe.style.height = "100%"
         } else if (e.srcElement.id === "middle") {
@@ -191,6 +206,9 @@ export default {
           editorContainer.style.width = "40%"
           editorContainer.style.height = "100%"
           editorContainer.style.flexDirection = "column"
+          editorOne.style.flexDirection = "row"
+          editorTwo.style.flexDirection = "row"
+          editorThree.style.flexDirection = "row"
           iframe.style.width = "60%"
           iframe.style.height = "100%"
         }

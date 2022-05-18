@@ -4,7 +4,7 @@
         <projectsNavBar/>
 
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
-      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary">
+      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray">
         <div id="one" class="w-1/3">
           <div class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray">
             <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
@@ -27,20 +27,20 @@
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
     </div>
-    <iframe id='iframe' class="h-50/1 w-full"></iframe>
+    <iframe id='iframe' class="h-50/1 w-full pt-9"></iframe>
     </div>
 
 
 
 
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
-      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 border-purple-mid bg-dark-purple rounded">
-      <tabs>
+      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 darkBorder bg-d-bg-secondary rounded">
+
         <div class="h-1/10 w-full flex flex-row">
-          <button class="h-full w-1/2 bg-white text-gray-700 rounded p-2" @click="lightMode">Light</button>
-          <button class="h-full w-1/2 bg-gray-700 text-white rounded p-2" @click="darkMode">Dark</button>
+          <button class="h-full w-1/2 bg-l-bg-primary text-gray-700 rounded p-2" @click="lightMode">Light</button>
+          <button class="h-full w-1/2 bg-d-bg-primary text-white rounded p-2" @click="darkMode">Dark</button>
         </div>
-        <div class="h-1/5 w-full flex flex-row">
+        <div class="h-1/5 w-full flex flex-row  text-white">
           <button id="left" class="h-full w-1/3 " @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-left" class="fa-3x" /></button>
           <button id="middle" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-up" class="fa-3x" /></button>
           <button id="right" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-right" class="fa-3x" /></button>
@@ -51,11 +51,10 @@
         </div>
         <a class="inline-block text-xl select-none text-gray-600" @click="projectSettings" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-pen" /></a>
         <a class="inline-block text-xl text-red-500 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" /></a> 
-      </tabs>
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
-      <div id="projectsettings" class="h-4/5 w-2/3 flex flex-col justify-evenly items-center border-2 bg-gray-400">
+      <div id="projectsettings" class="h-4/5 w-1/2 flex flex-col justify-evenly items-center bg-d-bg-primary darkBorder">
         <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/4 p-4">
         <textarea v-model="description" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4"></textarea>
       </div>
@@ -258,7 +257,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 ::-webkit-scrollbar{
   width: 10px;
 }
@@ -271,4 +270,11 @@ export default {
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(167, 167, 167); 
 }
+
+.darkBorder {
+    border-style: solid;
+  border-width: 3px;
+  border-image: conic-gradient( magenta, blue, magenta) 1;
+}
+
 </style>

@@ -4,7 +4,7 @@
             <DefaultNavBar class="fixed"/>
                 <div class="w-full flex flex-row">
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
-                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center">
+                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center" id= "display">
                             <!-- SEARCH RESULTS -->
                             <!-- <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
                                  <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
@@ -55,14 +55,14 @@
 
 
         </div>
-       <!--<div class="search">
+      <!-- <div class="search">
         <div class="search-bar">
               <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project"> 
                         <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>  
             
          </div>
-       </div>-->
+       </div> -->
     </section>
 </template>
 
@@ -76,7 +76,7 @@ export default {
     
      data(){
        return{ 
-           search:``, 
+           search:'', 
          projectsList:Array,
          userProfile: { data : ''},
          recent: [
@@ -167,7 +167,7 @@ export default {
         },
 
        searchProjects(){
-            this.projectsList = this.$parent.projects.list.filter
+            this.projectsList = this.projects.list.filter
                     (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
         }
         

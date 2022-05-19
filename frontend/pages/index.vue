@@ -9,6 +9,7 @@
           <SignupButton class="text-white border h-10 w-2/3 sm:w-1/2 md:w-1/2 2xl:w-1/3 ml-0 2xl:text-xl xl:text-xl text-sm">Sign up today!</SignupButton>
         </div>  
       </div>
+      
     </section>
     <!-- <section class="h-screen flex items-center flex-col">
       <h2 class="text-white text-5xl font-bold uppercase m-10" data-aos="fade-up">Welcoming Page Info</h2>
@@ -20,11 +21,14 @@
       </div>
     </section> -->
     <!-- :class="{change_color: scrollPosition > 50}" -->
+    
   </div>
+  
 </template>
 
 <script>
 
+import Snackbar from '../components/Snackbar.vue'
 import * as THREE from 'three'
 import NET from 'vanta/dist/vanta.net.min'
 
@@ -37,7 +41,9 @@ AOS.init();
 
 export default {
     
-
+  components: {
+    
+  },
   data(){
     return{
       count: 0,

@@ -3,10 +3,8 @@
         <div class="swiper">
         <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
-          
-          <div v-for="project in projects" :key="project" class="swiper-slide">
-            
-            <ProjectCard class="slider-content " :project="project"/>
+          <div v-for="(project,key) in project" :key="key" class="swiper-slide">
+            <ProjectCard class="slider-content" :project="project"/>
           </div>
         </div>
         <!-- If pagination is needed -->
@@ -25,7 +23,7 @@ import 'swiper/swiper-bundle.min.css'
 
 export default {
   props: {
-    projects: Array
+    project: Array
   },
       mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
@@ -40,7 +38,9 @@ export default {
       // @see https://swiperjs.com/swiper-api#parameters
       direction: 'horizontal',
       freeMode: true,
-      slidesPerView: 1,
+      slidesPerView: 3,
+      observer: true,
+      observeParents: true,
       // spaceBetween: 10,
       // spaceBetween: "30",
             

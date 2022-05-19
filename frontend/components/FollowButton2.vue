@@ -14,14 +14,11 @@ import DBFunctions from "~/DBFunctions";
 
 export default {
 props: {
-       
-       followuserid: {      // user id 
-           type:String,
-           required:true
-          
-       },
-    
-   },  
+  followuserid: {      // user id 
+    type:String,
+    required:true
+  }
+},  
 data(){
     return {
         // followingStatus: true, 

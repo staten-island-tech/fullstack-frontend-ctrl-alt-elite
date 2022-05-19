@@ -1,8 +1,6 @@
 <template>
-
-  <section id="project" class="h-screen w-screen relative flex flex-col justify-center items-center" :class="{ dark : this.$store.state.darkMode }">
-    
-    <projectsNavBar/>
+  <section id="project" class="h-screen w-screen relative flex flex-col justify-center " :class="{ dark : this.$store.state.darkMode }">
+        <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
         <div id="one" class="w-1/3 h-full flex flex-col">
@@ -30,22 +28,24 @@
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
-      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-500">
-        <div class="h-1/10 w-full flex flex-row bg-pink-400">
-          <button class="h-full w-1/2 border-2" @click="lightMode">Light</button>
-          <button class="h-full w-1/2 border-2" @click="darkMode">Dark</button>
+      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
+        <div class="h-1/10 w-full flex flex-row">
+          <button class="h-full w-1/2 bg-white text-gray-700 rounded p-2" @click="lightMode">Light</button>
+          <button class="h-full w-1/2 bg-gray-700 text-white rounded p-2" @click="darkMode">Dark</button>
         </div>
-        <div class="h-1/5 w-full flex flex-row bg-green-500">
-          <button id="left" class="h-full w-1/3 border-2" @click="editorOrientation">Left</button>
-          <button id="middle" class="h-full w-1/3 border-2" @click="editorOrientation">Default</button>
-          <button id="right" class="h-full w-1/3 border-2" @click="editorOrientation">Right</button>
+        <div class="h-1/5 w-full flex flex-row">
+          <font-awesome-icon icon="fa-solid fa-caret-left" id="left" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
+          <font-awesome-icon icon="fa-solid fa-caret-up" id="middle" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
+          <font-awesome-icon icon="fa-solid fa-caret-right" id="right" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
         </div>
         <div class="h-1/10 w-full flex flex-row ">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <a class="inline-block text-xl select-none" @click="projectSettings">Settings</a>
-        <a class="inline-block text-xl text-red-600 select-none">Delete</a>
+        <div class="flex flex-row justify-end">
+          <a class="inline-block text-xl select-none text-gray-600" @click="projectSettings" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-pen" /></a>
+          <a class="inline-block text-xl text-red-500 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" /></a>
+        </div>     
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import DBFunctions from "~/DBFunctions";
 import AceEditor from "vue2-ace-editor";
 import projectsNavBar from "../components/ProjectsNavBar.vue" 
 
@@ -72,15 +73,27 @@ export default {
         contentHTML:"",
         contentCSS:"",
         contentJS:"",
+        userProfile: { data : ''},
+        
       }
     },
-    mounted(){
-      let editor1 = this.$refs.editor1.editor
-      let editor2 = this.$refs.editor2.editor
-      let editor3 = this.$refs.editor3.editor
-      editor1.setValue(this.$store.state.codeHTML)
-      editor2.setValue(this.$store.state.codeCSS)
-      editor3.setValue(this.$store.state.codeJS)
+    async mounted(){
+      try {
+        let editor1 = this.$refs.editor1.editor
+        let editor2 = this.$refs.editor2.editor
+        let editor3 = this.$refs.editor3.editor
+        editor1.setValue(this.$store.state.codeHTML)
+        editor2.setValue(this.$store.state.codeCSS)
+        editor3.setValue(this.$store.state.codeJS)
+        if (this.$store.state.otherIDInfo.mongo_id === undefined || this.$store.state.otherIDInfo.email === undefined){
+          console.log("hello");
+          await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+          const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+          this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
     computed:{
       title:{
@@ -107,13 +120,13 @@ export default {
           try {
             e.preventDefault()
             const iframe = document.getElementById("iframe")
-            iframe.srcdoc= 
+            iframe.srcdoc = 
             `<html lang="en">
               <head>
                   <meta charset="UTF-8">
                   <meta http-equiv="X-UA-Compatible" content="IE=edge">
                   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>You Inspecting</title>
+                  <title>I See You Inspecting</title>
                   <style>${this.contentCSS}</style>
               </head>
               <body>
@@ -130,9 +143,13 @@ export default {
     methods:{
       // Editor config
       editorInit(editor){
-        require('brace/mode/html')                
+        require('brace/mode/html')
+        require('brace/snippets/text')   
+        require('brace/snippets/html')                
         require('brace/mode/javascript') 
+        require('brace/snippets/javascript')   
         require('brace/mode/css') 
+        require('brace/snippets/css')   
         require('brace/theme/twilight')
         require('brace/ext/language_tools')
         editor.setOptions({
@@ -140,6 +157,7 @@ export default {
           showGutter: true,
           enableBasicAutocompletion: true,
           enableLiveAutocompletion: true,
+          enableSnippets: true,
         })
       },
       // Applies user settings to editors
@@ -203,7 +221,7 @@ export default {
           editorThree.style.width = "33.333%"
           projectDiv.style.flexDirection = "column"
           editorContainer.style.width = "100%"
-          editorContainer.style.height = "40vh"
+          editorContainer.style.height = "50vh"
           editorContainer.style.flexDirection = "row"
           editorOne.style.flexDirection = "column"
           editorTwo.style.flexDirection = "column"
@@ -254,6 +272,18 @@ export default {
       pushJS(code){
         this.$store.commit("PUSH_JS", code)
       },
+      async remove(){
+        try {
+          console.log("hello");
+          await DBFunctions.deleteProject({
+            "email": this.$store.state.otherIDInfo.email,
+            "project_id": this.$store.state.project_id
+          })
+          this.$router.push("Home")
+        } catch (error) {
+          console.log(error);
+        }
+      }
     }
 }
 </script>

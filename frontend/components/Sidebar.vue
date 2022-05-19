@@ -1,14 +1,14 @@
 <template>
-  <div id="nav" class="h-screen">
-      <font-awesome-icon v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+  <div id="nav" class="h-screen relative">
+      <font-awesome-icon id="cursor" v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-screen md:w-full border-r border-medium-gray dark:border-d-bg-accent bg-l-bg-primary dark:bg-d-bg-primary">
             <div class="flex flex-row justify-between">
-                <font-awesome-icon class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
+                <font-awesome-icon id="cursor" class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
             </div> 
-            <div class="flex flex-col align-center justify-center m-2 h-1/3 w-11/12 border-b border-t border-medium-gray dark:border-d-bg-accent">
-                <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="info.profilePic">
+            <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
+                <img class="rounded-full h-24 w-24 justify-self-center self-center m-1 " :src="info.profilePic">
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{info.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-1/2 md:w-2/3 text-black dark:text-white">
@@ -40,10 +40,10 @@
                     </NuxtLink>
                 </div>
                 <div class="h-1/6">
-                    <NuxtLink to="/Project" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full">
+                    <button class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
-                    </NuxtLink>
+                    </button>
                 </div>
                 <button class="text-base md:text-lg text-red-400 h-1/6 flex items-center pl-6" @click="logout">
                     <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
@@ -83,17 +83,14 @@ export default {
      
     reload: {
       get() {
-       
-      return this.$store.state.reload;
+        return this.$store.state.reload;
       }
     }
        
 },
- watch: {
-    
+watch: {
     reload(newValue, oldValue) {
       this.refresh();
-     
     }
   },
      mounted (){
@@ -114,30 +111,43 @@ export default {
              
         },
         getProfile (){
-                
-          
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
            this.$router.push({name: 'Profile'});
           
          } ,
-        
-          
-    //    methods: {
-    //        toggleVisible() {
-    //            this.display = !this.display;
-    //        },
            async logout() {
         await this.$auth.logout()
        
       },
- 
-    
+ async resetProfile()   {
+      await this.getProfile();
+      window.alert("Profile information reset.")
+      
+    },
+  async updateProfile()   {
+      await DBFunctions.updateProfile(this.userProfile)
+      window.alert("Profile information updated.")
+    },
+    newProject(){
+        this.$store.commit("PUSH_HTML", "")
+            this.$store.commit("PUSH_CSS", "")
+            this.$store.commit("PUSH_JS", "")
+            this.$store.commit("PUSH_TITLE", "")
+            this.$store.commit("PUSH_DESCR", "")
+            this.$store.commit("newProject", true)
+            this.$store.commit("isNotYourProject", false)
+            this.$router.push("Project")
+    }
 },
 };
 </script>
 
 <style scoped>
+#cursor {
+    cursor: pointer;
+
+}
 #nav {
     color: gray;
     position: relative;

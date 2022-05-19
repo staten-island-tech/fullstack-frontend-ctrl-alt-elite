@@ -124,7 +124,6 @@ export default {
   methods: {
     async getProfile() {
       try {
-        console.log(this.userProfile);
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);

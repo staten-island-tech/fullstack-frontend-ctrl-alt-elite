@@ -38,7 +38,7 @@ export default {
       // @see https://swiperjs.com/swiper-api#parameters
       direction: 'horizontal',
       freeMode: true,
-      slidesPerView: 3,
+      slidesPerView: 1,
       observer: true,
       observeParents: true,
       // spaceBetween: 10,

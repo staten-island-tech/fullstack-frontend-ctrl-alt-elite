@@ -28,15 +28,24 @@
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
-      <div id="settings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
-        <div class="h-1/10 w-full flex flex-row">
+      <div id="settings" class="h-1/2 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
+        <!-- <div class="h-1/10 w-full flex flex-row">
           <button class="h-full w-1/2 bg-white text-gray-700 rounded p-2" @click="lightMode">Light</button>
           <button class="h-full w-1/2 bg-gray-700 text-white rounded p-2" @click="darkMode">Dark</button>
-        </div>
-        <div class="h-1/5 w-full flex flex-row">
-          <font-awesome-icon icon="fa-solid fa-caret-left" id="left" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
-          <font-awesome-icon icon="fa-solid fa-caret-up" id="middle" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
-          <font-awesome-icon icon="fa-solid fa-caret-right" id="right" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
+        </div> -->
+        <h2 class="text-2xl bolded">Orientation:</h2>
+        <div class="h-1/5 w-5/6 flex flex-row">
+          <button id="left" class="h-full w-1/3" @click="editorOrientation">
+            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-3x" @click="editorOrientation"/>
+          </button>
+          <button id="middle" class="h-full w-1/3" @click="editorOrientation">
+            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-3x" @click="editorOrientation"/>
+          </button>
+          <button id="right" class="h-full w-1/3" @click="editorOrientation">
+            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-3x" @click="editorOrientation"/>
+          </button>
+          <!-- <font-awesome-icon icon="fa-solid fa-caret-up" id="middle" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
+          <font-awesome-icon icon="fa-solid fa-caret-right" id="right" class="h-full w-1/3 fa-3x" @click="editorOrientation"/> -->
         </div>
         <div class="h-1/10 w-full flex flex-row ">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
@@ -179,12 +188,12 @@ export default {
         } else return
       },
       // Light and dark modes
-      lightMode(){
-        document.getElementById("projectnav").style.backgroundColor = "#b8b8b8"
-      },
-      darkMode(){
-        document.getElementById("projectnav").style.backgroundColor = "#121212"
-      },
+      darkMode() {
+            this.$store.commit('toggleMode');
+        },
+        lightMode() {
+            this.$store.commit('toggleMode')
+        },
       // Editor orientation 
       editorOrientation(e){
         const editorOne = document.getElementById("one")
@@ -198,7 +207,7 @@ export default {
         const iframe = document.getElementById("iframe")
         if (e.srcElement.id === "left"){
           projectDiv.style.flexDirection = "row"
-          editorContainer.style.width = "40%"
+          editorContainer.style.width = "35%"
           editorContainer.style.height = "100%"
           editorContainer.style.flexDirection = "column"
           editorOne.style.width = "100%"
@@ -213,7 +222,7 @@ export default {
           editorOne.style.flexDirection = "row"
           editorTwo.style.flexDirection = "row"
           editorThree.style.flexDirection = "row"
-          iframe.style.width = "60%"
+          iframe.style.width = "65%"
           iframe.style.height = "100%"
         } else if (e.srcElement.id === "middle") {
           editorOne.style.width = "33.333%"
@@ -221,7 +230,7 @@ export default {
           editorThree.style.width = "33.333%"
           projectDiv.style.flexDirection = "column"
           editorContainer.style.width = "100%"
-          editorContainer.style.height = "50vh"
+          editorContainer.style.height = "40vh"
           editorContainer.style.flexDirection = "row"
           editorOne.style.flexDirection = "column"
           editorTwo.style.flexDirection = "column"
@@ -239,13 +248,13 @@ export default {
           editorTwo.style.width = "100%"
           editorThree.style.width = "100%"
           projectDiv.style.flexDirection = "row-reverse"
-          editorContainer.style.width = "40%"
+          editorContainer.style.width = "35%"
           editorContainer.style.height = "100%"
           editorContainer.style.flexDirection = "column"
           editorOne.style.flexDirection = "row"
           editorTwo.style.flexDirection = "row"
           editorThree.style.flexDirection = "row"
-          iframe.style.width = "60%"
+          iframe.style.width = "65%"
           iframe.style.height = "100%"
           oneLabel.style.marginLeft = "0%"
           twoLabel.style.marginLeft = "0%"

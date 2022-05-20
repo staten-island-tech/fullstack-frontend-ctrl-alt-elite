@@ -5,7 +5,7 @@
     <p class="text-white">Welcome, {{ this.$auth.user.name }} </p>
   
     </div>
-</div></body>
+</div>                                   
 </template>
 <script>
 export default {

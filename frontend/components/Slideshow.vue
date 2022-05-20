@@ -35,6 +35,7 @@ export default {
     /* eslint-disable no-unused-vars */
     const swiper = new Swiper('.swiper', {
       // Optional parameters
+      modules: [ FreeMode, Navigation],
       // @see https://swiperjs.com/swiper-api#parameters
       direction: 'horizontal',
       freeMode: true,
@@ -57,7 +58,7 @@ export default {
       },
 
       // remove unused modules if needed
-      modules: [ FreeMode, Navigation],
+  
       // Pagination if needed
       // pagination: {
       //   el: '.swiper-pagination',

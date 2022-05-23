@@ -188,8 +188,8 @@ export default {
                console.log(error)
            }
             
-            // this.projectsList = this.projects.list.filter
-            //         (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
+             this.projectsList = this.projects.list.filter
+             (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
 
         }, 
 

@@ -40,23 +40,26 @@
           <button class="h-full w-1/2 bg-l-bg-primary text-gray-700 rounded p-2" @click="lightMode">Light</button>
           <button class="h-full w-1/2 bg-d-bg-primary text-white rounded p-2" @click="darkMode">Dark</button>
         </div>
-        <div class="h-1/5 w-full flex flex-row  text-white">
+        <div class="h-1/5 w-full flex flex-row text-white">
           <button id="left" class="h-full w-1/3 " @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-left" class="fa-3x" /></button>
           <button id="middle" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-up" class="fa-3x" /></button>
           <button id="right" class="h-full w-1/3" @click="editorOrientation"><font-awesome-icon icon="fa-solid fa-caret-right" class="fa-3x" /></button>
         </div>
-        <div class="h-1/10 w-full flex flex-row ">
+        <div class="h-1/10 w-full flex flex-row">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <a class="inline-block text-xl select-none text-gray-600" @click="projectSettings" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-pen" /></a>
-        <a class="inline-block text-xl text-red-500 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" /></a> 
+        <div class="h-1/10 w-full flex flex-row justify-around ">
+          <button class="h-full w-1/3 bg-d-bg-accent hover:bg-d-bg-accent-two text-white rounded p-2" @click="projectSettings" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-pen" /></button>
+          <button class="h-full w-1/3 bg-red-700 hover:bg-red-600 text-white rounded p-2" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" /></button> 
+        </div>
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
-      <div id="projectsettings" class="h-4/5 w-1/2 flex flex-col justify-evenly items-center bg-d-bg-primary darkBorder">
-        <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/4 p-4">
-        <textarea v-model="description" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4"></textarea>
+      <div id="projectsettings" class="h-3/5 w-1/3 flex flex-col justify-evenly items-center bg-d-bg-secondary darkBorder">
+        <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/4 p-4 rounded">
+        <textarea v-model="description" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4 rounded"></textarea>
+
       </div>
     </div>
   </section>

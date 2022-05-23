@@ -24,6 +24,7 @@ module.exports = {
         'd-bg-primary': '#121212',
         'd-bg-secondary': '#282828',
         'd-bg-accent': '#464646',
+        'd-bg-accent-two': '#5c5c5c',
 
         'light-gray': '#dbdbdb',
         'medium-gray': '#b8b8b8',

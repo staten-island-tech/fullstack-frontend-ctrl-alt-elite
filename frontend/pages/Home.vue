@@ -2,9 +2,13 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
+            
                 <div class="w-full flex flex-row">
+                    
                     <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
+                    
                         <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center" id= "display">
+                            
                             <!-- SEARCH RESULTS -->
                             <!-- <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
                                  <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
@@ -15,8 +19,14 @@
 
 
                             <div class="relative mt-12">
-                                 <div class="search-bar">
-                    </div>
+                                <input v-model="searchArgs" type="search" class=" form-control" >
+                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+                                 
+                                 
+                             <div class="search-bar">
+
+
+                            </div>
 
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl" >Trending</h2>
@@ -79,10 +89,11 @@ export default {
            search:'', 
          projectsList:Array,
          userProfile: { data : ''},
+        projects: {list: []},
          recent: [
              
          ],
-          projects: {list: []},
+         
         //   info: {
         //     followers:0,
         //     following:0,
@@ -132,10 +143,10 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
-            await DBFunctions.searchProjects("search", this.projects);
-            console.log(this.projects)
-            console.log(this.projects.list)
-            console.log("bruh")
+            // await DBFunctions.searchProjects("search", this.projects);
+            // console.log(this.projects)
+            // console.log(this.projects.list)
+            // console.log("bruh")
 
             } catch (error) {
             
@@ -166,10 +177,22 @@ export default {
             this.$router.push("Project")
         },
 
-       searchProjects(){
-            this.projectsList = this.projects.list.filter
-                    (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
-        }
+       async searchProjects(){
+
+           try {
+            await DBFunctions.searchProjects( this.searchArgs, this.projects);
+            // window.alert(JSON.stringify(this.projects.list))
+            this.projects.list = this.userProfile.data.projects 
+            console.log(this.projects.list)
+           } catch (error) {
+               console.log(error)
+           }
+            
+            // this.projectsList = this.projects.list.filter
+            //         (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
+
+        }, 
+
         
         
     }

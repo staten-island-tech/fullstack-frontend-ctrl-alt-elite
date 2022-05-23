@@ -3,7 +3,7 @@
         <div class="swiper">
         <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
-          <div id="loading" class="lds-dual-ring"></div>
+          <div class="lds-dual-ring"></div>
           <div v-for="(project,key) in project" :key="key" class="swiper-slide">
             <ProjectCard class="slider-content" :project="project"/>
           </div>
@@ -25,7 +25,7 @@ export default {
   props: {
     project: Array
   },
-      mounted() {
+  mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
     // previously it was before export default. Moved here for performance issues. Move back in case of problems.
     // add or remove unused modules
@@ -111,6 +111,8 @@ export default {
   position: absolute;
   width: 80px;
   height: 80px;
+  top: 100px;
+  left: 650px;
 }
 .lds-dual-ring:after {
   content: " ";

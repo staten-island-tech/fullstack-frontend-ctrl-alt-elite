@@ -77,9 +77,9 @@ export default {
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
             await DBFunctions.getTrendingProjects(this.trendingProjects) 
-            document.getElementById("loading").style.display = "none"
-            // Modify after element too
-            document.getElementById("loading").style.display = "none"
+            for (let ring of document.getElementsByClassName("lds-dual-ring")){
+                ring.style.display = "none"
+            }
             } catch (error) {
                 console.log(error);
                try {

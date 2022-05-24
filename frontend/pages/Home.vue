@@ -14,6 +14,14 @@
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
                             <div class="xl:mt-12">
+                                    <input v-model="searchArgs" type="search" class=" form-control" >
+                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+                                 
+                                 
+                             <div class="search-bar">
+
+
+                            </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :project="trendingProjects" class="mb-6"/>

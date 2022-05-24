@@ -8,7 +8,7 @@
                <img v-if="this.$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
                <img v-if="!this.$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">
             </div> 
-            <div class="flex flex-col align-center justify-center m-2 h-1/3 md:h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
+            <div class="flex flex-col align-center justify-center m-2 h-1/3  w-11/12 border-b border-t border-medium-gray dark:border-slate">
                 <img class="rounded-full sm:w-20 md:w-24 w-16 justify-self-center self-center m-1 " :src="info.profilePic">
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold text-xl md:text-base">{{info.name}}</p>

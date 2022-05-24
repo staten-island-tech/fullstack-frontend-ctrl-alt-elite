@@ -49,16 +49,16 @@
             <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
         </li> -->
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-lg md:text-xl" to="/profile/"  :class="{defaultLink:defaultLink}">Following  {{info.following}} </NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xs sm:text-sm md:text-xl" to="/profile/"  :class="{defaultLink:defaultLink}">Following  {{info.following}} </NuxtLink>
 
         </li>
         
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-lg md:text-xl" to="/profile/Followers">Followers  {{info.followers}}   </NuxtLink>
+          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xs sm:text-sm md:text-xl" to="/profile/Followers">Followers  {{info.followers}}   </NuxtLink>
 
         </li>
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-lg md:text-xl" to="/profile/Projects" >Projects  {{info.projects}}</NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xs sm:text-sm md:text-xl" to="/profile/Projects" >Projects  {{info.projects}}</NuxtLink>
 
         </li>
       </ul>

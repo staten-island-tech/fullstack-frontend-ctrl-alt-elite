@@ -3,12 +3,12 @@
       <h1 class="text-black dark:text-white" >{{projectsList.length}}  projects found </h1> 
     
        
-      <div class="flex flex-column justify-center w-2/3">
+      <div class="flex flex-col md:flex-row justify-center w-2/3">
          <input 
          v-model="searchArgs" type="search" 
-         class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
-          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
-          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
+         class="form-control relative flex-auto block h-10 w-full md:w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500  " @click="searchProjects" >Search</button>
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500  " @click="resetProjects" >Reset</button>
       </div>
    
    

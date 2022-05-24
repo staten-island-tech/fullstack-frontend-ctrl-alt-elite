@@ -1,15 +1,17 @@
 <template>
-    <div >
+    <div>
         <div class="swiper">
         <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
-          <div id="loading" class="lds-dual-ring"></div>
-          <div v-for="(project,key) in project" :key="key" class="swiper-slide">
+          
+          <div v-for="project in projects" :key="project" class="swiper-slide">
+            
             <ProjectCard class="slider-content" :project="project"/>
           </div>
         </div>
         <!-- If pagination is needed -->
         <div class="swiper-pagination"></div>
+
         <!-- If navigation buttons are needed -->
         <div class="swiper-button-next" :class="{ light : !this.$store.state.darkMode }"></div>
       </div>
@@ -23,7 +25,7 @@ import 'swiper/swiper-bundle.min.css'
 
 export default {
   props: {
-    project: Array
+    projects: Array
   },
       mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
@@ -36,25 +38,11 @@ export default {
     const swiper = new Swiper('.swiper', {
       // Optional parameters
       // @see https://swiperjs.com/swiper-api#parameters
-      direction: 'horizontal',
+      direction: 'vertical',
       freeMode: true,
-      slidesPerView: 3,
-      observer: true,
-      observeParents: true,
+      slidesPerView: 1,
       // spaceBetween: 10,
       // spaceBetween: "30",
-            
-      breakpoints: {
-            1500: {
-              slidesPerView: 3,
-              direction: 'horizontal'
-            },
-
-            1050: {
-              direction: 'horizontal',
-              slidesPerView: 2,
-            },
-      },
 
       // remove unused modules if needed
       modules: [ FreeMode, Navigation],
@@ -105,32 +93,4 @@ export default {
 .light {
   color: #3500D3;
 }
-
-.lds-dual-ring {
-  display: inline-block;
-  position: absolute;
-  width: 80px;
-  height: 80px;
-}
-.lds-dual-ring:after {
-  content: " ";
-  position: absolute;
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #fff;
-  border-color: #fff transparent #fff transparent;
-  animation: lds-dual-ring 1.2s linear infinite;
-}
-@keyframes lds-dual-ring {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 </style>

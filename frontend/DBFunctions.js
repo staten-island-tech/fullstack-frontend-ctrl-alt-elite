@@ -52,9 +52,8 @@ module.exports.getInfo = async (userID, info) => {
     info.projects = data.projects
     info.name = data.name
     info.profilePic = data.profilePic
-    info.mongoID= data.mongoID
+    info.mongoID = data.mongoID
     info.userID = data.userID
-     
   } catch (error) {
     window.alert(error)
   }
@@ -107,20 +106,19 @@ module.exports.getFollowers = async (userID, list) => {
 // }
 
 module.exports.getProfile = async (userID, userProfile) => {
-  // try {
+  try {
     const userInfo = { email: userID }
     const response = await fetch(`http://localhost:5000/getProfile`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
-    const data = await response.json()
+    const data2 = await response.json()
     if (response.status === 500) throw response.error
-    userProfile.data = data.userProfile
- // } catch (error) {
- //   ;
- //   throw error
- // }
+    userProfile.data = data2.userProfile
+  } catch (error) {
+    throw error
+  }
 }
 
 module.exports.updateProfile = async (userProfile) => {
@@ -145,7 +143,6 @@ module.exports.createUser = async (userProfile) => {
       body: JSON.stringify(userProfile), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
-
     const data = await response.json()
     userProfile = data
   } catch (error) {
@@ -178,7 +175,6 @@ module.exports.getProjects = async (mongoID, projects) => {
     const data = await response.json()
     if (response.status === 500) throw response.error
     const parsed = JSON.parse(JSON.stringify(data.projects))
-
     const forDisplay = parsed.splice(0, 6)
 
     projects.push(...forDisplay)
@@ -195,8 +191,63 @@ module.exports.getProjects2 = async (mongoID, projects) => {
     })
     const data = await response.json()
     if (response.status === 500) throw response.error
-    projects.list =data.projects;
+    projects.list = data.projects
   } catch (error) {}
+}
+module.exports.getFollowingProjects = async (mongo_id, projects) => {
+  const userInfo = { _id: mongo_id }
+  const response = await fetch(`http://localhost:5000/getFollowingProjects`, {
+    method: 'POST',
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+  const forDisplay = parsed.splice(0, 10)
+  projects.push(...forDisplay)
+}
+
+module.exports.getTrendingProjects = async (project) => {
+  const response = await fetch(`http://localhost:5000/getTrendingProjects`, {
+    method: 'GET',
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+  const forDisplay = parsed.splice(0, 10)
+  project.push(...forDisplay)
+}
+
+module.exports.addLike = async (projectInfo, email) => {
+  const pushInfo = {
+    userID: projectInfo.user_id,
+    _id: projectInfo._id,
+    projectTitle: projectInfo.projects.project_title,
+    followUserID: email,
+  }
+  const response = await fetch(`http://localhost:5000/addLike`, {
+    method: 'POST',
+    body: JSON.stringify(pushInfo),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
+}
+
+module.exports.removeLike = async (projectInfo, email) => {
+  const pushInfo = {
+    userID: projectInfo.user_id,
+    _id: projectInfo._id,
+    projectTitle: projectInfo.projects.project_title,
+    followUserID: email,
+  }
+  const response = await fetch(`http://localhost:5000/removeLike`, {
+    method: 'POST',
+    body: JSON.stringify(pushInfo),
+    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+  })
+  const data = await response.json()
+  const parsed = JSON.parse(JSON.stringify(data))
 }
 
 module.exports.updateProject = async (payload) => {
@@ -208,7 +259,20 @@ module.exports.updateProject = async (payload) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
-   console.log(data)
+  } catch (error) {
+    window.alert('error')
+  }
+}
+
+module.exports.deleteProject = async (payload) => {
+  try {
+    const response = await fetch(`http://localhost:5000/deleteProject`, {
+      method: 'DELETE',
+      // Adding body or contents to send
+      body: JSON.stringify(payload), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
   } catch (error) {
     window.alert('error')
   }
@@ -330,25 +394,17 @@ module.exports.updateProject = async (payload) => {
 //   }
 // }
 
-module.exports.searchProjects = async(searchArguments,projects) => {
-    try {
-    
-      const SearchArgs = { projectTitle: searchArguments }
-      const response = await fetch(`http://localhost:5000/searchProjects`, {
-        method: 'POST',
-
-        body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
-        headers: { 'Content-type': 'application/json; charset=UTF-8' },
-      })
-
-      const data = await response.json();
-      // this.uniqueID = data.uniqu;
-      projects.list= data
-      // window.alert(JSON.stringify(projects.list))
-
-    } catch (error) {
-      
-
-    }
-  }
-
+module.exports.searchProjects = async (searchArguments, projects) => {
+  try {
+    const SearchArgs = { projectTitle: searchArguments }
+    const response = await fetch(`http://localhost:5000/searchProjects`, {
+      method: 'POST',
+      body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
+      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    })
+    const data = await response.json()
+    // this.uniqueID = data.uniqu;
+    projects.list = data
+    // window.alert(JSON.stringify(projects.list))
+  } catch (error) {}
+}

@@ -2,7 +2,7 @@
   <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
    
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
-      <DefaultNavBar/>
+      <DefaultNavBar class="fixed"/>
        
       <div class=" w-full h-1/3 flex justify-center items-center">
         <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
@@ -20,9 +20,9 @@
                   
               </div>
               
-              <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"  />
+              <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/>
               
-              <img class="basis-5 rounded-full h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
+              <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
 
               <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
@@ -31,9 +31,9 @@
                    <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
                   <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
                   <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
-                  <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
+                  <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
                   <div v-if="ownProfile" class="flex flex-row justify-end " >
-                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
+                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
                   </div>
                 <div v-else class="flex flex-row justify-end ">
                    <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
@@ -62,7 +62,7 @@
 
         </li>
       </ul>
-    <div   class="bg-white dark:bg-d-bg-secondary min-h-full h-auto container">
+    <div   class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
       <!-- <p> {{$store.state.followInfo.name}} </p> -->
     <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
     <NuxtChild/>
@@ -77,33 +77,27 @@
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
-
 export default {
-  
   data(){
-       return{  
-          info: {
-                followers:0,
-                following:0,
-                projects:0,
-                name:'',
-                profilePic:'',
-                mongoID:'',
-                userID:'',
-            },
-         followingList:{data:null}, 
-         followersList:{data:null}, 
-         userProfile: { data : ''},
-         projects: {list: []},
-         defaultLink:true,
-         showImageList:true
-         
-          
-       } 
-    
-    },
+    return{  
+      info: {
+        followers:0,
+        following:0,
+        projects:0,
+        name:'',
+        profilePic:'',
+        mongoID:'',
+        userID:'',
+      },
+      followingList:{data:null}, 
+      followersList:{data:null}, 
+      userProfile: { data : 'avc'},
+      projects: {list: []},
+      defaultLink:true,
+      showImageList:true
+    } 
+  },
    computed: {
-     
     reload: {
       get() {
        
@@ -119,89 +113,69 @@ export default {
     },
        
  watch: {
-    
     reload(newValue, oldValue) {
       this.getProfile();
      
     }
   }, 
-  mounted ()
-   { 
-  //    this.vantaEffect = WAVES({
-  //     el: "#body",
-  //     THREE,
-  //     color: 0x000000,
-  // waveHeight: 20,
-  // shininess: 50,
-  // waveSpeed: 1.5,
-  // zoom: 0.75
-  //   });
-   
-  
-  this.getProfile();
-   
-    } ,   
- 
-  
-  // beforeDestroy() {
-  //   if (this.vantaEffect) {
-  //     this.vantaEffect.destroy()
-  //   }
-  // },
-   
- 
+  mounted (){
+    this.getProfile();
+  } ,   
   methods: {
- async getProfile()   {
-    try {
-               
+    async getProfile() {
+      try {
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
+<<<<<<< HEAD
           // window.alert(JSON.stringify(this.projects.list))
          this.projects.list = this.userProfile.data.projects 
               
           
           
+=======
+        // window.alert(JSON.stringify(this.projects.list))
+        this.projects.list = this.userProfile.data.projects 
+      } catch { 
+          window.alert ("error getting the profile")
+      }
+  } ,
+>>>>>>> development
 
-    } catch 
-    { window.alert ("error getting the profile")
-    }
-  },
-  async getOwnProfile()   {
-    await DBFunctions.getFollowing(this.$auth.user.email,this.list);
-    await DBFunctions.getInfo(this.$auth.user.email,this.info);
-    await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-
-  
-    const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-    this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-    this.$router.push("/profile");
-
-  },
- async resetProfile()   {
-       this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
-      await this.getProfile();
-      
+    async getOwnProfile()   {
+      await DBFunctions.getFollowing(this.$auth.user.email,this.list);
+      await DBFunctions.getInfo(this.$auth.user.email,this.info);
+      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+      const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+      this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+      this.$router.push("/profile");
     },
-  async updateProfile()   {
-    try {
-      await DBFunctions.updateProfile(this.userProfile)
-      this.$store.commit('updateReload')
-      window.alert("Profile information updated.")
-    } catch {
-         window.alert("can't update profile")
-    }
+    async resetProfile()   {
+      try {
+        this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
+        await this.getProfile();
+        window.alert("Profile information reset.")
+        window.location.reload()
+      } catch (error) {
+        console.log(error);
+      }
     },
-    selectImage()
-    {
-      // document.getElementById("imageList").style.display = "flex"
-      this.showImageList=false
+    async updateProfile()   {
+      try {
+        await DBFunctions.updateProfile(this.userProfile)
+        this.$store.commit('updateReload')
+        window.alert("Profile information updated.")
+        window.location.reload()
+      } catch{
+        window.alert("ok")
+      }},
+    selectImage(){
+        // document.getElementById("imageList").style.display = "flex"
+        this.showImageList=false
     }
-   
-     },
-    
+  },    
 }
 </script>
 
@@ -219,34 +193,28 @@ li {
   padding: 0.25rem;
   font-size: 1rem;
 }
-
 .container {
    margin: auto;
    margin-top: 20px;
-  width: 50vw;
+   margin-bottom: 20px;
   /* background-color: #1c1c1c; */
   /* border: 3px solid rgb(27, 25, 25);
   border: 3px (linear-gradient(to right, red, purple)); */
    /* border-style: solid;
   border-width: 3px;
   border-image: conic-gradient( magenta, blue, magenta) 1; */
-
   padding: 10px;
   border-radius: 12px;
-
 }
  
   
-
 a.nuxt-link-exact-active, .defaultLink {
   color:rgb(160, 148, 228);
   text-decoration: underline #3500D3 3px;
   font-weight : bold;
   
 }
-
  
-
 .link-underline {
 		border-bottom-width: 0;
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
@@ -255,32 +223,25 @@ a.nuxt-link-exact-active, .defaultLink {
 		background-repeat: no-repeat;
 		transition: background-size .5s ease-in-out;
 	}
-
 	.link-underline-black {
 		background-image: linear-gradient(transparent, transparent), linear-gradient(#3500D3, #3500D3)
 	}
-
 	.link-underline:hover {
 		background-size: 100% 3px;
 		background-position: 0 100%
 	}
-
   #body {
     height: 5rem;
     width: 5rem;
   }
-
-
 h1{
     color:white;
     font-size: 1.5rem;
 }
-
 .darkBorder {
     border-bottom: solid 3px;
     border-image: conic-gradient( magenta, #3500D3, magenta) 1;
 }
-
 .noAccess {
   pointer-events: none;
 }

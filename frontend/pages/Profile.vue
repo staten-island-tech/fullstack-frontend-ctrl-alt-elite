@@ -149,7 +149,7 @@ export default {
         this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
         await this.getProfile();
         window.alert("Profile information reset.")
-        window.location.reload()
+        // window.location.reload()
       } catch (error) {
         console.log(error);
       }
@@ -159,7 +159,7 @@ export default {
         await DBFunctions.updateProfile(this.userProfile)
         this.$store.commit('updateReload')
         window.alert("Profile information updated.")
-        window.location.reload()
+        // window.location.reload()
       } catch{
         window.alert("ok")
       }},

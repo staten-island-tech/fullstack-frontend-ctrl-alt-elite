@@ -16,7 +16,7 @@
                        <p>Following  {{info.following}}</p> 
                         <p>Followers  {{info.followers}}</p>
                    </div>
-                   <button id="profile"  class="hidden md:flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile">View Profile</button>
+                   <button id="profile"  class="flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile">View Profile</button>
                 </div>
             </div>
             <div class="lg:h-1/10 h-1/8 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-d-bg-accent m-2">

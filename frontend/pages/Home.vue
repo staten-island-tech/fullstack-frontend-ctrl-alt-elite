@@ -3,18 +3,9 @@
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
             
-<<<<<<< HEAD
-                <div class="w-full flex flex-row">
-                    
-                    <div class="w-5/6 min-h-screen h-auto flex items-center justify-center m-6">
-                    
-                        <div class="w-full min-h-screen h-auto flex flex-row flex-wrap justify-center" id= "display">
-                            
-=======
                 <div class="w-full flex flex-col-reverse xl:flex-row items-center">
                     <div class="w-full xl:w-5/6  flex  justify-center m-6">
                         <div class="w-full  flex flex-row flex-wrap justify-center ">
->>>>>>> development
                             <!-- SEARCH RESULTS -->
                             <!-- <div class="w-full min-h-screen h-auto flex flex-row flex-wrap items-center justify-center">
                                  <ProjectCard v-for="project in homeProjects" :key="project" :project="project" class="m-4"/>
@@ -22,28 +13,10 @@
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
-<<<<<<< HEAD
-
-
-                            <div class="relative mt-12">
-                                <input v-model="searchArgs" type="search" class=" form-control" >
-                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
-                                 
-                                 
-                             <div class="search-bar">
-
-
-                            </div>
-
-                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
-                                    <h2 class="text-black dark:text-white text-2xl" >Trending</h2>
-                                    <Slideshow :projects="homeProjects" class="mb-6"/>
-=======
                             <div class="xl:mt-12">
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :project="trendingProjects" class="mb-6"/>
->>>>>>> development
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
@@ -77,12 +50,7 @@
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
-
-
-=======
            
->>>>>>> development
         </div>
       <!-- <div class="search">
         <div class="search-bar">
@@ -106,56 +74,9 @@ export default {
            search:'', 
          projectsList:Array,
          userProfile: { data : ''},
-<<<<<<< HEAD
-        projects: {list: []},
-         recent: [
-             
-         ],
-         
-        //   info: {
-        //     followers:0,
-        //     following:0,
-        //     projects:0,
-        //     },
-         homeProjects: [
-             {
-                project_title: 'Project 1',
-                user: 'Bob'
-             },
-             {
-                project_title: 'Project 2',
-                user: 'Tom'
-             },
-             {
-                project_title: 'Project 3',
-                user: 'Tim'
-             },
-             {
-                project_title: 'Project 4',
-                user: 'Sam'
-             },
-             {
-                project_title: 'Project 5',
-                user: 'Ham'
-             },
-             {
-                project_title: 'Project 6',
-                user: 'Jam'
-             },
-             {
-                project_title: 'Project 7',
-                user: 'Kam'
-             },
-             {
-                project_title: 'Project 7',
-                user: 'Kam'
-             },
-         ],
-=======
          recent: [],
          trendingProjects: [],
          followingProjects: []
->>>>>>> development
          }
     },
     async mounted (){
@@ -166,19 +87,11 @@ export default {
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
-<<<<<<< HEAD
-            // await DBFunctions.searchProjects("search", this.projects);
-            // console.log(this.projects)
-            // console.log(this.projects.list)
-            // console.log("bruh")
-
-=======
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
             await DBFunctions.getTrendingProjects(this.trendingProjects) 
             document.getElementById("loading").style.display = "none"
             // Modify after element too
             document.getElementById("loading").style.display = "none"
->>>>>>> development
             } catch (error) {
                 console.log(error);
                try {

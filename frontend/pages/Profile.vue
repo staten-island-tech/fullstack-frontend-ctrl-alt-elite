@@ -129,20 +129,12 @@ export default {
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
-<<<<<<< HEAD
-          // window.alert(JSON.stringify(this.projects.list))
-         this.projects.list = this.userProfile.data.projects 
-              
-          
-          
-=======
         // window.alert(JSON.stringify(this.projects.list))
         this.projects.list = this.userProfile.data.projects 
       } catch { 
           window.alert ("error getting the profile")
       }
   } ,
->>>>>>> development
 
     async getOwnProfile()   {
       await DBFunctions.getFollowing(this.$auth.user.email,this.list);

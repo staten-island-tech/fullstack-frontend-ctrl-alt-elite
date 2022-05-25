@@ -13,7 +13,7 @@
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
-                            <div class="xl:mt-12">
+                            <div class="xl:mt-12" >
                                     <input v-model="searchArgs" type="search" class=" form-control" >
                                     <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
                                  
@@ -79,12 +79,13 @@ export default {
   components: { Slideshow },
      data(){
        return{ 
-           search:'', 
+           searchArgs:'', 
          projectsList:Array,
          userProfile: { data : ''},
          recent: [],
          trendingProjects: [],
-         followingProjects: []
+         followingProjects: [],
+         projects:[]
          }
     },
     async mounted (){
@@ -145,14 +146,13 @@ export default {
            try {
             await DBFunctions.searchProjects( this.searchArgs, this.projects);
             // window.alert(JSON.stringify(this.projects.list))
-            this.projects.list = this.userProfile.data.projects 
-            console.log(this.projects.list)
+            //this.projects = this.getProjects.projects 
+            console.log(this.projects)
            } catch (error) {
                console.log(error)
            }
             
-             this.projectsList = this.projects.list.filter
-             (project =>project.project_title.match(new RegExp(this.search, 'i') ) )
+           
 
         }, 
 
@@ -164,7 +164,6 @@ export default {
 </script>
 
 <style scoped>
-
 .container {
     margin: 0 auto;
     width: 100%;

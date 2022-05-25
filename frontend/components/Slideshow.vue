@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <div class="swiper">
         <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
@@ -35,30 +35,15 @@ export default {
     /* eslint-disable no-unused-vars */
     const swiper = new Swiper('.swiper', {
       // Optional parameters
-      modules: [ FreeMode, Navigation],
       // @see https://swiperjs.com/swiper-api#parameters
       direction: 'horizontal',
       freeMode: true,
-      slidesPerView: 1,
-      observer: true,
-      observeParents: true,
+      slidesPerView: 3,
       // spaceBetween: 10,
       // spaceBetween: "30",
-            
-      breakpoints: {
-            1500: {
-              slidesPerView: 3,
-              direction: 'horizontal'
-            },
-
-            1050: {
-              direction: 'horizontal',
-              slidesPerView: 2,
-            },
-      },
 
       // remove unused modules if needed
-  
+      modules: [ FreeMode, Navigation],
       // Pagination if needed
       // pagination: {
       //   el: '.swiper-pagination',

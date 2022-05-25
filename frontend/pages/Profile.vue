@@ -148,7 +148,7 @@ export default {
       try {
         this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
         await this.getProfile();
-        // window.alert("Profile information reset.")
+        window.alert("Profile information reset.")
         // window.location.reload()
       } catch (error) {
         console.log(error);

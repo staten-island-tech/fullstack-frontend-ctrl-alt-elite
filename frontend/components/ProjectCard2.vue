@@ -7,11 +7,6 @@
       <!-- <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold">
          {{item.project_title}}</h3> -->
           <NuxtLink class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" to="/profile/Following" > {{item.project_title}} </NuxtLink>
-      <div class="flex flex-row justify-between px-3">
-        <LikeButton/>
-        <!-- <h4 class="text-gray-100"><slot>Username</slot></h4>
-        <FollowButton /> -->
-      </div>
     </div>
   </div>
 </template>
@@ -19,7 +14,7 @@
 <script>
 export default {
 props: {
-       item : {      // user id 
+  item : {      // user id 
            type:Object,
            required:true,
        }

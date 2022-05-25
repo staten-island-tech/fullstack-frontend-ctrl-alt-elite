@@ -6,21 +6,27 @@
        Oh no list is empty 😢
      </p>
      <template v-else>
-       <div class="container flex col gap-5  flex-wrap justify-center">
-        <div  v-for="item in list.data" :key="item.user_id"   >
-            <div class="py-5 px-5 h-40 max-w-sm mx-auto text-white dark:text-black bg-black dark:bg-white  rounded-xl shadowing space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 ">
-              <img class="block mx-auto h-12 rounded-full sm:mx-0 sm:shrink-0" :src="item.profile_pic" >
-              <div class="text-center space-y-2 sm:text-left">
-                <div class="space-y-0.5">
-                  <p class="text-lg font-semibold hover:underline cursor-default" @click="viewOtherUser(item._id,item.user_id)">{{item.name}}</p>
-                  <p class="text-lg  font-medium">{{item.user_id}}</p>
-                </div>
-              <div v-if="$auth.user.email !=item.user_id"> <FollowButton2 :followuserid="item.user_id" /> </div> 
-          </div>
+       <div class="container flex col gap-5 flex-wrap justify-center items-center"></div>
+      <div  v-for="item in list.data" :key="item.user_id"   >
+
+          <div class="py-5 px-5 h-40 max-w-sm mx-auto text-white dark:text-black bg-black dark:bg-white  rounded-xl shadowing space-y-2 sm:py-4 sm:flex sm:items-center    sm:space-y-0 sm:space-x-6 ">
+            <img class="block mx-auto h-12 rounded-full sm:mx-0 sm:shrink-0" :src="item.profile_pic" @click="viewOtherUser(item._id,item.user_id)">
+          <div class="text-center space-y-2 sm:text-left">
+          <div class="space-y-0.5">
+           <p class="text-lg  font-semibold">
+             {{item.name}}
+          </p>
+          <p class="text-lg  font-medium">
+            {{item.user_id}}
+         </p>
+        </div >
+         <div v-if="$auth.user.email !=item.user_id"> 
+           <FollowButton2 :followuserid="item.user_id" />
         </div>
     </div>
              
         </div>
+      </div>
     </template>
  
   

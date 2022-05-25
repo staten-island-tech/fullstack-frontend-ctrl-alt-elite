@@ -1,18 +1,18 @@
 <template>
-  <div >
+  <div class="flex items-center justify-center flex-col">
       <h1 class="text-black dark:text-white" >{{projectsList.length}}  projects found </h1> 
     
        
-      <div class="flex flex-column">
+      <div class="flex flex-column justify-center w-2/3">
          <input 
          v-model="searchArgs" type="search" 
-         class=" form-control relative flex-auto min-w-0 block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
+         class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
       </div>
    
    
-      <div Class="flex flex-wrap relative flex-row justify-items-center px-4"  >
+      <div Class="flex flex-wrap relative flex-row justify-center px-4"  >
 
       <!-- <div class="relative mt-12">
           <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -21,46 +21,37 @@
           </div>
         </div> -->
        
-       <p  v-if="start >pageLimit " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"        @click="previousPage" > Previous </p>
-        <div v-for="(item,index) in projectsList" :key="item._ID"    >
-               
-               <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
-                
-                
-             
+        <div v-for="(item,index) in projectsList" :key="item._ID">
+          <ProjectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" class="m-2" /> 
         </div>
-         <p  v-if="end < total " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5" @click="nextPage" > Next </p> 
         
         </div>
+        <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="previousPage">Previous</button>
+        <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button> 
      <!-- <DefaultNavBar /> -->
   </div>
 </template>
 
 <script>
 
- 
+ // Project card 2 is passing in solely project while project card is passing in entire object
  
 export default {
  
    data(){
-       return{ 
-         projectsList:Array,
-              
-          pageLimit:5,
-          searchArgs: "",
-          start :1,
-          end :0,
-          total:0,
-        
-         }
+      return{ 
+        projectsList: Array,   
+        pageLimit:5,
+        searchArgs: "",
+        start: 1,
+        end :0,
+        total:0,
+      }
       },
-      
-       
-   
       mounted() {
         this.$parent.defaultLink=false;
         this.projectsList = this.$parent.projects.list;
-        
+
         this.initScroll();
   },
 
@@ -68,10 +59,7 @@ export default {
       
      
     searchProjects()   {
-      
-       
-      this.projectsList = this.$parent.projects.list.filter
-                    (project =>project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
+      this.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
       
 
       this.initScroll()

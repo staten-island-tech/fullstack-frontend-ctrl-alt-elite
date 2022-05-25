@@ -2,7 +2,7 @@
   <section id="project" class="h-screen w-screen relative flex flex-col justify-center " :class="{ dark : this.$store.state.darkMode }">
         <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
-      <div id="editcontainer" class="h-40/1 w-full flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
+      <div id="editcontainer" class="hidden h-40/1 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
         <div id="one" class="w-1/3 h-full flex flex-col">
           <div id="oneLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12">
             <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
@@ -24,7 +24,23 @@
           </div>
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
-    </div>
+      </div>
+      <div>
+        <div class="flex sm:hidden flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
+          <div id="oneLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
+            <h1>HTML</h1>
+          </div>
+          <div id="twoLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
+            <h1>CSS</h1>
+          </div>
+          <div id="threeLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
+            <h1>JS</h1>
+          </div>
+        </div>
+      </div>
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">

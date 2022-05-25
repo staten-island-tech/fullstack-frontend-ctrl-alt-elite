@@ -21,13 +21,8 @@
           </div>
         </div> -->
        
-       <p  v-if="start >pageLimit " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5"        @click="previousPage" > Previous </p>
-        <div v-for="(item,index) in projectsList" :key="item._ID"    >
-               
-               <projectCard2 v-if="index+1 >= start && index+1 <=end" :item="item"  /> 
-                
-                
-             
+        <div v-for="(item,index) in projectsList" :key="item._ID">
+          <ProjectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" class="m-2" /> 
         </div>
          <p  v-if="end < total " class=" mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded h-5" @click="nextPage" > Next </p> 
         
@@ -38,29 +33,24 @@
 
 <script>
 
- 
+ // Project card 2 is passing in solely project while project card is passing in entire object
  
 export default {
  
    data(){
-       return{ 
-         projectsList:Array,
-              
-          pageLimit:5,
-          searchArgs: "",
-          start :1,
-          end :0,
-          total:0,
-        
-         }
+      return{ 
+        projectsList: Array,   
+        pageLimit:5,
+        searchArgs: "",
+        start: 1,
+        end :0,
+        total:0,
+      }
       },
-      
-       
-   
       mounted() {
         this.$parent.defaultLink=false;
         this.projectsList = this.$parent.projects.list;
-        
+
         this.initScroll();
   },
 
@@ -68,10 +58,7 @@ export default {
       
      
     searchProjects()   {
-      
-       
-      this.projectsList = this.$parent.projects.list.filter
-                    (project =>project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
+      this.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
       
 
       this.initScroll()

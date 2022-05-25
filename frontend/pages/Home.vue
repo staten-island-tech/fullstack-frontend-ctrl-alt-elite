@@ -73,7 +73,10 @@ export default {
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
-            await DBFunctions.getTrendingProjects(this.trendingProjects)
+            await DBFunctions.getTrendingProjects(this.trendingProjects) 
+            for (let ring of document.getElementsByClassName("lds-dual-ring")){
+                ring.style.display = "none"
+            }
             } catch (error) {
                try {
                 await DBFunctions.createUser(this.$auth.user) ;

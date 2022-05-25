@@ -34,7 +34,7 @@
                     </NuxtLink>
                 </div>
                 <div class="h-1/6">
-                    <NuxtLink to="/Profile/Projects" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full">
+                    <NuxtLink to="/Profile/Projects" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full" @click="getProfile">
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </NuxtLink>
@@ -119,7 +119,6 @@ export default {
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
            this.$router.push({name: 'Profile'});
-          
          } ,
         
           

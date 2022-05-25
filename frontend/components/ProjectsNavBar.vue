@@ -7,15 +7,15 @@
         <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
         <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
       </div>
-      <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent text-white hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
+      <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
     </div>
   </div>
  
-    <div class="h-2/3 w-1/4 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
-      <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded  text-base" @click="run">Run</button>
-      <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded  text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
-      <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
-      <button class="bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-base">Publish</button>
+    <div class="h-2/3 w-1/2 md:w-1/3 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
+      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="run">Run</button>
+      <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-base" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
+      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base">Publish</button>
       <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
     </div>
     <div v-else-if="this.$store.state.otherUserProject === true">   
@@ -34,6 +34,7 @@ export default {
   components: { LikeButton },
   data(){
     return{
+      savedAlready: false,
       info: {
       profilePic: '',
       name:'',
@@ -113,13 +114,15 @@ export default {
             "new_js": this.$store.state.codeJS,
           })
         }
+        this.savedAlready = true
       } catch (error) {
         window.alert(error)
       }
     },
     async publish(){
       try {
-        if (this.$store.state.newProject === true){
+        if (this.savedAlready === false){
+          if (this.$store.state.newProject === true){
           await DBFunctions.createProject(
             {
               "_id": this.$store.state.otherIDInfo.mongo_id,
@@ -131,18 +134,19 @@ export default {
               "private_boolean": false
             }
           )
-        }
-        if (this.$store.state.newProject === false){
-          await DBFunctions.updateProject({
-            "_id": this.$store.state.otherIDInfo.mongo_id,
-            "project_id": this.$store.state.project_id,
-            "new_title": this.$store.state.projectTitle,
-            "new_description": this.$store.state.projectDescription,
-            "new_html": this.$store.state.codeHTML,
-            "new_css": this.$store.state.codeCSS,
-            "new_js": this.$store.state.codeJS,
-            "private_boolean": false
-          })
+          }
+          if (this.$store.state.newProject === false){
+            await DBFunctions.updateProject({
+              "_id": this.$store.state.otherIDInfo.mongo_id,
+              "project_id": this.$store.state.project_id,
+              "new_title": this.$store.state.projectTitle,
+              "new_description": this.$store.state.projectDescription,
+              "new_html": this.$store.state.codeHTML,
+              "new_css": this.$store.state.codeCSS,
+              "new_js": this.$store.state.codeJS,
+              "private_boolean": false
+            })
+          }
         }
         this.$router.push("Home")
       } catch (error) {

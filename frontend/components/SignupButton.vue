@@ -1,5 +1,5 @@
 <template>
-  <button @click="signup"><slot>Sign Up</slot></button>
+  <button class="md:text-lg text-xs" @click="signup"><slot>Sign Up</slot></button>
 </template>
 
 <script>

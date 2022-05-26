@@ -8,7 +8,7 @@
                <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
-                <img class="rounded-full h-24 w-24 justify-self-center self-center m-1 " :src="info.profilePic">
+                <img class="rounded-full h-24 justify-self-center self-center m-1 " :src="info.profilePic">
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold ">{{info.name}}</p>
                    <div class="text-sm flex flex-row justify-between m-2 w-2/3 text-black dark:text-white">
@@ -83,14 +83,17 @@ export default {
      
     reload: {
       get() {
-        return this.$store.state.reload;
+       
+      return this.$store.state.reload;
       }
     }
        
 },
-watch: {
+ watch: {
+    
     reload(newValue, oldValue) {
       this.refresh();
+     
     }
   },
      mounted (){
@@ -111,14 +114,25 @@ watch: {
              
         },
         getProfile (){
+                
+          
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
            this.$router.push({name: 'Profile'});
          } ,
+        
+          
+    //    methods: {
+    //        toggleVisible() {
+    //            this.display = !this.display;
+    //        },
            async logout() {
         await this.$auth.logout()
        
       },
+           async getProfile()   {
+      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+    },
  async resetProfile()   {
       await this.getProfile();
       window.alert("Profile information reset.")

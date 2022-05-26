@@ -1,5 +1,5 @@
 <template>
-    <div >
+    <div>
         <div class="swiper">
         <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
@@ -39,22 +39,8 @@ export default {
       direction: 'horizontal',
       freeMode: true,
       slidesPerView: 3,
-      observer: true,
-      observeParents: true,
       // spaceBetween: 10,
       // spaceBetween: "30",
-            
-      breakpoints: {
-            1500: {
-              slidesPerView: 3,
-              direction: 'horizontal'
-            },
-
-            1050: {
-              direction: 'horizontal',
-              slidesPerView: 2,
-            },
-      },
 
       // remove unused modules if needed
       modules: [ FreeMode, Navigation],

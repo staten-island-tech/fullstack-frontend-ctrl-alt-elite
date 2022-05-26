@@ -6,7 +6,10 @@
        Oh no list is empty 😢
      </p>
      <template v-else>
-       <div class="container flex col gap-5 flex-wrap justify-center items-center"></div>
+       <div class="container flex col gap-5 flex-wrap">
+        
+       
+    
       <div  v-for="item in list.data" :key="item.user_id"   >
 
           <div class="py-5 px-5 h-40 max-w-sm mx-auto text-white dark:text-black bg-black dark:bg-white  rounded-xl shadowing space-y-2 sm:py-4 sm:flex sm:items-center    sm:space-y-0 sm:space-x-6 ">
@@ -23,10 +26,12 @@
          <div v-if="$auth.user.email !=item.user_id"> 
            <FollowButton2 :followuserid="item.user_id" />
         </div>
-    </div>
-             
+         
         </div>
       </div>
+</div>
+             
+        </div>
     </template>
  
   

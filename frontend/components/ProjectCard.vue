@@ -34,7 +34,6 @@ export default {
   },
   methods:{
     otherProject(){
-      console.log(this.project);
       const data = {
         projects: this.project.projects,
         projectName: this.project.projects.project_title
@@ -42,7 +41,7 @@ export default {
       this.$store.dispatch("viewOtherProject", data)
       this.$store.commit("newProject", false)
       this.$store.commit("isNotYourProject", true)
-      this.$router.push({path: "/Project"})
+      this.$router.push("Project")
     }
   }
 }

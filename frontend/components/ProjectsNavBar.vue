@@ -7,7 +7,7 @@
         <input id="title" v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
         <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
       </div>
-      <a><h1 class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-white cursor-pointer">{{username}}</h1></a>
+      <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
     </div>
   </div>
     <div class="h-2/3 w-1/4 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
@@ -30,15 +30,12 @@ import DBFunctions from "~/DBFunctions";
 import LikeButton from './LikeButton.vue';
 export default {
   components: { LikeButton },
-  prop:{
-    username: String
-  },
   data(){
     return{
       savedAlready: false,
       info: {
-        profilePic: '',
-        name:'',
+      profilePic: '',
+      name:'',
       },
       userProfile: { data : ""},
     }

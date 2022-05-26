@@ -6,7 +6,6 @@ export const state = () => ({
   projectDescription: '',
   project_id: '',
   reload: 1,
-
   otherIDInfo: {
     mongo_id: '',
     email: '',

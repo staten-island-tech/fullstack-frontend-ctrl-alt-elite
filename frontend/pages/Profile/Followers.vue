@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div class="flex items-center justify-center flex-col">
       <FollowList :list="$parent.followersList"  />
   </div>
 </template>

@@ -13,6 +13,7 @@ export default {
             this.$store.commit("PUSH_TITLE", "")
             this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
+            this.$store.commit("isNotYourProject", false)
             this.$router.push("Project")
         }
     }

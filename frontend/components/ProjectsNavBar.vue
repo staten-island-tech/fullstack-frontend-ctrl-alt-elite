@@ -1,6 +1,6 @@
 <template>
-  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white  border-b border-d-bg-secondary">
-  <div class="w-1/2 flex flex-row py-2 items-center ">
+  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white">
+  <div class="w-1/2 flex flex-row py-2 items-center  border-1">
     <NuxtLink to="/Home"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
     <div class="flex flex-col items-center ">
       <div class="flex flex-row items-center">
@@ -35,6 +35,7 @@ export default {
   },
   data(){
     return{
+      savedAlready: false,
       info: {
         profilePic: '',
         name:'',
@@ -118,13 +119,15 @@ export default {
             "new_js": this.$store.state.codeJS,
           })
         }
+        this.savedAlready = true
       } catch (error) {
         window.alert(error)
       }
     },
     async publish(){
       try {
-        if (this.$store.state.newProject === true){
+        if (this.savedAlready === false){
+          if (this.$store.state.newProject === true){
           await DBFunctions.createProject(
             {
               "_id": this.$store.state.otherIDInfo.mongo_id,
@@ -136,18 +139,19 @@ export default {
               "private_boolean": false
             }
           )
-        }
-        if (this.$store.state.newProject === false){
-          await DBFunctions.updateProject({
-            "_id": this.$store.state.otherIDInfo.mongo_id,
-            "project_id": this.$store.state.project_id,
-            "new_title": this.$store.state.projectTitle,
-            "new_description": this.$store.state.projectDescription,
-            "new_html": this.$store.state.codeHTML,
-            "new_css": this.$store.state.codeCSS,
-            "new_js": this.$store.state.codeJS,
-            "private_boolean": false
-          })
+          }
+          if (this.$store.state.newProject === false){
+            await DBFunctions.updateProject({
+              "_id": this.$store.state.otherIDInfo.mongo_id,
+              "project_id": this.$store.state.project_id,
+              "new_title": this.$store.state.projectTitle,
+              "new_description": this.$store.state.projectDescription,
+              "new_html": this.$store.state.codeHTML,
+              "new_css": this.$store.state.codeCSS,
+              "new_js": this.$store.state.codeJS,
+              "private_boolean": false
+            })
+          }
         }
         this.$router.push("Home")
       } catch (error) {

@@ -174,9 +174,9 @@ module.exports.getProjects = async (mongoID, projects) => {
     })
     const data = await response.json()
     if (response.status === 500) throw response.error
+
     const parsed = JSON.parse(JSON.stringify(data.projects))
     const forDisplay = parsed.splice(0, 6)
-
     projects.push(...forDisplay)
   } catch (error) {}
 }

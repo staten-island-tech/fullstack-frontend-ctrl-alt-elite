@@ -50,7 +50,6 @@
                         </div>
                     </div>
                 </div>
-           
         </div>
     </section>
 </template>
@@ -74,9 +73,9 @@ export default {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+            await DBFunctions.getTrendingProjects(this.trendingProjects) 
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
-            await DBFunctions.getTrendingProjects(this.trendingProjects) 
             for (let ring of document.getElementsByClassName("lds-dual-ring")){
                 ring.style.display = "none"
             }

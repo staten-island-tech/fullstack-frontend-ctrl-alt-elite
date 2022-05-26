@@ -5,7 +5,7 @@
     <div class="flex flex-col items-center ">
       <div class="flex flex-row items-center">
         <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
-        <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
+        
       </div>
       <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
     </div>
@@ -13,8 +13,8 @@
  
     <div class="h-2/3 w-1/2 md:w-2/5 xl:w-1/4 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
       <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
-      <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
-      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
+      <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"> Save</button>
+      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"> Settings</button>
       <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md">Publish</button>
       <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
     </div>

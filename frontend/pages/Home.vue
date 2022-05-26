@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
+                                <NuxtLink to="/Profile/Projects"  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" ><p> View all projects...</p></NuxtLink>
                             </div>
                             <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>

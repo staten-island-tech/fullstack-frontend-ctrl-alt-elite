@@ -49,8 +49,8 @@
           <button class="h-full w-1/2 bg-white text-gray-700 rounded p-2" @click="lightMode">Light</button>
           <button class="h-full w-1/2 bg-gray-700 text-white rounded p-2" @click="darkMode">Dark</button>
         </div> -->
-        <h2 class="text-2xl bolded">Orientation:</h2>
-        <div class="h-1/5 w-5/6 flex flex-row">
+        <h2 class="text-2xl hidden md:flex bolded">Orientation:</h2>
+        <div class="h-1/5 w-5/6 hidden md:flex flex-row">
           <button id="left" class="h-full w-1/3" @click="editorOrientation">
             <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-3x" @click="editorOrientation"/>
           </button>

@@ -6,7 +6,7 @@
     <div class="h-1/4 w-full flex flex-col justify-center">
       <!-- <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold">
          {{item.project_title}}</h3> -->
-          <NuxtLink class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" to="/profile/Following" > {{item.project_title}} </NuxtLink>
+          <button class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="viewProject"> {{item.project_title}} </button>
     </div>
   </div>
 </template>
@@ -15,10 +15,27 @@
 export default {
 props: {
   item : {      // user id 
-           type:Object,
-           required:true,
-       }
-   },
+    type:Object,
+    required:true,
+  }
+},
+mounted(){
+  console.log(this.item);
+},
+methods:{
+  viewProject(){
+      this.$store.commit('PUSH_HTML', this.item.published_code.html)
+      this.$store.commit('PUSH_CSS', this.item.published_code.css)
+      this.$store.commit('PUSH_JS', this.item.published_code.js)
+      this.$store.commit('PUSH_PROJECT_ID', this.item._id)
+      this.$store.commit('PUSH_TITLE', this.item.project_title)
+      this.$store.commit('PUSH_DESCR', this.item.description)
+            this.$store.commit("newProject", false)
+            this.$store.commit("isNotYourProject", false)
+            this.$router.push("/")
+            this.$router.push("/Project")
+        },
+}
 }
 </script>
 

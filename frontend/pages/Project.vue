@@ -10,21 +10,37 @@
           </div>
             <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
         </div>
-        <div id="two" class="w-1/3">
-          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 pr-2 justify-center border-t-4 border-mid-gray">
+        <div id="two" class="w-1/3 h-full flex flex-col">
+          <div id="twoLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12">
             <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
             <h1>CSS</h1>
           </div>
           <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
         </div>
-        <div id="three" class="w-1/3">
-          <div class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-16 p-1 justify-center border-t-4 border-mid-gray">
+        <div id="three" class="w-1/3 h-full flex flex-col">
+          <div id="threeLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12">
             <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
             <h1>JS</h1>
           </div>
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
-    </div>
+      </div>
+      <div>
+        <div class="flex sm:hidden flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
+          <div id="oneLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
+            <h1>HTML</h1>
+          </div>
+          <div id="twoLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
+            <h1>CSS</h1>
+          </div>
+          <div id="threeLabel" class="flex flex-row items-center ml-10 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12">
+            <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
+            <h1>JS</h1>
+          </div>
+        </div>
+      </div>
     <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
@@ -179,29 +195,41 @@ export default {
         } else return
       },
       // Light and dark modes
-      lightMode(){
-        document.getElementById("projectnav").style.backgroundColor = "#b8b8b8"
-      },
-      darkMode(){
-        document.getElementById("projectnav").style.backgroundColor = "#121212"
-      },
+      darkMode() {
+            this.$store.commit('toggleMode');
+        },
+        lightMode() {
+            this.$store.commit('toggleMode')
+        },
       // Editor orientation 
       editorOrientation(e){
         const editorOne = document.getElementById("one")
         const editorTwo = document.getElementById("two")
         const editorThree = document.getElementById("three")
+        const oneLabel = document.getElementById("oneLabel")
+        const twoLabel = document.getElementById("twoLabel")
+        const threeLabel = document.getElementById("threeLabel")
         const projectDiv = document.getElementById("projectdiv")
         const editorContainer = document.getElementById("editcontainer")
         const iframe = document.getElementById("iframe")
         if (e.srcElement.id === "left"){
           projectDiv.style.flexDirection = "row"
-          editorContainer.style.width = "40%"
+          editorContainer.style.width = "35%"
           editorContainer.style.height = "100%"
           editorContainer.style.flexDirection = "column"
           editorOne.style.width = "100%"
           editorTwo.style.width = "100%"
           editorThree.style.width = "100%"
-          iframe.style.width = "60%"
+          oneLabel.style.marginLeft = "0%"
+          twoLabel.style.marginLeft = "0%"
+          threeLabel.style.marginLeft = "0%"
+          oneLabel.style.height = "15%"
+          twoLabel.style.height = "15%"
+          threeLabel.style.height = "15%"
+          editorOne.style.flexDirection = "row"
+          editorTwo.style.flexDirection = "row"
+          editorThree.style.flexDirection = "row"
+          iframe.style.width = "65%"
           iframe.style.height = "100%"
         } else if (e.srcElement.id === "middle") {
           editorOne.style.width = "33.333%"
@@ -209,20 +237,38 @@ export default {
           editorThree.style.width = "33.333%"
           projectDiv.style.flexDirection = "column"
           editorContainer.style.width = "100%"
-          editorContainer.style.height = "50vh"
+          editorContainer.style.height = "40vh"
           editorContainer.style.flexDirection = "row"
+          editorOne.style.flexDirection = "column"
+          editorTwo.style.flexDirection = "column"
+          editorThree.style.flexDirection = "column"
           iframe.style.width = "100%"
           iframe.style.height = "50vh"
+          oneLabel.style.marginLeft = "2.5rem"
+          twoLabel.style.marginLeft = "2.5rem"
+          threeLabel.style.marginLeft = "2.5rem"
+            oneLabel.style.height = "9%"
+          twoLabel.style.height = "9%"
+          threeLabel.style.height = "9%"
         } else if (e.srcElement.id === "right") {
           editorOne.style.width = "100%"
           editorTwo.style.width = "100%"
           editorThree.style.width = "100%"
           projectDiv.style.flexDirection = "row-reverse"
-          editorContainer.style.width = "40%"
+          editorContainer.style.width = "35%"
           editorContainer.style.height = "100%"
           editorContainer.style.flexDirection = "column"
-          iframe.style.width = "60%"
+          editorOne.style.flexDirection = "row"
+          editorTwo.style.flexDirection = "row"
+          editorThree.style.flexDirection = "row"
+          iframe.style.width = "65%"
           iframe.style.height = "100%"
+          oneLabel.style.marginLeft = "0%"
+          twoLabel.style.marginLeft = "0%"
+          threeLabel.style.marginLeft = "0%"
+          oneLabel.style.height = "15%"
+          twoLabel.style.height = "15%"
+          threeLabel.style.height = "15%"
         }
       },
       projectSettings(){

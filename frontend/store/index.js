@@ -13,6 +13,7 @@ export const state = () => ({
   darkMode: true,
   newProject: true,
   otherUserProject: false,
+  otherUsername: '',
 })
 export const mutations = {
   PUSH_HTML(state, code) {
@@ -63,6 +64,9 @@ export const mutations = {
   },
   isNotYourProject(state, boolean) {
     state.otherUserProject = boolean
+  },
+  otherUsername(state, data) {
+    state.otherUsername = data
   },
 }
 export const actions = {

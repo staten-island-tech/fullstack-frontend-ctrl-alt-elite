@@ -12,7 +12,7 @@
       </div>
    
    
-      <div Class="flex flex-wrap relative flex-row justify-center px-4"  >
+      <div class="flex flex-wrap relative flex-row justify-center px-4"  >
 
       <!-- <div class="relative mt-12">
           <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -26,8 +26,10 @@
         </div>
         
         </div>
-        <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="previousPage">Previous</button>
-        <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button> 
+        <div>
+          <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="previousPage">Previous</button>
+          <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button> 
+        </div>
      <!-- <DefaultNavBar /> -->
   </div>
 </template>

@@ -41,7 +41,8 @@ export default {
       this.$store.dispatch("viewOtherProject", data)
       this.$store.commit("newProject", false)
       this.$store.commit("isNotYourProject", true)
-      this.$router.push("Project")
+      this.$store.commit("otherUsername", this.project.name)
+      this.$router.push("/Project")
     }
   }
 }

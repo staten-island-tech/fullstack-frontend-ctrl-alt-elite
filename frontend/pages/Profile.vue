@@ -5,14 +5,14 @@
       <DefaultNavBar class="fixed"/>
        
       <div class=" w-full h-1/3 flex justify-center items-center">
-        <section class=" flex flex-col md:flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder mt-10">
+        <section class=" flex flex-row w-full justify-center items-center bg-l-bg-secondary dark:bg-d-bg-accent darkBorder">
           <!-- <button @click="getProfile()">TEST</button>
           <textarea id="" :value="abc"  name=""  cols="30" rows="10"></textarea> -->
           <!-- <button class="absolute top-20 left-10">return button</button> -->
           
-          <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center mt-10 md:m-10 "> 
+          <div class="flex flex-col-reverse justify-center gray-600 rounded-md items-center m-10"> 
             
-              <div v-if="ownProfile" class="flex flex-col justify-start"> 
+              <div v-if="ownProfile" class="flex flex-col justify-start"   > 
                  <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
                  <imageList :class="{hidden:showImageList}" />
                 <!-- <input type = "file" ref="file" style="display: none" >
@@ -22,21 +22,21 @@
               
               <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/>
               
-              <img class="basis-5 rounded-full w-24 md:w-36 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
+              <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
 
-              <div class="mt-2 md:m-10 mb-8 flex flex-col text-black dark:text-white w-5/6 md:w-1/3">
-                  <h1 class="font-bold mb-3 text-lg sm-xl md:text-2xl mt-1 text-center" > {{userProfile.data.user_id}}</h1>
+              <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
+                  <h1 class="font-bold mb-3 text-lg mt-1 text-center text-black dark:text-white "  > {{userProfile.data.user_id}}</h1>
                   <h2 class="pb-2 pl-1">Username</h2>
                    <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
                   <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
                   <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
                   <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
-                  <div v-if="ownProfile" class="flex flex-row justify-center items-center" >
+                  <div v-if="ownProfile" class="flex flex-row justify-end " >
                       <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
                   </div>
-                <div v-else class="flex flex-row justify-center ">
-                   <button class=" mr-2 mt-5 bg-gray-700 items-center hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
+                <div v-else class="flex flex-row justify-end ">
+                   <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
                 </div>
               </div>
                   
@@ -49,16 +49,16 @@
             <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
         </li> -->
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xs sm:text-sm md:text-xl" to="/profile/"  :class="{defaultLink:defaultLink}">Following  {{info.following}} </NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:defaultLink}">Following  {{info.following}} </NuxtLink>
 
         </li>
         
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xs sm:text-sm md:text-xl" to="/profile/Followers">Followers  {{info.followers}}   </NuxtLink>
+          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers">Followers  {{info.followers}}   </NuxtLink>
 
         </li>
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xs sm:text-sm md:text-xl" to="/profile/Projects" >Projects  {{info.projects}}</NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" >Projects  {{info.projects}}</NuxtLink>
 
         </li>
       </ul>
@@ -124,7 +124,6 @@ export default {
   methods: {
     async getProfile() {
       try {
-        console.log(this.userProfile);
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
@@ -150,7 +149,7 @@ export default {
         this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
         await this.getProfile();
         window.alert("Profile information reset.")
-        window.location.reload()
+        // window.location.reload()
       } catch (error) {
         console.log(error);
       }
@@ -160,7 +159,7 @@ export default {
         await DBFunctions.updateProfile(this.userProfile)
         this.$store.commit('updateReload')
         window.alert("Profile information updated.")
-        window.location.reload()
+        // window.location.reload()
       } catch{
         window.alert("ok")
       }},
@@ -227,7 +226,10 @@ a.nuxt-link-exact-active, .defaultLink {
     height: 5rem;
     width: 5rem;
   }
-
+h1{
+    color:white;
+    font-size: 1.5rem;
+}
 .darkBorder {
     border-bottom: solid 3px;
     border-image: conic-gradient( magenta, #3500D3, magenta) 1;

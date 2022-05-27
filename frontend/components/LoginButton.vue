@@ -1,6 +1,6 @@
 <template>
   <button 
-    class="text-white border h-8 px-6 py-1 md:text-lg text-base"
+    class="text-white border h-8 px-6 rounded-md py-1"
     @click="login"
   >
     Log In

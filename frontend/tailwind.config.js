@@ -1,5 +1,3 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-
 module.exports = {
   purge: [],
   darkMode: 'class', // or 'media' or 'class'
@@ -20,12 +18,13 @@ module.exports = {
       colors: {
         'l-primary': '#7A77FF',
         'l-bg-primary': '#ffffff',
-        'l-bg-secondary': '#f0f0f0',
+        'l-bg-secondary': '#e6e6e6',
         'l-bg-accent': '#000000',
         'd-primary': '#3500D3',
         'd-bg-primary': '#121212',
-        'd-bg-secondary': '#202020',
-        'd-bg-accent': '#303030',
+        'd-bg-secondary': '#282828',
+        'd-bg-accent': '#464646',
+        'd-bg-accent-two': '#5c5c5c',
 
         'light-gray': '#dbdbdb',
         'medium-gray': '#b8b8b8',
@@ -39,27 +38,8 @@ module.exports = {
         'dark-primary': '#03000d',
         'dark-purple': '#090021',
       },
-      theme: {
-        screens: {
-          sm: '640px',
-          // => @media (min-width: 640px) { ... }
-
-          md: '768px',
-          // => @media (min-width: 768px) { ... }
-
-          lg: '1024px',
-          // => @media (min-width: 1024px) { ... }
-
-          xl: '1280px',
-          // => @media (min-width: 1280px) { ... }
-
-          '2xl': '1536px',
-          // => @media (min-width: 1536px) { ... }
-        },
-      },
     },
   },
-
   variants: {
     extend: {},
   },

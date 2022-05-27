@@ -1,13 +1,13 @@
 <template>
-  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white">
-  <div class="w-1/2 flex flex-row py-2 items-center  border-1">
-    <NuxtLink to="/Home"><img class=" mx-4 h-12 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
+  <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white  border-b border-d-bg-secondary">
+  <div class="w-1/2 flex flex-row py-2 items-center ">
+    <NuxtLink to="/Home"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
     <div class="flex flex-col items-center ">
       <div class="flex flex-row items-center">
         <input v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
         
       </div>
-      <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
+      <NuxtLink to="/Profile"><input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent text-white hover:text-gray-400  cursor-pointer" :class="{'focus:outline-none':!ownProfile}"  ></NuxtLink>
     </div>
   </div>
  
@@ -23,7 +23,6 @@
       <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="settings">Settings</button>
       <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="copy">Copy</button>
     </div>
-
 </nav>
 </template>
 
@@ -34,7 +33,6 @@ export default {
   components: { LikeButton },
   data(){
     return{
-      savedAlready: false,
       info: {
       profilePic: '',
       name:'',
@@ -54,6 +52,9 @@ export default {
   },
   async mounted(){
       this.getProfile();
+      if (this.$store.state.otherUserProject === true){
+        document.getElementById("title").readOnly = true
+      }
   },
   methods:{
     async getProfile() {
@@ -66,6 +67,7 @@ export default {
     run(){
       try {
         const iframe = document.getElementById("iframe")
+        console.log(iframe);
         iframe.srcdoc= 
         `<html lang="en">
           <head>
@@ -114,15 +116,13 @@ export default {
             "new_js": this.$store.state.codeJS,
           })
         }
-        this.savedAlready = true
       } catch (error) {
         window.alert(error)
       }
     },
     async publish(){
       try {
-        if (this.savedAlready === false){
-          if (this.$store.state.newProject === true){
+        if (this.$store.state.newProject === true){
           await DBFunctions.createProject(
             {
               "_id": this.$store.state.otherIDInfo.mongo_id,
@@ -134,19 +134,18 @@ export default {
               "private_boolean": false
             }
           )
-          }
-          if (this.$store.state.newProject === false){
-            await DBFunctions.updateProject({
-              "_id": this.$store.state.otherIDInfo.mongo_id,
-              "project_id": this.$store.state.project_id,
-              "new_title": this.$store.state.projectTitle,
-              "new_description": this.$store.state.projectDescription,
-              "new_html": this.$store.state.codeHTML,
-              "new_css": this.$store.state.codeCSS,
-              "new_js": this.$store.state.codeJS,
-              "private_boolean": false
-            })
-          }
+        }
+        if (this.$store.state.newProject === false){
+          await DBFunctions.updateProject({
+            "_id": this.$store.state.otherIDInfo.mongo_id,
+            "project_id": this.$store.state.project_id,
+            "new_title": this.$store.state.projectTitle,
+            "new_description": this.$store.state.projectDescription,
+            "new_html": this.$store.state.codeHTML,
+            "new_css": this.$store.state.codeCSS,
+            "new_js": this.$store.state.codeJS,
+            "private_boolean": false
+          })
         }
         this.$router.push("Home")
       } catch (error) {

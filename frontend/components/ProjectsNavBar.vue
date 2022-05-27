@@ -31,15 +31,12 @@ import DBFunctions from "~/DBFunctions";
 import LikeButton from './LikeButton.vue';
 export default {
   components: { LikeButton },
-  prop:{
-    username: String
-  },
   data(){
     return{
       savedAlready: false,
       info: {
-        profilePic: '',
-        name:'',
+      profilePic: '',
+      name:'',
       },
       userProfile: { data : ""},
     }

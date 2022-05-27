@@ -136,8 +136,7 @@ watch: {
             this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
             this.$store.commit("isNotYourProject", false)
-            this.$router.push("/Home")  
-            this.$router.push("/Project")  
+            this.$router.push("Project")
     }
 },
 };

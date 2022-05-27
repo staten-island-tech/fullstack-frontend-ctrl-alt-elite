@@ -16,6 +16,7 @@
                             <div class="xl:mt-12" >
                                     <input v-model="searchArgs" type="search" class=" form-control" >
                                     <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
                                  
                                  
                              <div class="search-bar">
@@ -151,10 +152,19 @@ export default {
            } catch (error) {
                console.log(error)
            }
+         //  trendingProjects(){}
+            
+           
+           
             
            
 
         }, 
+        async resetProjects(){
+          
+    this.searchArgs='';
+
+        }
 
         
         

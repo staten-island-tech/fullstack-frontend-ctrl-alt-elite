@@ -25,34 +25,34 @@
           <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
         </div>
       </div>
-      <div>
-        <!-- <div class="flex sm:hidden flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
-          <div id="oneLabel" class="flex flex-row items-center ml-5 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12">
-            <font-awesome-icon icon="fa-brands fa-html5" class="px-1 text-red-600"/>
-            <h1>HTML</h1>
+      <div class="flex sm:hidden flex-col">
+        <div class=" flex flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
+          <div id="tab1" class="flex flex-row items-center ml-5 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12" @click="changeLanguage">
+            <font-awesome-icon icon="fa-brands fa-html5" id="logo1" class="px-1 text-red-600"/>
+            <h2 id="html">HTML</h2>
           </div>
-          <div id="twoLabel" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12">
-            <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
-            <h1>CSS</h1>
+          <div id="tab2" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
+            <font-awesome-icon icon="fa-solid fa-star-of-life" id="logo2" class="px-1 text-blue-600" />
+            <h2 id="css">CSS</h2>
           </div>
-          <div id="threeLabel" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12">
-            <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
-            <h1>JS</h1>
+          <div id="tab3" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
+            <font-awesome-icon icon="fa-solid fa-code" id="logo3" class="px-1 text-yellow-600"/>
+            <h2 id="js">JS</h2>
           </div>
         </div>
-        <div id="mobileContainer" class="h-40/1 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
-          <div>
+        <div id="mobileContainer" class="h-40/1 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-col ">
+          <div id="mobile1" class="flex w-full h-full cursor-pointer">
             <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
           </div>
-          <div>
+          <div id="mobile2" class="hidden w-full h-full cursor-pointer">
             <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
           </div>
-          <div>
+          <div id="mobile3" class="hidden w-full h-full cursor-pointer">
             <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
           </div>
-        </div> -->
+        </div>
       </div>
-    <iframe id='iframe' class="h-50/1 w-full"></iframe>
+    <iframe id='iframe' class="h-50 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
       <div id="settings" class="h-1/2 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
@@ -63,13 +63,13 @@
         <h2 class="text-2xl hidden md:flex bolded">Orientation:</h2>
         <div class="h-1/5 w-5/6 hidden md:flex flex-row">
           <button id="left" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-3x" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1" @click="editorOrientation"/>
           </button>
           <button id="middle" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-3x" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x" id="orientation2" @click="editorOrientation"/>
           </button>
           <button id="right" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-3x" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-4x" id="orientation3" @click="editorOrientation"/>
           </button>
           <!-- <font-awesome-icon icon="fa-solid fa-caret-up" id="middle" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
           <font-awesome-icon icon="fa-solid fa-caret-right" id="right" class="h-full w-1/3 fa-3x" @click="editorOrientation"/> -->
@@ -232,7 +232,7 @@ export default {
         const projectDiv = document.getElementById("projectdiv")
         const editorContainer = document.getElementById("editcontainer")
         const iframe = document.getElementById("iframe")
-        if (e.srcElement.id === "left"){
+        if (e.srcElement.id === "left" || e.srcElement.id === "orientation1"){
           projectDiv.style.flexDirection = "row"
           editorContainer.style.width = "35%"
           editorContainer.style.height = "100%"
@@ -251,7 +251,7 @@ export default {
           editorThree.style.flexDirection = "row"
           iframe.style.width = "65%"
           iframe.style.height = "100%"
-        } else if (e.srcElement.id === "middle") {
+        } else if (e.srcElement.id === "middle" || e.srcElement.id === "orientation2") {
           editorOne.style.width = "33.333%"
           editorTwo.style.width = "33.333%"
           editorThree.style.width = "33.333%"
@@ -270,7 +270,7 @@ export default {
             oneLabel.style.height = "9%"
           twoLabel.style.height = "9%"
           threeLabel.style.height = "9%"
-        } else if (e.srcElement.id === "right") {
+        } else if (e.srcElement.id === "right" || e.srcElement.id === "orientation3") {
           editorOne.style.width = "100%"
           editorTwo.style.width = "100%"
           editorThree.style.width = "100%"
@@ -289,6 +289,24 @@ export default {
           oneLabel.style.height = "15%"
           twoLabel.style.height = "15%"
           threeLabel.style.height = "15%"
+        }
+      },
+      changeLanguage(e){
+        const html = document.getElementById("mobile1")
+        const css = document.getElementById("mobile2")
+        const js = document.getElementById("mobile3")
+        if (e.srcElement.id === "tab1" || e.srcElement.id === "html" || e.srcElement.id === "logo1") {
+          html.style.display = "flex"
+          css.style.display = "none"
+          js.style.display = "none" 
+        } else if (e.srcElement.id === "tab2" || e.srcElement.id === "css" || e.srcElement.id === "logo2") {
+          html.style.display = "none"
+          css.style.display = "flex"
+          js.style.display = "none"
+        } else if (e.srcElement.id === "tab3" || e.srcElement.id === "js" || e.srcElement.id === "logo3") {
+          html.style.display = "none"
+          css.style.display = "none"
+          js.style.display = "flex"
         }
       },
       projectSettings(){

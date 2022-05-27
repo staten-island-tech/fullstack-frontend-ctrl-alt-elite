@@ -278,8 +278,8 @@ module.exports.deleteProject = async (payload) => {
   }
 }
 
-// module.exports.searchProjects = async(searchArguments,projects) => {
-//     try {
+ //module.exports.searchProjects = async(searchArguments,projects) => {
+   //  try {
 //       // window.alert("dbfunction")
 //       // window.alert(searchArguments)
 //       const SearchArgs = { projectTitle: searchArguments }
@@ -403,8 +403,12 @@ module.exports.searchProjects = async (searchArguments, projects) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
+    console.log(data)
+    data.forEach(obj => {
+      projects.push(obj)
+    })
     // this.uniqueID = data.uniqu;
-    projects.list = data
+   // projects.list = data
     // window.alert(JSON.stringify(projects.list))
   } catch (error) {}
 }

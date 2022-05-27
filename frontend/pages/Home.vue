@@ -13,7 +13,15 @@
 
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
-                            <div class="xl:mt-12">
+                            <div class="xl:mt-12" >
+                                    <input v-model="searchArgs" type="search" class=" form-control" >
+                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+                                 
+                                 
+                             <div class="search-bar">
+
+
+                            </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :project="trendingProjects" class="mb-6"/>
@@ -52,6 +60,14 @@
                 </div>
            
         </div>
+      <!-- <div class="search">
+        <div class="search-bar">
+              <input type="text" v-model="search" placeholder="Find a project" v-for="project in projects" :key="project"> 
+                        <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>  
+            
+         </div>
+       </div> -->
     </section>
 </template>
 
@@ -63,13 +79,18 @@ export default {
   components: { Slideshow },
      data(){
        return{ 
+           searchArgs:'', 
+         projectsList:Array,
          userProfile: { data : ''},
          recent: [],
          trendingProjects: [],
-         followingProjects: []
+         followingProjects: [],
+         projects:[]
          }
     },
     async mounted (){
+
+        
         try {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
@@ -118,14 +139,31 @@ export default {
             this.$store.commit("newProject", true)
             this.$store.commit("isNotYourProject", false)
             this.$router.push("Project")
-        }
+        },
+
+       async searchProjects(){
+
+           try {
+            await DBFunctions.searchProjects( this.searchArgs, this.projects);
+            // window.alert(JSON.stringify(this.projects.list))
+            //this.projects = this.getProjects.projects 
+            console.log(this.projects)
+           } catch (error) {
+               console.log(error)
+           }
+            
+           
+
+        }, 
+
+        
+        
     }
     
 }
 </script>
 
 <style scoped>
-
 .container {
     margin: 0 auto;
     width: 100%;
@@ -143,6 +181,11 @@ export default {
        background-color: #1b1b1b;
        color: #e6e6e6;
 } */
+.search-bar{
+border-radius: 1rem;
+text-align: center;
+align-items: center;
+}
 
 
 h1{
@@ -155,6 +198,8 @@ h1{
   border-width: 3px;
   border-image: conic-gradient( magenta, blue, magenta) 1;
 }
-
+.hello{
+    background-color: aquamarine;
+}
 
 </style>

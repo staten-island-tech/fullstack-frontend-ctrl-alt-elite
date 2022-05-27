@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "aos": "^3.0.0-beta.6",
+    "cors": "^2.8.5",
     "swiper": "^8.0.6",
     "three": "^0.136.0",
     "vanta": "^0.5.21",

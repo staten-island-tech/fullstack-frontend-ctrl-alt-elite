@@ -111,11 +111,12 @@ watch: {
              
         },
         getProfile (){
+            console.log("test");
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
-           if (userID !== this.$auth.user.email){
+           if (this.info.userID !== this.$auth.user.email){
                 this.$store.commit("isNotYourProject", true)
-            } else if (userID === this.$auth.user.email){
+            } else if (this.info.userID === this.$auth.user.email){
                 this.$store.commit("isNotYourProject", false)
             }
            this.$router.push({name: 'Profile'});

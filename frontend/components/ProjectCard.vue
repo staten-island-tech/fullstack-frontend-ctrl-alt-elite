@@ -5,7 +5,7 @@
       <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="otherProject" :id="project.projects._id">{{ project.projects.project_title }}</h3>
       <div class="flex flex-row justify-between px-3">
         <LikeButton :project="project"/>
-        <h4 class=" text-black dark:text-gray-100" :id="project._id">{{ project.name }}</h4>
+        <h4 class=" text-black dark:text-gray-100" :id="project._id" @click="viewProfile">{{ project.name }}</h4>
         <FollowButton/>
       </div>
     </div>
@@ -43,6 +43,16 @@ export default {
       this.$store.commit("isNotYourProject", true)
       this.$store.commit("otherUsername", this.project.name)
       this.$router.push("/Project")
+    },
+    viewProfile(){
+      this.$store.commit('updateOtherIDInfo', {mongo_id:this.project._id,email:this.project.user_id});
+      this.$store.commit('updateReload')
+      if (this.project.user_id !== this.$auth.user.email){
+        this.$store.commit("isNotYourProject", true)
+      } else if (this.project.user_id === this.$auth.user.email){
+        this.$store.commit("isNotYourProject", false)
+      }
+      this.$router.push({name: "Profile"})
     }
   }
 }

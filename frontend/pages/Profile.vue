@@ -147,12 +147,12 @@ export default {
     async resetProfile()   {
       try {
         this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
+        await this.getProfile();
         if (userID !== this.$auth.user.email){
           this.$store.commit("isNotYourProject", true)
         } else if (userID === this.$auth.user.email){
           this.$store.commit("isNotYourProject", false)
         }
-        await this.getProfile();
         // window.alert("Profile information reset.")
         // window.location.reload()
       } catch (error) {

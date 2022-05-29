@@ -2,7 +2,7 @@
   <div class="h-60 w-96 bg-l-bg-secondary dark:bg-d-bg-primary rounded border dark:border-slate border-light-gray" :class="{ light : !this.$store.state.darkMode }">
     <iframe id="iframe" class="h-3/4 w-full bg-l-bg-secondary dark:bg-d-bg-primary flex justify-center items-center rounded-t" :srcdoc="test"></iframe>
     <div class="h-1/4 w-full flex flex-col justify-center">
-      <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="otherProject" :id="project.projects._id">{{ project.projects.project_title }}</h3>
+      <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold overflow-hidden" @click="viewProject" :id="project.projects._id">{{ project.projects.project_title }}</h3>
       <div class="flex flex-row justify-between px-3">
         <LikeButton :project="project"/>
         <h4 class=" text-black dark:text-gray-100" :id="project._id" @click="viewProfile">{{ project.name }}</h4>
@@ -28,20 +28,25 @@ export default {
                 <style>${this.project.projects.published_code.css}</style>
               </head>
               ${this.project.projects.published_code.html}
-              <script>${this.project.projects.published_code.js}<\/script>
             `
     }
   },
   methods:{
-    otherProject(){
+    viewProject(){
       const data = {
         projects: this.project.projects,
         projectName: this.project.projects.project_title
       }
       this.$store.dispatch("viewOtherProject", data)
       this.$store.commit("newProject", false)
-      this.$store.commit("isNotYourProject", true)
+      if (this.project.user_id !== this.$auth.user.email){
+        this.$store.commit("isNotYourProject", true)
+      } else if (this.project.user_id === this.$auth.user.email){
+        this.$store.commit("isNotYourProject", false)
+      }
       this.$store.commit("otherUsername", this.project.name)
+      this.$store.commit("otherEmail", this.project.user_id)
+      this.$store.commit("otherMongo_id", this.project._id)
       this.$router.push("/Project")
     },
     viewProfile(){

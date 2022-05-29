@@ -14,6 +14,8 @@ export const state = () => ({
   newProject: true,
   otherUserProject: false,
   otherUsername: '',
+  otherEmail: '',
+  otherMongo_id: '',
 })
 export const mutations = {
   PUSH_HTML(state, code) {
@@ -67,6 +69,12 @@ export const mutations = {
   },
   otherUsername(state, data) {
     state.otherUsername = data
+  },
+  otherEmail(state, data) {
+    state.otherEmail = data
+  },
+  otherMongo_id(state, data) {
+    state.otherMongo_id = data
   },
 }
 export const actions = {

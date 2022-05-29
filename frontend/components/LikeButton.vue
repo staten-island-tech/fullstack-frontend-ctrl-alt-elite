@@ -24,6 +24,7 @@ export default {
   },
   mounted(){
     this.check()
+    this.$emit("getLikes", this.project.projects.project_likes.length)
   },
   data() {
     return {
@@ -40,6 +41,7 @@ export default {
     },
     async like() {
       try {
+        this.$emit("updateLikes", 1)
         this.liked = !this.liked
         await DBFunctions.addLike(this.project, this.$store.state.otherIDInfo.email)
       } catch (error) {
@@ -48,6 +50,7 @@ export default {
     },
     async unlike() {
       try {
+        this.$emit("updateLikes", -1)
         this.liked = !this.liked
         await DBFunctions.removeLike(this.project, this.$store.state.otherIDInfo.email)
       } catch (error) {

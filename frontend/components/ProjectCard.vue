@@ -4,8 +4,11 @@
     <div class="h-1/4 w-full flex flex-col justify-center">
       <h3 class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold overflow-hidden" @click="viewProject" :id="project.projects._id">{{ project.projects.project_title }}</h3>
       <div class="flex flex-row justify-between px-3">
-        <LikeButton :project="project"/>
-        <h4 class=" text-black dark:text-gray-100" :id="project._id" @click="viewProfile">{{ project.name }}</h4>
+        <div class="flex flex-row justify-center items-center">
+          <h4 class="text-black dark:text-gray-100 px-2">{{totalLikes}}</h4>
+          <LikeButton :project="project" @getLikes="emitChild" @updateLikes="changeLikes"/>
+        </div>
+        <h4 class="text-black dark:text-gray-100" :id="project._id" @click="viewProfile">{{ project.name }}</h4>
         <FollowButton/>
       </div>
     </div>
@@ -28,7 +31,8 @@ export default {
                 <style>${this.project.projects.published_code.css}</style>
               </head>
               ${this.project.projects.published_code.html}
-            `
+            `,
+      totalLikes: Number
     }
   },
   methods:{
@@ -58,6 +62,12 @@ export default {
         this.$store.commit("isNotYourProject", false)
       }
       this.$router.push({name: "Profile"})
+    },
+    emitChild(value){
+      this.totalLikes = value
+    },
+    changeLikes(value){
+      this.totalLikes += value
     }
   }
 }

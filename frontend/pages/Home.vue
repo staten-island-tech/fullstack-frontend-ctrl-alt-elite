@@ -102,7 +102,6 @@ export default {
                 ring.style.display = "none"
             }
             } catch (error) {
-                console.log(error);
                try {
                     await DBFunctions.createUser(this.$auth.user) ;
                     const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))

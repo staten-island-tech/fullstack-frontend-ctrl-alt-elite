@@ -65,11 +65,16 @@ export default {
      // await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
      // this.$store.commit('updateFollowInfo', this.info)
       this.$store.commit('updateReload')
+      this.$store.commit("newProject", false)
+      console.log(userID);
+      if (userID !== this.$auth.user.email){
+        this.$store.commit("isNotYourProject", true)
+      } else if (userID === this.$auth.user.email){
+        this.$store.commit("isNotYourProject", false)
+      }
       this.$router.push({name: 'Profile'});
-
-   } 
-
-     }
+    } 
+  }
     
 }
 </script>

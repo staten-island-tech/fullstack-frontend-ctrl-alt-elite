@@ -19,22 +19,18 @@ props: {
     required:true,
   }
 },
-mounted(){
-  console.log(this.item);
-},
 methods:{
   viewProject(){
-      this.$store.commit('PUSH_HTML', this.item.published_code.html)
-      this.$store.commit('PUSH_CSS', this.item.published_code.css)
-      this.$store.commit('PUSH_JS', this.item.published_code.js)
-      this.$store.commit('PUSH_PROJECT_ID', this.item._id)
-      this.$store.commit('PUSH_TITLE', this.item.project_title)
-      this.$store.commit('PUSH_DESCR', this.item.description)
-            this.$store.commit("newProject", false)
-            this.$store.commit("isNotYourProject", false)
-            this.$router.push("/")
-            this.$router.push("/Project")
-        },
+    this.$store.commit('PUSH_HTML', this.item.published_code.html)
+    this.$store.commit('PUSH_CSS', this.item.published_code.css)
+    this.$store.commit('PUSH_JS', this.item.published_code.js)
+    this.$store.commit('PUSH_PROJECT_ID', this.item._id)
+    this.$store.commit('PUSH_TITLE', this.item.project_title)
+    this.$store.commit('PUSH_DESCR', this.item.description)
+    this.$store.commit("newProject", false)
+    this.$router.push("/")
+    this.$router.push("/Project")
+  },
 }
 }
 </script>

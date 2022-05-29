@@ -28,10 +28,10 @@
             </div>
             <div class="flex flex-col dark:text-white text-black h-1/2">
                 <div class="h-1/6">
-                    <NuxtLink to="/Home" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full">
+                    <a class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full" @click="toHome">
                         <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
                         <p class="p-2">Home</p>
-                    </NuxtLink>
+                    </a>
                 </div>
                 <div class="h-1/6">
                     <NuxtLink to="/Profile/Projects" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full" @click="getProfile">
@@ -113,11 +113,20 @@ watch: {
         getProfile (){
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
+           if (userID !== this.$auth.user.email){
+                this.$store.commit("isNotYourProject", true)
+            } else if (userID === this.$auth.user.email){
+                this.$store.commit("isNotYourProject", false)
+            }
            this.$router.push({name: 'Profile'});
          } ,
            async logout() {
         await this.$auth.logout()
        
+      },
+      toHome(){
+        this.$store.commit("isNotYourProject", false)
+        this.$router.push("/home")
       },
  async resetProfile()   {
       await this.getProfile();

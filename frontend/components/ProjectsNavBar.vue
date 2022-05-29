@@ -1,13 +1,13 @@
 <template>
   <nav class="w-full h-1/10 flex flex-row justify-between items-center bg-d-bg-primary text-white">
   <div class="w-1/2 flex flex-row py-2 items-center  border-1">
-    <NuxtLink to="/Home"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></NuxtLink>
+    <button @click="toHome"><img class="h-20 pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></button>
     <div class="flex flex-col items-center ">
       <div class="flex flex-row items-center">
         <input id="title" v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center text-md bg-transparent rounded"> 
         <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
       </div>
-      <a ><h1 class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-white cursor-pointer">{{this.$store.state.otherUsername}}</h1></a>
+      <a><h1 class="h-1/12 w-full flex justify-center items-center text-sm bg-transparent hover:text-gray-400 text-white cursor-pointer">{{this.$store.state.otherUsername}}</h1></a>
     </div>
   </div>
  
@@ -15,7 +15,7 @@
       <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
       <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
       <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
-      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md">Publish</button>
+      <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="publish">Publish</button>
       <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">
     </div>
     <div v-else-if="this.$store.state.otherUserProject === true">   
@@ -55,7 +55,7 @@ export default {
       this.getProfile();
       if (this.$store.state.otherUserProject === true){
         document.getElementById("title").readOnly = true
-      }
+      } 
   },
   methods:{
     async getProfile() {
@@ -65,10 +65,13 @@ export default {
         window.alert("error")
       }
     },
+    toHome(){
+      this.$store.commit("isNotYourProject", false)
+      this.$router.push("/Home")
+    },
     run(){
       try {
         const iframe = document.getElementById("iframe")
-        console.log(iframe);
         iframe.srcdoc= 
         `<html lang="en">
           <head>
@@ -94,28 +97,40 @@ export default {
     async save(){
       try {
         this.run()
-        if (this.$store.state.newProject === true){
-          await DBFunctions.createProject(
-            {
+        if (this.savedAlready === false){
+          if (this.$store.state.newProject === true){
+            await DBFunctions.createProject(
+              {
+                "_id": this.$store.state.otherIDInfo.mongo_id,
+                "project_title": this.$store.state.projectTitle,
+                "description": this.$store.state.projectDescription,
+                "html": this.$store.state.codeHTML,
+                "css": this.$store.state.codeCSS,
+                "js": this.$store.state.codeJS,
+              }
+            )
+          }
+          if (this.$store.state.newProject === false){
+            await DBFunctions.updateProject({
               "_id": this.$store.state.otherIDInfo.mongo_id,
-              "project_title": this.$store.state.projectTitle,
-              "description": this.$store.state.projectDescription,
-              "html": this.$store.state.codeHTML,
-              "css": this.$store.state.codeCSS,
-              "js": this.$store.state.codeJS,
-            }
-          )
-        }
-        if (this.$store.state.newProject === false){
+              "project_id": this.$store.state.project_id,
+              "new_title": this.$store.state.projectTitle,
+              "new_description": this.$store.state.projectDescription,
+              "new_html": this.$store.state.codeHTML,
+              "new_css": this.$store.state.codeCSS,
+              "new_js": this.$store.state.codeJS,
+            })
+          }
+        } else if (this.savedAlready === true){
           await DBFunctions.updateProject({
-            "_id": this.$store.state.otherIDInfo.mongo_id,
-            "project_id": this.$store.state.project_id,
-            "new_title": this.$store.state.projectTitle,
-            "new_description": this.$store.state.projectDescription,
-            "new_html": this.$store.state.codeHTML,
-            "new_css": this.$store.state.codeCSS,
-            "new_js": this.$store.state.codeJS,
-          })
+              "_id": this.$store.state.otherIDInfo.mongo_id,
+              "project_id": this.$store.state.project_id,
+              "new_title": this.$store.state.projectTitle,
+              "new_description": this.$store.state.projectDescription,
+              "new_html": this.$store.state.codeHTML,
+              "new_css": this.$store.state.codeCSS,
+              "new_js": this.$store.state.codeJS,
+            })
         }
         this.savedAlready = true
       } catch (error) {
@@ -158,6 +173,7 @@ export default {
     },
     async copy(){
       try {
+        document.getElementById("title").readOnly = false
         this.$store.commit("newProject", true)
         this.$store.commit("isNotYourProject", false)
         this.$store.commit("PUSH_TITLE", "")

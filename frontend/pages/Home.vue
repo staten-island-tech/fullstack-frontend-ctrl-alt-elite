@@ -241,7 +241,7 @@ export default {
       recent: [],
       trendingProjects: [],
       followingProjects: [],
-      projects: [],
+      searchedProjects: [],
       visibility: true,
       results: false,
     }
@@ -308,19 +308,22 @@ export default {
 
     async searchProjects() {
       try {
-        await DBFunctions.searchProjects(this.searchArgs, this.projects)
+        await DBFunctions.searchProjects(this.searchArgs, this.searchedProjects)
         // window.alert(JSON.stringify(this.projects.list))
         //this.projects = this.getProjects.projects
         this.results = true
         this.visibility = false
-        console.log(this.projects)
+        console.log(this.searchedProjects)
       } catch (error) {
         console.log(error)
       }
       //  trendingProjects(){}
     },
     async resetProjects() {
-      ;(this.searchArgs = ''), (this.visibility = true), (this.results = false)
+      ;(this.searchArgs = ''),
+        (this.visibility = true),
+        (this.results = false),
+        (this.searchedProjects = [])
     },
   },
 }

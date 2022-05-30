@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center flex-col">
-      <FollowList :list="$parent.followersList"  />
+      <FollowList :list="$parent.followersList"/>
   </div>
 </template>
 
@@ -9,22 +9,9 @@
  
  
 export default {
-  
-    
-   data(){
-       return{ 
-         }
-      }, 
-    
   mounted()  {
     this.$parent.defaultLink=false;
   },
-
-  methods: {
-
-
-     }
-    
 }
 </script>
 

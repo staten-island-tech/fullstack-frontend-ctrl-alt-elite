@@ -24,11 +24,11 @@
                             </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
-                                    <Slideshow :project="trendingProjects" class="mb-6"/>
+                                    <Slideshow :project="trendingProjects" :following="userProfile.data.following" class="mb-6"/>
                                 </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
-                                    <Slideshow :project="followingProjects" class="mb-6"/>
+                                    <Slideshow :project="followingProjects" :following="userProfile.data.following" class="mb-6"/>
                                 </div>
                             </div>
                         </div>
@@ -79,18 +79,16 @@ export default {
   components: { Slideshow },
      data(){
        return{ 
-           searchArgs:'', 
-         projectsList:Array,
-         userProfile: { data : ''},
-         recent: [],
-         trendingProjects: [],
-         followingProjects: [],
-         projects:[]
-         }
+        searchArgs:'', 
+        projectsList:Array,
+        userProfile: { data : ''},
+        recent: [],
+        trendingProjects: [],
+        followingProjects: [],
+        projects:[],
+        }
     },
     async mounted (){
-
-        
         try {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))

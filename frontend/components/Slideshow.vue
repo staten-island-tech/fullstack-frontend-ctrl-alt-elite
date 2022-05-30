@@ -5,7 +5,7 @@
         <div class="swiper-wrapper">
           <div class="lds-dual-ring"></div>
           <div v-for="(project,key) in project" :key="key" class="swiper-slide">
-            <ProjectCard class="slider-content" :project="project"/>
+            <ProjectCard class="slider-content" :project="project" :following="following"/>
           </div>
         </div>
         <!-- If pagination is needed -->
@@ -23,7 +23,8 @@ import 'swiper/swiper-bundle.min.css'
 
 export default {
   props: {
-    project: Array
+    project: Array,
+    following: Array
   },
   mounted() {
     // configure Swiper to use modules. The modules were tested with SwiperJS v6.8.4 with NuxtJS v2.15.7
@@ -99,7 +100,7 @@ export default {
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: #fff;
+  color: black;
 }
 
 .light {

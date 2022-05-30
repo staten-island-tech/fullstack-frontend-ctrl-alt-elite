@@ -1,35 +1,22 @@
 <template>
   <div class="flex items-center justify-center flex-col">
       <h1 class="text-black dark:text-white" >{{projectsList.length}}  projects found </h1> 
-    
-       
       <div class="flex flex-column justify-center w-2/3">
          <input 
          v-model="searchArgs" type="search" 
-         class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
+         class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" @keyup="searchProjects">
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
       </div>
-   
-   
       <div class="flex flex-wrap relative flex-row justify-center px-4"  >
-
-      <!-- <div class="relative mt-12">
-          <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
-               
-              <Slideshow :projects="$parent.projects.list" class="mb-6"/>
-          </div>
-        </div> -->
-       
         <div v-for="(item,index) in projectsList" :key="item._ID">
-          <ProjectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" class="m-2" /> 
-        </div>
-        
-        </div>
-        <div>
-          <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="previousPage">Previous</button>
-          <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button> 
-        </div>
+          <ProjectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" :userInfo="userInfo" class="m-2" /> 
+        </div> 
+      </div>
+      <div>
+        <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 mt-2 rounded text-white" @click="previousPage">Previous</button>
+        <button v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 mt-2 rounded text-white" @click="nextPage"> Next </button> 
+      </div>
      <!-- <DefaultNavBar /> -->
   </div>
 </template>
@@ -42,8 +29,9 @@ export default {
  
    data(){
       return{ 
-        projectsList: Array,   
-        pageLimit:5,
+        projectsList: Array,
+        userInfo: Object,   
+        pageLimit:6,
         searchArgs: "",
         start: 1,
         end :0,
@@ -53,7 +41,7 @@ export default {
       mounted() {
         this.$parent.defaultLink=false;
         this.projectsList = this.$parent.projects.list;
-
+        this.userInfo = this.$parent.info
         this.initScroll();
   },
 

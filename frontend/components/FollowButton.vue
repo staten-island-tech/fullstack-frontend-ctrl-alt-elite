@@ -1,5 +1,5 @@
 <template>
-  <button>
+  <button id="followButton">
       <font-awesome-icon v-if="followingStatus" @click="follow" class="text-black dark:text-gray-100" :icon="['fas', 'user-plus']"/>
       <font-awesome-icon v-if="!followingStatus"  @click="unfollow" class="text-black dark:text-gray-100" :icon="['fas', 'user-check']"/> 
       <!-- do hovering effect (add words over hover) -->
@@ -7,18 +7,48 @@
 </template>
 
 <script>
+import DBFunctions from "~/DBFunctions";
+
 export default {
-data(){
+  props:{
+    following: Array,
+    user: String
+  },
+  data(){
     return {
-        followingStatus: true, 
+      followingStatus: true, 
     }
   },
+  mounted(){
+    this.check()
+  },
   methods: {
-    follow() {
-      this.followingStatus = !this.followingStatus
+    check(){
+      this.following.forEach(e => {
+        if (e === this.user){
+          this.followingStatus = !this.followingStatus
+        }
+      })
     },
-    unfollow() {
-      this.followingStatus = !this.followingStatus
+    async follow() {
+      try {
+        if (this.user !== this.$auth.user.email){
+          this.followingStatus = !this.followingStatus
+          await DBFunctions.follow(this.$auth.user.email, this.user)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async unfollow() {
+      try {
+        if (this.user !== this.$auth.user.email){
+          this.followingStatus = !this.followingStatus
+          await DBFunctions.unFollow(this.$auth.user.email, this.user)
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
 }

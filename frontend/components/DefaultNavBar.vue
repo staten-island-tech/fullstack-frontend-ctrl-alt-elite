@@ -1,9 +1,7 @@
 <template>
   <section class="flex flex-row justify-between w-full h-12 bg-white dark:bg-d-bg-secondary border-b border-light-gray dark:border-dark-gray z-10" :class="{ navDark : this.$store.state.darkMode }" >
-
       <Sidebar/>
       <NewProjectButton/>
-  
   </section>
   
   

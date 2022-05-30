@@ -34,7 +34,7 @@ export default {
   methods: {
     check(){
       this.project.projects.project_likes.forEach(e => {
-        if (e === this.$store.state.otherIDInfo.email){
+        if (e === this.$auth.user.email){
           this.liked = !this.liked
         }
       })
@@ -43,7 +43,7 @@ export default {
       try {
         this.$emit("updateLikes", 1)
         this.liked = !this.liked
-        await DBFunctions.addLike(this.project, this.$store.state.otherIDInfo.email)
+        await DBFunctions.addLike(this.project, this.$auth.user.email)
       } catch (error) {
         window.alert(error)
       }
@@ -52,7 +52,7 @@ export default {
       try {
         this.$emit("updateLikes", -1)
         this.liked = !this.liked
-        await DBFunctions.removeLike(this.project, this.$store.state.otherIDInfo.email)
+        await DBFunctions.removeLike(this.project, this.$auth.user.email)
       } catch (error) {
         window.alert(error)
       }

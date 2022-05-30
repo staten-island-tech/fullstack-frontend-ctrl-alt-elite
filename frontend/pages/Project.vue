@@ -1,6 +1,6 @@
 <template>
   <section id="project" class="h-screen w-screen relative flex flex-col justify-center " :class="{ dark : this.$store.state.darkMode }">
-        <projectsNavBar/>
+    <projectsNavBar/>
     <div id="projectdiv" class="h-9/10 w-full flex flex-col">
       <div id="editcontainer" class="hidden h-40/1 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
         <div id="one" class="w-1/3 h-full flex flex-col">
@@ -122,7 +122,6 @@ export default {
         editor2.setValue(this.$store.state.codeCSS)
         editor3.setValue(this.$store.state.codeJS)
         if (this.$store.state.otherIDInfo.mongo_id === undefined || this.$store.state.otherIDInfo.email === undefined){
-          console.log("hello");
           await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
           const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
           this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})

@@ -368,4 +368,9 @@ h1 {
 .hello {
   background-color: aquamarine;
 }
+.form-control {
+  justify-content: center;
+  text-align: center;
+  border-radius: 2rem;
+}
 </style>

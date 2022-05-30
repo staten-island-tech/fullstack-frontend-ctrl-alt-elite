@@ -125,6 +125,7 @@ export default {
             this.$store.dispatch("viewProject", data)
             this.$store.commit("newProject", false)
             this.$store.commit("isNotYourProject", false)
+            this.$store.commit("otherEmail", this.$auth.user.email)
             this.$router.push("Project")
         },
         newProject(){
@@ -135,6 +136,7 @@ export default {
             this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
             this.$store.commit("isNotYourProject", false)
+            this.$store.commit("otherEmail", this.$auth.user.email)
             this.$router.push("Project")
         },
 

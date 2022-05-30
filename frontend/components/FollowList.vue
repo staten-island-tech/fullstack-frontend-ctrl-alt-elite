@@ -26,16 +26,11 @@
 </template>
 
 <script>
- 
-
- 
- 
 export default {
     props: {
        list: {      
            type:Object,
            required:true
-          
        },
    },  
   methods: {

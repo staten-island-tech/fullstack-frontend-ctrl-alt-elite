@@ -14,7 +14,9 @@ export default {
             this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
             this.$store.commit("isNotYourProject", false)
-            this.$router.push("Project")
+            this.$store.commit("otherEmail", this.$auth.user.email)
+            this.$router.push("/")
+            this.$router.push("/Project")
         }
     }
 }

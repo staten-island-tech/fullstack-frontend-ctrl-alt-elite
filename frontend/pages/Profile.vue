@@ -110,12 +110,11 @@ export default {
         await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
         await DBFunctions.searchProjects("new", this.projects);
         // window.alert(JSON.stringify(this.projects.list))
-        this.projects.list = this.userProfile.data.projects 
+        this.projects.list = this.userProfile.data.projects
       } catch { 
           window.alert ("error getting the profile")
       }
-  } ,
-
+    },
     async getOwnProfile()   {
       await DBFunctions.getFollowing(this.$auth.user.email,this.list);
       await DBFunctions.getInfo(this.$auth.user.email,this.info);
@@ -133,6 +132,7 @@ export default {
         } else if (this.info.userID === this.$auth.user.email){
           this.$store.commit("isNotYourProject", false)
         }
+        this.$router.push("/profile/")
         // window.alert("Profile information reset.")
         // window.location.reload()
       } catch (error) {

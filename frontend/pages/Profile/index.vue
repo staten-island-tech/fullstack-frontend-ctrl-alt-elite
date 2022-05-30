@@ -11,12 +11,6 @@
  
  
 export default {
-    
-   data(){
-       return{ 
-      
-         }
-      },
    mounted()  {
     this.$parent.defaultLink=true;
   }  

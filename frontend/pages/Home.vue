@@ -69,7 +69,9 @@
                 class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6"
                 v-show="results"
               >
-                <h2 class="text-black dark:text-white text-2xl">Results</h2>
+                <h2 class="text-black dark:text-white text-2xl">
+                  <Slideshow :project="projects" class="mb-6" />
+                </h2>
               </div>
             </div>
           </div>
@@ -244,6 +246,7 @@ export default {
       searchedProjects: [],
       visibility: true,
       results: false,
+      projects: [],
     }
   },
   async mounted() {
@@ -308,12 +311,12 @@ export default {
 
     async searchProjects() {
       try {
-        await DBFunctions.searchProjects(this.searchArgs, this.searchedProjects)
+        await DBFunctions.searchProjects(this.searchArgs, this.projects)
         // window.alert(JSON.stringify(this.projects.list))
         //this.projects = this.getProjects.projects
         this.results = true
         this.visibility = false
-        console.log(this.searchedProjects)
+        console.log(this.projects)
       } catch (error) {
         console.log(error)
       }
@@ -323,7 +326,7 @@ export default {
       ;(this.searchArgs = ''),
         (this.visibility = true),
         (this.results = false),
-        (this.searchedProjects = [])
+        (this.projects = [])
     },
   },
 }

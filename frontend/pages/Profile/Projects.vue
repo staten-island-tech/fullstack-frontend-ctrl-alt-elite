@@ -49,8 +49,11 @@ export default {
       }
       },
       mounted() {
-        this.$parent.defaultLink=false;
-        this.projectsList = this.$parent.projects.list;
+        this.$parent.Link1=false
+        this.$parent.Link2=false
+         this.$parent.Link3=true        
+         this.$store.commit('updateProfileChild',0)
+         this.projectsList = this.$parent.projects.list;
 
         this.initScroll();
   },

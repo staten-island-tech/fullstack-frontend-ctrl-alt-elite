@@ -6,6 +6,8 @@ export const state = () => ({
   projectDescription: '',
   project_id: '',
   reload: 1,
+  newUser:false,
+  profileChild:1,
   otherIDInfo: {
     mongo_id: '',
     email: '',
@@ -36,7 +38,13 @@ export const mutations = {
   updateReload(state) {
     state.reload = !state.reload
   },
-
+  updateNewUser(state) {
+    state.newUser=true
+  },
+  updateProfileChild(state,value)
+  {
+    state.profileChild = value;
+  },
   updateFollowInfo(state, value) {
     state.followInfo.name = value.name
 

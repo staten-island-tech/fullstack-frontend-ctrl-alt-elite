@@ -20,7 +20,9 @@ export default {
          }
       },
    mounted()  {
-    this.$parent.defaultLink=true;
+    this.$parent.Link1=true
+    this.$parent.Link2=false
+    this.$parent.Link3=false
   }  
 }
 </script>

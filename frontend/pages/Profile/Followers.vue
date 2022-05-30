@@ -17,7 +17,11 @@ export default {
       }, 
     
   mounted()  {
-    this.$parent.defaultLink=false;
+    this.$parent.Link1=false
+    this.$parent.Link2=true
+    this.$parent.Link3=false
+     
+
   },
 
   methods: {

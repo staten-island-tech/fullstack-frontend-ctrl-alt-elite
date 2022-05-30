@@ -16,7 +16,10 @@
     methods: {
    async   login() {
         
+        
         await this.$auth.loginWith('auth0');
+        
+       
          
        
       },

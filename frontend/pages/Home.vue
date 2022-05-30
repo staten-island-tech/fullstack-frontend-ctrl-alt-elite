@@ -66,12 +66,21 @@ export default {
          userProfile: { data : ''},
          recent: [],
          trendingProjects: [],
-         followingProjects: []
+         followingProjects: [],
+        
          }
     },
     async mounted (){
         try {
-            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
+           
+             window.alert (JSON.stringify(this.$auth))
+            if (this.$store.state.newUser === true) 
+           
+              await DBFunctions.createUser(this.$auth.user,this.userProfile) ;
+          
+            else            
+               await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+            
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
@@ -81,16 +90,16 @@ export default {
                 ring.style.display = "none"
             }
             } catch (error) {
-                console.log(error);
-               try {
-                    await DBFunctions.createUser(this.$auth.user) ;
-                    const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-                    this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-               } catch (error)  {
+                window.alert ("error ") ;
+            //    try {
+            //         await DBFunctions.createUser(this.$auth.user) ;
+            //         const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+            //         this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+            //    } catch (error)  {
             
-                console.log(error);
+            //     console.log(error);
         
-               }
+            //    }
             }
 
        // await DBFunctions.getInfo(this.$auth.user.email,this.info);

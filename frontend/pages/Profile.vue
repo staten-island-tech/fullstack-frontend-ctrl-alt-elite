@@ -20,8 +20,9 @@
                   
               </div>
               
-              <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/>
-              
+              <!-- <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/> -->
+              <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
+                          
               <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
 
@@ -49,16 +50,16 @@
             <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
         </li> -->
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:defaultLink}">Following  {{info.following}} </NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Following"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
 
         </li>
         
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers">Followers  {{info.followers}}   </NuxtLink>
+          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}}   </NuxtLink>
 
         </li>
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" >Projects  {{info.projects}}</NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}">Projects  {{info.projects}}</NuxtLink>
 
         </li>
       </ul>
@@ -93,7 +94,10 @@ export default {
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
       projects: {list: []},
-      defaultLink:true,
+      Link1:false,
+      Link2:false,
+      Link3:false,
+      
       showImageList:true
     } 
   },
@@ -119,11 +123,14 @@ export default {
     }
   }, 
   mounted (){
-    this.getProfile();
+     
+     //  this.getProfile();
   } ,   
   methods: {
     async getProfile() {
       try {
+          if (this.$store.state.otherIDInfo.email ==="")
+             this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
         await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
         await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
         await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
@@ -131,18 +138,33 @@ export default {
         await DBFunctions.searchProjects("new", this.projects);
         // window.alert(JSON.stringify(this.projects.list))
         this.projects.list = this.userProfile.data.projects 
+        if (this.$store.state.profileChild === 3)
+        
+            
+           this.$router.push({name: "Profile-Projects"})
+        
+        else 
+        this.$router.push({name: "Profile-Following"})
+         
+      
       } catch { 
           window.alert ("error getting the profile")
+          this.$router.push({name: "Home"});
       }
   } ,
 
     async getOwnProfile()   {
+    try{
       await DBFunctions.getFollowing(this.$auth.user.email,this.list);
       await DBFunctions.getInfo(this.$auth.user.email,this.info);
       await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
       const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
       this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
       this.$router.push("/profile");
+    } catch { 
+          window.alert ("error getting the profile")
+          this.$router.push({name: "Home"});
+      }
     },
     async resetProfile()   {
       try {
@@ -151,7 +173,8 @@ export default {
         // window.alert("Profile information reset.")
         // window.location.reload()
       } catch (error) {
-        console.log(error);
+        window.alert ("Error resetting the profile")
+        this.$router.push({name:"Home"});
       }
     },
     async updateProfile()   {
@@ -161,7 +184,8 @@ export default {
         window.alert("Profile information updated.")
         // window.location.reload()
       } catch{
-        window.alert("ok")
+        window.alert ("Error updating the profile")
+        this.$router.push({name: "Home"});
       }},
     selectImage(){
         // document.getElementById("imageList").style.display = "flex"

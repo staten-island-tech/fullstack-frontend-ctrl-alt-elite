@@ -305,7 +305,7 @@ module.exports.login = async (user) => {
      })
 
      const data = await response.json()
-   window.alert('token1')
+  //  window.alert('token1')
   //    // need to get access token from auth0
   //   window.alert("token")
   window.gAccessToken = data 

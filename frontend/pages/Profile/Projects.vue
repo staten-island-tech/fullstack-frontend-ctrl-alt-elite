@@ -7,7 +7,7 @@
          <input 
          v-model="searchArgs" type="search" 
          class="form-control relative flex-auto block h-12 w-1/2 px-3 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" >
-          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+          <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 mr-1 ml-1 " @click="searchProjects" >Search</button>
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
       </div>
    
@@ -49,6 +49,7 @@ export default {
       }
       },
       mounted() {
+        
         this.$parent.Link1=false
         this.$parent.Link2=false
          this.$parent.Link3=true        
@@ -61,6 +62,7 @@ export default {
 
   methods: {
       
+    
      
     searchProjects()   {
       this.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )

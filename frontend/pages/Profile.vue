@@ -50,7 +50,7 @@
             <NuxtLink  class="link link-underline link-underline-black text-gray-500 font-bold text-xl"  to="/profile/">Profile</NuxtLink>
         </li> -->
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Following"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
 
         </li>
         
@@ -124,7 +124,7 @@ export default {
     }
   }, 
   mounted (){
-      
+      window.addEventListener('reload', this.getProfile());
       // this.getProfile();
   } ,   
   methods: {
@@ -139,8 +139,7 @@ export default {
           this.projects.list = this.userProfile.data.projects 
           if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
-          else 
-           this.$router.push({name: "Profile-Following"})
+          
               
       } catch { 
           window.alert ("error getting the profile")

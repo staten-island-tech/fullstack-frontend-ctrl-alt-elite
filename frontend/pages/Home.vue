@@ -30,17 +30,17 @@
                             <div v-for="(project, key) in recent" :key="key" class="w-2/3">
                                 <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray">
                                     <h3 class="dark:text-white text-xl">{{ project.project_title }}</h3>
-                                   <!----> <div class="text-medium-gray dark:text-mid-gray flex flex-row justify-between items-center text-center w-full">
+                                   <!----> <div class="text-medium-gray dark:text-med-gray flex flex-row justify-between items-center text-center w-full">
                                         <div class="flex flex-row text-sm items-center text-center">
                                             <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
                                             <p class="p-2">{{ project.updatedAt }}</p>
                                         </div>
-                                        <button class="text-black dark:text-white" @click="toProjects"><p> View project &#10143;</p></button>
+                                        <button class="text-black dark:text-white" @click="toProjects" type="submit"><p> View project &#10143;</p></button>
                                     </div>
                                 </div>
                             </div>
                             <NuxtLink to="/ProjectAll" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
-                            <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
+                            <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3"  type="submit" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                                 <p class="p-2">Create New Project</p>
                             </button>
@@ -55,9 +55,8 @@
 <script>
 import Slideshow from '../components/Slideshow.vue';
 import DBFunctions from "~/DBFunctions";
-
 export default {
-  components: { Slideshow },
+  components: { Slideshow},
      data(){
        return{ 
          userProfile: { data : ''},

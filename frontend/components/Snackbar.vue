@@ -1,5 +1,6 @@
 <template>
-<!-- <body onload = "snackBar()"> -->
+<body onload = "snackBar()" >
+    <!-- onload = "snackBar()"  -->
 <div class="flex justify-center content-center">
     <div id="snackBar">
     <p class="text-white">Welcome, {{ this.$auth.user.name }} </p>

@@ -11,7 +11,8 @@
                 <!-- <input type = "file" ref="file" style="display: none" >
                   <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2"  @click="$refs.file.click()"><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />  Upload Profile Photo</button>      -->
             </div>
-            <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/>
+            <!-- <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/> -->
+                 <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
             <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
           <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
@@ -32,23 +33,28 @@
       </div>
       <ul class="bg-l-bg-accent dark:bg-d-bg-secondary h-12">
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:defaultLink}">Following  {{info.following}} </NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
+
         </li>
         
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers">Followers  {{info.followers}}   </NuxtLink>
+          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}}   </NuxtLink>
+
         </li>
 
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" >Projects  {{info.projects}}</NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}">Projects  {{info.projects}}</NuxtLink>
+
         </li>
       </ul>
-      <div class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
-        <!-- <p> {{$store.state.followInfo.name}} </p> -->
-      <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
-        <NuxtChild/>
-      </div>
-    </div>      
+    <div   class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
+      <!-- <p> {{$store.state.followInfo.name}} </p> -->
+    <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
+    <NuxtChild/>
+     
+    </div>
+      
+     </div>      
   </div>
 </template>
 
@@ -72,8 +78,11 @@ export default {
       followingList:{data:null}, 
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
-      projects: {list: []},
-      defaultLink:true,
+      projects: [],
+      Link1:false,
+      Link2:false,
+      Link3:false,
+      
       showImageList:true
     } 
   },
@@ -92,27 +101,33 @@ export default {
        
     },
        
- watch: {
+   watch: {
     reload(newValue, oldValue) {
       this.getProfile();
      
     }
   }, 
   mounted (){
-    this.getProfile();
+      window.addEventListener('reload', this.getProfile());
+      // this.getProfile();
   } ,   
   methods: {
     async getProfile() {
       try {
-        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
-        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-        await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
-        await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-        await DBFunctions.searchProjects("new", this.projects);
-        // window.alert(JSON.stringify(this.projects.list))
-        this.projects.list = this.userProfile.data.projects
+          if (this.$store.state.otherIDInfo.email ==="")
+             this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
+          await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+          await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+          await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+          await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+          this.projects.list = this.userProfile.data.projects 
+          if (this.$store.state.profileChild === 3)
+           this.$router.push({name: "Profile-Projects"})
+          
+              
       } catch { 
           window.alert ("error getting the profile")
+          this.$router.push({name: "Home"});
       }
     },
     async getOwnProfile()   {
@@ -136,7 +151,8 @@ export default {
         // window.alert("Profile information reset.")
         // window.location.reload()
       } catch (error) {
-        console.log(error);
+        window.alert ("Error resetting the profile")
+        this.$router.push({name:"Home"});
       }
     },
     async updateProfile()   {
@@ -146,7 +162,8 @@ export default {
         window.alert("Profile information updated.")
         // window.location.reload()
       } catch{
-        window.alert("ok")
+        window.alert ("Error updating the profile")
+        this.$router.push({name: "Home"});
       }},
     selectImage(){
         // document.getElementById("imageList").style.display = "flex"

@@ -39,14 +39,20 @@ export default {
       }
       },
       mounted() {
-        this.$parent.defaultLink=false;
-        this.projectsList = this.$parent.projects.list;
-        this.userInfo = this.$parent.info
-        this.initScroll();
+        
+        this.$parent.Link1=false
+        this.$parent.Link2=false
+         this.$parent.Link3=true        
+         this.$store.commit('updateProfileChild',0)
+         
+         this.projectsList = this.$parent.projects.list;
+
+         this.initScroll();
   },
 
   methods: {
       
+    
      
     searchProjects()   {
       this.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )

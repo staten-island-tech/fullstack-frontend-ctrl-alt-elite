@@ -15,7 +15,7 @@
                        <p>Following  {{info.following}}</p> 
                         <p>Followers  {{info.followers}}</p>
                    </div>
-                   <p id="profile"  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile">View Profile</p>
+                   <p id="profile"  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile(1)">View Profile</p>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
@@ -34,12 +34,14 @@
                     </a>
                 </div>
                 <div class="h-1/6">
-                    <NuxtLink to="/Profile/Projects" class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full" >
+                  
+                    <div class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full" @click ="getProfile(3)" >
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
-                    </NuxtLink>
+                    </div>
+                    
                 </div>
-                <div class="h-1/10">
+                <div class="h-1/6">
                     <button class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
@@ -103,14 +105,15 @@ watch: {
         {
              
                 
-             await DBFunctions.getInfo(this.$auth.user.email,this.info);
+           await DBFunctions.getInfo(this.$auth.user.email,this.info);
 
         },
         toggleVisible() {
             this.display = !this.display;
              
         },
-        getProfile (){
+        getProfile (options){
+            
            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
            this.$store.commit('updateReload')
            if (this.info.userID !== this.$auth.user.email){
@@ -118,9 +121,14 @@ watch: {
             } else if (this.info.userID === this.$auth.user.email){
                 this.$store.commit("isNotYourProject", false)
             }
+    
+             this.$store.commit('updateProfileChild',options)
+                     
+          
            this.$router.push({name: 'Profile'});
+            
          } ,
-           async logout() {
+        async logout() {
         await this.$auth.logout()
        
       },
@@ -147,7 +155,7 @@ watch: {
             this.$store.commit("isNotYourProject", false)
             this.$store.commit("otherEmail", this.$auth.user.email)
             this.$router.push("/")
-            this.$router.push("/Project")
+            this.$router.push({name:'Project'})
     }
 },
 };

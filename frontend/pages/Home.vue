@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
+                                <div   class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2"  @click ="viewProjects"><p> View all projects...</p></div>
                             </div>
                             <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
@@ -90,7 +90,23 @@ export default {
     },
     async mounted (){
         try {
-            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
+                     
+           
+            try { 
+                
+                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+            } catch (error) { 
+                
+                
+                 if (error.code === 999)
+                 {
+                      await DBFunctions.createUser(this.$auth.user,this.userProfile)  ;
+                 }
+                else 
+                   throw error ; 
+            }
+
+
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
@@ -105,15 +121,15 @@ export default {
                     const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
                     this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
                } catch (error)  {
-            
+                         window.alert ("error - get profile!") ;
                 console.log(error);
         
                }
+   
+                
             }
 
-       // await DBFunctions.getInfo(this.$auth.user.email,this.info);
-        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-      //  this.$store.commit('updateFollowInfo', this.info)
+   
            
     },  
     methods: {
@@ -157,6 +173,11 @@ export default {
 
         
         
+         viewProjects (){
+            this.$store.commit('updateProfileChild',3)
+            this.$router.push({name: 'Profile'});
+            
+         } ,
     }
     
 }

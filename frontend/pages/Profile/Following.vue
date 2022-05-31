@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center flex-col">
-     <FollowList :list="this.$parent.followingList" />
+   <FollowList :list="this.$parent.followingList" />
 
      
       </div>

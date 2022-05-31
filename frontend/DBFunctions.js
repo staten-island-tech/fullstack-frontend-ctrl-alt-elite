@@ -1,7 +1,9 @@
+ 
+
+window.gAccessToken ='';
+
 module.exports.getFollowing = async (userID, info) => {
-  
-    // window.alert("info")
-    // window.alert(JSON.stringify(info))
+
     const userInfo = { email: userID }
     const response = await fetch(`http://localhost:5000/getFollowing`, {
       method: 'POST',
@@ -13,7 +15,7 @@ module.exports.getFollowing = async (userID, info) => {
     const data = await response.json()
 
     info.data = data.list
-  
+   
 }
 
 module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
@@ -94,23 +96,27 @@ module.exports.getFollowers = async (userID, list) => {
 
 }
 
-// module.exports.updatePhoto = async () => {
-//   const userPhoto = { profile_pic: userID }
-//   const response = await fetch('https://localhost:5000/updatePhoto')
-// }
-
 module.exports.getProfile = async (userID, userProfile) => {
   
+    
+      
     const userInfo = { email: userID }
     const response = await fetch(`http://localhost:5000/getProfile`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: { 'Content-type': 'application/json; charset=UTF-8' ,
+                 'Authorization':  `${window.gAccessToken}` },
     })
+    if (response.status === 999)
+    { const error = new Error("Profile not Found")
+      error.code = 999
+      throw error
+  }
     const data2 = await response.json()
+    
     // if (response.status === 500) throw response.error
     userProfile.data = data2.userProfile
-
+  
 }
 
 module.exports.updateProfile = async (userProfile) => {
@@ -126,16 +132,17 @@ module.exports.updateProfile = async (userProfile) => {
  
 }
 
-module.exports.createUser = async (userID,userProfile) => {
-    const userInfo = { email: userID }
+module.exports.createUser = async (user, userProfile) => {
+   // const userInfo = {  user }
     const response = await fetch(`http://localhost:5000/createUser`, {
       method: 'POST',
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
+      body: JSON.stringify(user), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
-    const data2 = await response.json()
+    const data = await response.json()
+    userProfile.data = data
        // if (response.status === 500) throw response.error
-    userProfile.data = data2.userProfile
+
   
   
 }
@@ -268,121 +275,6 @@ module.exports.deleteProject = async (payload) => {
   }
 }
 
-// module.exports.searchProjects = async(searchArguments,projects) => {
-//     try {
-//       // window.alert("dbfunction")
-//       // window.alert(searchArguments)
-//       const SearchArgs = { projectTitle: searchArguments }
-//       const response = await fetch(`http://localhost:5000/searchProjects`, {
-//         method: 'POST',
-
-// module.exports.unFollow = async (userID, unfollowUserID, data) => {
-//   try {
-//     const userData = { userID, unfollowUserID }
-//     const response = await fetch(`http://localhost:5000/unFollow`, {
-//       method: 'POST',
-//       body: JSON.stringify(userData), // Adding headers to the request headers:
-//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     })
-
-//     data = await response.json()
-//   } catch (error) {}
-// }
-
-// module.exports.follow = async (userID, followUserID, data) => {
-//   try {
-//     const userData = { userID, followUserID }
-//     const response = await fetch(`http://localhost:5000/follow`, {
-//       method: 'POST',
-
-//       body: JSON.stringify(userData),
-//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     })
-
-//     data = await response.json()
-//   } catch (error) {}
-// }
-
-// module.exports.getFollowers = async (userID, list) => {
-//   try {
-//     const userInfo = { email: userID }
-//     const response = await fetch(`http://localhost:5000/getFollowers`, {
-//       method: 'POST',
-
-//       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     })
-
-//     const data = await response.json()
-//     list.data = data.list
-//   } catch (error) {}
-// }
-
-// module.exports.updatePhoto = async () => {
-//   const userPhoto = { profile_pic: userID};
-//   const response  = await fetch ('https://localhost:5000/updatePhoto')
-// }
-
-//         body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
-//         headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//       })
-
-//       const data = await response.json();
-//       // this.uniqueID = data.uniqu;
-//       projects.list= data
-//       window.alert(JSON.stringify(projects.list))
-
-//     } catch (error) {
-
-// module.exports.getProfile = async (userID, userProfile) => {
-//   try {
-//     const userInfo = { email: userID }
-//     const response = await fetch(`http://localhost:5000/getProfile`, {
-//       method: 'POST',
-
-//       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     })
-
-//     const data = await response.json()
-//     if (response.status === 500) throw response.error
-
-//     userProfile.data = data.userProfile
-//   } catch (error) {
-//     throw error
-//   }
-// }
-
-// module.exports.updateProfile = async (userProfile) => {
-//   try {
-//     const response = await fetch(`http://localhost:5000/profile`, {
-//       method: 'POST',
-//       // Adding body or contents to send
-//       body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
-//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     })
-//     const data = await response.json()
-
-//     userProfile.data = data // JSON.stringify(data)
-//   } catch (error) {
-//     window.alert('error')
-//   }
-// }
-
-// module.exports.createUser = async (userProfile) => {
-//   try {
-//     const response = await fetch(`http://localhost:5000/createUser`, {
-//       method: 'POST',
-//       body: JSON.stringify(userProfile), // Adding headers to the request headers:
-//       headers: { 'Content-type': 'application/json; charset=UTF-8' },
-//     })
-
-//     const data = await response.json()
-//     userProfile = data
-//   } catch (error) {
-//     window.alert(error)
-//   }
-// }
 
 module.exports.searchProjects = async (searchArguments, projects) => {
   try {
@@ -393,8 +285,33 @@ module.exports.searchProjects = async (searchArguments, projects) => {
       headers: { 'Content-type': 'application/json; charset=UTF-8' },
     })
     const data = await response.json()
+    const parsed = JSON.parse(JSON.stringify(data))
     // this.uniqueID = data.uniqu;
-    projects.list = data
+    projects.push(...parsed)
     // window.alert(JSON.stringify(projects.list))
   } catch (error) {}
+}
+
+module.exports.login = async (user) => {
+  // replace code with access token
+   try {
+     const username = { username: user }
+    
+     const response = await fetch(`http://localhost:5000/login`, {
+       method: 'POST',
+
+       body: JSON.stringify(username),
+       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+     })
+
+     const data = await response.json()
+   window.alert('token1')
+  //    // need to get access token from auth0
+  //   window.alert("token")
+  window.gAccessToken = data 
+    
+     
+  } catch (error) {
+     window.alert(error)
+   }
 }

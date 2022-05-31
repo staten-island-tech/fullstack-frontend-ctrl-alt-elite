@@ -69,6 +69,11 @@ export default {
         domain: 'dev-p62lyuzr.us.auth0.com',
         clientId: 'A4avCXPautzQ9o8kr3tGeA6Z6Ko9aofZ',
         logoutRedirectUri: 'http://localhost:3000',
+        // new code 
+        // responseType: 'code',
+        // grantType: 'authorization_code',
+        // codeChallengeMethod: 'S256',
+        // end of new code 
         // audience: 'https://my-api-domain.com/'
       },
     },

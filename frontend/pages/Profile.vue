@@ -67,6 +67,7 @@
       <!-- <p> {{$store.state.followInfo.name}} </p> -->
     <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
     <NuxtChild/>
+     
     </div>
       
      </div>      
@@ -93,7 +94,7 @@ export default {
       followingList:{data:null}, 
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
-      projects: {list: []},
+      projects: [],
       Link1:false,
       Link2:false,
       Link3:false,
@@ -116,56 +117,38 @@ export default {
        
     },
        
- watch: {
+   watch: {
     reload(newValue, oldValue) {
       this.getProfile();
      
     }
   }, 
   mounted (){
-     
-     //  this.getProfile();
+      
+      // this.getProfile();
   } ,   
   methods: {
     async getProfile() {
       try {
           if (this.$store.state.otherIDInfo.email ==="")
              this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
-        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
-        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-        await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
-        await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-        await DBFunctions.searchProjects("new", this.projects);
-        // window.alert(JSON.stringify(this.projects.list))
-        this.projects.list = this.userProfile.data.projects 
-        if (this.$store.state.profileChild === 3)
-        
-            
+          await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+          await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+          await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+          await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+          this.projects.list = this.userProfile.data.projects 
+          if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
-        
-        else 
-        this.$router.push({name: "Profile-Following"})
-         
-      
+          else 
+           this.$router.push({name: "Profile-Following"})
+              
       } catch { 
           window.alert ("error getting the profile")
           this.$router.push({name: "Home"});
       }
   } ,
 
-    async getOwnProfile()   {
-    try{
-      await DBFunctions.getFollowing(this.$auth.user.email,this.list);
-      await DBFunctions.getInfo(this.$auth.user.email,this.info);
-      await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-      const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-      this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-      this.$router.push("/profile");
-    } catch { 
-          window.alert ("error getting the profile")
-          this.$router.push({name: "Home"});
-      }
-    },
+    
     async resetProfile()   {
       try {
         this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})

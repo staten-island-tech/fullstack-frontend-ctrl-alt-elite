@@ -6,7 +6,6 @@ export const state = () => ({
   projectDescription: '',
   project_id: '',
   reload: 1,
-  newUser:false,
   profileChild:1,
   otherIDInfo: {
     mongo_id: '',
@@ -37,9 +36,6 @@ export const mutations = {
   },
   updateReload(state) {
     state.reload = !state.reload
-  },
-  updateNewUser(state) {
-    state.newUser=true
   },
   updateProfileChild(state,value)
   {

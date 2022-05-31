@@ -53,9 +53,10 @@ export default {
         this.$parent.Link2=false
          this.$parent.Link3=true        
          this.$store.commit('updateProfileChild',0)
+         
          this.projectsList = this.$parent.projects.list;
 
-        this.initScroll();
+         this.initScroll();
   },
 
   methods: {

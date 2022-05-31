@@ -105,7 +105,7 @@ watch: {
         {
              
                 
-             await DBFunctions.getInfo(this.$auth.user.email,this.info);
+           await DBFunctions.getInfo(this.$auth.user.email,this.info);
 
         },
         toggleVisible() {
@@ -127,15 +127,7 @@ watch: {
         await this.$auth.logout()
        
       },
-//  async resetProfile()   {
-//       await this.getProfile();
-//       window.alert("Profile information reset.")
-      
-//     },
-//   async updateProfile()   {
-//       await DBFunctions.updateProfile(this.userProfile)
-//       window.alert("Profile information updated.")
-//     },
+
     newProject(){
         this.$store.commit("PUSH_HTML", "")
             this.$store.commit("PUSH_CSS", "")
@@ -144,7 +136,7 @@ watch: {
             this.$store.commit("PUSH_DESCR", "")
             this.$store.commit("newProject", true)
             this.$store.commit("isNotYourProject", false)
-            this.$router.push("Project")
+            this.$router.push({name:'Project'})
     }
 },
 };

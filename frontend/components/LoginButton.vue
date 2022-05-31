@@ -8,17 +8,17 @@
 </template>
 
 <script>
-   
+import DBFunctions from "~/DBFunctions";
     export default {
     name: 'LoginButton',
      
-    
+   
     methods: {
-   async   login() {
+     login() {
         
         
-        await this.$auth.loginWith('auth0');
-        
+       this.$auth.loginWith('auth0').then( () => {DBFunctions.login(this.$auth.user.email);})
+             
        
          
        

@@ -1,6 +1,6 @@
 <template>
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
-        <div class="bg-l-bg-primary dark:bg-d-bg-primary min-h-full h-auto">
+        <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
             
                 <div class="w-full flex flex-col-reverse xl:flex-row items-center">
@@ -14,11 +14,11 @@
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
                             <div class="xl:mt-12">
-                                <div class="bg-l-bg-secondary dark:bg-d-bg-secondary p-6 pb-2 m-6">
+                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                     <Slideshow :project="trendingProjects" class="mb-6"/>
                                 </div>
-                                <div class="bg-l-bg-secondary dark:bg-d-bg-secondary p-6 pb-2 m-6">
+                                <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Following</h2>
                                     <Slideshow :project="followingProjects" class="mb-6"/>
                                 </div>

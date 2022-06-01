@@ -1,4 +1,5 @@
 <template>
+
   <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
    
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
@@ -139,6 +140,7 @@ export default {
           this.projects.list = this.userProfile.data.projects 
           if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
+          
           
               
       } catch { 

@@ -12,7 +12,7 @@
     </div>
       <div class="h-2/3 w-1/2 md:w-2/5 xl:w-1/4 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
-        <button class="bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
+        <button class="bg-gray-500 hover:bg-gray-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"><font-awesome-icon icon="fa-solid fa-floppy-disk" /> Save</button>
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"><font-awesome-icon icon="fa-solid fa-gear" /> Settings</button>
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="publish">Publish</button>
         <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic" @click="viewProfile">

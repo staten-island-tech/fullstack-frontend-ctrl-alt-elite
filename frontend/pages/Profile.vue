@@ -8,15 +8,13 @@
             <div v-if="ownProfile" class="flex flex-col justify-center"> 
               <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
               <imageList :class="{hidden:showImageList}" />
-                <!-- <input type = "file" ref="file" style="display: none" >
-                  <button class=" py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2"  @click="$refs.file.click()"><font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" />  Upload Profile Photo</button>      -->
+               
             </div>
-            <!-- <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/> -->
                  <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
             <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
-          <div class="m-10 flex flex-col text-black dark:text-white w-1/3">
-            <h1 class="font-bold mb-3 text-lg mt-1 text-center text-black dark:text-white py-12">{{userProfile.data.user_id}}</h1>
+          <div class="m-10 flex flex-col  dark:text-white text-black w-1/3">
+            <p class="font-bold mb-3 text-lg mt-1 text-center  py-12">{{userProfile.data.user_id}}</p>
             <h2 class="pb-2 pl-1">Username</h2>
             <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
                   <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->

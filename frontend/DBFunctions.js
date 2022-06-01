@@ -9,7 +9,10 @@ module.exports.getFollowing = async (userID, info) => {
       method: 'POST',
       // Adding body or contents to send
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
 
     const data = await response.json()
@@ -19,19 +22,23 @@ module.exports.getFollowing = async (userID, info) => {
 }
 
 module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
- 
+    
     const userInfo = { userID, followUserID }
     const response = await fetch(`http://localhost:5000/getFollowInfo`, {
       method: 'POST',
       // Adding body or contents to send
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'Authorization': `${window.gAccessToken}`,
+      },
     })
 
     const data = await response.json()
 
     followInfo.following = data.following
     followInfo.followedby = data.followedby
+    
 
 }
 
@@ -41,7 +48,10 @@ module.exports.getInfo = async (userID, info) => {
     const response = await fetch(`http://localhost:5000/getInfo`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
 
     const data = await response.json()
@@ -61,7 +71,10 @@ module.exports.unFollow = async (userID, unfollowUserID, data) => {
     const response = await fetch(`http://localhost:5000/unFollow`, {
       method: 'POST',
       body: JSON.stringify(userData), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     data = await response.json()
   
@@ -74,7 +87,10 @@ module.exports.follow = async (userID, followUserID, data) => {
       method: 'POST',
 
       body: JSON.stringify(userData),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'Authorization': `${window.gAccessToken}`,
+      },
     })
 
     data = await response.json()
@@ -88,7 +104,10 @@ module.exports.getFollowers = async (userID, list) => {
       method: 'POST',
 
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
 
     const data = await response.json()
@@ -125,7 +144,10 @@ module.exports.updateProfile = async (userProfile) => {
       method: 'POST',
       // Adding body or contents to send
       body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
     userProfile.data = data // JSON.stringify(data)
@@ -137,7 +159,10 @@ module.exports.createUser = async (user, userProfile) => {
     const response = await fetch(`http://localhost:5000/createUser`, {
       method: 'POST',
       body: JSON.stringify(user), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        'Authorization': `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
     userProfile.data = data
@@ -152,7 +177,10 @@ module.exports.createProject = async (userProject) => {
     const response = await fetch(`http://localhost:5000/newProject`, {
       method: 'PATCH',
       body: JSON.stringify(userProject),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
     userProject = data
@@ -167,7 +195,10 @@ module.exports.getProjects = async (mongoID, projects) => {
     const response = await fetch(`http://localhost:5000/getProjects`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
     if (response.status === 500) throw response.error
@@ -184,7 +215,10 @@ module.exports.getProjects2 = async (mongoID, projects) => {
     const response = await fetch(`http://localhost:5000/getProjects`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
     if (response.status === 500) throw response.error
@@ -196,7 +230,10 @@ module.exports.getFollowingProjects = async (mongo_id, projects) => {
   const response = await fetch(`http://localhost:5000/getFollowingProjects`, {
     method: 'POST',
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${window.gAccessToken}`,
+    },
   })
   const data = await response.json()
   const parsed = JSON.parse(JSON.stringify(data))
@@ -207,7 +244,10 @@ module.exports.getFollowingProjects = async (mongo_id, projects) => {
 module.exports.getTrendingProjects = async (project) => {
   const response = await fetch(`http://localhost:5000/getTrendingProjects`, {
     method: 'GET',
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${window.gAccessToken}`,
+    },
   })
   const data = await response.json()
   const parsed = JSON.parse(JSON.stringify(data))
@@ -225,7 +265,10 @@ module.exports.addLike = async (projectInfo, email) => {
   const response = await fetch(`http://localhost:5000/addLike`, {
     method: 'POST',
     body: JSON.stringify(pushInfo),
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${window.gAccessToken}`,
+    },
   })
   const data = await response.json()
   const parsed = JSON.parse(JSON.stringify(data))
@@ -241,7 +284,10 @@ module.exports.removeLike = async (projectInfo, email) => {
   const response = await fetch(`http://localhost:5000/removeLike`, {
     method: 'POST',
     body: JSON.stringify(pushInfo),
-    headers: { 'Content-type': 'application/json; charset=UTF-8' },
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${window.gAccessToken}`,
+    },
   })
   const data = await response.json()
   const parsed = JSON.parse(JSON.stringify(data))
@@ -253,7 +299,10 @@ module.exports.updateProject = async (payload) => {
       method: 'PATCH',
       // Adding body or contents to send
       body: JSON.stringify(payload), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
   } catch (error) {
@@ -267,7 +316,10 @@ module.exports.deleteProject = async (payload) => {
       method: 'DELETE',
       // Adding body or contents to send
       body: JSON.stringify(payload), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
   } catch (error) {
@@ -282,7 +334,10 @@ module.exports.searchProjects = async (searchArguments, projects) => {
     const response = await fetch(`http://localhost:5000/searchProjects`, {
       method: 'POST',
       body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `${window.gAccessToken}`,
+      },
     })
     const data = await response.json()
     const parsed = JSON.parse(JSON.stringify(data))
@@ -301,7 +356,10 @@ module.exports.login = async (user) => {
        method: 'POST',
 
        body: JSON.stringify(username),
-       headers: { 'Content-type': 'application/json; charset=UTF-8' },
+       headers: {
+         'Content-type': 'application/json; charset=UTF-8',
+         
+       },
      })
 
      const data = await response.json()

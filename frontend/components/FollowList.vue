@@ -21,7 +21,7 @@
          </p>
         </div >
          <div v-if="$auth.user.email !=item.user_id"> 
-           <FollowButton2 :followuserid="item.user_id" />
+           <FollowButton2 :key="item.user_id"  :followuserid="item.user_id" />
         </div>
     </div>
              

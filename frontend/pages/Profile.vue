@@ -22,7 +22,7 @@
               </div>
               
               <!-- <FollowButton2 v-else :followuserid="this.$store.state.otherIDInfo.email"/> -->
-              <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
+              <FollowButton2 v-else   :key="userProfile.data.user_id"  :followuserid="userProfile.data.user_id"/> 
                           
               <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
@@ -125,8 +125,8 @@ export default {
     }
   }, 
   mounted (){
-      window.addEventListener('reload', this.getProfile());
-      // this.getProfile();
+      
+     //  this.getProfile();
   } ,   
   methods: {
     async getProfile() {
@@ -140,6 +140,8 @@ export default {
           this.projects.list = this.userProfile.data.projects 
           if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
+           
+           
           
           
               
@@ -245,4 +247,5 @@ h1{
 .noAccess {
   pointer-events: none;
 }
+
 </style>

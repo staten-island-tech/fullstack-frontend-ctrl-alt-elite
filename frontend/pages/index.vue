@@ -27,38 +27,25 @@
 </template>
 
 <script>
-
 import Snackbar from '../components/Snackbar.vue'
 import * as THREE from 'three'
 import NET from 'vanta/dist/vanta.net.min'
-
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import DBFunctions from "~/DBFunctions";
 
 AOS.init();
 
-
-
 export default {
- 
-    
-  components: {
-    
-  },
   data(){
     return{
       count: 0,
       scrollPosition: null,
     }
-  },
-
-          
-            
-   
+  },      
   mounted() {
-      this.redirect();
-      this.vantaEffect = NET({
+    this.redirect();
+    this.vantaEffect = NET({
       el: "#welcoming-page",
       THREE,
       backgroundAlpha: 0,
@@ -66,31 +53,24 @@ export default {
       points: 12.00,
     });
     window.addEventListener('scroll', this.updateScroll);
-    
   },
-  
   beforeDestroy() {
     if (this.vantaEffect) {
       this.vantaEffect.destroy()
     }
   },
-  
   methods: {
-      
-  
-     
-      redirect() {
-        
-        if (this.$auth.loggedIn) {
-          DBFunctions.login(this.$auth.user.email);
-         this.$router.push({path: 'home'});
-        } else {
-          this.$router.push({path: '/'});
-        }
-      },
-      updateScroll() {
-        this.scrollPosition = window.scrollY
+    redirect() {
+      if (this.$auth.loggedIn) {
+        DBFunctions.login(this.$auth.user.email);
+        this.$router.push({path: 'home'});
+      } else {
+        this.$router.push({path: '/'});
       }
+    },
+    updateScroll() {
+      this.scrollPosition = window.scrollY
+    }
   }
 }
 

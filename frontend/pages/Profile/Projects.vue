@@ -22,80 +22,58 @@
 </template>
 
 <script>
-
- // Project card 2 is passing in solely project while project card is passing in entire object
- 
 export default {
- 
-   data(){
-      return{ 
-        projectsList: Array,
-        userInfo: Object,   
-        pageLimit:6,
-        searchArgs: "",
-        start: 1,
-        end :0,
-        total:0,
-      }
-      },
-      mounted() {
-        
-        this.$parent.Link1=false
-        this.$parent.Link2=false
-         this.$parent.Link3=true        
-         this.$store.commit('updateProfileChild',0)
-         
-         this.projectsList = this.$parent.projects.list;
-
-         this.initScroll();
+  data(){
+    return{ 
+      projectsList: Array,
+      userInfo: Object,   
+      pageLimit:6,
+      searchArgs: "",
+      start: 1,
+      end :0,
+      total:0,
+    }
   },
-
+  mounted() {
+    this.$parent.Link1=false
+    this.$parent.Link2=false
+    this.$parent.Link3=true        
+    this.$store.commit('updateProfileChild',0)
+    this.userInfo = this.$parent.info
+    this.projectsList = this.$parent.projects.list
+    this.initScroll();
+  },
   methods: {
-      
-    
-     
-    searchProjects()   {
+    searchProjects(){
       this.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
-      
-
       this.initScroll()
      
     },
-    resetProjects()   {
-      
+    resetProjects(){
       // await DBFunctions.searchProjects(this.searchArgs, this.projects)
       // window.alert(JSON.stringify(this.projects.list))
       this.searchArgs='';
       this.projectsList= this.$parent.projects.list;
-     
       this.initScroll();
        
     },
-    initScroll()
-    {
+    initScroll(){
       this.start = 1;
       this.total =this.projectsList.length;
-      this.end = this.total <this.pageLimit ? this.total : this.pageLimit 
-       
+      this.end = this.total <this.pageLimit ? this.total : this.pageLimit   
     },
-    previousPage()
-    {
+    previousPage(){
       this.end =this.start - 1  ;
       this.start = this.start - this.pageLimit ;
-      
     },
     nextPage() {
-        this.start = this.end+ 1;
-        if (this.end + this.pageLimit >this.total )
-            this.end= this.total 
-        else
-           this.end +=this.pageLimit;
-
-        }
-    
-
-     }
-    
+      this.start = this.end+ 1;
+      if (this.end + this.pageLimit >this.total )
+        this.end= this.total 
+      else
+        this.end +=this.pageLimit;
+    }
+  }   
 }
 </script>
 

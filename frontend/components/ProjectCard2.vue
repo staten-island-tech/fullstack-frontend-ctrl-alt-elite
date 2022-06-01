@@ -21,6 +21,9 @@ props: {
     required: true
   }
 },
+mounted(){
+  console.log(this.userInfo);
+},
 data(){
     return{
       src: `

@@ -8,18 +8,17 @@
             <div v-if="ownProfile" class="flex flex-col justify-center"> 
               <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
               <imageList :class="{hidden:showImageList}" />
-               
             </div>
-                 <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
+            <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
             <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
           <div class="m-10 flex flex-col  dark:text-white text-black w-1/3">
             <p class="font-bold mb-3 text-lg mt-1 text-center  py-12">{{userProfile.data.user_id}}</p>
             <h2 class="pb-2 pl-1">Username</h2>
             <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
-                  <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
+            <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
             <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
-            <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
+            <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"></textarea>
             <div v-if="ownProfile" class="flex flex-row justify-end " >
               <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
             </div>
@@ -32,27 +31,18 @@
       <ul class="bg-l-bg-accent dark:bg-d-bg-secondary h-12">
         <li>
           <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
-
         </li>
-        
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}}   </NuxtLink>
-
+          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}} </NuxtLink>
         </li>
-
         <li>
           <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}">Projects  {{info.projects}}</NuxtLink>
-
         </li>
       </ul>
-    <div   class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
-      <!-- <p> {{$store.state.followInfo.name}} </p> -->
-    <!-- <NuxtChild  :userid="$store.state.otherIDInfo.email" /> -->
-    <NuxtChild/>
-     
-    </div>
-      
-     </div>      
+      <div class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
+        <NuxtChild/> 
+      </div>
+    </div>      
   </div>
 </template>
 
@@ -80,55 +70,48 @@ export default {
       Link1:false,
       Link2:false,
       Link3:false,
-      
       showImageList:true
     } 
   },
-   computed: {
+  computed: {
     reload: {
-      get() {
-       
-      return this.$store.state.reload;
+      get(){
+        return this.$store.state.reload;
       }
     },
     ownProfile:{
-      get()
-      { return this.$auth.user.email === this.$store.state.otherIDInfo.email
+      get(){ 
+        return this.$auth.user.email === this.$store.state.otherIDInfo.email
       }
-    },
-       
-    },
-       
-   watch: {
+    },  
+  }, 
+  watch: {
     reload(newValue, oldValue) {
       this.getProfile();
-     
     }
   }, 
   mounted (){
-      window.addEventListener('reload', this.getProfile());
-      // this.getProfile();
+    window.addEventListener('reload', this.getProfile());
+    // this.getProfile();
   } ,   
   methods: {
     async getProfile() {
       try {
-          if (this.$store.state.otherIDInfo.email ==="")
-             this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
-          await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
-          await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-          await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
-          await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-          this.projects.list = this.userProfile.data.projects 
-          if (this.$store.state.profileChild === 3)
-           this.$router.push({name: "Profile-Projects"})
-          
-              
+        if (this.$store.state.otherIDInfo.email ==="")
+          this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
+        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+        await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+        await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+        this.projects.list = this.userProfile.data.projects 
+        if (this.$store.state.profileChild === 3)
+          this.$router.push({name: "Profile-Projects"})    
       } catch { 
-          window.alert ("error getting the profile")
-          this.$router.push({name: "Home"});
+        window.alert ("error getting the profile")
+        this.$router.push({name: "Home"});
       }
     },
-    async getOwnProfile()   {
+    async getOwnProfile() {
       await DBFunctions.getFollowing(this.$auth.user.email,this.list);
       await DBFunctions.getInfo(this.$auth.user.email,this.info);
       await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
@@ -136,7 +119,7 @@ export default {
       this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
       this.$router.push("/profile");
     },
-    async resetProfile()   {
+    async resetProfile() {
       try {
         this.$store.commit("updateOtherIDInfo", {mongo_id:'',email: this.$auth.user.email})
         await this.getProfile();
@@ -153,7 +136,7 @@ export default {
         this.$router.push({name:"Home"});
       }
     },
-    async updateProfile()   {
+    async updateProfile() {
       try {
         await DBFunctions.updateProfile(this.userProfile)
         this.$store.commit('updateReload')
@@ -162,10 +145,11 @@ export default {
       } catch{
         window.alert ("Error updating the profile")
         this.$router.push({name: "Home"});
-      }},
+      }
+    },
     selectImage(){
-        // document.getElementById("imageList").style.display = "flex"
-        this.showImageList=false
+      // document.getElementById("imageList").style.display = "flex"
+      this.showImageList=false
     }
   },    
 }

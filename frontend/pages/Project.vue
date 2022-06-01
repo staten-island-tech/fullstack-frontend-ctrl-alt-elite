@@ -99,227 +99,226 @@ import AceEditor from "vue2-ace-editor";
 import projectsNavBar from "../components/ProjectsNavBar.vue" 
 
 export default {
-    components:{
-        projectsNavBar,
-        AceEditor
-    },
-    data(){
-      return{
-        fontsize:"1",
-        contentHTML:"",
-        contentCSS:"",
-        contentJS:"",
-        userProfile: { data : ''},
-        
+  components:{
+    projectsNavBar,
+    AceEditor
+  },
+  data(){
+    return{
+      fontsize:"1",
+      contentHTML:"",
+      contentCSS:"",
+      contentJS:"",
+      userProfile: { data : ''}, 
+    }
+  },
+  async mounted(){
+    try {
+      let editor1 = this.$refs.editor1.editor
+      let editor2 = this.$refs.editor2.editor
+      let editor3 = this.$refs.editor3.editor
+      editor1.setValue(this.$store.state.codeHTML)
+      editor2.setValue(this.$store.state.codeCSS)
+      editor3.setValue(this.$store.state.codeJS)
+      if (this.$store.state.otherIDInfo.mongo_id === undefined || this.$store.state.otherIDInfo.email === undefined){
+        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+        const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
+        this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
+  computed:{
+    title:{
+      get(){
+        return this.$store.state.projectTitle
+      },
+      set(value){
+        this.$store.commit("PUSH_TITLE", value)
       }
     },
-    async mounted(){
-      try {
-        let editor1 = this.$refs.editor1.editor
-        let editor2 = this.$refs.editor2.editor
-        let editor3 = this.$refs.editor3.editor
-        editor1.setValue(this.$store.state.codeHTML)
-        editor2.setValue(this.$store.state.codeCSS)
-        editor3.setValue(this.$store.state.codeJS)
-        if (this.$store.state.otherIDInfo.mongo_id === undefined || this.$store.state.otherIDInfo.email === undefined){
-          await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
-          const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-          this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
+    description:{
+      get(){
+        return this.$store.state.projectDescription
+      },
+      set(value){
+        this.$store.commit("PUSH_DESCR", value)
+      }
+    }
+  },
+  created: function(){
+    // Replaces CTRL-S to run editor
+    document.addEventListener('keydown', e => {
+      if (e.ctrlKey && e.key === 's') {
+        try {
+          e.preventDefault()
+          const iframe = document.getElementById("iframe")
+          iframe.srcdoc = 
+          `<html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>I See You Inspecting</title>
+                <style>${this.contentCSS}</style>
+            </head>
+            <body>
+                ${this.contentHTML}
+                <script>${this.contentJS}<\/script>
+            </body>
+          </html>`
+        } catch (error) {
+            alert(error)
         }
+      }
+    });
+  },
+  methods:{
+    // Editor config
+    editorInit(editor){
+      require('brace/mode/html')
+      require('brace/snippets/text')   
+      require('brace/snippets/html')                
+      require('brace/mode/javascript') 
+      require('brace/snippets/javascript')   
+      require('brace/mode/css') 
+      require('brace/snippets/css')   
+      require('brace/theme/twilight')
+      require('brace/ext/language_tools')
+      editor.setOptions({
+        fontSize: "1rem",
+        showGutter: true,
+        enableBasicAutocompletion: true,
+        enableLiveAutocompletion: true,
+        enableSnippets: true,
+      })
+    },
+    // Applies user settings to editors
+    saveSetting(evt){
+      let editor1 = this.$refs.editor1.editor
+      let editor2 = this.$refs.editor2.editor
+      let editor3 = this.$refs.editor3.editor
+      editor1.setOptions({
+        fontSize: `${this.fontsize}rem`
+      })
+      editor2.setOptions({
+        fontSize: `${this.fontsize}rem`
+      })
+      editor3.setOptions({
+        fontSize: `${this.fontsize}rem`
+      })
+      if (evt.target === document.getElementById("settingdiv")){
+        document.getElementById("settingdiv").style.display = "none"
+      } else return
+    },
+    // Light and dark modes
+    darkMode() {
+      this.$store.commit('toggleMode');
+    },
+    lightMode() {
+      this.$store.commit('toggleMode')
+    },
+    // Editor orientation 
+    editorOrientation(e){
+      const editorOne = document.getElementById("one")
+      const editorTwo = document.getElementById("two")
+      const editorThree = document.getElementById("three")
+      const oneLabel = document.getElementById("oneLabel")
+      const twoLabel = document.getElementById("twoLabel")
+      const threeLabel = document.getElementById("threeLabel")
+      const projectDiv = document.getElementById("projectdiv")
+      const editorContainer = document.getElementById("editcontainer")
+      const iframe = document.getElementById("iframe")
+      if (e.srcElement.id === "left"){
+        projectDiv.style.flexDirection = "row"
+        editorContainer.style.width = "35%"
+        editorContainer.style.height = "100%"
+        editorContainer.style.flexDirection = "column"
+        editorOne.style.width = "100%"
+        editorTwo.style.width = "100%"
+        editorThree.style.width = "100%"
+        oneLabel.style.marginLeft = "0%"
+        twoLabel.style.marginLeft = "0%"
+        threeLabel.style.marginLeft = "0%"
+        oneLabel.style.height = "15%"
+        twoLabel.style.height = "15%"
+        threeLabel.style.height = "15%"
+        editorOne.style.flexDirection = "row"
+        editorTwo.style.flexDirection = "row"
+        editorThree.style.flexDirection = "row"
+        iframe.style.width = "65%"
+        iframe.style.height = "100%"
+      } else if (e.srcElement.id === "middle") {
+        editorOne.style.width = "33.333%"
+        editorTwo.style.width = "33.333%"
+        editorThree.style.width = "33.333%"
+        projectDiv.style.flexDirection = "column"
+        editorContainer.style.width = "100%"
+        editorContainer.style.height = "40vh"
+        editorContainer.style.flexDirection = "row"
+        editorOne.style.flexDirection = "column"
+        editorTwo.style.flexDirection = "column"
+        editorThree.style.flexDirection = "column"
+        iframe.style.width = "100%"
+        iframe.style.height = "50vh"
+        oneLabel.style.marginLeft = "2.5rem"
+        twoLabel.style.marginLeft = "2.5rem"
+        threeLabel.style.marginLeft = "2.5rem"
+          oneLabel.style.height = "9%"
+        twoLabel.style.height = "9%"
+        threeLabel.style.height = "9%"
+      } else if (e.srcElement.id === "right") {
+        editorOne.style.width = "100%"
+        editorTwo.style.width = "100%"
+        editorThree.style.width = "100%"
+        projectDiv.style.flexDirection = "row-reverse"
+        editorContainer.style.width = "35%"
+        editorContainer.style.height = "100%"
+        editorContainer.style.flexDirection = "column"
+        editorOne.style.flexDirection = "row"
+        editorTwo.style.flexDirection = "row"
+        editorThree.style.flexDirection = "row"
+        iframe.style.width = "65%"
+        iframe.style.height = "100%"
+        oneLabel.style.marginLeft = "0%"
+        twoLabel.style.marginLeft = "0%"
+        threeLabel.style.marginLeft = "0%"
+        oneLabel.style.height = "15%"
+        twoLabel.style.height = "15%"
+        threeLabel.style.height = "15%"
+      }
+    },
+    projectSettings(){
+      document.getElementById("projectsettingsdiv").style.display = "flex"
+    },
+    saveSetting2(evt){
+      if (evt.target === document.getElementById("projectsettingsdiv")){
+        document.getElementById("projectsettingsdiv").style.display = "none"
+      } else return
+    },
+    pushHTML(code){
+      this.$store.commit("PUSH_HTML", code)
+    },
+    pushCSS(code){
+      this.$store.commit("PUSH_CSS", code)
+    },
+    pushJS(code){
+      this.$store.commit("PUSH_JS", code)
+    },
+    async remove(){
+      try {
+        console.log("hello");
+        await DBFunctions.deleteProject({
+          "email": this.$store.state.otherIDInfo.email,
+          "project_id": this.$store.state.project_id
+        })
+        this.$router.push("Home")
       } catch (error) {
         console.log(error);
       }
-    },
-    computed:{
-      title:{
-        get(){
-          return this.$store.state.projectTitle
-        },
-        set(value){
-          this.$store.commit("PUSH_TITLE", value)
-        }
-      },
-      description:{
-        get(){
-          return this.$store.state.projectDescription
-        },
-        set(value){
-          this.$store.commit("PUSH_DESCR", value)
-        }
-      }
-    },
-    created: function(){
-      // Replaces CTRL-S to run editor
-      document.addEventListener('keydown', e => {
-        if (e.ctrlKey && e.key === 's') {
-          try {
-            e.preventDefault()
-            const iframe = document.getElementById("iframe")
-            iframe.srcdoc = 
-            `<html lang="en">
-              <head>
-                  <meta charset="UTF-8">
-                  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                  <title>I See You Inspecting</title>
-                  <style>${this.contentCSS}</style>
-              </head>
-              <body>
-                  ${this.contentHTML}
-                  <script>${this.contentJS}<\/script>
-              </body>
-            </html>`
-          } catch (error) {
-              alert(error)
-          }
-        }
-      });
-  },
-    methods:{
-      // Editor config
-      editorInit(editor){
-        require('brace/mode/html')
-        require('brace/snippets/text')   
-        require('brace/snippets/html')                
-        require('brace/mode/javascript') 
-        require('brace/snippets/javascript')   
-        require('brace/mode/css') 
-        require('brace/snippets/css')   
-        require('brace/theme/twilight')
-        require('brace/ext/language_tools')
-        editor.setOptions({
-          fontSize: "1rem",
-          showGutter: true,
-          enableBasicAutocompletion: true,
-          enableLiveAutocompletion: true,
-          enableSnippets: true,
-        })
-      },
-      // Applies user settings to editors
-      saveSetting(evt){
-        let editor1 = this.$refs.editor1.editor
-        let editor2 = this.$refs.editor2.editor
-        let editor3 = this.$refs.editor3.editor
-        editor1.setOptions({
-          fontSize: `${this.fontsize}rem`
-        })
-        editor2.setOptions({
-          fontSize: `${this.fontsize}rem`
-        })
-        editor3.setOptions({
-          fontSize: `${this.fontsize}rem`
-        })
-        if (evt.target === document.getElementById("settingdiv")){
-          document.getElementById("settingdiv").style.display = "none"
-        } else return
-      },
-      // Light and dark modes
-      darkMode() {
-            this.$store.commit('toggleMode');
-        },
-        lightMode() {
-            this.$store.commit('toggleMode')
-        },
-      // Editor orientation 
-      editorOrientation(e){
-        const editorOne = document.getElementById("one")
-        const editorTwo = document.getElementById("two")
-        const editorThree = document.getElementById("three")
-        const oneLabel = document.getElementById("oneLabel")
-        const twoLabel = document.getElementById("twoLabel")
-        const threeLabel = document.getElementById("threeLabel")
-        const projectDiv = document.getElementById("projectdiv")
-        const editorContainer = document.getElementById("editcontainer")
-        const iframe = document.getElementById("iframe")
-        if (e.srcElement.id === "left"){
-          projectDiv.style.flexDirection = "row"
-          editorContainer.style.width = "35%"
-          editorContainer.style.height = "100%"
-          editorContainer.style.flexDirection = "column"
-          editorOne.style.width = "100%"
-          editorTwo.style.width = "100%"
-          editorThree.style.width = "100%"
-          oneLabel.style.marginLeft = "0%"
-          twoLabel.style.marginLeft = "0%"
-          threeLabel.style.marginLeft = "0%"
-          oneLabel.style.height = "15%"
-          twoLabel.style.height = "15%"
-          threeLabel.style.height = "15%"
-          editorOne.style.flexDirection = "row"
-          editorTwo.style.flexDirection = "row"
-          editorThree.style.flexDirection = "row"
-          iframe.style.width = "65%"
-          iframe.style.height = "100%"
-        } else if (e.srcElement.id === "middle") {
-          editorOne.style.width = "33.333%"
-          editorTwo.style.width = "33.333%"
-          editorThree.style.width = "33.333%"
-          projectDiv.style.flexDirection = "column"
-          editorContainer.style.width = "100%"
-          editorContainer.style.height = "40vh"
-          editorContainer.style.flexDirection = "row"
-          editorOne.style.flexDirection = "column"
-          editorTwo.style.flexDirection = "column"
-          editorThree.style.flexDirection = "column"
-          iframe.style.width = "100%"
-          iframe.style.height = "50vh"
-          oneLabel.style.marginLeft = "2.5rem"
-          twoLabel.style.marginLeft = "2.5rem"
-          threeLabel.style.marginLeft = "2.5rem"
-            oneLabel.style.height = "9%"
-          twoLabel.style.height = "9%"
-          threeLabel.style.height = "9%"
-        } else if (e.srcElement.id === "right") {
-          editorOne.style.width = "100%"
-          editorTwo.style.width = "100%"
-          editorThree.style.width = "100%"
-          projectDiv.style.flexDirection = "row-reverse"
-          editorContainer.style.width = "35%"
-          editorContainer.style.height = "100%"
-          editorContainer.style.flexDirection = "column"
-          editorOne.style.flexDirection = "row"
-          editorTwo.style.flexDirection = "row"
-          editorThree.style.flexDirection = "row"
-          iframe.style.width = "65%"
-          iframe.style.height = "100%"
-          oneLabel.style.marginLeft = "0%"
-          twoLabel.style.marginLeft = "0%"
-          threeLabel.style.marginLeft = "0%"
-          oneLabel.style.height = "15%"
-          twoLabel.style.height = "15%"
-          threeLabel.style.height = "15%"
-        }
-      },
-      projectSettings(){
-        document.getElementById("projectsettingsdiv").style.display = "flex"
-      },
-      saveSetting2(evt){
-        if (evt.target === document.getElementById("projectsettingsdiv")){
-          document.getElementById("projectsettingsdiv").style.display = "none"
-        } else return
-      },
-      pushHTML(code){
-        this.$store.commit("PUSH_HTML", code)
-      },
-      pushCSS(code){
-        this.$store.commit("PUSH_CSS", code)
-      },
-      pushJS(code){
-        this.$store.commit("PUSH_JS", code)
-      },
-      async remove(){
-        try {
-          console.log("hello");
-          await DBFunctions.deleteProject({
-            "email": this.$store.state.otherIDInfo.email,
-            "project_id": this.$store.state.project_id
-          })
-          this.$router.push("Home")
-        } catch (error) {
-          console.log(error);
-        }
-      }
     }
+  }
 }
 </script>
 

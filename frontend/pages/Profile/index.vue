@@ -6,10 +6,6 @@
 
 
 <script>
-
-
- 
- 
 export default {
    mounted()  {
     this.$parent.Link1=true

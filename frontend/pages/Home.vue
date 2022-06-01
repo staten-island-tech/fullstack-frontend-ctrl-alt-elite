@@ -2,7 +2,6 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
-            
                 <div class="w-full flex flex-col-reverse xl:flex-row items-center">
                     <div class="w-full xl:w-5/6  flex  justify-center m-6">
                         <div class="w-full  flex flex-row flex-wrap justify-center ">
@@ -14,13 +13,9 @@
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
                             <div class="xl:mt-12" >
-                                    <input v-model="searchArgs" type="search" class=" form-control" >
-                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
-                                 
-                                 
-                             <div class="search-bar">
-
-
+                                <input v-model="searchArgs" type="search" class=" form-control" >
+                                <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+                            <div class="search-bar">
                             </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
@@ -76,8 +71,8 @@ import Slideshow from '../components/Slideshow.vue';
 import DBFunctions from "~/DBFunctions";
 
 export default {
-  components: { Slideshow },
-     data(){
+    components: { Slideshow },
+    data(){
        return{ 
         searchArgs:'', 
         projectsList:Array,
@@ -90,23 +85,15 @@ export default {
     },
     async mounted (){
         try {
-                     
-           
             try { 
-                
-                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  ;
+                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
             } catch (error) { 
-                
-                
-                 if (error.code === 999)
-                 {
-                      await DBFunctions.createUser(this.$auth.user,this.userProfile)  ;
-                 }
+                if (error.code === 999){
+                    await DBFunctions.createUser(this.$auth.user,this.userProfile);
+                }
                 else 
-                   throw error ; 
+                   throw error; 
             }
-
-
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
@@ -116,21 +103,14 @@ export default {
                 ring.style.display = "none"
             }
             } catch (error) {
-               try {
+                try {
                     await DBFunctions.createUser(this.$auth.user) ;
                     const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
                     this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-               } catch (error)  {
-                         window.alert ("error - get profile!") ;
-                console.log(error);
-        
-               }
-   
-                
-            }
-
-   
-           
+                } catch (error)  {
+                    window.alert ("error - get profile!");
+                }    
+            }     
     },  
     methods: {
         toProjects(e){
@@ -155,31 +135,20 @@ export default {
             this.$store.commit("otherEmail", this.$auth.user.email)
             this.$router.push("Project")
         },
-
-       async searchProjects(){
-
-           try {
-            await DBFunctions.searchProjects( this.searchArgs, this.projects);
-            // window.alert(JSON.stringify(this.projects.list))
-            //this.projects = this.getProjects.projects 
-            console.log(this.projects)
-           } catch (error) {
+        async searchProjects(){
+            try {
+                await DBFunctions.searchProjects( this.searchArgs, this.projects);
+                // window.alert(JSON.stringify(this.projects.list))
+                //this.projects = this.getProjects.projects 
+            } catch (error) {
                console.log(error)
-           }
-            
-           
-
+            }
         }, 
-
-        
-        
-         viewProjects (){
+        viewProjects (){
             this.$store.commit('updateProfileChild',3)
             this.$router.push({name: 'Profile'});
-            
-         } ,
-    }
-    
+        } ,
+    }  
 }
 </script>
 

@@ -1,3 +1,4 @@
+
 <template>
   <div class="flex flex-col justify-center items-center text-black dark:text-white">
      <!-- <DefaultNavBar /> -->
@@ -15,7 +16,7 @@
                 <p class="text-lg  font-medium">{{item.user_id}}</p>
               </div>
               <div v-if="$auth.user.email !=item.user_id"> 
-                <FollowButton2 :followuserid="item.user_id" />
+                 <FollowButton2 :key="item.user_id"  :followuserid="item.user_id" />
               </div>
             </div> 
           </div>
@@ -57,9 +58,31 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
-
 .shadowing {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
-
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

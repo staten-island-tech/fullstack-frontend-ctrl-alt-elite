@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import DBFunctions from "~/DBFunctions";
+
 export default {
     
     
@@ -13,14 +13,9 @@ export default {
        signup()  {
         
          this.$auth.loginWith("auth0", { params: { screen_hint: "signup" }})
-        //  .then( () => {
-                                                     
-        //                            DBFunctions.login(this.$auth.user.email);
-        //                })
-                                   
-            
-           
-                                  
+        
+                           
+                                        
          
         
       

@@ -21,7 +21,7 @@ props: {
 data(){
     return {
         // followingStatus: true, 
-        followInfo:{
+            followInfo:{
             following:false,
             followedby:false,
         },
@@ -31,6 +31,7 @@ data(){
   async mounted()
   {
     await DBFunctions.getFollowInfo(this.$auth.user.email,this.followuserid,this.followInfo)
+    
   },
 
   methods: {

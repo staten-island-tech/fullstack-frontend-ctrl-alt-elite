@@ -1,4 +1,5 @@
 <template>
+
   <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
       <DefaultNavBar class="fixed"/>
@@ -9,7 +10,7 @@
               <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
               <imageList :class="{hidden:showImageList}" />
             </div>
-            <FollowButton2 v-else :followuserid="userProfile.data.user_id"/>
+              <FollowButton2 v-else   :key="userProfile.data.user_id"  :followuserid="userProfile.data.user_id"/> 
             <img class="basis-5 rounded-full w-40 h-40 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
           <div class="m-10 flex flex-col  dark:text-white text-black w-1/3">
@@ -20,7 +21,7 @@
             <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
             <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"></textarea>
             <div v-if="ownProfile" class="flex flex-row justify-end " >
-              <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
+              <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
             </div>
             <div v-else class="flex flex-row justify-end ">
               <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
@@ -67,6 +68,7 @@ export default {
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
       projects: [],
+      projectsList: Array,
       Link1:false,
       Link2:false,
       Link3:false,
@@ -91,21 +93,29 @@ export default {
     }
   }, 
   mounted (){
-    window.addEventListener('reload', this.getProfile());
-    // this.getProfile();
+      
+     //  this.getProfile();
   } ,   
   methods: {
     async getProfile() {
       try {
-        if (this.$store.state.otherIDInfo.email ==="")
-          this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
-        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
-        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-        await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
-        await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-        this.projects.list = this.userProfile.data.projects 
-        if (this.$store.state.profileChild === 3)
-          this.$router.push({name: "Profile-Projects"})    
+          if (this.$store.state.otherIDInfo.email ==="")
+             this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
+          await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+          await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+          await DBFunctions.getProjects2(this.userProfile.data._id, this.projects)
+          
+          await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+          await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+          window.alert (JSON.stringify(this.projects))
+          this.projectsList = this.projects
+          if (this.$store.state.profileChild === 3)
+           this.$router.push({name: "Profile-Projects"})
+           
+           
+          
+          
+              
       } catch { 
         window.alert ("error getting the profile")
         this.$router.push({name: "Home"});
@@ -221,4 +231,5 @@ h1{
 .noAccess {
   pointer-events: none;
 }
+
 </style>

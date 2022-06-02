@@ -11,8 +11,8 @@
           <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="resetProjects" >Reset</button>
       </div>
    
-   <Slideshow :project="$parent.projectsList" :following="$parent.userProfile.data.following" class="mb-6"/>
-      <!-- <div Class="flex flex-wrap relative flex-row justify-center px-4"  >
+  
+      <div Class="flex flex-wrap relative flex-row justify-center px-4"  >
        
         <div v-for="(item,index) in $parent.projectsList" :key="item._ID">
           
@@ -21,7 +21,7 @@
         
         </div>
         <button v-if="start > pageLimit" class="bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="previousPage">Previous</button>
-        <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button>  -->
+        <button  v-if="end < total " class=" bg-gray-700 hover:bg-gray-500 px-6 py-2 rounded text-white" @click="nextPage" > Next </button> 
 
   </div>
 </template>
@@ -49,47 +49,47 @@ export default {
          this.$store.commit('updateProfileChild',0)
         
          
-        // this.$parent.projectsList = this.$parent.projects.list;
+        this.$parent.projectsList = this.$parent.projects.list;
 
-        //  this.initScroll();
+         this.initScroll();
   },
   methods: {
       
     
      
     searchProjects()   {
-      this.$parent.projectsList = this.$parent.projects.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
+      this.$parent.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
       
 
-      // this.initScroll()
+      this.initScroll()
      
     },
     resetProjects(){
       // await DBFunctions.searchProjects(this.searchArgs, this.projects)
       // window.alert(JSON.stringify(this.projects.list))
       this.searchArgs='';
-      this.$parent.projectsList= this.$parent.projects;
+      this.$parent.projectsList= this.$parent.projects.list;
      
-      // this.initScroll();
+      this.initScroll();
        
     },
-    // initScroll(){
-    //   this.start = 1;
-    //   this.total =this.$parent.projectsList.length;
-    //   this.end = this.total <this.pageLimit ? this.total : this.pageLimit 
+    initScroll(){
+      this.start = 1;
+      this.total =this.$parent.projectsList.length;
+      this.end = this.total <this.pageLimit ? this.total : this.pageLimit 
        
-    // },
-    // previousPage(){
-    //   this.end =this.start - 1  ;
-    //   this.start = this.start - this.pageLimit ;
-    // },
-    // nextPage() {
-    //   this.start = this.end+ 1;
-    //   if (this.end + this.pageLimit >this.total )
-    //     this.end= this.total 
-    //   else
-    //     this.end +=this.pageLimit;
-    // }
+    },
+    previousPage(){
+      this.end =this.start - 1  ;
+      this.start = this.start - this.pageLimit ;
+    },
+    nextPage() {
+      this.start = this.end+ 1;
+      if (this.end + this.pageLimit >this.total )
+        this.end= this.total 
+      else
+        this.end +=this.pageLimit;
+    }
   }   
 }
 </script>

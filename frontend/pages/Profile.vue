@@ -67,7 +67,7 @@ export default {
       followingList:{data:null}, 
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
-      projects: [],
+      projects: {list:[]},
       projectsList: Array,
       Link1:false,
       Link2:false,
@@ -103,12 +103,11 @@ export default {
              this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
           await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
           await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-          await DBFunctions.getProjects2(this.userProfile.data._id, this.projects)
-          
+          await DBFunctions.getProjects(this.mongo_id, this.projects)
           await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
           await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-          window.alert (JSON.stringify(this.projects))
-          this.projectsList = this.projects
+          this.projects.list = this.userProfile.data.projects
+          this.projectsList = this.projects.list
           if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
            

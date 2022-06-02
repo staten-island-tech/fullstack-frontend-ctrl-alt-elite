@@ -28,21 +28,21 @@
             </div>
             <div class="flex flex-col dark:text-white text-black h-1/2">
                 <div class="h-1/6">
-                    <a class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full" @click="toHome">
+                    <a class="hover:bg-gray-700 hover:text-white bg-gradient-to-r  duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full" @click="toHome">
                         <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
                         <p class="p-2">Home</p>
                     </a>
                 </div>
                 <div class="h-1/6">
                   
-                    <div class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded-r-full" @click ="getProfile(3)" >
+                    <div class="hover:bg-gray-700  hover:text-white bg-gradient-to-r duration-75 h-full w-full flex items-center pl-6 rounded-r-full" @click ="getProfile(3)" >
                         <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </div>
                     
                 </div>
                 <div class="h-1/6">
-                    <button class="hover:bg-purple-300 hover:text-white bg-gradient-to-r hover:from-primary duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
+                    <button class="hover:bg-gray-700  hover:text-white bg-gradient-to-r  duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
                         <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
                         <p class="p-2">New Project</p>
                     </button>

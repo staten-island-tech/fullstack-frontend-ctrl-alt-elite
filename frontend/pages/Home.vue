@@ -69,24 +69,8 @@ export default {
          followingProjects: []
          }
     },
-    mounted (){
-        this.getUserInfo()
-
-       // await DBFunctions.getInfo(this.$auth.user.email,this.info);
-       this.getUserProfile()
-      //  this.$store.commit('updateFollowInfo', this.info)
-           
-    },  
-    methods: {
-        async getUserProfile() {
-             try {
-                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
-             } catch(error) {
-                console.log(error)
-             }
-        },
-        async getUserInfo() {
-             try {
+   async mounted (){
+        try {
             await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)  
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
@@ -105,7 +89,12 @@ export default {
         
                }
             }
-        },
+       // await DBFunctions.getInfo(this.$auth.user.email,this.info);
+        await DBFunctions.getProfile(this.$auth.user.email,this.userProfile)
+      //  this.$store.commit('updateFollowInfo', this.info)
+           
+    },  
+    methods: {
         toProjects(e){
             const data = {
                 projects: this.recent,

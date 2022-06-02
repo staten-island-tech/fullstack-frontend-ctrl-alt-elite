@@ -333,14 +333,12 @@ module.exports.searchProjects = async (searchArguments, projects) => {
       },
     })
     const data = await response.json()
-    // data.forEach((obj) => {
-    //   projects.push(obj)
-    // })
+    data.forEach((obj) => {
+      projects.push(obj)
+    })
+    /* const parsed = JSON.parse(JSON.stringify(data))
     // this.uniqueID = data.uniqu;
-    // projects.list = data
-    const parsed = JSON.parse(JSON.stringify(data))
-    // this.uniqueID = data.uniqu;
-    projects.push(...parsed)
+    projects.push(...parsed) */
     // window.alert(JSON.stringify(projects.list))
   } catch (error) {}
 }

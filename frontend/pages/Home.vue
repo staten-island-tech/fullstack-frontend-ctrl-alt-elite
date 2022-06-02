@@ -2,6 +2,7 @@
     <section class="h-screen" :class="{ dark : this.$store.state.darkMode }">
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
+            
                 <div class="w-full flex flex-col-reverse xl:flex-row items-center">
                     <div class="w-full xl:w-5/6  flex  justify-center m-6">
                         <div class="w-full  flex flex-row flex-wrap justify-center ">
@@ -13,9 +14,13 @@
                             <!-- DEFAULT HOME VIEW BEFORE SEARCH -->
                             <!-- <ProjectCard v-for="(userProjects, key) in homeProjects" :key="key" :project="userProjects" class="m-4"/> -->
                             <div class="xl:mt-12" >
-                                <input v-model="searchArgs" type="search" class=" form-control" >
-                                <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
-                            <div class="search-bar">
+                                    <input v-model="searchArgs" type="search" class=" form-control" >
+                                    <button  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2 " @click="searchProjects" >Search</button>
+                                 
+                                 
+                             <div class="search-bar">
+
+
                             </div>
                                 <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                     <h2 class="text-black dark:text-white text-2xl">Trending</h2>
@@ -44,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div   class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2"  @click ="viewProjects"><p> View all projects...</p></div>
+                                <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
                             </div>
                             <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
@@ -72,17 +77,20 @@ import DBFunctions from "~/DBFunctions";
 
 export default {
     components: { Slideshow },
-    data(){
-       return{ 
-        searchArgs:'', 
-        projectsList:Array,
-        userProfile: { data : ''},
-        recent: [],
-        trendingProjects: [],
-        followingProjects: [],
-        projects:[],
-        }
-    },
+    data() {
+    return {
+      searchArgs: '',
+      projectsList: Array,
+      userProfile: { data: '' },
+      recent: [],
+      trendingProjects: [],
+      followingProjects: [],
+      searchedProjects: [],
+      visibility: true,
+      results: false,
+      projects: [],
+    }
+  },
     async mounted (){
         try {
             try { 
@@ -135,7 +143,7 @@ export default {
             this.$store.commit("otherEmail", this.$auth.user.email)
             this.$router.push("Project")
         },
-        async searchProjects(){
+        /* async searchProjects(){
             try {
                 await DBFunctions.searchProjects( this.searchArgs, this.projects);
                 // window.alert(JSON.stringify(this.projects.list))
@@ -143,7 +151,26 @@ export default {
             } catch (error) {
                console.log(error)
             }
-        }, 
+        }, */ 
+        async searchProjects() {
+      try {
+        await DBFunctions.searchProjects(this.searchArgs, this.projects)
+        // window.alert(JSON.stringify(this.projects.list))
+        //this.projects = this.getProjects.projects
+        this.results = true
+        this.visibility = false
+        console.log(this.projects)
+      } catch (error) {
+        console.log(error)
+      }
+      //  trendingProjects(){}
+    },
+    async resetProjects() {
+      ;(this.searchArgs = ''),
+        (this.visibility = true),
+        (this.results = false),
+        (this.projects = [])
+    },
         viewProjects (){
             this.$store.commit('updateProfileChild',3)
             this.$router.push({name: 'Profile'});

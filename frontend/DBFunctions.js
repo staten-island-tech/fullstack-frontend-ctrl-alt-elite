@@ -1,177 +1,161 @@
- 
-
-
-
-
 module.exports.getFollowing = async (userID, info) => {
-    const accessToken = sessionStorage.getItem('app_token')
-    const userInfo = { email: userID }
-    const response = await fetch(`http://localhost:5000/getFollowing`, {
-      method: 'POST',
-      // Adding body or contents to send
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: `${accessToken}`,
-      },
-    })
+  const accessToken = sessionStorage.getItem('app_token')
+  const userInfo = { email: userID }
+  const response = await fetch(`http://localhost:5000/getFollowing`, {
+    method: 'POST',
+    // Adding body or contents to send
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
 
-    const data = await response.json()
+  const data = await response.json()
 
-    info.data = data.list
-   
+  info.data = data.list
 }
 
 module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
-    const accessToken = sessionStorage.getItem('app_token')
-    const userInfo = { userID, followUserID }
-    const response = await fetch(`http://localhost:5000/getFollowInfo`, {
-      method: 'POST',
-      // Adding body or contents to send
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        'Authorization': `${accessToken}`,
-      },
-    })
+  const accessToken = sessionStorage.getItem('app_token')
+  const userInfo = { userID, followUserID }
+  const response = await fetch(`http://localhost:5000/getFollowInfo`, {
+    method: 'POST',
+    // Adding body or contents to send
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
 
-    const data = await response.json()
+  const data = await response.json()
 
-    followInfo.following = data.following
-    followInfo.followedby = data.followedby
-    
-
+  followInfo.following = data.following
+  followInfo.followedby = data.followedby
 }
 
 module.exports.getInfo = async (userID, info) => {
-   const accessToken = sessionStorage.getItem('app_token')
-    const userInfo = { userID }
-    const response = await fetch(`http://localhost:5000/getInfo`, {
-      method: 'POST',
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: `${accessToken}`,
-      },
-    })
+  const accessToken = sessionStorage.getItem('app_token')
+  const userInfo = { userID }
+  const response = await fetch(`http://localhost:5000/getInfo`, {
+    method: 'POST',
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
 
-    const data = await response.json()
-    info.following = data.following
-    info.followers = data.followers
-    info.projects = data.projects
-    info.name = data.name
-    info.profilePic = data.profilePic
-    info.mongoID = data.mongoID
-    info.userID = data.userID
- 
+  const data = await response.json()
+  info.following = data.following
+  info.followers = data.followers
+  info.projects = data.projects
+  info.name = data.name
+  info.profilePic = data.profilePic
+  info.mongoID = data.mongoID
+  info.userID = data.userID
 }
 
 module.exports.unFollow = async (userID, unfollowUserID, data) => {
-   const accessToken = sessionStorage.getItem('app_token')
-    const userData = { userID, unfollowUserID }
-    const response = await fetch(`http://localhost:5000/unFollow`, {
-      method: 'POST',
-      body: JSON.stringify(userData), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: `${accessToken}`,
-      },
-    })
-    data = await response.json()
-  
+  const accessToken = sessionStorage.getItem('app_token')
+  const userData = { userID, unfollowUserID }
+  const response = await fetch(`http://localhost:5000/unFollow`, {
+    method: 'POST',
+    body: JSON.stringify(userData), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
+  data = await response.json()
 }
 
 module.exports.follow = async (userID, followUserID, data) => {
-    const accessToken = sessionStorage.getItem('app_token')
-    const userData = { userID, followUserID }
-    const response = await fetch(`http://localhost:5000/follow`, {
-      method: 'POST',
+  const accessToken = sessionStorage.getItem('app_token')
+  const userData = { userID, followUserID }
+  const response = await fetch(`http://localhost:5000/follow`, {
+    method: 'POST',
 
-      body: JSON.stringify(userData),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        'Authorization': `${accessToken}`,
-      },
-    })
+    body: JSON.stringify(userData),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
 
-    data = await response.json()
-  
+  data = await response.json()
 }
 
 module.exports.getFollowers = async (userID, list) => {
-    const accessToken = sessionStorage.getItem('app_token')
-    const userInfo = { email: userID }
-    const response = await fetch(`http://localhost:5000/getFollowers`, {
-      method: 'POST',
+  const accessToken = sessionStorage.getItem('app_token')
+  const userInfo = { email: userID }
+  const response = await fetch(`http://localhost:5000/getFollowers`, {
+    method: 'POST',
 
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: `${accessToken}`,
-      },
-    })
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
 
-    const data = await response.json()
-    list.data = data.list
-
+  const data = await response.json()
+  list.data = data.list
 }
 
 module.exports.getProfile = async (userID, userProfile) => {
-  
-    const accessToken = sessionStorage.getItem('app_token')
-      
-    const userInfo = { email: userID }
-    const response = await fetch(`http://localhost:5000/getProfile`, {
-      method: 'POST',
-      body: JSON.stringify(userInfo), // Adding headers to the request headers:
-      headers: { 'Content-type': 'application/json; charset=UTF-8' ,
-                 'Authorization':  `${accessToken}` },
-    })
-    if (response.status === 999)
-    { const error = new Error("Profile not Found")
-      error.code = 999
-      throw error
+  const accessToken = sessionStorage.getItem('app_token')
+
+  const userInfo = { email: userID }
+  const response = await fetch(`http://localhost:5000/getProfile`, {
+    method: 'POST',
+    body: JSON.stringify(userInfo), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
+  if (response.status === 999) {
+    const error = new Error('Profile not Found')
+    error.code = 999
+    throw error
   }
-    const data2 = await response.json()
-    
-    // if (response.status === 500) throw response.error
-    userProfile.data = data2.userProfile
-  
+  const data2 = await response.json()
+
+  // if (response.status === 500) throw response.error
+  userProfile.data = data2.userProfile
 }
 
 module.exports.updateProfile = async (userProfile) => {
-    const accessToken = sessionStorage.getItem('app_token')
-    const response = await fetch(`http://localhost:5000/profile`, {
-      method: 'POST',
-      // Adding body or contents to send
-      body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        Authorization: `${accessToken}`,
-      },
-    })
-    const data = await response.json()
-    userProfile.data = data // JSON.stringify(data)
- 
+  const accessToken = sessionStorage.getItem('app_token')
+  const response = await fetch(`http://localhost:5000/profile`, {
+    method: 'POST',
+    // Adding body or contents to send
+    body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
+  const data = await response.json()
+  userProfile.data = data // JSON.stringify(data)
 }
 
 module.exports.createUser = async (user, userProfile) => {
-   // const userInfo = {  user }
-   const accessToken = sessionStorage.getItem('app_token')
-    const response = await fetch(`http://localhost:5000/createUser`, {
-      method: 'POST',
-      body: JSON.stringify(user), // Adding headers to the request headers:
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        'Authorization': `${accessToken}`,
-      },
-    })
-    const data = await response.json()
-    userProfile.data = data
-       // if (response.status === 500) throw response.error
-
-  
-  
+  // const userInfo = {  user }
+  const accessToken = sessionStorage.getItem('app_token')
+  const response = await fetch(`http://localhost:5000/createUser`, {
+    method: 'POST',
+    body: JSON.stringify(user), // Adding headers to the request headers:
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+      Authorization: `${accessToken}`,
+    },
+  })
+  const data = await response.json()
+  userProfile.data = data
+  // if (response.status === 500) throw response.error
 }
 
 module.exports.createProject = async (userProject) => {
@@ -208,12 +192,11 @@ module.exports.getProjects = async (mongoID, projects) => {
     if (response.status === 500) throw response.error
     const parsed = JSON.parse(JSON.stringify(data.projects))
     const forDisplay = parsed.splice(0, 6)
-
     projects.push(...forDisplay)
   } catch (error) {}
 }
 
-module.exports.getProjects2 = async (mongoID, projects) => {
+/* module.exports.getProjects2 = async (mongoID, projects) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
     const userInfo = { _id: mongoID }
@@ -229,7 +212,7 @@ module.exports.getProjects2 = async (mongoID, projects) => {
     if (response.status === 500) throw response.error
     projects.list = data.projects
   } catch (error) {}
-}
+} */
 module.exports.getFollowingProjects = async (mongo_id, projects) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userInfo = { _id: mongo_id }
@@ -364,29 +347,24 @@ module.exports.searchProjects = async (searchArguments, projects) => {
 
 module.exports.login = async (user) => {
   // replace code with access token
-   try {
-     
-     const username = { username: user }
-    
-     const response = await fetch(`http://localhost:5000/login`, {
-       method: 'POST',
+  try {
+    const username = { username: user }
 
-       body: JSON.stringify(username),
-       headers: {
-         'Content-type': 'application/json; charset=UTF-8',
-         
-       },
-     })
+    const response = await fetch(`http://localhost:5000/login`, {
+      method: 'POST',
 
-     const data = await response.json()
-  //  window.alert('token1')
-  //    // need to get access token from auth0
-  //   window.alert("token")
-  sessionStorage.setItem('app_token', data)
-  
-    
-     
+      body: JSON.stringify(username),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+
+    const data = await response.json()
+    //  window.alert('token1')
+    //    // need to get access token from auth0
+    //   window.alert("token")
+    sessionStorage.setItem('app_token', data)
   } catch (error) {
-     window.alert(error)
-   }
+    window.alert(error)
+  }
 }

@@ -22,6 +22,7 @@
         </div> -->
        
         <div v-for="(item,index) in $parent.projectsList" :key="item._ID">
+          
           <ProjectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" class="m-2" /> 
         </div>
         

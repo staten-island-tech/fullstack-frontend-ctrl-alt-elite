@@ -139,6 +139,7 @@ export default {
           await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
           await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
           this.projects.list = this.userProfile.data.projects 
+          this.projectsList = this.projects.list
           if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
            

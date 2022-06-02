@@ -196,7 +196,7 @@ module.exports.getProjects2 = async (mongoID, projects) => {
 }
 module.exports.getFollowingProjects = async (mongo_id, projects) => {
   const userInfo = { _id: mongo_id }
-  const response = await fetch(`https://codeverse.onrender.com//getFollowingProjects`, {
+  const response = await fetch(`https://codeverse.onrender.com/getFollowingProjects`, {
     method: 'POST',
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
     headers: { 'Content-type': 'application/json; charset=UTF-8' },

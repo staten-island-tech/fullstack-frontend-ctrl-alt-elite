@@ -67,7 +67,6 @@ export default {
     data() {
         return {
             display: false,
-          
             info: {
                 followers:0,
                 following:0,

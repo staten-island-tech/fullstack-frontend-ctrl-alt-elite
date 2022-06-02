@@ -25,7 +25,7 @@ export default {
    data(){
       return{ 
         userInfo: Object,
-        pageLimit:5,
+        pageLimit:6,
         searchArgs: "",
         start: 1,
         end :0,

@@ -152,9 +152,5 @@ h1{
   border-image: conic-gradient( magenta, blue, magenta) 1;
 }
 
-.font {
-  height: 10px;
-}
-
 
 </style>

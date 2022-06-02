@@ -14,6 +14,7 @@ export const state = () => ({
   darkMode: true,
   newProject: true,
   otherUserProject: false,
+  
 })
 export const mutations = {
   PUSH_HTML(state, code) {

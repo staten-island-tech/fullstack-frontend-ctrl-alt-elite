@@ -56,7 +56,7 @@
         </li>
         
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}}   </NuxtLink>
+          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers" no-prefetch :prefetch="false" :class="{defaultLink:Link2}" >Followers  {{info.followers}}   </NuxtLink>
 
         </li>
         <li>
@@ -95,7 +95,8 @@ export default {
       followingList:{data:null}, 
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
-      projects: [],
+      projects: {list:[]},
+      projectsList: Array,
       Link1:false,
       Link2:false,
       Link3:false,

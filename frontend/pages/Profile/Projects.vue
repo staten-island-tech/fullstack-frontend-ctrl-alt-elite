@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-center flex-col">
-      <h1 class="text-black dark:text-white" >{{projectsList.length}}  projects found </h1> 
+      <h1 class="text-black dark:text-white" >{{$parent.projectsList.length}}  projects found </h1> 
     
        
       <div class="flex flex-column justify-center w-2/3">
@@ -21,7 +21,7 @@
           </div>
         </div> -->
        
-        <div v-for="(item,index) in projectsList" :key="item._ID">
+        <div v-for="(item,index) in $parent.projectsList" :key="item._ID">
           <ProjectCard2 v-if="index+1 >= start && index+1 <=end" :item="item" class="m-2" /> 
         </div>
         
@@ -40,7 +40,6 @@ export default {
  
    data(){
       return{ 
-        projectsList: Array,   
         pageLimit:5,
         searchArgs: "",
         start: 1,
@@ -49,13 +48,16 @@ export default {
       }
       },
       mounted() {
-        
+        // if (typeof(this.$parent.projects.list) === 'undefined' || this.$parent.projects.list === null )
+        // {
+        //   this.$router.push({name: "Profile"})
+        // }
         this.$parent.Link1=false
         this.$parent.Link2=false
          this.$parent.Link3=true        
          this.$store.commit('updateProfileChild',0)
          
-         this.projectsList = this.$parent.projects.list;
+         this.$parent.projectsList = this.$parent.projects.list;
 
          this.initScroll();
   },
@@ -65,7 +67,7 @@ export default {
     
      
     searchProjects()   {
-      this.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
+      this.$parent.projectsList = this.$parent.projects.list.filter(project => project.project_title.match(new RegExp(this.searchArgs, 'i') ) )
       
 
       this.initScroll()
@@ -76,7 +78,7 @@ export default {
       // await DBFunctions.searchProjects(this.searchArgs, this.projects)
       // window.alert(JSON.stringify(this.projects.list))
       this.searchArgs='';
-      this.projectsList= this.$parent.projects.list;
+      this.$parent.projectsList= this.$parent.projects.list;
      
       this.initScroll();
        
@@ -84,7 +86,7 @@ export default {
     initScroll()
     {
       this.start = 1;
-      this.total =this.projectsList.length;
+      this.total =this.$parent.projectsList.length;
       this.end = this.total <this.pageLimit ? this.total : this.pageLimit 
        
     },

@@ -124,6 +124,7 @@ watch: {
             
          } ,
         async logout() {
+        sessionStorage.removeItem('app_token');
         await this.$auth.logout()
        
       },

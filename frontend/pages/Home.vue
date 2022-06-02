@@ -34,7 +34,7 @@
                                         <h3 class="dark:text-white text-lg 2xl:text-xl">{{ project.project_title }}</h3>
                                     <div class="text-medium-gray dark:text-mid-gray flex flex-col items-center text-center w-full">
                                             <div class="flex flex-row items-center justify-start text-center text-xs w-full">
-                                                <font-awesome-icon class="font" :icon="['far', 'clock']"></font-awesome-icon>
+                                                <font-awesome-icon class="text-xs" :icon="['far', 'clock']"></font-awesome-icon>
                                                 <p class="p-2 text-left">{{ project.updatedAt }}</p>
                                             </div>
                                             <button class="text-black dark:text-white text-sm xl:text-base w-full text-right" @click="toProjects"><p> View project &#10143;</p></button>
@@ -44,7 +44,7 @@
                                 <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
                             </div>
                             <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 xl:absolute xl:bottom-3" @click="newProject">
-                                <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
+                                <font-awesome-icon class="text-sm" :icon="['fas', 'circle-plus']"></font-awesome-icon>
                                 <p class="p-2">Create New Project</p>
                             </button>
                         </div>

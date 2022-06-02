@@ -139,7 +139,6 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  
   },
     computed:{
       title:{
@@ -350,7 +349,7 @@ export default {
       }
     }
   }
-}
+
 </script>
 
 <style>

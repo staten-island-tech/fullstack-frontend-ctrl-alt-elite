@@ -108,7 +108,7 @@ module.exports.getFollowers = async (userID, list) => {
 module.exports.getProfile = async (userID, userProfile) => {
   try {
     const userInfo = { email: userID }
-    const response = await fetch(`https://codeverse.onrender.com//getProfile`, {
+    const response = await fetch(`https://codeverse.onrender.com/getProfile`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: { 'Content-type': 'application/json; charset=UTF-8' },

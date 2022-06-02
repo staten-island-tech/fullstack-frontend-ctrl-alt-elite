@@ -3,10 +3,10 @@
     <div class="h-4/5 w-full relative z-50 " @click="viewProject">
       <iframe id="iframe" class="h-full w-full absolute bg-white pointer-events-none" :srcdoc="src"></iframe>
     </div>
-    <div class=" w-full flex flex-row justify-center bg-black">
+    <div class="h-1/4 w-full flex flex-row justify-center bg-black">
       <button class="text-white dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="viewProject">{{item.project_title}} </button>
-      <h2 class="text-white dark:text-white w-1/6"> {{item.project_likes.length}} </h2> 
-         <font-awesome-icon icon="fa-solid fa-thumbs-up" class="px-3" /> 
+      <h2 class="text-white dark:text-white mx-1"> {{item.project_likes.length}} </h2> 
+          <!-- <i class="fa-regular fa-user w-1/7"></i> -->
     </div>
   </div>
 </template>

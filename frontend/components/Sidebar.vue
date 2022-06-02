@@ -15,7 +15,7 @@
                        <p>Following  {{info.following}}</p> 
                         <p>Followers  {{info.followers}}</p>
                    </div>
-                   <p id="profile"  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile(1)">View Profile</p>
+                   <p id="profile"  class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg cursor-pointer" @click="getProfile(1)">View Profile</p>
                 </div>
             </div>
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">

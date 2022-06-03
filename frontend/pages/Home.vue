@@ -45,11 +45,11 @@
                                                 <font-awesome-icon :icon="['far', 'clock']"></font-awesome-icon>
                                                 <p class="p-2 text-left">{{ project.updatedAt }}</p>
                                             </div>
-                                            <button class="text-black dark:text-white text-sm xl:text-base w-full text-right" @click="toProjects"><p> View project &#10143;</p></button>
+                                            <button class="text-black dark:text-white text-sm xl:text-base w-full text-right hover:underline" @click="toProjects"><p> View project &#10143;</p></button>
                                         </div>
                                     </div>
                                 </div>
-                                <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
+                                <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray  hover:underline "><p> View all projects...</p></NuxtLink>
                             </div>
                             <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 absolute bottom-3" @click="newProject">
                                 <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>

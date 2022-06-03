@@ -5,6 +5,7 @@
     </div>
     <div class="h-1/4 w-full flex flex-row justify-center bg-black">
       <button class="text-white dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="viewProject">{{item.project_title}} </button>
+      <ProjectsLikeButton   v-if="!ownProfile" :project="{projects:item,user_id:userInfo.userID, _id:userInfo.mongoID}"/>
       <h2 class="text-white dark:text-white mx-1"> {{item.project_likes.length}} </h2> 
           <!-- <i class="fa-regular fa-user w-1/7"></i> -->
     </div>
@@ -37,6 +38,14 @@ data(){
             `,
     }
   },
+  computed: {
+    
+    ownProfile:{
+      get(){ 
+        return this.$auth.user.email === this.$store.state.otherIDInfo.email
+      }
+    },  
+  }, 
 methods:{
   viewProject(){
     this.$store.commit('PUSH_HTML', this.item.published_code.html)

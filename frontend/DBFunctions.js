@@ -253,6 +253,8 @@ module.exports.addLike = async (projectInfo, email) => {
     projectTitle: projectInfo.projects.project_title,
     followUserID: email,
   }
+  
+
   const response = await fetch(`http://localhost:5000/addLike`, {
     method: 'POST',
     body: JSON.stringify(pushInfo),

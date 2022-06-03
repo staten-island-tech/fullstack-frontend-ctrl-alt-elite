@@ -37,7 +37,7 @@
           <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}} </NuxtLink>
         </li>
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}">Projects  {{info.projects}}</NuxtLink>
+          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}"  >Projects  {{info.projects}}</NuxtLink>
         </li>
       </ul>
       <div class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
@@ -68,7 +68,7 @@ export default {
       followersList:{data:null}, 
       userProfile: { data : 'avc'},
       projects: {list:[]},
-      projectsList: Array,
+      projectsList: [],
       Link1:false,
       Link2:false,
       Link3:false,
@@ -107,7 +107,7 @@ export default {
           await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
           await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
           this.projects.list = this.userProfile.data.projects
-          this.projectsList = this.projects.list
+          // this.projectsList = this.projects.list
           if (this.$store.state.profileChild === 3)
            this.$router.push({name: "Profile-Projects"})
            

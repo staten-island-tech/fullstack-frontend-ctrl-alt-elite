@@ -1,6 +1,7 @@
 <template>
   <div id="nav" class="h-screen relative">
-      <font-awesome-icon v-if="!display" class="navIcon text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+      <!-- <font-awesome-icon v-if="!display" class="navIcon text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/> -->
+      <button class="navIcon text-black dark:text-gray-100"  @click="toggleVisible" v-if="!display">☰</button>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-screen md:w-full border-r border-medium-gray dark:border-d-bg-accent bg-l-bg-primary dark:bg-d-bg-primary">
             <div class="flex flex-row justify-between h-12">

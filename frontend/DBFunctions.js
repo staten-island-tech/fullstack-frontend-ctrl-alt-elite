@@ -1,7 +1,7 @@
 module.exports.getFollowing = async (userID, info) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userInfo = { email: userID }
-  const response = await fetch(`https://codeverse.onrender.com/getFollowing`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getFollowing`, {
     method: 'POST',
     // Adding body or contents to send
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
@@ -19,7 +19,7 @@ module.exports.getFollowing = async (userID, info) => {
 module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userInfo = { userID, followUserID }
-  const response = await fetch(`https://codeverse.onrender.com/getFollowInfo`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getFollowInfo`, {
     method: 'POST',
     // Adding body or contents to send
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
@@ -38,7 +38,7 @@ module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
 module.exports.getInfo = async (userID, info) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userInfo = { userID }
-  const response = await fetch(`https://codeverse.onrender.com/getInfo`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getInfo`, {
     method: 'POST',
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
     headers: {
@@ -60,7 +60,7 @@ module.exports.getInfo = async (userID, info) => {
 module.exports.unFollow = async (userID, unfollowUserID, data) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userData = { userID, unfollowUserID }
-  const response = await fetch(`https://codeverse.onrender.com/unFollow`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/unFollow`, {
     method: 'POST',
     body: JSON.stringify(userData), // Adding headers to the request headers:
     headers: {
@@ -74,7 +74,7 @@ module.exports.unFollow = async (userID, unfollowUserID, data) => {
 module.exports.follow = async (userID, followUserID, data) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userData = { userID, followUserID }
-  const response = await fetch(`https://codeverse.onrender.com/follow`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/follow`, {
     method: 'POST',
 
     body: JSON.stringify(userData),
@@ -90,7 +90,7 @@ module.exports.follow = async (userID, followUserID, data) => {
 module.exports.getFollowers = async (userID, list) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userInfo = { email: userID }
-  const response = await fetch(`https://codeverse.onrender.com/getFollowers`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getFollowers`, {
     method: 'POST',
 
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
@@ -108,7 +108,7 @@ module.exports.getProfile = async (userID, userProfile) => {
   const accessToken = sessionStorage.getItem('app_token')
 
   const userInfo = { email: userID }
-  const response = await fetch(`https://codeverse.onrender.com/getProfile`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getProfile`, {
     method: 'POST',
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
     headers: {
@@ -129,7 +129,7 @@ module.exports.getProfile = async (userID, userProfile) => {
 
 module.exports.updateProfile = async (userProfile) => {
   const accessToken = sessionStorage.getItem('app_token')
-  const response = await fetch(`https://codeverse.onrender.com/profile`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/profile`, {
     method: 'POST',
     // Adding body or contents to send
     body: JSON.stringify(userProfile.data), // Adding headers to the request headers:
@@ -145,7 +145,7 @@ module.exports.updateProfile = async (userProfile) => {
 module.exports.createUser = async (user, userProfile) => {
   // const userInfo = {  user }
   const accessToken = sessionStorage.getItem('app_token')
-  const response = await fetch(`https://codeverse.onrender.com/createUser`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/createUser`, {
     method: 'POST',
     body: JSON.stringify(user), // Adding headers to the request headers:
     headers: {
@@ -161,7 +161,7 @@ module.exports.createUser = async (user, userProfile) => {
 module.exports.createProject = async (userProject) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
-    const response = await fetch(`https://codeverse.onrender.com/newProject`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/newProject`, {
       method: 'PATCH',
       body: JSON.stringify(userProject),
       headers: {
@@ -180,7 +180,7 @@ module.exports.getProjects = async (mongoID, projects) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
     const userInfo = { _id: mongoID }
-    const response = await fetch(`https://codeverse.onrender.com/getProjects`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/getProjects`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: {
@@ -200,7 +200,7 @@ module.exports.getProjects = async (mongoID, projects) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
     const userInfo = { _id: mongoID }
-    const response = await fetch(`https://codeverse.onrender.com/getProjects`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/getProjects`, {
       method: 'POST',
       body: JSON.stringify(userInfo), // Adding headers to the request headers:
       headers: {
@@ -216,7 +216,7 @@ module.exports.getProjects = async (mongoID, projects) => {
 module.exports.getFollowingProjects = async (mongo_id, projects) => {
   const accessToken = sessionStorage.getItem('app_token')
   const userInfo = { _id: mongo_id }
-  const response = await fetch(`https://codeverse.onrender.com/getFollowingProjects`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getFollowingProjects`, {
     method: 'POST',
     body: JSON.stringify(userInfo), // Adding headers to the request headers:
     headers: {
@@ -232,7 +232,7 @@ module.exports.getFollowingProjects = async (mongo_id, projects) => {
 
 module.exports.getTrendingProjects = async (project) => {
   const accessToken = sessionStorage.getItem('app_token')
-  const response = await fetch(`https://codeverse.onrender.com/getTrendingProjects`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/getTrendingProjects`, {
     method: 'GET',
     headers: {
       'Content-type': 'application/json; charset=UTF-8',
@@ -253,7 +253,7 @@ module.exports.addLike = async (projectInfo, email) => {
     projectTitle: projectInfo.projects.project_title,
     followUserID: email,
   }
-  const response = await fetch(`https://codeverse.onrender.com/addLike`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/addLike`, {
     method: 'POST',
     body: JSON.stringify(pushInfo),
     headers: {
@@ -273,7 +273,7 @@ module.exports.removeLike = async (projectInfo, email) => {
     projectTitle: projectInfo.projects.project_title,
     followUserID: email,
   }
-  const response = await fetch(`https://codeverse.onrender.com/removeLike`, {
+  const response = await fetch(`https://codeverse-backend.onrender.com/removeLike`, {
     method: 'POST',
     body: JSON.stringify(pushInfo),
     headers: {
@@ -288,7 +288,7 @@ module.exports.removeLike = async (projectInfo, email) => {
 module.exports.updateProject = async (payload) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
-    const response = await fetch(`https://codeverse.onrender.com/project`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/project`, {
       method: 'PATCH',
       // Adding body or contents to send
       body: JSON.stringify(payload), // Adding headers to the request headers:
@@ -306,7 +306,7 @@ module.exports.updateProject = async (payload) => {
 module.exports.deleteProject = async (payload) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
-    const response = await fetch(`https://codeverse.onrender.com/deleteProject`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/deleteProject`, {
       method: 'DELETE',
       // Adding body or contents to send
       body: JSON.stringify(payload), // Adding headers to the request headers:
@@ -324,7 +324,7 @@ module.exports.searchProjects = async (searchArguments, projects) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
     const SearchArgs = { projectTitle: searchArguments }
-    const response = await fetch(`https://codeverse.onrender.com/searchProjects`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/searchProjects`, {
       method: 'POST',
       body: JSON.stringify(SearchArgs), // Adding headers to the request headers:
       headers: {
@@ -348,7 +348,7 @@ module.exports.login = async (user) => {
   try {
     const username = { username: user }
 
-    const response = await fetch(`https://codeverse.onrender.com/login`, {
+    const response = await fetch(`https://codeverse-backend.onrender.com/login`, {
       method: 'POST',
 
       body: JSON.stringify(username),

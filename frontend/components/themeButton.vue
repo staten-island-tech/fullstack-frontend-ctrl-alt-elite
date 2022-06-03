@@ -1,8 +1,8 @@
 <template>
   <div>
       <button>
-          <font-awesome-icon v-if="!this.$store.state.darkMode" class="text-black dark:text-gray-100" :icon="['fas', 'toggle-off']" @click="darkMode"/>
-          <font-awesome-icon v-if="this.$store.state.darkMode" class="text-black dark:text-gray-100" :icon="['fas', 'toggle-on']" @click="lightMode"/>
+          <font-awesome-icon v-if="!this.$store.state.darkMode" class="icon text-black dark:text-gray-100" :icon="['fas', 'toggle-off']" @click="darkMode"/>
+          <font-awesome-icon v-if="this.$store.state.darkMode" class="icon text-black dark:text-gray-100" :icon="['fas', 'toggle-on']" @click="lightMode"/>
       </button>
   </div>
 </template>
@@ -21,6 +21,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.icon {
+  height: 25px
+}
 </style>

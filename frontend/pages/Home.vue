@@ -8,7 +8,7 @@
                         <div class="xl:mt-12">
                             <input v-model="searchArgs" type="search" class="form-control"/>
                             <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="searchProjects">Search</button>
-                            <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2"@click="resetProjects">Reset</button>
+                            <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="resetProjects">Reset</button>
                             <div class="search-bar"></div>
                             <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6" v-show="visibility">
                                 <h2 class="text-black dark:text-white text-2xl">Trending</h2>
@@ -154,6 +154,8 @@ export default {
 </script>
 
 <style scoped>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+
 .container {
     margin: 0 auto;
     width: 100%;
@@ -192,11 +194,11 @@ h1{
     background-color: aquamarine;
 }
 
-.clock {
+/* .clock {
   height: 10px;
 }
 
 .plus {
   height: 15px;
-}
+} */
 </style>

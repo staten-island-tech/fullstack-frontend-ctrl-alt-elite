@@ -209,8 +209,7 @@ a.nuxt-link-exact-active {
 
 .navIcon {
   height: 20px;
-  margin-left: 1rem;
-  margin-top: 1rem;
+  padding: 1rem;
 }
 
 #profile.nuxt-link-exact-active {

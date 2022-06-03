@@ -21,7 +21,7 @@
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="run">Run</button>
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="settings">Settings</button>
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="copy">Copy</button>
-        <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic" @click="viewProfile">
+        <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 cursor-pointer" :src="userProfile.data.profile_pic" @click="viewProfile">
       </div>
 </nav>
 </template>

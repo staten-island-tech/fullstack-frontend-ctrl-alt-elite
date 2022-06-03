@@ -1,5 +1,5 @@
 <template>
-  <div  id="imageList" class="w-1/2 h-1/2 col text-white justify-center items-center absolute z-20 bg-white dark:bg-black rounded-5 overflow-auto">
+  <div  id="imageList" class="w-1/2 h-1/2 col text-white justify-center items-center absolute z-20 bg-gray-200 border-slate dark:bg-black rounded-5 overflow-auto">
     <div  class="w-full h-full flex col gap-5 flex-wrap">  
     
     

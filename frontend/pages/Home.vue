@@ -93,6 +93,7 @@ export default {
   },
     async mounted (){
         try {
+           
             try { 
                 await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
             } catch (error) { 

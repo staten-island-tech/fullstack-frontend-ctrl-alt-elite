@@ -37,7 +37,7 @@ export default {
   mounted(){
     
     this.check()
-    // this.$emit("getLikes", this.project.projects.project_likes.length)
+    this.$emit("getLikes", this.project.projects.project_likes.length)
   },
   methods: {
     check(){
@@ -49,7 +49,7 @@ export default {
     },
     async like() {
       try {
-        this.$store.commit('updateReload')
+        this.$emit("updateLikes", 1)
         this.liked = !this.liked
         await DBFunctions.addLike(this.project, this.$auth.user.email)
       } catch (error) {
@@ -58,7 +58,7 @@ export default {
     },
     async unlike() {
       try {
-        this.$store.commit('updateReload')
+        this.$emit("updateLikes", -1)
         this.liked = !this.liked
         await DBFunctions.removeLike(this.project, this.$auth.user.email)
       } catch (error) {

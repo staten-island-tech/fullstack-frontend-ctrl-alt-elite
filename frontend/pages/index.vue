@@ -60,9 +60,9 @@ export default {
     }
   },
   methods: {
-    redirect() {
+   async  redirect() {
       if (this.$auth.loggedIn) {
-        DBFunctions.login(this.$auth.user.email);
+        await DBFunctions.login(this.$auth.user.email);
         this.$router.push({path: 'home'});
       } else {
         this.$router.push({path: '/'});

@@ -99,13 +99,18 @@ export default {
   methods: {
     async getProfile() {
       try {
+          
           if (this.$store.state.otherIDInfo.email ==="")
              this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
+           
           await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
           await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
           await DBFunctions.getProjects(this.mongo_id, this.projects)
           await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+        
           await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+         
+          
           this.projects.list = this.userProfile.data.projects
           // this.projectsList = this.projects.list
           if (this.$store.state.profileChild === 3)

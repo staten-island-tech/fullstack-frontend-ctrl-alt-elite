@@ -1,10 +1,10 @@
 <template>
   <div id="nav" class="h-screen relative">
-      <font-awesome-icon v-if="!display" class="h-10 p-4 text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+      <font-awesome-icon v-if="!display" id="navIcon1" class="text-black dark:text-gray-100" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-screen md:w-full border-r border-medium-gray dark:border-d-bg-accent bg-l-bg-primary dark:bg-d-bg-primary">
             <div class="flex flex-row justify-between h-12">
-                <font-awesome-icon class="navIcon text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
+                <font-awesome-icon id="navIcon2" class=" text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                <img v-if="this.$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
                <img v-if="!this.$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">
             </div> 
@@ -204,7 +204,13 @@ a.nuxt-link-exact-active {
   height: 25px;
 }
 
-.navIcon {
+#navIcon1 {
+  height: 20px;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+#navIcon2 {
   height: 20px;
   padding: 1rem;
   cursor: pointer;

@@ -1,10 +1,10 @@
 <template>
   <div id="nav" class="h-screen relative">
-      <font-awesome-icon id="cursor" v-if="!display" class="p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+      <font-awesome-icon id="cursor" v-if="!display" class="icon p-4 w-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-full border-r border-medium-gray dark:border-slate">
             <div class="flex flex-row justify-between">
-                <font-awesome-icon id="cursor" class="p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
+                <font-awesome-icon id="cursor" class="icon p-4 w-10 text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                <img class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/4 w-11/12 border-b border-t border-medium-gray dark:border-slate">
@@ -21,34 +21,34 @@
             <div class="h-1/10 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-slate m-2">
                 <p>Theme</p>
                 <div class="flex flex-row items-center">
-                    <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !this.$store.state.darkMode }" class="text-lg text-mid-gray"></font-awesome-icon>
+                    <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !this.$store.state.darkMode }" class="icon text-lg text-mid-gray"></font-awesome-icon>
                     <ThemeButton class="text-3xl m-2"/>
-                    <font-awesome-icon :icon="['fas', 'moon']" :class="{ selectedDark : this.$store.state.darkMode, light : !this.$store.state.darkMode }" class="text-lg text-slate"></font-awesome-icon>
+                    <font-awesome-icon :icon="['fas', 'moon']" :class="{ selectedDark : this.$store.state.darkMode, light : !this.$store.state.darkMode }" class="icon text-lg text-slate"></font-awesome-icon>
                 </div>
             </div>
             <div class="flex flex-col dark:text-white text-black h-1/2">
                 <div class="h-1/6">
                     <a class="hover:bg-gray-700 hover:text-white bg-gradient-to-r  duration-75 h-full w-19/20 flex items-center pl-6 rounded-r-full" @click="toHome">
-                        <font-awesome-icon :icon="['fas', 'house']"></font-awesome-icon>
+                        <font-awesome-icon :icon="['fas', 'house']" class="icon"></font-awesome-icon>
                         <p class="p-2">Home</p>
                     </a>
                 </div>
                 <div class="h-1/6">
                   
                     <div class="hover:bg-gray-700  hover:text-white bg-gradient-to-r duration-75 h-full w-full flex items-center pl-6 rounded-r-full" @click ="getProfile(3)" >
-                        <font-awesome-icon :icon="['fas', 'pen']" ></font-awesome-icon>
+                        <font-awesome-icon :icon="['fas', 'pen']" class="icon"></font-awesome-icon>
                         <p class="p-2">View Projects</p>
                     </div>
                     
                 </div>
                 <div class="h-1/6">
                     <button class="hover:bg-gray-700  hover:text-white bg-gradient-to-r  duration-75 h-full w-full flex items-center pl-6 rounded rounded-r-full" @click="newProject">
-                        <font-awesome-icon :icon="['fas', 'circle-plus']"></font-awesome-icon>
+                        <font-awesome-icon :icon="['fas', 'circle-plus']" class="icon"></font-awesome-icon>
                         <p class="p-2">New Project</p>
                     </button>
                 </div>
                 <button class="text-red-400 h-1/6 flex items-center pl-6" @click="logout">
-                    <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']"></font-awesome-icon>
+                    <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" class="icon"></font-awesome-icon>
                     <LogoutButton class="text-left p-2"/>
                 </button>
             </div>
@@ -204,6 +204,10 @@ a.nuxt-link-exact-active {
   border-left: solid 3px #3500D3;
 }
 
+.icon {
+  height: 25px;
+}
+
 #profile.nuxt-link-exact-active {
   border-left: none;
 }
@@ -217,5 +221,7 @@ a.nuxt-link-exact-active {
         left: 0;
         opacity: 1;
     }
+    
+  
 }
 </style>

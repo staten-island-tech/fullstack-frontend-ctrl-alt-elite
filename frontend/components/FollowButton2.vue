@@ -51,3 +51,7 @@ data(){
 
 }
 </script>
+
+<style>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+</style>

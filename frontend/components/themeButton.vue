@@ -1,8 +1,8 @@
 <template>
   <div>
       <button>
-          <font-awesome-icon v-if="!this.$store.state.darkMode" class="text-black dark:text-gray-100" :icon="['fas', 'toggle-off']" @click="darkMode"/>
-          <font-awesome-icon v-if="this.$store.state.darkMode" class="text-black dark:text-gray-100" :icon="['fas', 'toggle-on']" @click="lightMode"/>
+          <font-awesome-icon v-if="!$store.state.darkMode" class="text-black dark:text-gray-100" :icon="['fas', 'toggle-off']" @click="darkMode"/>
+          <font-awesome-icon v-if="$store.state.darkMode" class="text-black dark:text-gray-100" :icon="['fas', 'toggle-on']" @click="lightMode"/>
       </button>
   </div>
 </template>
@@ -22,5 +22,5 @@ export default {
 </script>
 
 <style>
-
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 </style>

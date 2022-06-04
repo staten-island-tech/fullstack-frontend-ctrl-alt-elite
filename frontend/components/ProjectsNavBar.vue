@@ -7,10 +7,10 @@
           <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
           <input id="title" v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center test-sm sm:text-md bg-transparent rounded"> 
         </div>
-        <a v-if="this.$store.state.otherUserProject === true" @click="viewProfile"><h1 class="h-1/12 w-5/6 sm:w-full flex justify-center items-center text-xs sm:text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer">{{this.$store.state.otherUsername}}</h1></a>
+        <a v-if="$store.state.otherUserProject === true" @click="viewProfile"><h1 class="h-1/12 w-5/6 sm:w-full flex justify-center items-center text-xs sm:text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer">{{$store.state.otherUsername}}</h1></a>
       </div>
     </div>
-      <div class="h-2/3 w-1/2 sm:1/3 md:w-2/5 xl:w-1/4 flex justify-around items-center" v-if="this.$store.state.otherUserProject === false">
+      <div v-if="$store.state.otherUserProject === false" class="h-2/3 w-1/2 sm:1/3 md:w-2/5 xl:w-1/4 flex justify-around items-center">
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
         <button class="md:hidden flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run"><font-awesome-icon :icon="['fas', 'play']"/></button>
         <button class="hidden md:flex bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"> Save</button>
@@ -20,7 +20,7 @@
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md">Publish</button>
         <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic" @click="viewProfile">
       </div>
-      <div class="h-2/3 w-1/4 md:w-2/5 xl:w-1/4 flex justify-around items-center" v-else-if="this.$store.state.otherUserProject === true">   
+      <div v-else-if="$store.state.otherUserProject === true" class="h-2/3 w-1/4 md:w-2/5 xl:w-1/4 flex justify-around items-center">   
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="run">Run</button>
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="settings">Settings</button>
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="copy">Copy</button>
@@ -203,3 +203,6 @@ export default {
   }
 }
 </script>
+<style>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+</style>

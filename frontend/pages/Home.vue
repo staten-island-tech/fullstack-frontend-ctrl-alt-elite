@@ -1,5 +1,5 @@
 <template>
-    <section class="h-screen" :class="{ dark: this.$store.state.darkMode }">
+    <section class="h-screen" :class="{ dark: $store.state.darkMode }">
         <div class="bg-l-bg-secondary dark:bg-d-bg-primary min-h-full h-auto">
             <DefaultNavBar class="fixed"/>
             <div class="w-full flex flex-col-reverse xl:flex-row items-center">
@@ -10,15 +10,15 @@
                             <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="searchProjects">Search</button>
                             <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="resetProjects">Reset</button>
                             <div class="search-bar"></div>
-                            <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6" v-show="visibility">
+                            <div v-show="visibility" class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                 <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                 <Slideshow :project="trendingProjects" :following="userProfile.data.following" class="mb-6" />
                             </div>
-                            <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6" v-show="visibility">
+                            <div v-show="visibility" class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                 <h2 class="text-black dark:text-white text-2xl">Following</h2>
                                 <Slideshow :project="followingProjects" :following="userProfile.data.following" class="mb-6" />
                             </div>
-                            <div class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6" v-show="results">
+                            <div v-show="results" class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                 <h2 class="text-black dark:text-white text-2xl">
                                     <Slideshow :project="projects" :following="userProfile.data.following" class="mb-6" />
                                 </h2>
@@ -29,7 +29,7 @@
                 <div class="w-4/5 xl:w-1/5 h-80 xl:h-4/5 xl:z-20 flex justify-center items-end mt-12 xl:mt-0">
                     <div class="xl:fixed bg-l-bg-secondary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
                         <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-xl xl:text-2xl">Recent Projects </h2>
-                        <div class="flex flex-col items-center overflow-scroll w-full overflow-x-hidden h-3/4" :class="{ sidebarDark : this.$store.state.darkMode, sidebarLight : !this.$store.state.darkMode }">
+                        <div class="flex flex-col items-center overflow-scroll w-full overflow-x-hidden h-3/4" :class="{ sidebarDark : $store.state.darkMode, sidebarLight : !$store.state.darkMode }">
                             <div v-for="(project, key) in recent" :key="key" class="w-3/4">
                                 <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray w-full">
                                     <h3 class="dark:text-white text-lg 2xl:text-xl">{{ project.project_title }}</h3>
@@ -61,11 +61,6 @@ import Slideshow from '../components/Slideshow.vue';
 import DBFunctions from "~/DBFunctions";
 
 export default {
-     head() {
-        return {
-          title: "Codeverse - Home"
-        };
-    },
     components: { Slideshow },
     data() {
         return {
@@ -80,6 +75,11 @@ export default {
         results: false,
         projects: [],
         }
+    },
+     head() {
+        return {
+          title: "Codeverse - Home"
+        };
     },
     async mounted (){
         try {
@@ -97,7 +97,7 @@ export default {
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
             await DBFunctions.getFollowingProjects(this.$store.state.otherIDInfo.mongo_id, this.followingProjects)
             await DBFunctions.getTrendingProjects(this.trendingProjects) 
-            for (let ring of document.getElementsByClassName("lds-dual-ring")){
+            for (const ring of document.getElementsByClassName("lds-dual-ring")){
                 ring.style.display = "none"
             }
             } catch (error) {
@@ -137,7 +137,7 @@ export default {
             try {
                 await DBFunctions.searchProjects(this.searchArgs, this.projects)
                 // window.alert(JSON.stringify(this.projects.list))
-                //this.projects = this.getProjects.projects
+                // this.projects = this.getProjects.projects
                 this.results = true
                 this.visibility = false
             } catch (error) {
@@ -159,6 +159,7 @@ export default {
 </script>
 
 <style scoped>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 .container {
     margin: 0 auto;
     width: 100%;

@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-full h-screen" :class="{ dark : this.$store.state.darkMode }">
+  <div class="w-full h-screen" :class="{ dark : $store.state.darkMode }">
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
       <DefaultNavBar class="fixed"/>
       <div class=" w-full h-1/3 flex justify-center items-center">
@@ -53,11 +53,6 @@
 // import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
 export default {
-  head() {
-        return {
-          title: "Codeverse - Profile"
-        };
-    },
   data(){
     return{  
       info: {
@@ -80,6 +75,11 @@ export default {
       showImageList:true
     } 
   },
+  head() {
+        return {
+          title: "Codeverse - Profile"
+        };
+    },
   computed: {
     reload: {
       get(){
@@ -170,6 +170,7 @@ export default {
 </script>
 
 <style scoped>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 ul {
   list-style: none;
   display: flex;

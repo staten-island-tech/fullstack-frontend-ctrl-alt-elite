@@ -22,14 +22,14 @@ export default {
   props: {
     project: Object
   },
-  mounted(){
-    this.check()
-    this.$emit("getLikes", this.project.projects.project_likes.length)
-  },
   data() {
     return {
       liked: false,
     }
+  },
+  mounted(){
+    this.check()
+    this.$emit("getLikes", this.project.projects.project_likes.length)
   },
   methods: {
     check(){
@@ -61,4 +61,6 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
+</style>

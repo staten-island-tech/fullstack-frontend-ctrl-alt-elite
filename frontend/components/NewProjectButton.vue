@@ -22,6 +22,7 @@ export default {
 }
 </script>
 <style>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 #NewProjectBtn:hover {
     transform: scale(1.2);
     transition: all .2s ease-in-out;

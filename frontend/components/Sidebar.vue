@@ -161,6 +161,7 @@ watch: {
 </script>
 
 <style scoped>
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 #cursor {
     cursor: pointer;
 

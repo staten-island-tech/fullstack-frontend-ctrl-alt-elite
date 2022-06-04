@@ -53,6 +53,11 @@
 // import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
 export default {
+  head() {
+        return {
+          title: "Codeverse - Profile"
+        };
+    },
   data(){
     return{  
       info: {

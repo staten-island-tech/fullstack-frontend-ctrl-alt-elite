@@ -69,7 +69,7 @@ export default {
       auth0: {
         domain: 'dev-p62lyuzr.us.auth0.com',
         clientId: 'A4avCXPautzQ9o8kr3tGeA6Z6Ko9aofZ',
-        logoutRedirectUri: 'http://localhost:3000',
+        logoutRedirectUri: 'https://code-verse.netlify.app/',
        
       },
     },

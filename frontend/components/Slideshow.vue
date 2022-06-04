@@ -1,7 +1,7 @@
 <template>
     <div >
         <div class="swiper">
-        <div class="swiper-button-prev" :class="{ light : !this.$store.state.darkMode }"></div>
+        <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
         <div class="swiper-wrapper">
           <div class="lds-dual-ring"></div>
           <div v-for="(project,key) in project" :key="key" class="swiper-slide">
@@ -11,7 +11,7 @@
         <!-- If pagination is needed -->
         <div class="swiper-pagination"></div>
         <!-- If navigation buttons are needed -->
-        <div class="swiper-button-next" :class="{ light : !this.$store.state.darkMode }"></div>
+        <div class="swiper-button-next" :class="{ light : !$store.state.darkMode }"></div>
       </div>
     </div>
 </template>
@@ -100,7 +100,7 @@ export default {
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: black;
+  color: white;
 }
 
 .light {

@@ -12,7 +12,7 @@ export default {
       async logout() {
         sessionStorage.removeItem('app_token');
         await this.$auth.logout()
-       
+       this.$router.push({path: '/'});
       },
     },
 }

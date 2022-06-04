@@ -61,6 +61,11 @@ import Slideshow from '../components/Slideshow.vue';
 import DBFunctions from "~/DBFunctions";
 
 export default {
+     head() {
+        return {
+          title: "Codeverse - Home"
+        };
+    },
     components: { Slideshow },
     data() {
         return {

@@ -63,6 +63,7 @@ export default {
     redirect: {
       login: '/', // redirect user when not connected
       callback: '/auth/signed-in',
+      logout: '/',
     },
     strategies: {
       auth0: {

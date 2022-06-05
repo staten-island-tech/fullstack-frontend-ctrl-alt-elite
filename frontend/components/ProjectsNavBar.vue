@@ -14,7 +14,7 @@
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
         <button class="hidden md:flex bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"> Save</button>
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"> Settings</button>
-        <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic" @click="viewProfile">
+        <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 cursor-pointer transform transition duration-500 hover:scale-125" :src="userProfile.data.profile_pic" @click="viewProfile">
       </div>
       <div v-else-if="$store.state.otherUserProject === true" class="h-2/3 w-1/4 md:w-2/5 xl:w-1/4 flex justify-around items-center">   
         <button class="w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-base" @click="run">Run</button>

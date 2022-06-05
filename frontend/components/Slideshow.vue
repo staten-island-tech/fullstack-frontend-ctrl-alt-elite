@@ -3,7 +3,7 @@
     <div class="swiper">
       <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
       <div class="swiper-wrapper">
-        <div class="lds-dual-ring"></div>
+        <div :class="{ lds-dual-ring : $store.state.darkMode, lds-dual-ring-light : !$store.state.darkMode }"></div>
         <div v-for="(project,key) in project" :key="key" class="swiper-slide">
           <ProjectCard class="slider-content" :project="project" :following="following"/>
         </div>
@@ -119,5 +119,80 @@ export default {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.lds-dual-ring-light {
+  display: inline-block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 100px;
+  left: 650px;
+}
+.lds-dual-ring-light:after {
+  content: " ";
+  position: absolute;
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #000;
+  border-color: #000 transparent #000 transparent;
+  animation: lds-dual-ring-light 1.2s linear infinite;
+}
+@keyframes lds-dual-ring-light {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 400px) {
+    .lds-dual-ring {
+        display: inline-block;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 50px;
+        left: 100px;
+    }
+  .lds-dual-ring:after {
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 45px;
+        height: 45px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+   }
+}
+
+@media screen and (max-width: 800px) {
+    .lds-dual-ring {
+        display: inline-block;
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        top: 100px;
+        left: 400px;
+    }
+  .lds-dual-ring:after {
+        content: " ";
+        position: absolute;
+        display: block;
+        width: 50px;
+        height: 50px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #fff;
+        border-color: #fff transparent #fff transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+   }
 }
 </style>

@@ -95,9 +95,7 @@ export default {
            await DBFunctions.getInfo(this.$auth.user.email,this.info);
         },
         toggleVisible() {
-            if (window.confirm("ARE YOU SURE?")){
-                this.display = !this.display; 
-            }
+            this.display = !this.display; 
         },
         getProfile(options) {
             this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})

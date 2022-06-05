@@ -14,7 +14,9 @@ export default {
             this.$store.commit('toggleMode');
         },
         lightMode() {
-            this.$store.commit('toggleMode')
+            if (window.confirm("ARE YOU SURE?")){
+                this.$store.commit('toggleMode')
+            }
         },
         
     }

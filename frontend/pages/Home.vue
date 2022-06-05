@@ -8,7 +8,7 @@
                         <div class="xl:mt-12">
                             <div class="flex flex-row w-full justify-center items-center h-14">
                                 <input v-model="searchArgs" type="search" placeholder="Search for a project..." class="form-control w-1/3 md:w-1/2 lg:w-2/3 h-10 px-2"/>
-                                <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500" @click="searchProjects">Search</button>
+                                <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 ml-1 mr-1" @click="searchProjects">Search</button>
                                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500" @click="resetProjects">Reset</button>
                             </div>
                             <div v-show="visibility" class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
@@ -84,15 +84,9 @@ export default {
     },
     async mounted (){
         try {
-            // try { 
+    
                 await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
-            // } catch (error) { 
-            //     if (error.code === 999){
-            //         await DBFunctions.createUser(this.$auth.user,this.userProfile);
-            //     }
-            //     else 
-            //        throw error; 
-            // }
+         
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
@@ -102,14 +96,10 @@ export default {
                 ring.style.display = "none"
             }
             } catch (error) {
-                // try {
-                    // await DBFunctions.createUser(this.$auth.user) ;
-                    // const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
-                    // this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
-                // } catch (error)  {
+              
                     window.alert ("error - get profile!");
                     this.$router.push({path: '/'});
-                // }    
+                
             }     
     },  
     methods: {

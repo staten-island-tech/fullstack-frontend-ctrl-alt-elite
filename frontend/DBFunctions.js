@@ -191,6 +191,7 @@ module.exports.createProject = async (userProject, test) => {
     const final = data.projects.length - 1
     test.push(data.projects[final]._id)
     userProject = data
+    window.alert('Project created.')
   } catch (error) {
     window.alert('Error creating project!')
   }
@@ -275,6 +276,7 @@ module.exports.addLike = async (projectInfo, email) => {
       },
     }
   )
+  window.alert('Like added.')
 }
 
 module.exports.removeLike = async (projectInfo, email) => {
@@ -296,6 +298,7 @@ module.exports.removeLike = async (projectInfo, email) => {
       },
     }
   )
+  window.alert('Like removed.')
 }
 
 module.exports.updateProject = async (payload) => {
@@ -313,6 +316,7 @@ module.exports.updateProject = async (payload) => {
         },
       }
     )
+    window.alert('Project updated.')
   } catch (error) {
     window.alert('Error updating project!')
   }
@@ -333,6 +337,7 @@ module.exports.deleteProject = async (payload) => {
         },
       }
     )
+    window.alert('Project deleted.')
   } catch (error) {
     window.alert('Error deleting project!')
   }

@@ -3,7 +3,7 @@
       <font-awesome-icon v-if="!display" id="cursor" class="p-4 h-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-screen md:w-full border-r border-medium-gray dark:border-d-bg-accent bg-l-bg-primary dark:bg-d-bg-primary">
-            <div class="flex flex-row justify-between h-16">
+            <div class="flex flex-row justify-between h-12">
                 <font-awesome-icon id="cursor" class="p-4 fa-lg text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
                <img v-if="$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
                <img v-if="!$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">

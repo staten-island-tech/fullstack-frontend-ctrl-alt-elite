@@ -6,7 +6,7 @@
                 <div class="w-full xl:w-5/6  flex  justify-center m-6">
                     <div class="w-full  flex flex-row flex-wrap justify-center">
                         <div class="xl:mt-12">
-                            <div class="flex flex-row w-full justify-center items-center h-10">
+                            <div class="flex flex-row w-full justify-center items-center h-14">
                                 <input v-model="searchArgs" type="search" class="form-control w-1/3 md:w-1/2 lg:w-2/3"/>
                                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="searchProjects">Search</button>
                                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="resetProjects">Reset</button>

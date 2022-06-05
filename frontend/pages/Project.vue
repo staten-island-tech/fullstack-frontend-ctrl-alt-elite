@@ -32,7 +32,7 @@
             <h2 id="html">HTML</h2>
           </div>
           <div id="tab2" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
-            <font-awesome-icon icon="fa-solid id="logo2" fa-star-of-life" class="px-1 text-blue-600" />
+            <font-awesome-icon icon="fa-solid fa-star-of-life" id="logo2" class="px-1 text-blue-600" />
             <h2 id="css">CSS</h2>
           </div>
           <div id="tab3" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">

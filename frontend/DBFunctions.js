@@ -276,7 +276,7 @@ module.exports.addLike = async (projectInfo, email) => {
       },
     }
   )
-  window.alert('Like added.')
+  // window.alert('Like added.')
 }
 
 module.exports.removeLike = async (projectInfo, email) => {
@@ -298,7 +298,7 @@ module.exports.removeLike = async (projectInfo, email) => {
       },
     }
   )
-  window.alert('Like removed.')
+  // window.alert('Like removed.')
 }
 
 module.exports.updateProject = async (payload) => {

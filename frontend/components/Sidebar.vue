@@ -16,10 +16,10 @@
                        <p>Following  {{info.following}}</p> 
                         <p>Followers  {{info.followers}}</p>
                    </div>
-                   <button id="profile"  class="flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-md" @click="getProfile">View Profile</button>
+                   <button id="profile"  class="flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-base" @click="getProfile">View Profile</button>
                 </div>
             </div>
-            <div class="xl:h-1/10 h-1/8 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-d-bg-accent m-2">
+            <div class="md:h-1/9 h-1/8 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-d-bg-accent m-2">
                 <p>Theme</p>
                 <div class="flex flex-row items-center">
                     <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !$store.state.darkMode }" class="text-lg text-mid-gray"></font-awesome-icon>

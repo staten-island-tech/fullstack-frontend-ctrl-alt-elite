@@ -4,26 +4,17 @@
 
 <script>
 
+
 export default {
     
     
      methods: {
      
     
-       signup()  {
+      signup()  {
         
          this.$auth.loginWith("auth0", { params: { screen_hint: "signup" }})
-  
         
-                           
-                                        
-         
-        
-      
-        
-        
-       
-      
       },
      },
 }

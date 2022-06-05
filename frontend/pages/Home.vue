@@ -121,7 +121,7 @@ export default {
             this.$store.commit("newProject", false)
             this.$store.commit("isNotYourProject", false)
             this.$store.commit("otherEmail", this.$auth.user.email)
-            this.$router.push("Project")
+            this.$router.push("/Project")
         },
         newProject(){
             this.$store.commit("PUSH_HTML", "")
@@ -132,7 +132,7 @@ export default {
             this.$store.commit("newProject", true)
             this.$store.commit("isNotYourProject", false)
             this.$store.commit("otherEmail", this.$auth.user.email)
-            this.$router.push("Project")
+            this.$router.push("/Project")
         },
         async searchProjects() {
             try {
@@ -141,6 +141,7 @@ export default {
                 // this.projects = this.getProjects.projects
                 this.results = true
                 this.visibility = false
+                this.searchArgs = ''
             } catch (error) {
                 console.log(error)
             }

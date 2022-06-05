@@ -333,7 +333,7 @@ module.exports.updateProject = async (payload, test) => {
     const final = data.projects.length - 1
     test.push(data.projects[final]._id)
   } catch (error) {
-    window.alert('error')
+    window.alert('test error')
   }
 }
 

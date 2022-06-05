@@ -74,13 +74,13 @@
         <h2 class="text-2xl hidden md:flex bolded">Orientation:</h2>
         <div class="h-1/5 w-5/6 hidden md:flex flex-row">
           <button id="left" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1"/>
           </button>
           <button id="middle" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x" id="orientation2" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x" id="orientation2"/>
           </button>
           <button id="right" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-4x" id="orientation3" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-4x" id="orientation3"/>
           </button>
           <!-- <font-awesome-icon icon="fa-solid fa-caret-up" id="middle" class="h-full w-1/3 fa-3x" @click="editorOrientation"/>
           <font-awesome-icon icon="fa-solid fa-caret-right" id="right" class="h-full w-1/3 fa-3x" @click="editorOrientation"/> -->
@@ -89,7 +89,7 @@
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <div class="flex flex-row justify-end">
+        <div class="flex flex-row justify-evenly">
           <a class="inline-block text-xl select-none text-gray-600" @click="projectSettings" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-pen" /></a>
           <a class="inline-block text-xl text-red-500 select-none" @click="remove" v-if="this.$store.state.otherUserProject === false"><font-awesome-icon icon="fa-solid fa-trash-can" /></a>
         </div>     

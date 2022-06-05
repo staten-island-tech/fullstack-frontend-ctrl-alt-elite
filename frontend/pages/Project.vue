@@ -320,14 +320,15 @@ export default {
     },
     async remove(){
       try {
-        console.log("hello");
-        await DBFunctions.deleteProject({
-          "email": this.$store.state.otherIDInfo.email,
-          "project_id": this.$store.state.project_id
-        })
-        this.$router.push("Home")
+        if (window.confirm("Are you sure?")){
+          await DBFunctions.deleteProject({
+            "email": this.$store.state.otherIDInfo.email,
+            "project_id": this.$store.state.project_id
+          })
+          this.$router.push("Home")
+        } 
       } catch (error) {
-        console.log("Error deleting project.");
+        window.alert("Error deleting project.");
       }
     }
   }

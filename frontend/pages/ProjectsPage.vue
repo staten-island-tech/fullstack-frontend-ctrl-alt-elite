@@ -37,7 +37,6 @@ export default {
     //const data = await DBFunctions.searchProjects(search, this.projects);
     const newData = await data.json();
     const finalData = newData.slice(0,10)
-    console.log(finalData)
     this.projects = finalData
   },
   computed: {

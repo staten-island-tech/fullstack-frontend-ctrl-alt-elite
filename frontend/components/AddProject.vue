@@ -18,7 +18,6 @@ export default {
   async mounted() {
     const data = await fetch("https://jsonplaceholder.typicode.com/posts");
     const newData = await data.json();
-    console.log(newData)
     this.projects = newData;
   },
 }

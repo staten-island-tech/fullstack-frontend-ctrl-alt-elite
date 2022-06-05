@@ -54,12 +54,10 @@ export default {
     },
   },
   mounted(){
-    document.getElementById("saveButton").disabled === false
     this.getProfile();
     if (this.$store.state.otherUserProject === true){
       document.getElementById("title").readOnly = true
     }
-    setTimeout('document.getElementById("saveButton").disabled === true;', 1500) 
   },
   methods:{
     async getProfile() {
@@ -144,7 +142,7 @@ export default {
           }
         }
       } catch (error) {
-        console.log("Error saving project.");
+        window.alert("Error saving project.");
       }
     },
     async copy(){
@@ -160,7 +158,7 @@ export default {
         this.$store.commit("PUSH_TITLE", "")
         this.$store.commit("PUSH_DESCR", "")
       } catch (error) {
-        console.log("Error copying project code.");
+        window.alert("Error copying project code.");
       }
     }
   }

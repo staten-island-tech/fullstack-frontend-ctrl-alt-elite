@@ -4,10 +4,7 @@
   </div>
 </template>
 
-<script>
- 
- 
- 
+<script> 
 export default {
   mounted()  {
     this.$parent.Link1=false
@@ -22,5 +19,4 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
-
 </style>

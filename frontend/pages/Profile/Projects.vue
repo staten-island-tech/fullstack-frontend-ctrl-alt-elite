@@ -4,27 +4,12 @@
 
 <script>
 export default {
-   data(){
-      return{ 
-    
-      }
-      },
-      mounted() {
-        this.$parent.Link1=false
-        this.$parent.Link2=false
-        this.$parent.Link3=true        
-        this.$store.commit('updateProfileChild',0)
-     
+  mounted() {
+    this.$parent.Link1=false
+    this.$parent.Link2=false
+    this.$parent.Link3=true        
+    this.$store.commit('updateProfileChild', 0)
   },
-  methods: {  
-  
-     
-    }
-  
 }
 </script>
 
-<style>
-
-
-</style>

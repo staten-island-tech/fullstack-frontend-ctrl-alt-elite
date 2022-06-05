@@ -47,30 +47,6 @@ export default {
       });
     }
   },
-
-  /* methods: {
-    post() {
-      fetch('http://jsonplaceholder.typicode.com/posts', {
-        title: this.project.title,
-        body: this.project.body,
-        userId: 1,
-      }).then(function (data) {
-        console.log(data)
-        this.submitted = true
-      })
-    },
-  }, */
- /* methods:{
-    async test(){
-      try { 
-        console.log("hello")
-        await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.projects)
-      
-    } catch (error) {
-      
-    }
-    }
-  }*/
 }
 </script>
 
@@ -79,7 +55,6 @@ body {
   background: linear-gradient(#1c1c1c, #1f0180);
   height: 100vh;
 }
-
 .temp1 {
   background-color: #190061;
   opacity: 85%;

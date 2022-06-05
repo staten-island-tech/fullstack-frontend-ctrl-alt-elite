@@ -13,9 +13,7 @@ module.exports.getFollowing = async (userID, info) => {
       },
     }
   )
-
   const data = await response.json()
-
   info.data = data.list
 }
 
@@ -34,9 +32,7 @@ module.exports.getFollowInfo = async (userID, followUserID, followInfo) => {
       },
     }
   )
-
   const data = await response.json()
-
   followInfo.following = data.following
   followInfo.followedby = data.followedby
 }
@@ -55,7 +51,6 @@ module.exports.getInfo = async (userID, info) => {
       },
     }
   )
-
   const data = await response.json()
   info.following = data.following
   info.followers = data.followers
@@ -98,7 +93,6 @@ module.exports.follow = async (userID, followUserID, data) => {
       },
     }
   )
-
   data = await response.json()
 }
 
@@ -117,16 +111,13 @@ module.exports.getFollowers = async (userID, list) => {
       },
     }
   )
-
   const data = await response.json()
   list.data = data.list
 }
 
 module.exports.getProfile = async (userID, userProfile) => {
   const accessToken = sessionStorage.getItem('app_token')
-
   const userInfo = { email: userID }
-
   const response = await fetch(
     `https://codeverse-backend.onrender.com/getProfile`,
     {
@@ -144,8 +135,6 @@ module.exports.getProfile = async (userID, userProfile) => {
     throw error
   }
   const data2 = await response.json()
-
-  // if (response.status === 500) throw response.error
   userProfile.data = data2.userProfile
 }
 
@@ -164,11 +153,10 @@ module.exports.updateProfile = async (userProfile) => {
     }
   )
   const data = await response.json()
-  userProfile.data = data // JSON.stringify(data)
+  userProfile.data = data
 }
 
 module.exports.createUser = async (user, userProfile) => {
-  // const userInfo = {  user }
   const accessToken = sessionStorage.getItem('app_token')
   const response = await fetch(
     `https://codeverse-backend.onrender.com/createUser`,
@@ -183,7 +171,6 @@ module.exports.createUser = async (user, userProfile) => {
   )
   const data = await response.json()
   userProfile.data = data
-  // if (response.status === 500) throw response.error
 }
 
 module.exports.createProject = async (userProject, test) => {
@@ -205,7 +192,7 @@ module.exports.createProject = async (userProject, test) => {
     test.push(data.projects[final]._id)
     userProject = data
   } catch (error) {
-    window.alert(error)
+    window.alert('Error creating project!')
   }
 }
 
@@ -288,8 +275,6 @@ module.exports.addLike = async (projectInfo, email) => {
       },
     }
   )
-  const data = await response.json()
-  const parsed = JSON.parse(JSON.stringify(data))
 }
 
 module.exports.removeLike = async (projectInfo, email) => {
@@ -311,8 +296,6 @@ module.exports.removeLike = async (projectInfo, email) => {
       },
     }
   )
-  const data = await response.json()
-  const parsed = JSON.parse(JSON.stringify(data))
 }
 
 module.exports.updateProject = async (payload) => {
@@ -330,9 +313,8 @@ module.exports.updateProject = async (payload) => {
         },
       }
     )
-    const data = await response.json()
   } catch (error) {
-    window.alert('test error')
+    window.alert('Error updating project!')
   }
 }
 
@@ -351,9 +333,8 @@ module.exports.deleteProject = async (payload) => {
         },
       }
     )
-    const data = await response.json()
   } catch (error) {
-    window.alert('error')
+    window.alert('Error deleting project!')
   }
 }
 module.exports.searchProjects = async (searchArguments, projects) => {
@@ -375,18 +356,14 @@ module.exports.searchProjects = async (searchArguments, projects) => {
     data.forEach((obj) => {
       projects.push(obj)
     })
-    /* const parsed = JSON.parse(JSON.stringify(data))
-    // this.uniqueID = data.uniqu;
-    projects.push(...parsed) */
-    // window.alert(JSON.stringify(projects.list))
-  } catch (error) {}
+  } catch (error) {
+    window.alert('Error searching projects.')
+  }
 }
 
 module.exports.login = async (user) => {
-  // replace code with access token
   try {
     const username = { username: user }
-
     const response = await fetch(
       `https://codeverse-backend.onrender.com/login`,
       {
@@ -398,13 +375,9 @@ module.exports.login = async (user) => {
         },
       }
     )
-
     const data = await response.json()
-    //  window.alert('token1')
-    //    // need to get access token from auth0
-    //   window.alert("token")
     sessionStorage.setItem('app_token', data)
   } catch (error) {
-    window.alert(error)
+    window.alert('Error with login.')
   }
 }

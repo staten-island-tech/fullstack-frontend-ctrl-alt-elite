@@ -1,9 +1,7 @@
 <template>
   <div class="flex items-center justify-center flex-col">
    <FollowList :list="$parent.followingList" />
-
-     
-      </div>
+  </div>
 </template>
 
 
@@ -22,5 +20,4 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
-
 </style>

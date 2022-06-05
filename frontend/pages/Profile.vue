@@ -1,5 +1,4 @@
 <template>
-
   <div class="w-full h-screen" :class="{ dark : $store.state.darkMode }">
     <div class="w-full min-h-full h-auto dark:bg-d-bg-primary bg-l-bg-primary">
       <DefaultNavBar class="fixed"/>
@@ -10,34 +9,34 @@
               <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 mt-2" @click="selectImage"> Update Image </button>
               <imageList :class="{hidden:showImageList}" />
             </div>
-              <FollowButton2 v-else   :key="userProfile.data.user_id"  :followuserid="userProfile.data.user_id"/> 
+            <FollowButton2 v-else   :key="userProfile.data.user_id"  :followuserid="userProfile.data.user_id"/> 
             <img class="basis-5 rounded-full w-24 md:w-36 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic">  
           </div>
-           <div class="mt-2 md:m-10 mb-8 flex flex-col text-black dark:text-white w-5/6 md:w-1/3">
-                  <h1 class="font-bold mb-3 text-lg sm-xl md:text-2xl mt-1 text-center" > {{userProfile.data.user_id}}</h1>
-                  <h2 class="pb-2 pl-1">Username</h2>
-                   <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
-                  <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
-                  <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
-                  <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
-                  <div v-if="ownProfile" class="flex flex-row justify-center items-center" >
-                      <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes </button>
-                  </div>
-                <div v-else class="flex flex-row justify-center ">
-                   <button class=" mr-2 mt-5 bg-gray-700 items-center hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
-                </div>
-              </div>
+          <div class="mt-2 md:m-10 mb-8 flex flex-col text-black dark:text-white w-5/6 md:w-1/3">
+            <h1 class="font-bold mb-3 text-lg sm-xl md:text-2xl mt-1 text-center" > {{userProfile.data.user_id}}</h1>
+            <h2 class="pb-2 pl-1">Username</h2>
+            <input v-model="userProfile.data.name" placeholder="Username" type="text" :readonly="!ownProfile" class="h-1/2 w-full p-3 pl-1 flex justify-center items-center text-lg bg-transparent dark:text-gray-400 text-black" :class="{'focus:outline-none':!ownProfile}"  >
+            <!-- <input v-model="userProfile.data.name" type="text" class="text-black rounded-md h-10 pl-3 border border-slate" title="Click to Edit"   >  -->
+            <h2 class="pb-2 pt-2 pl-1" >Bio</h2>
+            <textarea  v-model="userProfile.data.description" type="text" placeholder="Description..." :readonly="!ownProfile" class=" text-black rounded-md h-20 p-3 pl-1 bg-transparent dark:text-gray-400" :class="{'focus:outline-none':!ownProfile}"  >    </textarea>
+            <div v-if="ownProfile" class="flex flex-row justify-center items-center">
+              <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-700 text-white py-2 px-4 rounded" @click="updateProfile" > Save Changes</button>
+            </div>
+          <div v-else class="flex flex-row justify-center ">
+              <button class=" mr-2 mt-5 bg-gray-700 items-center hover:bg-gray-500 text-white py-2 px-4 rounded"  @click="resetProfile"> Return To My Profile </button>
+          </div>
+          </div>
         </section>      
       </div>
       <ul class="bg-l-bg-accent dark:bg-d-bg-secondary h-12">
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
+          <NuxtLink class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/"  :class="{defaultLink:Link1}">Following  {{info.following}} </NuxtLink>
         </li>
         <li>
-          <NuxtLink   class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers"  :class="{defaultLink:Link2}" >Followers  {{info.followers}} </NuxtLink>
+          <NuxtLink class="link link-underline link-underline-black text-gray-500 font-bold text-xl" to="/profile/Followers" :class="{defaultLink:Link2}" >Followers  {{info.followers}} </NuxtLink>
         </li>
         <li>
-          <NuxtLink  class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}">Projects  {{info.projects}}</NuxtLink>
+          <NuxtLink class="link link-underline link-underline-black text-gray-500  font-bold text-xl" to="/profile/Projects" :class="{defaultLink:Link3}">Projects  {{info.projects}}</NuxtLink>
         </li>
       </ul>
       <div class="bg-l-bg-secondary dark:bg-d-bg-secondary min-h-full h-auto container w-2/3">
@@ -48,10 +47,10 @@
 </template>
 
 <script>
- 
 // import WAVES from 'vanta/dist/vanta.waves.min'
 // import * as THREE from 'three'
 import DBFunctions from "~/DBFunctions";
+
 export default {
   data(){
     return{  
@@ -76,10 +75,10 @@ export default {
     } 
   },
   head() {
-        return {
-          title: "Codeverse - Profile"
-        };
-    },
+    return {
+      title: "Codeverse - Profile"
+    };
+  },
   computed: {
     reload: {
       get(){
@@ -96,32 +95,23 @@ export default {
     reload(newValue, oldValue) {
       this.getProfile();
     }
-  }, 
-  mounted (){
-      
-     //  this.getProfile();
-  } ,   
+  },  
   methods: {
     async getProfile() {
       try {
-          if (this.$store.state.otherIDInfo.email ==="")
-             this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
-          await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
-          await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
-          await DBFunctions.getProjects(this.mongo_id, this.projects)
-          await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
-          await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
-          this.projects.list = this.userProfile.data.projects
-          this.projectsList = this.projects.list
-          if (this.$store.state.profileChild === 3)
-           this.$router.push({name: "Profile-Projects"})
-           
-           
-          
-          
-              
+        if (this.$store.state.otherIDInfo.email ==="")
+          this.$store.commit("updateOtherIDInfo", {mongo_id:"",email:this.$auth.user.email})
+        await DBFunctions.getInfo(this.$store.state.otherIDInfo.email,this.info);
+        await DBFunctions.getProfile(this.$store.state.otherIDInfo.email,this.userProfile)
+        await DBFunctions.getProjects(this.mongo_id, this.projects)
+        await DBFunctions.getFollowing(this.$store.state.otherIDInfo.email ,this.followingList);
+        await DBFunctions.getFollowers(this.$store.state.otherIDInfo.email ,this.followersList);
+        this.projects.list = this.userProfile.data.projects
+        this.projectsList = this.projects.list
+        if (this.$store.state.profileChild === 3)
+          this.$router.push({name: "Profile-Projects"})
       } catch { 
-        window.alert ("error getting the profile")
+        window.alert ("Error getting profile!")
         this.$router.push({name: "Home"});
       }
     },
@@ -143,10 +133,8 @@ export default {
           this.$store.commit("isNotYourProject", false)
         }
         this.$router.push("/profile/")
-        // window.alert("Profile information reset.")
-        // window.location.reload()
       } catch (error) {
-        window.alert ("Error resetting the profile")
+        window.alert ("Error resetting profile.")
         this.$router.push({name:"Home"});
       }
     },
@@ -155,14 +143,12 @@ export default {
         await DBFunctions.updateProfile(this.userProfile)
         this.$store.commit('updateReload')
         window.alert("Profile information updated.")
-        // window.location.reload()
       } catch{
-        window.alert ("Error updating the profile")
+        window.alert ("Error updating profile.")
         this.$router.push({name: "Home"});
       }
     },
     selectImage(){
-      // document.getElementById("imageList").style.display = "flex"
       this.showImageList=false
     }
   },    
@@ -197,7 +183,6 @@ li {
   padding: 10px;
   border-radius: 12px;
 }
- 
   
 a.nuxt-link-exact-active, .defaultLink {
   color:rgb(160, 148, 228);
@@ -207,34 +192,38 @@ a.nuxt-link-exact-active, .defaultLink {
 }
  
 .link-underline {
-		border-bottom-width: 0;
-		background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
-		background-size: 0 3px;
-		background-position: 0 100%;
-		background-repeat: no-repeat;
-		transition: background-size .5s ease-in-out;
-	}
-	.link-underline-black {
-		background-image: linear-gradient(transparent, transparent), linear-gradient(#3500D3, #3500D3)
-	}
-	.link-underline:hover {
-		background-size: 100% 3px;
-		background-position: 0 100%
-	}
-  #body {
-    height: 5rem;
-    width: 5rem;
-  }
-h1{
+  border-bottom-width: 0;
+  background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff);
+  background-size: 0 3px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .5s ease-in-out;
+}
 
-    font-size: 1.5rem;
+.link-underline-black {
+  background-image: linear-gradient(transparent, transparent), linear-gradient(#3500D3, #3500D3)
 }
+
+.link-underline:hover {
+  background-size: 100% 3px;
+  background-position: 0 100%
+}
+
+#body {
+  height: 5rem;
+  width: 5rem;
+}
+
+h1{
+  font-size: 1.5rem;
+}
+
 .darkBorder {
-    border-bottom: solid 3px;
-    border-image: conic-gradient( magenta, #3500D3, magenta) 1;
+  border-bottom: solid 3px;
+  border-image: conic-gradient( magenta, #3500D3, magenta) 1;
 }
+
 .noAccess {
   pointer-events: none;
 }
-
 </style>

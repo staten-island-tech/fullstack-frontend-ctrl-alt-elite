@@ -45,12 +45,10 @@ export const mutations = {
   },
   updateFollowInfo(state, value) {
     state.followInfo.name = value.name
-
     state.followInfo.following = value.following
     state.followInfo.followers = value.followers
     state.followInfo.projects = value.projects
   },
-
   updateOtherIDInfo(state, value) {
     state.otherIDInfo.email = value.email
     state.otherIDInfo.mongo_id = value.mongo_id

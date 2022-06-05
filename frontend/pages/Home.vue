@@ -65,28 +65,26 @@ export default {
     components: { Slideshow },
     data() {
         return {
-        searchArgs: '',
-        projectsList: Array,
-        userProfile: { data: '' },
-        recent: [],
-        trendingProjects: [],
-        followingProjects: [],
-        searchedProjects: [],
-        visibility: true,
-        results: false,
-        projects: [],
+            searchArgs: '',
+            projectsList: Array,
+            userProfile: { data: '' },
+            recent: [],
+            trendingProjects: [],
+            followingProjects: [],
+            searchedProjects: [],
+            visibility: true,
+            results: false,
+            projects: [],
         }
     },
-     head() {
+    head() {
         return {
           title: "Codeverse - Home"
         };
     },
     async mounted (){
         try {
-    
-                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
-         
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)
@@ -95,12 +93,10 @@ export default {
             for (const ring of document.getElementsByClassName("lds-dual-ring")){
                 ring.style.display = "none"
             }
-            } catch (error) {
-              
-                    window.alert ("error - get profile!");
-                    this.$router.push({path: '/'});
-                
-            }     
+        } catch (error) {
+            window.alert ("Error getting profile!");
+            this.$router.push({path: '/'});
+        }     
     },  
     methods: {
         toProjects(e){
@@ -129,13 +125,11 @@ export default {
             try {
                 this.projects = []
                 await DBFunctions.searchProjects(this.searchArgs, this.projects)
-                // window.alert(JSON.stringify(this.projects.list))
-                // this.projects = this.getProjects.projects
                 this.results = true
                 this.visibility = false
                 this.searchArgs = ''
             } catch (error) {
-                console.log(error)
+                window.alert("Error searching projects.")
             }
         },
         async resetProjects() {
@@ -174,12 +168,6 @@ div.sidebarLight::-webkit-scrollbar-track {
     background-color: #ffffff;
 }
 
-/* body {
-       background-color: #1b1b1b;
-       color: #e6e6e6;
-} */
-
-
 h1{
     color:white;
     font-size: 1.5rem;
@@ -190,8 +178,8 @@ h1{
   border-width: 3px;
   border-image: conic-gradient( magenta, blue, magenta) 1;
 }
+
 .hello{
     background-color: aquamarine;
 }
-
 </style>

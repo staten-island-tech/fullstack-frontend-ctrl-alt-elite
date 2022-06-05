@@ -1,7 +1,7 @@
 <template>
   <button id="followButton">
       <font-awesome-icon v-if="followingStatus" class="text-black dark:text-gray-100" :icon="['fas', 'user-plus']" @click="follow"/>
-      <font-awesome-icon v-if="!followingStatus"  class="text-emerald-400 dark:text-emerald-300" :icon="['fas', 'user-check']" @click="unfollow"/> 
+      <font-awesome-icon v-if="!followingStatus"  class="text-green-500 dark:text-green-400" :icon="['fas', 'user-check']" @click="unfollow"/> 
       <!-- do hovering effect (add words over hover) -->
   </button>
 </template>

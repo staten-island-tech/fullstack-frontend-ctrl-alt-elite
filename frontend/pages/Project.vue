@@ -28,15 +28,15 @@
       <div class="flex sm:hidden flex-col">
         <div class=" flex flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
           <div id="tab1" class="flex flex-row items-center ml-5 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12" @click="changeLanguage">
-            <font-awesome-icon id="logo1" icon="fa-brands fa-html5" class="px-1 text-red-600"/>
+            <font-awesome-icon icon="fa-brands fa-html5" id="logo1" class="px-1 text-red-600"/>
             <h2 id="html">HTML</h2>
           </div>
           <div id="tab2" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
-            <font-awesome-icon id="logo2" icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
+            <font-awesome-icon icon="fa-solid id="logo2" fa-star-of-life" class="px-1 text-blue-600" />
             <h2 id="css">CSS</h2>
           </div>
           <div id="tab3" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
-            <font-awesome-icon id="logo3" icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
+            <font-awesome-icon icon="fa-solid fa-code" id="logo3" class="px-1 text-yellow-600"/>
             <h2 id="js">JS</h2>
           </div>
         </div>
@@ -59,20 +59,20 @@
         <h2 class="text-2xl hidden md:flex bolded">Orientation:</h2>
         <div class="h-1/5 w-5/6 hidden md:flex flex-row">
           <button id="left" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon id="orientation1" icon="fa-solid fa-caret-left" class="fa-4x" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1"/>
           </button>
           <button id="middle" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon id="orientation2" icon="fa-solid fa-caret-up" class="fa-4x" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x" id="orientation2"/>
           </button>
           <button id="right" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon id="orientation3" icon="fa-solid fa-caret-right" class="fa-4x" @click="editorOrientation"/>
+            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-4x" id="orientation3" />
           </button>
         </div>
         <div class="h-1/10 w-full flex flex-row ">
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <div class="flex flex-row justify-end w-full justify-evenly">
+        <div class="flex flex-row w-full justify-evenly">
           <a v-if="$store.state.otherUserProject === false" class="inline-block text-xl select-none text-gray-600" @click="projectSettings"><font-awesome-icon icon="fa-solid fa-pen" /></a>
           <a v-if="$store.state.otherUserProject === false" class="inline-block text-xl text-red-500 select-none" @click="remove"><font-awesome-icon icon="fa-solid fa-trash-can" /></a>
         </div>     

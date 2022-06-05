@@ -78,7 +78,7 @@
           <span class="h-full w-3/4 m-auto flex items-center justify-center text-xl border-2 bg-white">Font Size</span>
           <input v-model.number="fontsize" type="number" step=".1" min="0" class="h-full w-3/4 flex text-center justify-center text-xl border-2 bg-white">
         </div>
-        <div class="flex flex-row justify-end">
+        <div class="flex flex-row justify-end w-full justify-between">
           <a v-if="$store.state.otherUserProject === false" class="inline-block text-xl select-none text-gray-600" @click="projectSettings"><font-awesome-icon icon="fa-solid fa-pen" /></a>
           <a v-if="$store.state.otherUserProject === false" class="inline-block text-xl text-red-500 select-none" @click="remove"><font-awesome-icon icon="fa-solid fa-trash-can" /></a>
         </div>     

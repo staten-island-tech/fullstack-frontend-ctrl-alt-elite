@@ -169,12 +169,22 @@ export default {
 
 }
 
-.sidebarDark::-webkit-scrollbar-track {
-  background-color: #202020;
+.sidebarDark {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #202020;
+  }
 }
 
-.sidebarLight::-webkit-scrollbar-track {
-  background-color: #fff;
+.sidebarLight {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #ffffff;
+  }
 }
 /* body {
        background-color: #1b1b1b;

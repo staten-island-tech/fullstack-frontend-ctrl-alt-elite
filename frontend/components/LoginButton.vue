@@ -1,5 +1,5 @@
 <template>
-  <button class="text-white border h-8 px-6 py-1 md:text-lg text-xs sm:text-base" @click="login">
+  <button class="text-white border flex items-center h-8 px-6 py-1 md:text-lg text-xs sm:text-base" @click="login">
     Login
   </button>
 </template>

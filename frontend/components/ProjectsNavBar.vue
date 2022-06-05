@@ -12,12 +12,8 @@
     </div>
       <div v-if="$store.state.otherUserProject === false" class="h-2/3 w-1/2 sm:1/3 md:w-2/5 xl:w-1/4 flex justify-around items-center">
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
-        <button class="md:hidden flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run"><font-awesome-icon :icon="['fas', 'play']"/></button>
         <button class="hidden md:flex bg-gray-500 hover:bg-gry-400 text-white py-2 px-4 rounded w-auto text-sm md:text-md" @click="save"> Save</button>
-        <button class="md:hidden flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="save"><font-awesome-icon :icon="['fas', 'floppy-disk']"/></button>
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"> Settings</button>
-        <button class="md:hidden flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"><font-awesome-icon :icon="['fas', 'gear']"/></button>
-        <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md">Publish</button>
         <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 " :src="userProfile.data.profile_pic" @click="viewProfile">
       </div>
       <div v-else-if="$store.state.otherUserProject === true" class="h-2/3 w-1/4 md:w-2/5 xl:w-1/4 flex justify-around items-center">   
@@ -32,16 +28,17 @@
 <script>
 import LikeButton from './LikeButton.vue';
 import DBFunctions from "~/DBFunctions";
+
 export default {
   components: { LikeButton },
   data(){
     return{
-      savedAlready: false,
       info: {
-      profilePic: '',
-      name:'',
+        profilePic: '',
+        name:'',
       },
       userProfile: { data : ""},
+      newestProjectId: []
     }
   },
   computed:{
@@ -54,16 +51,24 @@ export default {
       }
     },
   },
-  async mounted(){
-      this.getProfile();
-      if (this.$store.state.otherUserProject === true){
-        document.getElementById("title").readOnly = true
-      } 
+  mounted(){
+    window.onbeforeunload = function() {
+      console.log("hello");
+      this.$router.push("/Home")
+    };
+    this.getProfile();
+    if (this.$store.state.otherUserProject === true){
+      document.getElementById("title").readOnly = true
+    } 
   },
   methods:{
     async getProfile() {
       try {
-        await DBFunctions.getProfile(this.$store.state.otherEmail, this.userProfile)
+        if (this.$store.state.otherEmail === ""){
+          await DBFunctions.getProfile(this.$auth.user.email, this.userProfile)
+        } else if (this.$store.state.otherEmail !== ""){
+          await DBFunctions.getProfile(this.$store.state.otherEmail, this.userProfile)
+        }
       } catch {
         window.alert("error")
       }
@@ -110,63 +115,23 @@ export default {
     async save(){
       try {
         this.run()
-        if (this.savedAlready === false){
-          if (this.$store.state.newProject === true){
-            await DBFunctions.createProject(
-              {
-                "_id": this.$store.state.otherIDInfo.mongo_id,
-                "project_title": this.$store.state.projectTitle,
-                "description": this.$store.state.projectDescription,
-                "html": this.$store.state.codeHTML,
-                "css": this.$store.state.codeCSS,
-                "js": this.$store.state.codeJS,
-              }
-            )
-          }
-          if (this.$store.state.newProject === false){
-            await DBFunctions.updateProject({
-              "_id": this.$store.state.otherIDInfo.mongo_id,
-              "project_id": this.$store.state.project_id,
-              "new_title": this.$store.state.projectTitle,
-              "new_description": this.$store.state.projectDescription,
-              "new_html": this.$store.state.codeHTML,
-              "new_css": this.$store.state.codeCSS,
-              "new_js": this.$store.state.codeJS,
-            })
-          }
-        } else if (this.savedAlready === true){
-          await DBFunctions.updateProject({
-              "_id": this.$store.state.otherIDInfo.mongo_id,
-              "project_id": this.$store.state.project_id,
-              "new_title": this.$store.state.projectTitle,
-              "new_description": this.$store.state.projectDescription,
-              "new_html": this.$store.state.codeHTML,
-              "new_css": this.$store.state.codeCSS,
-              "new_js": this.$store.state.codeJS,
-            })
-        }
-        this.savedAlready = true
-      } catch (error) {
-        window.alert(error)
-      }
-    },
-    async publish(){
-      try {
-        if (this.savedAlready === false){
-          if (this.$store.state.newProject === true){
-          await DBFunctions.createProject(
-            {
-              "_id": this.$store.state.otherIDInfo.mongo_id,
+        if (this.$store.state.projectTitle === ""){
+          window.alert("Please make a title.")
+        } else {
+          // First checks if it is a new project
+          if (this.$store.state.newProject === true) {
+            // Then checks if user has already clicked save or not in order to stop duplication
+            await DBFunctions.createProject({
+              "_id": this.userProfile.data._id,
               "project_title": this.$store.state.projectTitle,
               "description": this.$store.state.projectDescription,
               "html": this.$store.state.codeHTML,
               "css": this.$store.state.codeCSS,
               "js": this.$store.state.codeJS,
-              "private_boolean": false
-            }
-          )
-          }
-          if (this.$store.state.newProject === false){
+            }, this.newestProjectId) 
+            this.$store.commit("newProject", false)
+            this.$store.commit("PUSH_PROJECT_ID", this.newestProjectId[0])
+          } else if (this.$store.state.newProject === false){
             await DBFunctions.updateProject({
               "_id": this.$store.state.otherIDInfo.mongo_id,
               "project_id": this.$store.state.project_id,
@@ -175,11 +140,9 @@ export default {
               "new_html": this.$store.state.codeHTML,
               "new_css": this.$store.state.codeCSS,
               "new_js": this.$store.state.codeJS,
-              "private_boolean": false
             })
           }
         }
-        this.$router.push("Home")
       } catch (error) {
         console.log(error);
       }

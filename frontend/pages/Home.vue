@@ -136,6 +136,7 @@ export default {
         },
         async searchProjects() {
             try {
+                this.projects = []
                 await DBFunctions.searchProjects(this.searchArgs, this.projects)
                 // window.alert(JSON.stringify(this.projects.list))
                 // this.projects = this.getProjects.projects

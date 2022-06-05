@@ -5,7 +5,7 @@
       <div class="flex flex-row md:justify-start justify-center items-center h-5/6 mx-16 md:mx-0" data-aos="fade-right">
         <div class="m-1 2xl:w-1/3 xl:w-1/3 lg:w-1/3 md:w-1/2 flex items-center justify-center flex-col md:items-start md:justify-around">
           <h1 class="text-white uppercase font-bold 2xl:text-5xl xl:text-5xl lg:text-4xl md:text-4xl sm:text-3xl text-center md:text-left text-3xl">Welcome to Codeverse.</h1>
-          <p class="text-center md:text-left text-white 2xl:text-xl xl:text-lg lg:text-lg md:text-lg sm:text-base my-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga modi accusamus adipisci rem est perspiciatis odio.</p>
+          <p class="text-center md:text-left text-white 2xl:text-xl xl:text-lg lg:text-lg md:text-lg sm:text-base my-5">Build robust programs in our user-friendly editor. Edit, debug, and run your own projects. Interact with and follow other creators. Create your own portfolio.  </p>
           <SignupButton  class="text-white border h-10 w-2/3 sm:w-1/2 md:w-1/2 2xl:w-1/3 ml-0 2xl:text-xl xl:text-xl text-sm">Sign up today!</SignupButton>
         </div>  
       </div>

@@ -6,8 +6,8 @@
                 <div class="w-full xl:w-5/6  flex  justify-center m-6">
                     <div class="w-full  flex flex-row flex-wrap justify-center">
                         <div class="xl:mt-12">
-                            <div class="flex flex-row w-full justify-center items-center h-10">
-                                <input v-model="searchArgs" type="search" class="form-control w-1/3 md:w-1/2 lg:w-2/3"/>
+                            <div class="flex flex-row w-full justify-center items-center h-14">
+                                <input v-model="searchArgs" type="search" placeholder="Search for a project..." class="form-control w-1/3 md:w-1/2 lg:w-2/3 h-10"/>
                                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="searchProjects">Search</button>
                                 <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="resetProjects">Reset</button>
                             </div>
@@ -45,7 +45,7 @@
                             </div>
                             <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
                         </div>
-                        <button class="border-t border-mid-gray dark:text-white text-black flex items-center w-full xl:pl-6 xl:absolute xl:bottom-3" @click="newProject">
+                        <button class="border-t border-mid-gray dark:text-white text-black flex items-center w-full pl-6 xl:absolute xl:bottom-3" @click="newProject">
                             <font-awesome-icon class="text-xs" :icon="['fas', 'circle-plus']"></font-awesome-icon>
                             <p class="p-2">Create New Project</p>
                         </button>

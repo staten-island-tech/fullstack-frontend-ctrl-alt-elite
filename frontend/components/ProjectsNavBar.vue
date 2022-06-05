@@ -4,7 +4,7 @@
       <button @click="toHome"><img class="mx-4 h-8 sm:h-12 pl-1 sm:pl-2 items-center" src="../assets/codeverse-logo-shortened.png"></button>
       <div class="flex flex-col items-center">
         <div class="flex flex-row items-center">
-          <font-awesome-icon icon="fa-solid fa-pen" class="px-3" />
+       
           <input id="title" v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center test-sm sm:text-md bg-transparent rounded"> 
         </div>
         <a v-if="$store.state.otherUserProject === true" @click="viewProfile"><h1 class="h-1/12 w-5/6 sm:w-full flex justify-center items-center text-xs sm:text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer">{{$store.state.otherUsername}}</h1></a>

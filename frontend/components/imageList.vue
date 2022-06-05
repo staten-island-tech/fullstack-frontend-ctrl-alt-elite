@@ -21,8 +21,13 @@ export default {
         "https://images.freeimages.com/images/large-previews/cd5/lady-avatar-1632969.jpg",
         "https://images.freeimages.com/images/large-previews/d66/woman-avatar-1632963.jpg",
         "https://images.freeimages.com/images/large-previews/971/basic-shape-avatar-1632968.jpg",
-        " https://images.freeimages.com/images/small-previews/962/avatar-man-with-mustages-1632966.jpg",
+        "https://images.freeimages.com/images/small-previews/962/avatar-man-with-mustages-1632966.jpg",
         "https://images.freeimages.com/images/small-previews/fdd/man-avatar-1632964.jpg",
+        "https://i.pinimg.com/originals/02/83/04/0283041631b3ca2a0a6991733b19fa31.png",
+        "https://streamsentials.com/wp-content/uploads/2021/01/OMEGALUL-transparent.png",
+        "https://streamsentials.com/wp-content/uploads/2020/12/pepega-png.png",
+        "https://images.gamebanana.com/img/ico/sprays/617466274d5c8.png",
+        "https://toppng.com/uploads/preview/138kib-724x543-1474488198-autre19-happy-face-over-angry-face-meme-11562883310wynv1gw9cz.png"
       ],  
     } 
   },

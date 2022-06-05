@@ -2,11 +2,11 @@
   <div>
     <div class="swiper">
       <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
-      <div class="swiper-wrapper">
+      <div class="swiper-wrapper flex justify-center items-center">
         <div :class="{ lds-dual-ring : $store.state.darkMode, lds-dual-ring-light : !$store.state.darkMode }"></div>
         <div v-for="(project,key) in project" :key="key" class="swiper-slide">
           <ProjectCard class="slider-content" :project="project" :following="following"/>
-        </div>
+        </div>z
       </div>
       <!-- If pagination is needed -->
       <div class="swiper-pagination"></div>
@@ -94,15 +94,15 @@ export default {
 
 .lds-dual-ring {
   display: inline-block;
-  position: absolute;
+  /* position: absolute; */
   width: 80px;
   height: 80px;
-  top: 100px;
-  left: 650px;
+  /* top: 100px;
+  left: 650px; */
 }
 .lds-dual-ring:after {
   content: " ";
-  position: absolute;
+  /* position: absolute; */
   display: block;
   width: 64px;
   height: 64px;
@@ -120,7 +120,7 @@ export default {
     transform: rotate(360deg);
   }
 }
-
+/*
 .lds-dual-ring-light {
   display: inline-block;
   position: absolute;
@@ -194,5 +194,5 @@ export default {
         border-color: #fff transparent #fff transparent;
         animation: lds-dual-ring 1.2s linear infinite;
    }
-}
+} */
 </style>

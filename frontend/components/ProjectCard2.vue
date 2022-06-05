@@ -9,7 +9,7 @@
        <div class="flex flex-row justify-center items-center">
        <h4 class="text-black dark:text-white mx-1 align-middle"> {{totalLikes}} </h4> 
       <ProjectsLikeButton   v-if="!ownProfile" key:=item :project="{projects:item,user_id:userInfo.userID, _id:userInfo.mongoID}"  @getLikes="emitChild" @updateLikes="changeLikes"/>
-      <font-awesome-icon  icon="fa-regular fa-thumbs-up"  class="px-1" />
+      <font-awesome-icon  icon="fa-regular fa-thumbs-up"  class="px-1 text-black dark:text-white" />
      
    </div>  
     </div>
@@ -77,5 +77,5 @@ methods:{
 </script>
 
 <style>
-
+@import '@fortawesome/fontawesome-svg-core/styles.css';
 </style>

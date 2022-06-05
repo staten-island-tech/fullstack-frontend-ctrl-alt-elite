@@ -41,6 +41,7 @@ export default {
     return{
       count: 0,
       scrollPosition: null,
+      userProfile: { data: '' },
     }
   },      
   mounted() {
@@ -59,10 +60,15 @@ export default {
       this.vantaEffect.destroy()
     }
   },
-  methods: {
-    redirect() {
+   methods: {
+    async redirect() {
       if (this.$auth.loggedIn) {
-        DBFunctions.login(this.$auth.user.email);
+        await DBFunctions.login(this.$auth.user.email);
+         try { 
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
+          } catch (error) { 
+            await DBFunctions.createUser(this.$auth.user,this.userProfile);
+          }
         this.$router.push({path: 'home'});
       } else {
         this.$router.push({path: '/'});

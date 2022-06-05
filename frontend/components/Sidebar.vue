@@ -1,12 +1,12 @@
 <template>
   <div id="nav" class="h-screen relative">
-      <font-awesome-icon id="cursor" v-if="!display" class="p-4 h-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+      <font-awesome-icon v-if="!display" id="cursor" class="p-4 h-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-screen md:w-full border-r border-medium-gray dark:border-d-bg-accent bg-l-bg-primary dark:bg-d-bg-primary">
             <div class="flex flex-row justify-between h-12">
                 <font-awesome-icon id="cursor" class="p-4 fa-lg text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
-               <img v-if="this.$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
-               <img v-if="!this.$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">
+               <img v-if="$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
+               <img v-if="!$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/3  w-11/12 border-b border-t border-medium-gray dark:border-slate">
                 <img class="rounded-full sm:w-20 md:w-24 w-16 justify-self-center self-center m-1 " :src="info.profilePic">
@@ -19,12 +19,12 @@
                    <button id="profile"  class="flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-lg" @click="getProfile">View Profile</button>
                 </div>
             </div>
-            <div class="lg:h-1/10 h-1/8 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-d-bg-accent m-2">
+            <div class="lg:h-1/9 h-1/8 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-d-bg-accent m-2">
                 <p>Theme</p>
                 <div class="flex flex-row items-center">
-                    <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !this.$store.state.darkMode }" class="text-lg text-mid-gray"></font-awesome-icon>
+                    <font-awesome-icon :icon="['fas', 'sun']" :class="{ selectedLight : !$store.state.darkMode }" class="text-lg text-mid-gray"></font-awesome-icon>
                     <ThemeButton class="text-3xl m-2"/>
-                    <font-awesome-icon :icon="['fas', 'moon']" :class="{ selectedDark : this.$store.state.darkMode, light : !this.$store.state.darkMode }" class="text-lg text-slate"></font-awesome-icon>
+                    <font-awesome-icon :icon="['fas', 'moon']" :class="{ selectedDark : $store.state.darkMode, light : !$store.state.darkMode }" class="text-lg text-slate"></font-awesome-icon>
                 </div>
             </div>
             <div class="flex flex-col dark:text-white text-black h-1/2 ml-4 md:ml-0.5 text-base md:text-lg">

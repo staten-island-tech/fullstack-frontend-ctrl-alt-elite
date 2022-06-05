@@ -52,10 +52,6 @@ export default {
     },
   },
   mounted(){
-    window.onbeforeunload = function() {
-      console.log("hello");
-      this.$router.push("/Home")
-    };
     this.getProfile();
     if (this.$store.state.otherUserProject === true){
       document.getElementById("title").readOnly = true

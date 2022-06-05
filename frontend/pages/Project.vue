@@ -40,7 +40,7 @@
             <h2 id="js">JS</h2>
           </div>
         </div>
-        <div id="mobileContainer" class="h-40/1 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-col ">
+        <div id="mobileContainer" class="h-40 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-col ">
           <div id="mobile1" class="flex w-full h-full cursor-pointer">
             <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
           </div>
@@ -51,17 +51,6 @@
             <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
           </div>
         </div>
-        <div id="mobileContainer" class="h-40/1 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-row ">
-          <div>
-            <AceEditor ref="editor1" v-model="contentHTML" lang="html" theme="twilight" @init="editorInit" @input="pushHTML"></AceEditor>
-          </div>
-          <div>
-            <AceEditor ref="editor2" v-model="contentCSS" lang="css" theme="twilight" @init="editorInit" @input="pushCSS"></AceEditor>
-          </div>
-          <div>
-            <AceEditor ref="editor3" v-model="contentJS" lang="javascript" theme="twilight" @init="editorInit" @input="pushJS"></AceEditor>
-          </div>
-        </div> -->
       </div>
     <iframe id='iframe' class="h-50 w-full"></iframe>
     </div>

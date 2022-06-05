@@ -185,7 +185,7 @@ module.exports.createUser = async (user, userProfile) => {
   // if (response.status === 500) throw response.error
 }
 
-module.exports.createProject = async (userProject) => {
+module.exports.createProject = async (userProject, test) => {
   try {
     const accessToken = sessionStorage.getItem('app_token')
     const response = await fetch(
@@ -200,6 +200,8 @@ module.exports.createProject = async (userProject) => {
       }
     )
     const data = await response.json()
+    const final = data.projects.length - 1
+    test.push(data.projects[final]._id)
     userProject = data
   } catch (error) {
     window.alert(error)

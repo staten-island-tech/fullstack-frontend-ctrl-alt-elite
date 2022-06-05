@@ -226,7 +226,7 @@ a.nuxt-link-exact-active, .defaultLink {
     width: 5rem;
   }
 h1{
-    color:white;
+
     font-size: 1.5rem;
 }
 .darkBorder {

@@ -6,10 +6,11 @@
                 <div class="w-full xl:w-5/6  flex  justify-center m-6">
                     <div class="w-full  flex flex-row flex-wrap justify-center">
                         <div class="xl:mt-12">
-                            <input v-model="searchArgs" type="search" class="form-control"/>
-                            <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="searchProjects">Search</button>
-                            <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="resetProjects">Reset</button>
-                            <div class="search-bar"></div>
+                            <div class="flex flex-row w-full justify-center items-center h-10">
+                                <input v-model="searchArgs" type="search" class="form-control w-1/3 md:w-1/2 lg:w-2/3"/>
+                                <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="searchProjects">Search</button>
+                                <button class="py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-blue-700 hover:from-pink-500 hover:to-yellow-500 mt-2" @click="resetProjects">Reset</button>
+                            </div>
                             <div v-show="visibility" class="bg-l-bg-primary dark:bg-d-bg-secondary p-6 pb-2 m-6">
                                 <h2 class="text-black dark:text-white text-2xl">Trending</h2>
                                 <Slideshow :project="trendingProjects" :following="userProfile.data.following" class="mb-6" />
@@ -27,14 +28,14 @@
                     </div>
                 </div>
                 <div class="w-4/5 xl:w-1/5 h-80 xl:h-4/5 xl:z-20 flex justify-center items-end mt-12 xl:mt-0">
-                    <div class="xl:fixed bg-l-bg-secondary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
+                    <div class="xl:fixed bg-l-bg-primary dark:bg-d-bg-secondary h-5/6 xl:w-1/6 xl:right-16 2xl:right-20 xl:top-20 flex flex-col items-center darkBorder w-4/5"> 
                         <h2 class="flex flex-col items-center m-2 p-2 justify-between border-b border-light-gray dark:border-mid-gray width-5/6 text-black dark:text-light-gray text-xl xl:text-2xl">Recent Projects </h2>
                         <div class="flex flex-col items-center overflow-scroll w-full overflow-x-hidden h-3/4" :class="{ sidebarDark : $store.state.darkMode, sidebarLight : !$store.state.darkMode }">
                             <div v-for="(project, key) in recent" :key="key" class="w-3/4">
                                 <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray w-full">
                                     <h3 class="dark:text-white text-lg 2xl:text-xl">{{ project.project_title }}</h3>
-                                <div class="text-medium-gray dark:text-mid-gray flex flex-col items-center text-center w-full">
-                                        <div class="flex flex-row items-center justify-start text-center text-xs w-full">
+                                <div class="flex flex-col items-center text-center w-full">
+                                        <div class="text-mid-gray flex flex-row items-center justify-start text-center text-xs w-full">
                                             <font-awesome-icon class="fa-2xs" :icon="['far', 'clock']"></font-awesome-icon>
                                             <p class="p-2 text-left">{{ project.updatedAt }}</p>
                                         </div>
@@ -44,7 +45,7 @@
                             </div>
                             <NuxtLink to="/Profile/Projects" class="text-black dark:text-light-gray"><p> View all projects...</p></NuxtLink>
                         </div>
-                        <button class="border-t border-mid-gray dark:text-white text-black flex items-center pl-6 xl:absolute xl:bottom-3" @click="newProject">
+                        <button class="border-t border-mid-gray dark:text-white text-black flex items-center w-full xl:pl-6 xl:absolute xl:bottom-3" @click="newProject">
                             <font-awesome-icon class="text-xs" :icon="['fas', 'circle-plus']"></font-awesome-icon>
                             <p class="p-2">Create New Project</p>
                         </button>
@@ -177,11 +178,6 @@ export default {
        background-color: #1b1b1b;
        color: #e6e6e6;
 } */
-.search-bar{
-border-radius: 1rem;
-text-align: center;
-align-items: center;
-}
 
 
 h1{

@@ -100,7 +100,7 @@ export default {
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: black;
+  color: gray;
 }
 
 .light {

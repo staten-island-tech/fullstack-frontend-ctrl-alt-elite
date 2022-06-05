@@ -84,15 +84,15 @@ export default {
     },
     async mounted (){
         try {
-            try { 
-                await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
-            } catch (error) { 
-                if (error.code === 999){
-                    await DBFunctions.createUser(this.$auth.user,this.userProfile);
-                }
-                else 
-                   throw error; 
-            }
+            // try { 
+            await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
+            // } catch (error) { 
+            //     if (error.code === 999){
+            //         await DBFunctions.createUser(this.$auth.user,this.userProfile);
+            //     }
+            //     else 
+            //        throw error; 
+            // }
             const parsedProfile = JSON.parse(JSON.stringify(this.userProfile))
             this.$store.commit("updateOtherIDInfo", {mongo_id:parsedProfile.data._id,email:parsedProfile.data.user_id})
             await DBFunctions.getProjects(this.$store.state.otherIDInfo.mongo_id, this.recent)

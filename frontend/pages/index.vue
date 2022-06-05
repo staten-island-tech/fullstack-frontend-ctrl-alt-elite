@@ -41,6 +41,8 @@ export default {
     return{
       count: 0,
       scrollPosition: null,
+      userProfile: { data: '' },
+
     }
   },      
   mounted() {
@@ -60,9 +62,27 @@ export default {
     }
   },
   methods: {
-    redirect() {
+    async redirect() {
       if (this.$auth.loggedIn) {
-        DBFunctions.login(this.$auth.user.email);
+           
+         
+        try { 
+              await DBFunctions.login(this.$auth.user.email);
+              await DBFunctions.getProfile(this.$auth.user.email,this.userProfile) 
+              
+            } catch (error) { 
+                if (error.code === 999){
+                  await DBFunctions.createUser(this.$auth.user,this.userProfile);
+                  
+                }
+                else 
+                {
+                   window.alert ('error')
+                   window.alert(JSON.stringify(error))
+                   this.$router.push({path: '/'});
+                }
+
+            }    
         this.$router.push({path: 'home'});
       } else {
         this.$router.push({path: '/'});

@@ -85,7 +85,7 @@
       </div>
     </div>
     <div id="projectsettingsdiv" class="h-full w-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting2">
-      <div id="projectsettings" class="h-4/5 w-2/3 flex flex-col justify-evenly items-center border-2 bg-gray-400">
+      <div id="projectsettings" class="h-3/5 w-1/2 flex flex-col justify-evenly items-center border-2 bg-gray-400">
         <input v-model="title" placeholder="Title" type="text" class="h-1/10 w-1/4 p-4">
         <textarea v-model="description" placeholder="Description" type="text" class="h-2/5 w-3/4 p-4"></textarea>
       </div>

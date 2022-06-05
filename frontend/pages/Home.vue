@@ -35,7 +35,7 @@
                                 <div :id="project.project_title" class="text-black mb-2 border-b border-light-gray dark:border-mid-gray w-full">
                                     <h3 class="dark:text-white text-lg 2xl:text-xl">{{ project.project_title }}</h3>
                                 <div class="flex flex-col items-center text-center w-full">
-                                        <div class="text-mid-gray flex flex-row items-center justify-start text-center text-xs w-full">
+                                        <div class="text-gray-500 flex flex-row items-center justify-start text-center text-xs w-full">
                                             <font-awesome-icon class="fa-2xs" :icon="['far', 'clock']"></font-awesome-icon>
                                             <p class="p-2 text-left">{{ project.updatedAt }}</p>
                                         </div>

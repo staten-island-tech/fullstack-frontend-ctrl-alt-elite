@@ -12,7 +12,7 @@
     </div>
       <div v-if="$store.state.otherUserProject === false" class="h-2/3 w-1/2 sm:1/3 md:w-2/5 xl:w-1/4 flex justify-around items-center">
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="run">Run</button>
-        <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="save"> Save</button>
+        <button id="saveButton" class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="save"> Save</button>
         <button class="hidden md:flex w-auto bg-gray-500 hover:bg-gray-400 text-white  py-2 px-4 rounded text-sm md:text-md" @click="settings"> Settings</button>
         <img class="basis-5 rounded-full h-10 justify-self-center self-center m-1 cursor-pointer transform transition duration-500 hover:scale-125" :src="userProfile.data.profile_pic" @click="viewProfile">
       </div>
@@ -52,10 +52,12 @@ export default {
     },
   },
   mounted(){
+    document.getElementById("saveButton").disabled === false
     this.getProfile();
     if (this.$store.state.otherUserProject === true){
       document.getElementById("title").readOnly = true
-    } 
+    }
+    setTimeout('document.getElementById("saveButton").disabled === true;', 1500) 
   },
   methods:{
     async getProfile() {

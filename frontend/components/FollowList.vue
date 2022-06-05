@@ -1,4 +1,3 @@
-
 <template>
   <div class="flex flex-col justify-center items-center text-black dark:text-white">
      <!-- <DefaultNavBar /> -->
@@ -28,12 +27,12 @@
 
 <script>
 export default {
-    props: {
-       list: {      
-           type:Object,
-           required:true
-       },
-   },  
+  props: {
+    list: {      
+      type:Object,
+      required:true
+    },
+  },  
   methods: {
     viewOtherUser(mongoID,userID){
       this.$store.commit('updateOtherIDInfo', {mongo_id:mongoID,email:userID});

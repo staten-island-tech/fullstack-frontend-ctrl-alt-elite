@@ -1,8 +1,8 @@
 <template>
   <button id="followButton">
-      <font-awesome-icon v-if="followingStatus" class="text-black dark:text-gray-100" :icon="['fas', 'user-plus']" @click="follow"/>
-      <font-awesome-icon v-if="!followingStatus"  class="text-green-600 dark:text-green-500" :icon="['fas', 'user-check']" @click="unfollow"/> 
-      <!-- do hovering effect (add words over hover) -->
+    <font-awesome-icon v-if="followingStatus" class="text-black dark:text-gray-100" :icon="['fas', 'user-plus']" @click="follow"/>
+    <font-awesome-icon v-if="!followingStatus"  class="text-green-600 dark:text-green-500" :icon="['fas', 'user-check']" @click="unfollow"/> 
+    <!-- do hovering effect (add words over hover) -->
   </button>
 </template>
 
@@ -37,7 +37,7 @@ export default {
           await DBFunctions.follow(this.$auth.user.email, this.user)
         }
       } catch (error) {
-        console.log(error);
+        window.alert("Error following user!")
       }
     },
     async unfollow() {
@@ -47,7 +47,7 @@ export default {
           await DBFunctions.unFollow(this.$auth.user.email, this.user)
         }
       } catch (error) {
-        console.log(error);
+        window.alert("Error unfollowing user!")
       }
     }
   }

@@ -11,9 +11,7 @@
 export default {
   data() {
     return {
-      projects: [
-        
-      ],
+      projects: [],
       search: ""
     }
   },
@@ -25,6 +23,7 @@ export default {
   },
 }
 </script>
+
 <style>
 #show-projects {
   max-width: 800px;

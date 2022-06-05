@@ -37,7 +37,7 @@ export default {
      //   userInfo: Object,
         allProjects: Array,
         projects: Array,
-        pageLimit:5,
+        pageLimit:6,
         searchArgs: "",
         start: 1,
         total: 1,

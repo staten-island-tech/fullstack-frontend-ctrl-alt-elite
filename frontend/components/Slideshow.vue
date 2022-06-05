@@ -3,10 +3,10 @@
     <div class="swiper">
       <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
       <div class="swiper-wrapper">
-        <div :class="{ lds-dual-ring : $store.state.darkMode, lds-dual-ring-light : !$store.state.darkMode }"></div>
+        <div class="lds-dual-ring"></div>
         <div v-for="(project,key) in project" :key="key" class="swiper-slide">
           <ProjectCard class="slider-content" :project="project" :following="following"/>
-        </div>z
+        </div>
       </div>
       <!-- If pagination is needed -->
       <div class="swiper-pagination"></div>
@@ -102,7 +102,7 @@ export default {
 }
 .lds-dual-ring:after {
   content: " ";
-  /* position: absolute; */
+  position: absolute;
   display: block;
   width: 64px;
   height: 64px;
@@ -121,36 +121,7 @@ export default {
   }
 }
 
-.lds-dual-ring-light {
-  display: inline-block;
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  top: 100px;
-  left: 650px;
-}
-.lds-dual-ring-light:after {
-  content: " ";
-  position: absolute;
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid #000;
-  border-color: #000 transparent #000 transparent;
-  animation: lds-dual-ring-light 1.2s linear infinite;
-}
-@keyframes lds-dual-ring-light {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@media screen and (max-width: 1200px) {
+@media (max-width: 1200px) {
     .lds-dual-ring {
         width: 60px;
         height: 60px;
@@ -160,18 +131,10 @@ export default {
         width: 50px;
         height: 50px;
    }
-   .lds-dual-ring-light {
-        width: 60px;
-        height: 60px;
-        left: 580px;
-    }
-  .lds-dual-ring-light:after {
-        width: 50px;
-        height: 50px;
-   }
+  
 } 
 
-@media screen and (max-width: 1000px) {
+@media (max-width: 1000px) {
     .lds-dual-ring {
         width: 60px;
         height: 60px;
@@ -181,18 +144,10 @@ export default {
         width: 50px;
         height: 50px;
    }
-   .lds-dual-ring-light {
-        width: 60px;
-        height: 60px;
-        left: 480px;
-    }
-  .lds-dual-ring-light:after {
-        width: 50px;
-        height: 50px;
-   }
+   
 } 
 
-@media screen and (max-width: 800px) {
+@media (max-width: 800px) {
     .lds-dual-ring {
         width: 60px;
         height: 60px;
@@ -202,18 +157,10 @@ export default {
         width: 50px;
         height: 50px;
    }
-   .lds-dual-ring-light {
-        width: 60px;
-        height: 60px;
-        left: 380px;
-    }
-   .lds-dual-ring-light:after {
-        width: 50px;
-        height: 50px;
-   }
+  
 } 
 
-@media screen and (max-width: 400px) {
+@media (max-width: 400px) {
     .lds-dual-ring {
         width: 50px;
         height: 50px;
@@ -223,14 +170,6 @@ export default {
         width: 45px;
         height: 45px;
    }
-   .lds-dual-ring-light {
-        width: 50px;
-        height: 50px;
-        left: 180px;
-    }
-  .lds-dual-ring-light:after {
-        width: 45px;
-        height: 45px;
-   }
+
 }
 </style>

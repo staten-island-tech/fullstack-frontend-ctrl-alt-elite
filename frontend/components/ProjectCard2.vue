@@ -3,16 +3,13 @@
     <div class="h-4/5 w-full relative z-50 " @click="viewProject">
       <iframe id="iframe" class="h-full w-full absolute bg-white pointer-events-none" :srcdoc="src"></iframe>
     </div>
-     <div class="h-1/5 w-full flex flex-row justify-center bg-gray-200 dark:bg-black">
+    <div class="h-1/5 w-full flex flex-row justify-center bg-gray-200 dark:bg-black">
       <button class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold mt-2 ml-1" @click="viewProject">{{item.project_title}} </button>
-       
-       <div class="flex flex-row justify-center items-center">
-       
-      <ProjectsLikeButton   v-if="!ownProfile" key:=item :project="{projects:item,user_id:userInfo.userID, _id:userInfo.mongoID}"  @getLikes="emitChild" @updateLikes="changeLikes"/>
-      <h4 class="text-black dark:text-white mx-1 align-middle"> {{totalLikes}} </h4> 
-      <font-awesome-icon v-if="ownProfile"  icon="fa-regular fa-thumbs-up"  class="px-1 text-black dark:text-white" />
-     
-   </div>  
+      <div class="flex flex-row justify-center items-center">
+        <ProjectsLikeButton   v-if="!ownProfile" key:=item :project="{projects:item,user_id:userInfo.userID, _id:userInfo.mongoID}"  @getLikes="emitChild" @updateLikes="changeLikes"/>
+        <h4 class="text-black dark:text-white mx-1 align-middle"> {{totalLikes}} </h4> 
+        <font-awesome-icon v-if="ownProfile"  icon="fa-regular fa-thumbs-up"  class="px-1 text-black dark:text-white" />
+      </div>  
     </div>
   </div>
 </template>
@@ -20,7 +17,7 @@
 <script>
 export default {
 props: {
-  item : {      // user id 
+  item : {      
     type:Object,
     required:true,
   },
@@ -30,50 +27,49 @@ props: {
   }
 },
 data(){
-    return{
-      src: `
-              <head>
-                <meta charset="UTF-8">
-                <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>I See You Inspecting</title>
-                <style>${this.item.published_code.css}</style>
-              </head>
-              ${this.item.published_code.html}
-            `,
-             totalLikes: 0,
+  return{
+    src: `
+            <head>
+              <meta charset="UTF-8">
+              <meta http-equiv="X-UA-Compatible" content="IE=edge">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>I See You Inspecting</title>
+              <style>${this.item.published_code.css}</style>
+            </head>
+            ${this.item.published_code.html}
+          `,
+      totalLikes: 0,
     }
   },
-    computed: {
-    
+  computed: { 
     ownProfile:{
       get(){ 
         return this.$auth.user.email === this.$store.state.otherIDInfo.email
       }
     },  
   }, 
-methods:{
-  viewProject(){
-    this.$store.commit('PUSH_HTML', this.item.published_code.html)
-    this.$store.commit('PUSH_CSS', this.item.published_code.css)
-    this.$store.commit('PUSH_JS', this.item.published_code.js)
-    this.$store.commit('PUSH_PROJECT_ID', this.item._id)
-    this.$store.commit('PUSH_TITLE', this.item.project_title)
-    this.$store.commit('PUSH_DESCR', this.item.description)
-    this.$store.commit("otherUsername", this.userInfo.name)
-    this.$store.commit("otherEmail", this.userInfo.userID)
-    this.$store.commit("otherMongo_id", this.userInfo.mongoID)
-    this.$store.commit("newProject", false)
-    this.$router.push("/")
-    this.$router.push("/Project")
-  },
-  emitChild(value){
+  methods:{
+    viewProject(){
+      this.$store.commit('PUSH_HTML', this.item.published_code.html)
+      this.$store.commit('PUSH_CSS', this.item.published_code.css)
+      this.$store.commit('PUSH_JS', this.item.published_code.js)
+      this.$store.commit('PUSH_PROJECT_ID', this.item._id)
+      this.$store.commit('PUSH_TITLE', this.item.project_title)
+      this.$store.commit('PUSH_DESCR', this.item.description)
+      this.$store.commit("otherUsername", this.userInfo.name)
+      this.$store.commit("otherEmail", this.userInfo.userID)
+      this.$store.commit("otherMongo_id", this.userInfo.mongoID)
+      this.$store.commit("newProject", false)
+      this.$router.push("/")
+      this.$router.push("/Project")
+    },
+    emitChild(value){
       this.totalLikes = value
     },
     changeLikes(value){
       this.totalLikes += value
     }
-}
+  }
 }
 </script>
 

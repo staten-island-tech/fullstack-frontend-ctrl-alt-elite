@@ -1,6 +1,5 @@
 <template>
     <div>
-       
         <div class="w- h-100 justify-center items-center bg-blue">
             <h1 class="text-white bg-blue-700 ">hello</h1>
         </div>
@@ -9,20 +8,7 @@
 </template>
 
 <script>
-
 export default {
-   data(){
-       return{
-           
-
-       }
-    },
-
-    methods: {
-    updatePhoto(){
-      
-    }
-    }
 }
 </script>
 

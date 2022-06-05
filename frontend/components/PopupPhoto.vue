@@ -1,16 +1,14 @@
 <template>
     <div class="popup">
         <div class="popup-inner">
-           <slot />
+           <slot/>
            <button class=" mr-2 mt-5 bg-gray-700 hover:bg-gray-500 text-white py-2 px-4 rounded popup-close">Close Popup</button>
         </div>
     </div>
 </template>
 
 <script>
-
 </script>
-
 
 <style scoped>
 .popup{
@@ -25,13 +23,12 @@
     align-items: center; 
     justify-content: center; 
 }
-    .popup-inner {
-        display: flex;
-        align-items: center; 
-        justify-content: center; 
-        background: #fff; 
-        padding: 30px;
-       
 
+.popup-inner {
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    background: #fff; 
+    padding: 30px;
 }
 </style>

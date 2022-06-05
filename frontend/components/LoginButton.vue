@@ -6,21 +6,12 @@
 
 <script>
 import DBFunctions from "~/DBFunctions";
-    export default {
-    name: 'LoginButton',
-     
-   
-    methods: {
-     login() {
-        
-        
-       this.$auth.loginWith('auth0').then( () => {DBFunctions.login(this.$auth.user.email);})
-             
-       
-         
-       
-      },
-  
+export default {
+  name: 'LoginButton', 
+  methods: {
+    login() {
+      this.$auth.loginWith('auth0').then( () => {DBFunctions.login(this.$auth.user.email);})
     },
-  };
+  },
+}
 </script>

@@ -37,7 +37,9 @@ export default {
         profilePic: '',
         name:'',
       },
-      userProfile: { data : ""},
+      userProfile: { 
+        data : ""
+      },
       newestProjectId: []
     }
   },
@@ -68,7 +70,7 @@ export default {
           await DBFunctions.getProfile(this.$store.state.otherEmail, this.userProfile)
         }
       } catch {
-        window.alert("error")
+        window.alert("Error getting profile information.")
       }
     },
     viewProfile(){
@@ -103,7 +105,7 @@ export default {
           </body>
         </html>`
       } catch (error) {
-        alert(error)
+        window.alert("Error running code.")
       }
     },
     settings(){
@@ -142,7 +144,7 @@ export default {
           }
         }
       } catch (error) {
-        console.log(error);
+        console.log("Error saving project.");
       }
     },
     async copy(){
@@ -158,7 +160,7 @@ export default {
         this.$store.commit("PUSH_TITLE", "")
         this.$store.commit("PUSH_DESCR", "")
       } catch (error) {
-        console.log(error);
+        console.log("Error copying project code.");
       }
     }
   }

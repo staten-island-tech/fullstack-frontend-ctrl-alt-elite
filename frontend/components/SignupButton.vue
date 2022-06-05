@@ -3,31 +3,11 @@
 </template>
 
 <script>
-
 export default {
-    
-    
-     methods: {
-     
-    
-       signup()  {
-        
-         this.$auth.loginWith("auth0", { params: { screen_hint: "signup" }})
-        
-                           
-                                        
-         
-        
-      
-        
-        
-       
-      
-      },
-     },
+  methods: {
+    signup()  {
+      this.$auth.loginWith("auth0", { params: { screen_hint: "signup" }})
+    },
+  },
 }
 </script>
-
-<style>
-
-</style>

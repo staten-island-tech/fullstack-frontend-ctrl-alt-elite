@@ -20,21 +20,17 @@ import DBFunctions from "~/DBFunctions";
 export default {
   props: {
     project: Object,
-  
-   userInfo:{
-    type: Object,
-    required: true
+    userInfo:{
+      type: Object,
+      required: true
     }
   },
-  
   data() {
     return {
       liked: false,
-      
     }
   },
   mounted(){
-    
     this.check()
     this.$emit("getLikes", this.project.projects.project_likes.length)
   },
@@ -52,7 +48,7 @@ export default {
         this.liked = !this.liked
         await DBFunctions.addLike(this.project, this.$auth.user.email)
       } catch (error) {
-        window.alert(error)
+        window.alert("Error liking project!")
       }
     },
     async unlike() {
@@ -61,7 +57,7 @@ export default {
         this.liked = !this.liked
         await DBFunctions.removeLike(this.project, this.$auth.user.email)
       } catch (error) {
-        window.alert(error)
+        window.alert("Error unliking project!")
       }
     },
   },

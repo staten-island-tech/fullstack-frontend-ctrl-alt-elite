@@ -1,22 +1,22 @@
 <template>
   <div id="nav" class="h-screen relative">
-      <font-awesome-icon v-if="!display" id="cursor" class="p-4 h-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
+    <font-awesome-icon v-if="!display" id="cursor" class="p-4 h-10 text-black dark:text-gray-100 text-xl" :icon="['fas', 'bars']"  @click="toggleVisible"/>
     <div :class="{ shown : display }" class="h-screen w-0 duration-100 bg-l-bg-primary dark:bg-d-bg-secondary absolute z-10">
         <div v-if="display" class="h-full w-screen md:w-full border-r border-medium-gray dark:border-d-bg-accent bg-l-bg-primary dark:bg-d-bg-primary">
             <div class="flex flex-row justify-between h-12">
                 <font-awesome-icon id="cursor" class="p-4 fa-lg text-2xl text-black dark:text-gray-100" :icon="['fas', 'xmark']"  @click="toggleVisible"/>
-               <img v-if="$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
-               <img v-if="!$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">
+                <img v-if="$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo.png">
+                <img v-if="!$store.state.darkMode" class="flex h-16 mx-4 align-center justify-center" src="../assets/codeverse-logo-light.png">
             </div> 
             <div class="flex flex-col align-center justify-center m-2 h-1/3  w-11/12 border-b border-t border-medium-gray dark:border-slate">
                 <img class="rounded-full sm:w-20 lg:w-24 w-16 justify-self-center self-center m-1 " :src="info.profilePic">
                 <div class="text-black dark:text-light-gray flex items-center justify-center flex-col text-center">
                     <p class="font-bold text-xl md:text-base">{{info.name}}</p>
-                   <div class="text-sm flex flex-row justify-between m-2 w-1/2 md:w-2/3 text-black dark:text-white">
-                       <p>Following  {{info.following}}</p> 
+                    <div class="text-sm flex flex-row justify-between m-2 w-1/2 md:w-2/3 text-black dark:text-white">
+                        <p>Following  {{info.following}}</p> 
                         <p>Followers  {{info.followers}}</p>
-                   </div>
-                   <button id="profile"  class="flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-base xl:text-lg" @click="getProfile">View Profile</button>
+                    </div>
+                    <button id="profile"  class="flex py-2 px-4 rounded text-gray-900 font-bold bg-gradient-to-r from-purple-300 to-primary hover:from-pink-500 hover:to-yellow-500 my-2 text-base xl:text-lg" @click="getProfile">View Profile</button>
                 </div>
             </div>
             <div class="md:h-1/9 h-1/8 text-black dark:text-white flex items-center flex-col w-11/12 border-b border-medium-gray dark:border-d-bg-accent m-2">
@@ -53,11 +53,7 @@
             </div>
         </div>
     </div>
-    <!-- <NuxtLink class="option3" to="/Settings">Settings</NuxtLink>
-    <NuxtLink class="option3" to="/Profile">Profile</NuxtLink> 
-    <LogoutButton/> -->
   </div>
-
 </template>
 
 <script>
@@ -79,73 +75,57 @@ export default {
             list: [],
         };
     },
-       computed: {
-     
-    reload: {
-      get() {
-        return this.$store.state.reload;
-      }
-    }
-       
-},
-watch: {
-    reload(newValue, oldValue) {
-      this.refresh();
-    }
-  },
-     mounted (){
-        
+    computed: {
+        reload: {
+            get() {
+                return this.$store.state.reload;
+            }
+        }   
+    },
+    watch: {
+        reload(newValue, oldValue) {
+            this.refresh();
+        }
+    },
+    mounted (){
         this.$store.commit('updateReload')
-        
-        } ,
+    },
     methods: {
-        async refresh()
-        {
-             
-                
+        async refresh() { 
            await DBFunctions.getInfo(this.$auth.user.email,this.info);
-
         },
         toggleVisible() {
-            this.display = !this.display;
-             
+            this.display = !this.display; 
         },
-        getProfile (options){
-            
-           this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
-           this.$store.commit('updateReload')
-           if (this.info.userID !== this.$auth.user.email){
+        getProfile(options) {
+            this.$store.commit("updateOtherIDInfo", {mongo_id:this.info.mongoID,email:this.info.userID})
+            this.$store.commit('updateReload')
+            if (this.info.userID !== this.$auth.user.email){
                 this.$store.commit("isNotYourProject", true)
             } else if (this.info.userID === this.$auth.user.email){
                 this.$store.commit("isNotYourProject", false)
             }
-    
-             this.$store.commit('updateProfileChild',options)
-                     
-          
-           this.$router.push({name: 'Profile'});
-            
-         } ,
+            this.$store.commit('updateProfileChild',options)
+            this.$router.push({name: 'Profile'});
+        },
         async logout() {
-        sessionStorage.removeItem('app_token');
-        await this.$auth.logout()
-       
-      },
-      toHome(){
-        this.$store.commit("isNotYourProject", false)
-        this.$router.push("/home")
-      },
- async resetProfile()   {
-      await this.getProfile();
-      window.alert("Profile information reset.")
-      
-    },
-  async updateProfile()   {
-      await DBFunctions.updateProfile(this.userProfile)
-      window.alert("Profile information updated.")
-    },
-    newProject(){
-        this.$store.commit("PUSH_HTML", "")
+            sessionStorage.removeItem('app_token');
+            await this.$auth.logout()
+        },
+        toHome(){
+            this.$store.commit("isNotYourProject", false)
+            this.$router.push("/home")
+        },
+        async resetProfile()   {
+            await this.getProfile();
+            window.alert("Profile information reset.")
+        },
+        async updateProfile()   {
+            await DBFunctions.updateProfile(this.userProfile)
+            window.alert("Profile information updated.")
+        },
+        newProject(){
+            this.$store.commit("PUSH_HTML", "")
             this.$store.commit("PUSH_CSS", "")
             this.$store.commit("PUSH_JS", "")
             this.$store.commit("PUSH_TITLE", "")
@@ -155,17 +135,18 @@ watch: {
             this.$store.commit("otherEmail", this.$auth.user.email)
             this.$router.push("/")
             this.$router.push({name:'Project'})
-    }
-},
-};
+        }
+    },
+}
 </script>
 
 <style scoped>
 @import '@fortawesome/fontawesome-svg-core/styles.css';
+
 #cursor {
     cursor: pointer;
-
 }
+
 #nav {
     color: gray;
     position: relative;

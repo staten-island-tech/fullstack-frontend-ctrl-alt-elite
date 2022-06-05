@@ -45,7 +45,7 @@ export default {
         this.liked = !this.liked
         await DBFunctions.addLike(this.project, this.$auth.user.email)
       } catch (error) {
-        window.alert(error)
+        window.alert("Error liking project!")
       }
     },
     async unlike() {
@@ -54,7 +54,7 @@ export default {
         this.liked = !this.liked
         await DBFunctions.removeLike(this.project, this.$auth.user.email)
       } catch (error) {
-        window.alert(error)
+        window.alert("Error unliking project!")
       }
     },
   },

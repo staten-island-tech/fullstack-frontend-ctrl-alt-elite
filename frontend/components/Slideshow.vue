@@ -1,19 +1,19 @@
 <template>
-    <div >
-        <div class="swiper">
-        <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
-        <div class="swiper-wrapper">
-          <div class="lds-dual-ring"></div>
-          <div v-for="(project,key) in project" :key="key" class="swiper-slide">
-            <ProjectCard class="slider-content" :project="project" :following="following"/>
-          </div>
+  <div>
+    <div class="swiper">
+      <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
+      <div class="swiper-wrapper">
+        <div class="lds-dual-ring"></div>
+        <div v-for="(project,key) in project" :key="key" class="swiper-slide">
+          <ProjectCard class="slider-content" :project="project" :following="following"/>
         </div>
-        <!-- If pagination is needed -->
-        <div class="swiper-pagination"></div>
-        <!-- If navigation buttons are needed -->
-        <div class="swiper-button-next" :class="{ light : !$store.state.darkMode }"></div>
       </div>
+      <!-- If pagination is needed -->
+      <div class="swiper-pagination"></div>
+      <!-- If navigation buttons are needed -->
+      <div class="swiper-button-next" :class="{ light : !$store.state.darkMode }"></div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -31,7 +31,6 @@ export default {
     // previously it was before export default. Moved here for performance issues. Move back in case of problems.
     // add or remove unused modules
     Swiper.use([ FreeMode, Navigation])
-    
     // init Swiper:
     /* eslint-disable no-unused-vars */
     const swiper = new Swiper('.swiper', {
@@ -44,40 +43,26 @@ export default {
       observeParents: true,
       // spaceBetween: 10,
       // spaceBetween: "30",
-            
       breakpoints: {
-            1500: {
-              slidesPerView: 3,
-              direction: 'horizontal'
-            },
+        1500: {
+          slidesPerView: 3,
+          direction: 'horizontal'
+        },
 
-            1050: {
-              direction: 'horizontal',
-              slidesPerView: 2,
-            },
+        1050: {
+          direction: 'horizontal',
+          slidesPerView: 2,
+        },
       },
-
       // remove unused modules if needed
       modules: [ FreeMode, Navigation],
-      // Pagination if needed
-      // pagination: {
-      //   el: '.swiper-pagination',
-      //   type: 'bullets',
-      //   clickable: true
-      // },
-    
-      // autoplay: {
-      //   delay: 3000
-      // },
-     
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev'
       }
-      
     })
   }
-};
+}
 </script>
 
 <style scoped>
@@ -135,5 +120,4 @@ export default {
     transform: rotate(360deg);
   }
 }
-
 </style>

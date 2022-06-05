@@ -1,30 +1,24 @@
 <template>
 <!-- <body onload = "snackBar()"> -->
-<div class="flex justify-center content-center">
-    <div id="snackBar">
-    <p class="text-white">Welcome, {{ this.$auth.user.name }} </p>
-  
+    <div class="flex justify-center content-center">
+        <div id="snackBar">
+            <p class="text-white">Welcome, {{ this.$auth.user.name }} </p>
+        </div>
     </div>
-</div></body>
+    </body>
 </template>
+
 <script>
 export default {
-    data() {
-        return {
-            
-        }
-    },
     mounted() {
-      
-            document.getElementById("snackBar").className = "show";
-            setInterval( function() {
-                document.getElementById("snackBar").className = document.getElementById("snackBar").className.replace("show","");
-            }, 3000);
-   
+        document.getElementById("snackBar").className = "show";
+        setInterval( function() {
+            document.getElementById("snackBar").className = document.getElementById("snackBar").className.replace("show","");
+        }, 3000);
     }
-
 }
 </script>
+
 <style scoped>
 
 #snackBar {
@@ -38,7 +32,6 @@ export default {
     background-color: black;
     color: white;
     position: absolute;
-  
 }
 
 #snackBar.show {

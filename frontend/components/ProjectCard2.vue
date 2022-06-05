@@ -3,10 +3,15 @@
     <div class="h-4/5 w-full relative z-50 " @click="viewProject">
       <iframe id="iframe" class="h-full w-full absolute bg-white pointer-events-none" :srcdoc="src"></iframe>
     </div>
-    <div class="h-1/4 w-full flex flex-row justify-center bg-black">
-      <button class="text-white dark:text-white w-full z-10 flex justify-center px-3 font-bold" @click="viewProject">{{item.project_title}} </button>
-      <h2 class="text-white dark:text-white mx-1"> {{item.project_likes.length}} </h2> 
-          <!-- <i class="fa-regular fa-user w-1/7"></i> -->
+     <div class="h-1/5 w-full flex flex-row justify-center bg-gray-200 dark:bg-black">
+      <button class="text-black dark:text-white w-full z-10 flex justify-center px-3 font-bold mt-2 ml-1" @click="viewProject">{{item.project_title}} </button>
+       
+       <div class="flex flex-row justify-center items-center">
+       <h4 class="text-black dark:text-white mx-1 align-middle"> {{totalLikes}} </h4> 
+      <ProjectsLikeButton   v-if="!ownProfile" key:=item :project="{projects:item,user_id:userInfo.userID, _id:userInfo.mongoID}"  @getLikes="emitChild" @updateLikes="changeLikes"/>
+      <font-awesome-icon  icon="fa-regular fa-thumbs-up"  class="px-1" />
+     
+   </div>  
     </div>
   </div>
 </template>
@@ -35,8 +40,17 @@ data(){
               </head>
               ${this.item.published_code.html}
             `,
+             totalLikes: 0,
     }
   },
+    computed: {
+    
+    ownProfile:{
+      get(){ 
+        return this.$auth.user.email === this.$store.state.otherIDInfo.email
+      }
+    },  
+  }, 
 methods:{
   viewProject(){
     this.$store.commit('PUSH_HTML', this.item.published_code.html)
@@ -52,6 +66,12 @@ methods:{
     this.$router.push("/")
     this.$router.push("/Project")
   },
+  emitChild(value){
+      this.totalLikes = value
+    },
+    changeLikes(value){
+      this.totalLikes += value
+    }
 }
 }
 </script>

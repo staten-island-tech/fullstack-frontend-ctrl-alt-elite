@@ -28,8 +28,7 @@
       <div class="flex sm:hidden flex-col">
         <div class=" flex flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
           <div id="tab1" class="flex flex-row items-center ml-5 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12" @click="changeLanguage">
-            <div id="logo1" class="w-full h-full relative z-10" @click="changeLanguage"></div>
-            <font-awesome-icon icon="fa-brands fa-html5" class="relative px-1 text-red-600" @click="changeLanguage"/>
+            <font-awesome-icon icon="fa-brands fa-html5" id="logo1" class="px-1 text-red-600" @click="changeLanguage"/>
             <h2 id="html">HTML</h2>
           </div>
           <div id="tab2" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
@@ -60,7 +59,7 @@
         <h2 class="text-2xl hidden md:flex bolded">Orientation:</h2>
         <div class="h-1/5 w-5/6 hidden md:flex flex-row">
           <button id="left" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1"/>
+            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1" tabindex="0"/>
           </button>
           <button id="middle" class="h-full w-1/3" @click="editorOrientation">
             <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x" id="orientation2"/>

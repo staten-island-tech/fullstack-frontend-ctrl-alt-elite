@@ -98,7 +98,7 @@ export default {
   width: 80px;
   height: 80px;
   top: 100px;
-  left: 650px;
+  /* left: 650px; */
 }
 .lds-dual-ring:after {
   content: " ";

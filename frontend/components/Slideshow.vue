@@ -2,8 +2,8 @@
   <div>
     <div class="swiper">
       <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
-      <div class="swiper-wrapper">
-        <div class="lds-dual-ring left-1/2 lg:left-3/7"></div>
+      <div class="swiper-wrapper relative">
+        <div class="lds-dual-ring left-1/2 lg:left-3/7 absolute"></div>
         <div v-for="(project,key) in project" :key="key" class="swiper-slide">
           <ProjectCard class="slider-content" :project="project" :following="following"/>
         </div>

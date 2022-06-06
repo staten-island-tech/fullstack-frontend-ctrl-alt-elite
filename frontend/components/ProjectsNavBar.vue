@@ -7,7 +7,7 @@
        
           <input id="title" v-model="title" placeholder="Title" type="text" class="h-1/12 w-32 ml-5 flex justify-center items-center test-sm sm:text-md bg-transparent rounded"> 
         </div>
-        <a v-if="$store.state.otherUserProject === true" @click="viewProfile"><h1 class="h-1/12 w-5/6 sm:w-full flex justify-center items-center text-xs sm:text-sm bg-transparent hover:text-gray-400 text-black cursor-pointer">{{$store.state.otherUsername}}</h1></a>
+        <a v-if="$store.state.otherUserProject === true" @click="viewProfile"><h1 class="h-1/12 w-5/6 sm:w-full flex justify-center items-center text-gray-300 text-xs sm:text-sm bg-transparent hover:text-gray-400 cursor-pointer">{{$store.state.otherUsername}}</h1></a>
       </div>
     </div>
       <div v-if="$store.state.otherUserProject === false" class="h-2/3 w-1/2 sm:1/3 md:w-2/5 xl:w-1/4 flex justify-around items-center">

@@ -3,7 +3,7 @@
     <div class="swiper">
       <div class="swiper-button-prev" :class="{ light : !$store.state.darkMode }"></div>
       <div class="swiper-wrapper">
-        <div class="lds-dual-ring left-1/2 lg:left-1/6 absolute"></div>
+        <div class="lds-dual-ring></div>
         <div v-for="(project,key) in project" :key="key" class="swiper-slide">
           <ProjectCard class="slider-content" :project="project" :following="following"/>
         </div>
@@ -75,7 +75,6 @@ export default {
 
 .swiper-wrapper {
   width: 95vw;
-  position: relative;
 }
 
 .swiper-slide {
@@ -121,7 +120,7 @@ export default {
     transform: rotate(360deg);
   }
 }
-
+/*
 @media (max-width: 1200px) {
     .lds-dual-ring {
         width: 60px;
@@ -173,4 +172,5 @@ export default {
    }
 
 }
+*/
 </style>

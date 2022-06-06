@@ -67,14 +67,17 @@
       <div id="settings" class="h-1/2 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
         <h2 class="text-2xl hidden md:flex bolded">Orientation:</h2>
         <div class="h-1/5 w-5/6 hidden md:flex flex-row">
-          <button id="left" class="h-full w-1/3" @click="editorOrientation" tabindex="0" focusable="true">
-            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x" id="orientation1" tabindex="0"/>
+          <button id="left" class="h-full w-1/3 relative flex items-center justify-center" @click="editorOrientation">
+            <div class="absolute w-full h-full z-10" id="orientation1"></div>
+            <font-awesome-icon icon="fa-solid fa-caret-left" class="fa-4x absolute"/>
           </button>
-          <button id="middle" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x" id="orientation2"/>
+          <button id="middle" class="h-full w-1/3 relative flex items-center justify-center" @click="editorOrientation">
+            <div class="absolute w-full h-full z-10" id="orientation2"></div>
+            <font-awesome-icon icon="fa-solid fa-caret-up" class="fa-4x absolute"/>
           </button>
-          <button id="right" class="h-full w-1/3" @click="editorOrientation">
-            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-4x" id="orientation3" />
+          <button id="right" class="h-full w-1/3 relative flex items-center justify-center" @click="editorOrientation">
+            <div class="absolute w-full h-full z-10" id="orientation3"></div>
+            <font-awesome-icon icon="fa-solid fa-caret-right" class="fa-4x absolute"/>
           </button>
         </div>
         <div class="h-1/10 w-full flex flex-row ">

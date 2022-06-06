@@ -26,6 +26,11 @@ props: {
     required: true
   }
 },
+mounted(){
+  if (this.ownProfile === true) {
+    this.totalLikes = this.item.project_likes.length
+  }
+},
 data(){
   return{
     src: `

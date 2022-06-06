@@ -29,18 +29,24 @@
         <div class=" flex flex-row h-10 text-gray-300 justify-start bg-d-bg-primary border-t border-d-bg-secondary">
           <div id="tab1" class="relative flex flex-row items-center ml-5 bg-d-bg-secondary w-20 p-1 text-md justify-center border-t-4 border-mid-gray h-1/12" @click="changeLanguage">
             <div id="logo1" class="absolute w-full h-full z-10" @click="changeLanguage"></div>
-            <div class="flex flex-row absolute w-full h-full">
-              <font-awesome-icon icon="fa-brands fa-html5 relative" class="px-1 text-red-600" @click="changeLanguage"/>
+            <div class="flex flex-row absolute w-full h-full justify-center items-center">
+              <font-awesome-icon icon="fa-brands fa-html5 " class="px-1 text-red-600" @click="changeLanguage"/>
               <h2 id="html">HTML</h2>
             </div>
           </div>
-          <div id="tab2" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
-            <font-awesome-icon icon="fa-solid fa-star-of-life" id="logo2" class="px-1 text-blue-600" />
-            <h2 id="css">CSS</h2>
+          <div id="tab2" class="relative flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 pr-2 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
+            <div id="logo2" class="absolute w-full h-full z-10" @click="changeLanguage"></div>
+            <div class="flex flex-row absolute w-full h-full justify-center items-center">
+              <font-awesome-icon icon="fa-solid fa-star-of-life" class="px-1 text-blue-600" />
+              <h2 id="css">CSS</h2>
+            </div>
           </div>
-          <div id="tab3" class="flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
-            <font-awesome-icon icon="fa-solid fa-code" id="logo3" class="px-1 text-yellow-600"/>
+          <div id="tab3" class="relative flex flex-row items-center ml-5 bg-d-bg-secondary text-md w-20 p-1 justify-center border-t-4 border-mid-gray h-1/12"  @click="changeLanguage">
+            <div id="logo3" class="absolute w-full h-full z-10" @click="changeLanguage"></div>
+            <div class="flex flex-row absolute w-full h-full justify-center items-center">
+            <font-awesome-icon icon="fa-solid fa-code" class="px-1 text-yellow-600"/>
             <h2 id="js">JS</h2>
+            </div>
           </div>
         </div>
         <div id="mobileContainer" class="h-40 w-full sm:flex bg-d-bg-primary text-medium-gray border-t border-d-bg-secondary flex-col ">

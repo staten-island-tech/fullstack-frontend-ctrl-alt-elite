@@ -7,7 +7,7 @@
     <template v-else>
       <div class="container flex flex-wrap relative gap-4 justify-evenly items-center pb-2">
         <div  v-for="item in list.data" :key="item.user_id">
-          <div class="container flex flex-wrap py-5 px-5 h-40 max-w-sm left-0 mt-2 mx-auto text-white dark:text-black bg-black dark:bg-white rounded-xl shadowing space-y-2 float-left sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 ">
+          <div class="container flex flex-wrap py-5 px-5 min-h-50 h-auto max-w-sm left-0 mt-2 mx-auto text-white dark:text-black bg-black dark:bg-white rounded-xl shadowing space-y-2 float-left sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 ">
             <img class="block mx-auto h-12 rounded-full sm:mx-0 sm:shrink-0 cursor-pointer transform transition duration-500 hover:scale-125" :src="item.profile_pic" @click="viewOtherUser(item._id,item.user_id)">
             <div class="text-center space-y-2 sm:text-left">
               <div class="space-y-0.5">

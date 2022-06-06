@@ -61,7 +61,7 @@
           </div>
         </div>
       </div>
-    <iframe id='iframe' class="h-50 w-full"></iframe>
+    <iframe id='iframe' class="h-50/1 w-full"></iframe>
     </div>
     <div id="settingdiv" class="w-full h-full justify-center items-center absolute bg-transparent z-20 hidden" @click="saveSetting">
       <div id="settings" class="h-1/2 w-1/3 flex flex-col justify-evenly items-center border-2 bg-gray-400 rounded">
